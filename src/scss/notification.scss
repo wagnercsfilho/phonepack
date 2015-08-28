@@ -1,0 +1,32 @@
+.notification {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1001;
+    padding: 16px 24px;
+    background-color: #323232;
+    transform: translateY(100%);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+
+    .notification__content {
+        display: block;
+        font-size: 14px;
+        color: #FFFFFF;
+        line-height: 20px;
+    }
+
+    .notification__icon {
+      font-size: 14px;
+      color: #FFFFFF;
+      line-height: 20px !important; 
+      padding-right: 16px;
+    }
+
+}
+
+.notification--is-shown{
+    transform: translateY(0);
+}

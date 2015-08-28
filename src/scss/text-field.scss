@@ -1,0 +1,151 @@
+.text-field {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: 8px 0 8px 0;
+}
+
+.text-field:before {
+    position: absolute;
+    right: 0;
+    bottom: 7px;
+    left: 0;
+    height: 1px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.text-field:before {
+    content: '';
+}
+
+.text-field__border {
+    position: absolute;
+    right: 0;
+    bottom: 6px;
+    left: 0;
+    height: 2px;
+    background-color: $blue;
+    transform: scale(0);
+    transition-property: transform;
+    transition-duration: 0.6s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.text-field__input {
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    resize: none;
+    font-weight: 400;
+    cursor: text;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    box-shadow: none;
+}
+
+.text-field__input::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.26);
+}
+.text-field__input::-moz-placeholder  {
+    color: rgba(0, 0, 0, 0.26);
+}
+.text-field__input:-moz-placeholder {
+    color: rgba(0, 0, 0, 0.26);
+}
+.text-field__input:-ms-input-placeholder{
+    color: rgba(0, 0, 0, 0.26);
+}
+
+.text-field__input-animate::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.26);
+    transform-origin: bottom left;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.text-field__input-animate::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.26);
+    transform-origin: bottom left;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+.text-field__input-animate:-moz-placeholder {   /* Older versions of Firefox */
+    color: rgba(0, 0, 0, 0.26);
+    transform-origin: bottom left;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+.text-field__input-animate:-ms-input-placeholder { 
+    color: rgba(0, 0, 0, 0.26);
+    transform-origin: bottom left;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.text-field__input:focus {
+    outline: none; 
+}
+
+.text-field__input-animate:focus::-webkit-input-placeholder {
+     transform: scale(0.75) translateY(-30px);
+     color: $blue; 
+     visibility: visible !important;
+}
+
+.text-field__input:focus ~ .text-field__border{
+    transform: scale(1); 
+}
+
+.text-field__input:focus ~ .text-field__label{
+    transform: scale(0.75) translateY(0);
+    color: $blue; 
+}
+
+.text-field__input:focus ~ .text-field__icon{
+    color: $blue;
+}
+
+.text-field--is-disabled:before {
+    border-bottom-style: dashed; 
+}
+
+.text-field--is-disabled .text-field__label {
+    color: rgba(0, 0, 0, 0.26); 
+}
+
+.text-field--is-disabled .text-field__input {
+    color: rgba(0, 0, 0, 0.26);
+    cursor: not-allowed; 
+}
+
+.text-field--with-icon {
+    margin-left: 64px;
+}
+
+.text-field__icon {
+    position: absolute;
+    top: 5px;
+    left: -60px;
+    height: 44px;
+    width: 48px;
+    line-height: 44px;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.54);
+    text-align: center;
+    transition-property: color;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}

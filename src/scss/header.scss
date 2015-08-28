@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  min-height: 56px;
+  background: $white;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  
+  .title {
+    position: relative; 
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: .02em;
+    font-weight: 400; 
+    padding-left: 16px;
+    flex-grow: 2;
+    flex-shrink: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  .buttons {
+    display: block;
+    border: 0;
+    text-align: center; 
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0 12px 0 12px;
+  }
+
+  .buttons + .title{
+    padding-left: 10px;
+  }
+  
+}
+
+.sub-header{
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    height: 48px;
+}
+
+.header-shadow{
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
+}

@@ -1,0 +1,67 @@
+.checkbox {
+    min-width: 24px;
+    min-height: 24px;
+}
+
+.checkbox__label {
+    display: block;
+    position: relative;
+    padding-left: 32px;
+    font-weight: 400;
+    line-height: 24px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox__label:before, .checkbox__label:after {
+    display: inline-block;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 24px;
+    transition: transform 0.2s;
+}
+
+.checkbox__label:before {
+    content: "\e835";
+}
+
+.checkbox__input:not(:checked) + .checkbox__label:before {
+    transform: scale(1);
+}
+
+.checkbox__label:after {
+    content: "\e834";
+    color: $teal;
+}
+
+.checkbox__input:not(:checked) + .checkbox__label:after {
+    transform: scale(0);
+}
+
+.checkbox__input[disabled] + .checkbox__label {
+    cursor: not-allowed;
+}
+
+.checkbox--standalone .checkbox__label {
+    padding-left: 0;
+}
+
+.checkbox__help {
+    display: block;
+    padding-left: 32px;
+    color: rgba(0, 0, 0, 0.54);
+    text-align: left;
+}
+
+.checkbox__input[disabled] + .checkbox__label:before, .checkbox__input[disabled] + .checkbox__label:after {
+    color: rgba(0, 0, 0, 0.26);
+}

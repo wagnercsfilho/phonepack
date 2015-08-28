@@ -1,0 +1,23 @@
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.visuallyhidden, .checkbox__input, .radio-button__input, .switch__input {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+.fs-caption, .checkbox__help, .radio-button__help, .switch__help {
+    font-size: 12px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 20px;
+}
+
