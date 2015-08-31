@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+  <% include partials/header %>
+
+  <div class="container">
+  
+    <!--PAGE TITLE-->
+  	<div class="row">
+  		<div class="span12">
+    		<div class="page-header">
+    				<h1>
+    				Getting started
+    			</h1>
+    		</div>
+  		</div>
+  	</div>
+  
+    <!-- /. PAGE TITLE-->
+    <div class="row row-content">
+      <div class="span12">
+        <h2 class="subtitle">Download via Bower</h2>
+        <p>PhonePack is available through Bower</p>
+        <pre><code>bower install phonepack</code></pre>
+      </div>
+    </div>
+    <div class="row row-content">
+          <div class="span12">
+        <h2 class="subtitle">Don’t use bower?</h2>
+        <p>PhonePack is available via download</p>
+        <a class="btn btn-large btn-primary" href="https://github.com/wagnercsfilho/phonepack/archive/master.zip">Download Phonepack</a>
+        <span>Currently v0.0.1 BETA</span>
+      </div>
+    </div>
+    <div class="row row-content">
+      <div class="span12">
+          <h2 class="subtitle">Include files</h2>
+            <p>All needed files are in the dist folder.
+            You can include PhonePack files in your html page.</p>
+  <pre>
+  <code>  &lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
+   &lt;script src="phonepack.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
+  
+  <p>Start the application</p>
+  <pre><code>  /*Javascript*/
+    document.addEventListener('DOMContentLoaded', function() {
+    	var phonepack = new PhonePack({
+    		fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
+    	});
+    }, false);
+  
+    /*jQuery*/
+    $(document).ready(function(){
+      var phonepack = new PhonePack();
+    });
+  
+    /*Options*/
+    var phonepack = new PhonePack({
+      fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
+    });</code></pre>
+  
+      </div>
+    </div>
+    <div class="row row-content">
+  	  <div class="span12">
+  	  <h2 class="subtitle">Basic template</h2>
+      <p>Use this basic template to get your app started.</p>
+       <div class="zenburn">
+    			<pre>
+  <code class="html">&lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+      &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        
+         <!-- Sets initial viewport load and disables zooming  -->
+        &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1"&gt;
+        &lt;title&gt;PhonePack&lt;/title&gt;
+  
+        &lt;!-- Material Design Icons  --&gt;
+        &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;
+        &lt;!-- Material Design Font  --&gt;
+        &lt;link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'&gt;
+  
+        &lt;!-- PhonePack CSS  --&gt;
+        &lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
+  
+        &lt;!-- PhonePack JavaScript  --&gt;
+        &lt;script src="phonepack.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript"&gt;
+          document.addEventListener('DOMContentLoaded', function() {
+            var phonepack = new PhonePack();
+          }, false);
+        &lt;/script&gt;
+      &lt;/head&gt;
+  &lt;body&gt;
+  
+    &lt;header class="header bg-lime header-shadow"&gt;
+      &lt;div class="title"&gt;PhonePack&lt;/div&gt;
+    &lt;/header&gt;
+  
+    &lt;section class="content has-header"&gt;
+      &lt;ul class="list"&gt;
+          &lt;li class="list-item list-item__has-separator"&gt;
+            &lt;div class="list-content"&gt;
+              List item 01
+              &lt;div class="list-descripton"&gt;
+                Text Item
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+  
+  &lt;/body&gt;
+  &lt;/html&gt;</code></pre>
+        </div>
+  	  </div>
+  	 </div>
+  
+  </div>
+
+<% include partials/footer %>
+
+</body>
+</html>
