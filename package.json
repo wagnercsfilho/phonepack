@@ -1,13 +1,13 @@
 {
-  "name": "nyna",
-  "version": "1.0.0",
+  "name": "phonepack",
+  "version": "0.0.1",
   "description": "CSS & JS Mobile Framework",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "wagnercsfilho",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.8.0",
     "browserify": "^11.0.0",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "express": "^4.13.3",
+    "ejs": "~0.8.5",
     "gulp-minify-css": "^1.2.0",
     "gulp-rename": "^1.2.2"
   }
