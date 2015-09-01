@@ -2,8 +2,44 @@
 <html lang="en">
 <head>
     <% include partials/head %>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+    	$(function(){
+		        // Check the initial Poistion of the Sticky Header
+		        var sideMenu = $('#sideBar').offset().top;
+		        var iFrameDevice = $('#iFrameDevice');
+		        var refElement = null;
+		 
+		        $(window).scroll(function(){
+		                if( $(window).scrollTop() > sideMenu ) {
+		                        $('#sideBar').css({position: 'fixed', top: '0px'});
+		                        $('#device').css({position: 'fixed', top: '0px'});
+		                } else {
+		                        $('#sideBar').css({position: 'static', top: '0px'});
+		                        $('#device').css({position: 'static', top: '0px'});
+		                }
+		                
+		                $('#sideBar a').each(function(){
+		                	 var _currLink = $(this);
+        					 var _refElement = $(_currLink.attr("href"));
+        					 var _link = _currLink.attr('rel');
+        					 
+        					 if ((_link) && (_refElement[0] !== refElement)){
+        					 
+	        					 if (($(window).scrollTop() > _refElement.offset().top) && (_refElement[0] !== refElement)) {
+	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
+	        					 	refElement = _refElement[0];
+	        					 	
+	        					 	window.location.hash = _currLink.attr("href");
+				                 }
+				                 
+        					 }
+		                });
+		                
+		        });
+		});
+    </script>
 </head>
 
 <body>
@@ -28,14 +64,14 @@
 	<div class="row">
 		
 		<div class="span2">
-			<div class="side-bar">
+			<div class="side-bar" id="sideBar">
 
 				<h3>CSS</h3>
 				<ul class="nav nav-list">
-					<li><a href="#">Header</a></li>
-					<li><a href="#">Content</a></li>
-					<li><a href="#">Footer</a></li>
-					<li><a href="#">Buttons</a></li>
+					<li><a href="#header" rel="demos/header.html">Header</a></li>
+					<li><a href="#content" rel="demos/content.html">Content</a></li>
+					<li><a href="#footer" rel="demos/footer.html">Footer</a></li>
+					<li><a href="#buttons" rel="demos/buttons.html">Buttons</a></li>
 					<li><a href="#">List</a></li>
 					<li><a href="#">Cards</a></li>
 					<li><a href="#">Forms & Inputs</a></li>
@@ -61,82 +97,32 @@
 	
 		<div class="span6">
 
-			<h2>Header</h2>
-<pre><code>&lt;header class="header bg-white header-shadow"&gt;
+			<h2 id="header">Header</h2>
+<pre><code>&lt;header class="header has-shadow bg-white"&gt;
  &lt;div class="title"&gt;Header&lt;/div&gt;
 &lt;header&gt;</code></pre>
 
-->
+			<h2 id="content">Content</h2>
+<pre><code>&lt;section class="content has-header"&gt;
+  &lt;h1>Main Content&lt;/h1&gt;
+&lt;/section&gt;</code></pre>
 
-			<div class="blog-post">
-				<h2>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour</h2>
+			<h2 id="footer">Footer</h2>
+<pre><code>&lt;footer class="footer bg-green"&gt;
+ &lt;div class="title"&gt;Footer&lt;/div&gt;
+&lt;footer&gt;</code></pre>
 
-				<div class="postmetadata">
-					<ul>
-							<li>
-								<i class="icon-user"></i> <a href="#">Author Name</a>
-							</li>
+			<h2 id="buttons">Buttons</h2>
+			<pre><code>&lt;button class="btn"&gt;&lt;/button&gt;</code></pre>
 
-							<li>
-								 <i class="icon-calendar"></i>September 20th, 2013
-							</li>
-
-							<li>
-								<i class="icon-comment"></i> <a href="#">100 Comments</a>
-							</li>
-							<li>
-								<i class="icon-tags"></i> <a href="#">Themes</a>, <a href="#">Template</a>
-							</li>
-					</ul>
-				</div>
-
-
-			
-					<img src="img/img1-870x400.jpeg">
-					<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>	
-
-					<a class="btn btn-primary" href="blog-details.html">Read More</a>			
-			</div>
-
-
-
-			<!--/.Blog Post-->
-
-			<!--Pagination-->
-			<div class="pagination">
-				<ul>
-					<li>
-						<a href="#">Prev</a>
-					</li>
-					<li>
-						<a href="#">1</a>
-					</li>
-					<li>
-						<a href="#">2</a>
-					</li>
-					<li>
-						<a href="#">3</a>
-					</li>
-					<li>
-						<a href="#">4</a>
-					</li>
-					<li>
-						<a href="#">5</a>
-					</li>
-					<li>
-						<a href="#">Next</a>
-					</li>
-				</ul>
-			</div>	
-
-		<!--/.Pagination-->
-		</div>	
-
+		</div>
+		
 		<div class="span4">
 			
-			<div class="device" style="" id="barsInDevice">
+			<div class="device" style="" id="device">
 		        <div class="device-content">
 		          <div id="iwindow">
+		          	<iframe id="iFrameDevice" width="315" height="560" marginwidth="0" marginheight="0" scrolling="no" style="border: 0"></iframe>
 				   </div>
 		        </div>
 		    </div>
@@ -147,4 +133,7 @@
 	</div>
 </div>
 
-<% include partials/fo
+<% include partials/footer %>
+
+</body>
+</html>

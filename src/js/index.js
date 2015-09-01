@@ -1,6 +1,6 @@
 /*
 	document.addEventListener('DOMContentLoaded', function() {
-		var mozi = new Mozi({
+		var phonepack = new PhonePack({
 			fastClick: true
 		});
 	}, false);
@@ -17,7 +17,7 @@ var _Dialog = require('./dialog');
 var _Loading = require('./loading');
 var _Notification = require('./notification');
 
-var Phonepack = (function(){
+var PhonePack = (function(){
 	
 	function Phonepack(settings) {
 
@@ -30,8 +30,14 @@ var Phonepack = (function(){
 		}
 
 		var _trigger = function() {
-			buttons();
+			_Buttons();
 		}
+		
+		if (_config.fastClick){
+			_FastClick(document.body);
+		}
+
+		_trigger();
 
 		return {
 			SlideMenu: _SlideMenu,
@@ -44,21 +50,13 @@ var Phonepack = (function(){
 			trigger: _trigger
 		}
 
-		if (config.fastClick){
-			FastClick(document.body);
-		}
-
-		_trigger();
-
 	}
 
-	return Mozi;
+	return PhonePack;
 		
-	};
-
 })();
 
-window.Phonepack = Phonepack;
+window.PhonePack = PhonePack;
 
 
 

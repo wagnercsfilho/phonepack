@@ -676,7 +676,7 @@ th {
   height: 48px;
 }
 
-.header-shadow {
+.header.has-shadow {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
 }
 
@@ -1196,13 +1196,6 @@ button[disabled], html input[disabled] {
           justify-content: center;
 }
 
-.btn--m {
-  padding-left: 14px;
-  padding-right: 14px;
-  font-size: 13px;
-  line-height: 36px;
-}
-
 .btn--s {
   padding-left: 12px;
   padding-right: 12px;
@@ -1222,6 +1215,15 @@ button[disabled], html input[disabled] {
   padding-right: 16px;
   font-size: 14px;
   line-height: 40px;
+}
+
+.btn--fab {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-transition-property: box-shadow;
+          transition-property: box-shadow;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  border-radius: 50%;
 }
 
 .btn--fab.btn--s {
@@ -1254,6 +1256,49 @@ button[disabled], html input[disabled] {
   padding: 0;
 }
 
+.btn--fab.btn--blue {
+  color: #FFFFFF;
+  background-color: #2196F3;
+}
+
+.btn--fab.btn--green {
+  color: #FFFFFF;
+  background-color: #4CAF50;
+}
+
+.btn--fab.btn--orange {
+  color: #FFFFFF;
+  background-color: #FF9800;
+}
+
+.btn--fab.btn--red {
+  color: #FFFFFF;
+  background-color: #F44336;
+}
+
+.btn--fab.btn--black {
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+.btn--fab.btn--grey {
+  color: #FFFFFF;
+  background-color: #9E9E9E;
+}
+
+.btn--fab.btn--white {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #FFFFFF;
+}
+
+.btn--icon {
+  -webkit-transition-property: background-color;
+          transition-property: background-color;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  border-radius: 50%;
+}
+
 .btn--icon.btn--s {
   padding-left: 12px;
   padding-right: 12px;
@@ -1282,92 +1327,6 @@ button[disabled], html input[disabled] {
   height: 40px;
   width: 40px;
   padding: 0;
-}
-
-.btn--raised {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  -webkit-transition-property: box-shadow;
-          transition-property: box-shadow;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-}
-
-.btn--raised[disabled], .btn--raised.btn--is-disabled {
-  box-shadow: none !important;
-  cursor: not-allowed;
-  color: rgba(0, 0, 0, 0.26) !important;
-  background-color: #E0E0E0 !important;
-}
-
-.btn--raised.btn--blue {
-  color: #FFFFFF;
-  background-color: #2196F3;
-}
-
-.btn--flat {
-  -webkit-transition-property: background-color;
-          transition-property: background-color;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-}
-
-.btn--flat[disabled], .btn--flat.btn--is-disabled {
-  box-shadow: none !important;
-  cursor: not-allowed;
-  color: rgba(0, 0, 0, 0.26) !important;
-  background-color: transparent !important;
-}
-
-.btn--fab {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  -webkit-transition-property: box-shadow;
-          transition-property: box-shadow;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-  border-radius: 50%;
-}
-
-.btn--icon {
-  -webkit-transition-property: background-color;
-          transition-property: background-color;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
-  border-radius: 50%;
-}
-
-.btn--block {
-  width: 100%;
-}
-
-.ripple {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 100%;
-  -webkit-transform: scale(0);
-      -ms-transform: scale(0);
-          transform: scale(0);
-  pointer-events: none;
-}
-
-.ripple.show {
-  -webkit-animation: ripple 0.5s ease-out;
-          animation: ripple 0.5s ease-out;
-}
-
-@-webkit-keyframes ripple {
-  to {
-    -webkit-transform: scale(1.5);
-            transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-@keyframes ripple {
-  to {
-    -webkit-transform: scale(1.5);
-            transform: scale(1.5);
-    opacity: 0;
-  }
 }
 
 .btn--icon.btn--red {
@@ -1450,6 +1409,21 @@ button[disabled], html input[disabled] {
   color: #FFFFFF;
 }
 
+.btn--raised {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-transition-property: box-shadow;
+          transition-property: box-shadow;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.btn--raised[disabled], .btn--raised.btn--is-disabled {
+  box-shadow: none !important;
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, 0.26) !important;
+  background-color: #E0E0E0 !important;
+}
+
 .btn--raised.btn--green {
   color: #FFFFFF;
   background-color: #4CAF50;
@@ -1480,6 +1454,20 @@ button[disabled], html input[disabled] {
   background-color: #FFFFFF;
 }
 
+.btn--flat {
+  -webkit-transition-property: background-color;
+          transition-property: background-color;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+.btn--flat[disabled], .btn--flat.btn--is-disabled {
+  box-shadow: none !important;
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, 0.26) !important;
+  background-color: transparent !important;
+}
+
 .btn--flat.btn--black {
   color: #000000;
 }
@@ -1504,39 +1492,39 @@ button[disabled], html input[disabled] {
   color: #9E9E9E;
 }
 
-.btn--fab.btn--blue {
-  color: #FFFFFF;
-  background-color: #2196F3;
+.btn--block {
+  width: 100%;
 }
 
-.btn--fab.btn--green {
-  color: #FFFFFF;
-  background-color: #4CAF50;
+.btn--ripple {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  pointer-events: none;
 }
 
-.btn--fab.btn--orange {
-  color: #FFFFFF;
-  background-color: #FF9800;
+.btn--ripple.show {
+  -webkit-animation: ripple 0.5s ease-out;
+          animation: ripple 0.5s ease-out;
 }
 
-.btn--fab.btn--red {
-  color: #FFFFFF;
-  background-color: #F44336;
+@-webkit-keyframes ripple {
+  to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
-.btn--fab.btn--black {
-  color: #FFFFFF;
-  background-color: #000000;
-}
-
-.btn--fab.btn--grey {
-  color: #FFFFFF;
-  background-color: #9E9E9E;
-}
-
-.btn--fab.btn--white {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: #FFFFFF;
+@keyframes ripple {
+  to {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    opacity: 0;
+  }
 }
 
 .icon {

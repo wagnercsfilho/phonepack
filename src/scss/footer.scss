@@ -1,4 +1,4 @@
-.header {
+.footer {
   display: flex;
   width: 100%;
   position: absolute;
@@ -38,16 +38,4 @@
     padding-left: 10px;
   }
   
-}
-
-.sub-header{
-    position: absolute;
-    top: 56px;
-    left: 0;
-    right: 0;
-    height: 48px;
-}
-
-.header.has-shadow{
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14);
 }

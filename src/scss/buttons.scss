@@ -26,28 +26,18 @@ button[disabled], html input[disabled] {
     align-items: center;
     justify-content: center;
 }
-
-.btn--m {
-  padding-left: 14px;
-  padding-right: 14px;
-  font-size: 13px;
-  line-height: 36px;
-}
-
 .btn--s {
     padding-left: 12px;
     padding-right: 12px;
     font-size: 11px;
     line-height: 30px;
 }
-
 .btn--m {
     padding-left: 14px;
     padding-right: 14px;
     font-size: 13px;
     line-height: 36px;
 }
-
 .btn--l {
     padding-left: 16px;
     padding-right: 16px;
@@ -55,6 +45,12 @@ button[disabled], html input[disabled] {
     line-height: 40px;
 }
 
+.btn--fab {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition-property: box-shadow;
+  transition-duration: 0.2s;
+  border-radius: 50%;
+}
 .btn--fab.btn--s {
     padding-left: 12px;
     padding-right: 12px;
@@ -64,7 +60,6 @@ button[disabled], html input[disabled] {
     width: 30px;
     padding: 0;
 }
-
 .btn--fab.btn--m {
     padding-left: 14px;
     padding-right: 14px;
@@ -74,7 +69,6 @@ button[disabled], html input[disabled] {
     width: 36px;
     padding: 0;
 }
-
 .btn--fab.btn--l {
     padding-left: 16px;
     padding-right: 16px;
@@ -84,7 +78,41 @@ button[disabled], html input[disabled] {
     width: 40px;
     padding: 0;
 }
+.btn--fab.btn--blue {
+  color: $white;
+  background-color: $blue;
+}
 
+.btn--fab.btn--green {
+  color: $white;
+  background-color: $green;
+}
+.btn--fab.btn--orange {
+  color: $white;
+  background-color: $orange;
+}
+.btn--fab.btn--red {
+  color: $white;
+  background-color: $red;
+}
+.btn--fab.btn--black {
+  color: $white;
+  background-color: $black;
+}
+.btn--fab.btn--grey {
+  color: $white;
+  background-color: $grey;
+}
+.btn--fab.btn--white {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: $white;
+}
+
+.btn--icon {
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  border-radius: 50%;
+}
 .btn--icon.btn--s {
     padding-left: 12px;
     padding-right: 12px;
@@ -94,7 +122,6 @@ button[disabled], html input[disabled] {
     width: 30px;
     padding: 0;
 }
-
 .btn--icon.btn--m {
     padding-left: 14px;
     padding-right: 14px;
@@ -104,7 +131,6 @@ button[disabled], html input[disabled] {
     width: 36px;
     padding: 0;
 }
-
 .btn--icon.btn--l {
     padding-left: 16px;
     padding-right: 16px;
@@ -114,56 +140,82 @@ button[disabled], html input[disabled] {
     width: 40px;
     padding: 0;
 }
+@each $label, $color in $colors {
+    .btn--icon.btn--#{$label} {
+      color: $color;
+    }
+} 
 
 .btn--raised {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition-property: box-shadow;
   transition-duration: 0.2s;
 }
-
 .btn--raised[disabled], .btn--raised.btn--is-disabled {
   box-shadow: none !important;
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.26) !important;
   background-color: #E0E0E0 !important;
 }
-
-.btn--raised.btn--blue {
+.btn--raised.btn--green {
   color: $white;
-  background-color: $blue;
+  background-color: $green;
 }
-
+.btn--raised.btn--orange {
+  color: $white;
+  background-color: $red;
+}
+.btn--raised.btn--red {
+  color: $white;
+  background-color: $red;
+}
+.btn--raised.btn--black {
+  color: $white;
+  background-color: $black;
+}
+.btn--raised.btn--grey {
+  color: $white;
+  background-color: $grey;
+}
+.btn--raised.btn--white {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: $white;
+}
 
 .btn--flat {
   transition-property: background-color;
   transition-duration: 0.2s;
 }
-
 .btn--flat[disabled], .btn--flat.btn--is-disabled {
   box-shadow: none !important;
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.26) !important;
   background-color: transparent !important;
 }
-
-.btn--fab {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  transition-property: box-shadow;
-  transition-duration: 0.2s;
-  border-radius: 50%;
+.btn--flat.btn--black {
+  color: $black;
 }
-
-.btn--icon {
-  transition-property: background-color;
-  transition-duration: 0.2s;
-  border-radius: 50%;
+.btn--flat.btn--blue {
+  color: $blue;
+}
+.btn--flat.btn--green {
+  color: $green;
+}
+.btn--flat.btn--orange {
+  color: $orange;
+}
+.btn--flat.btn--red {
+  color: $red;
+}
+.btn--flat.btn--grey {
+  color: $grey;
 }
 
 .btn--block{
   width: 100%;
 }
 
-.ripple {
+.btn--ripple {
   position: absolute;
   background: rgba(0,0,0,.15);
   border-radius: 100%;
@@ -171,7 +223,7 @@ button[disabled], html input[disabled] {
   pointer-events: none;
 }
 
-.ripple.show {
+.btn--ripple.show {
   animation: ripple .5s ease-out;
 }
 
@@ -183,99 +235,7 @@ ripple {
   }
 }
 
-@each $label, $color in $colors {
 
-    .btn--icon.btn--#{$label} {
-      color: $color;
-    }
 
-} 
 
-.btn--raised.btn--green {
-  color: $white;
-  background-color: $green;
-}
 
-.btn--raised.btn--orange {
-  color: $white;
-  background-color: $red;
-}
-
-.btn--raised.btn--red {
-  color: $white;
-  background-color: $red;
-}
-
-.btn--raised.btn--black {
-  color: $white;
-  background-color: $black;
-}
-
-.btn--raised.btn--grey {
-  color: $white;
-  background-color: $grey;
-}
-
-.btn--raised.btn--white {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: $white;
-}
-
-.btn--flat.btn--black {
-  color: $black;
-}
-
-.btn--flat.btn--blue {
-  color: $blue;
-}
-
-.btn--flat.btn--green {
-  color: $green;
-}
-
-.btn--flat.btn--orange {
-  color: $orange;
-}
-
-.btn--flat.btn--red {
-  color: $red;
-}
-
-.btn--flat.btn--grey {
-  color: $grey;
-}
-
-.btn--fab.btn--blue {
-  color: $white;
-  background-color: $blue;
-}
-
-.btn--fab.btn--green {
-  color: $white;
-  background-color: $green;
-}
-
-.btn--fab.btn--orange {
-  color: $white;
-  background-color: $orange;
-}
-
-.btn--fab.btn--red {
-  color: $white;
-  background-color: $red;
-}
-
-.btn--fab.btn--black {
-  color: $white;
-  background-color: $black;
-}
-
-.btn--fab.btn--grey {
-  color: $white;
-  background-color: $grey;
-}
-
-.btn--fab.btn--white {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: $white;
-}

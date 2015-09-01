@@ -1,47 +1,7 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"c:\\projetos\\frameworks\\nyna\\src\\js\\app.js":[function(require,module,exports){
-var FastClick = require('./fastclick');
-var slideMenu = require('./slide-menu');
-var pullToRefresh = require('./pull-to-refresh');
-var buttons = require('./buttons');
-var DropDownMenu = require('./dropdown-menu');
-var Pages = require('./navigation');
-var Dialog = require('./dialog');
-var Loading = require('./loading');
-var Notification = require('./notification');
-
-if ('addEventListener' in document) {
-    document.addEventListener('DOMContentLoaded', function() {
-        FastClick(document.body);
-
-        buttons();
-        
-    }, false);
-}
-
-var nyna = (function(){
-	'use strict';
-
-	return {
-		slideMenu: slideMenu,
-		pullToRefresh: pullToRefresh,
-		Pages: Pages,
-		DropDownMenu: DropDownMenu, 
-		Dialog: Dialog,
-		Loading: Loading,
-		Notification: Notification,
-		trigger: function(){
-			buttons();
-		}
-	};
-
-})();
-
-
-window.nyna = nyna;
-},{"./buttons":"c:\\projetos\\frameworks\\nyna\\src\\js\\buttons.js","./dialog":"c:\\projetos\\frameworks\\nyna\\src\\js\\dialog.js","./dropdown-menu":"c:\\projetos\\frameworks\\nyna\\src\\js\\dropdown-menu.js","./fastclick":"c:\\projetos\\frameworks\\nyna\\src\\js\\fastclick.js","./loading":"c:\\projetos\\frameworks\\nyna\\src\\js\\loading.js","./navigation":"c:\\projetos\\frameworks\\nyna\\src\\js\\navigation.js","./notification":"c:\\projetos\\frameworks\\nyna\\src\\js\\notification.js","./pull-to-refresh":"c:\\projetos\\frameworks\\nyna\\src\\js\\pull-to-refresh.js","./slide-menu":"c:\\projetos\\frameworks\\nyna\\src\\js\\slide-menu.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\buttons.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/ubuntu/workspace/phonepack/src/js/buttons.js":[function(require,module,exports){
 var utils = require('./utils');
 
-module.exports = function(){
+module.exports = function() {
 
     var addRippleEffect = function (e) {
         var target = e.target;
@@ -50,14 +10,17 @@ module.exports = function(){
             || (utils.clousestClass(target, 'btn--ripple')) 
             || (utils.clousestClass(target, 'tab--ripple')) 
             || (target.classList.contains('tab--ripple'))) {
-                var rect = target.getBoundingClientRect();
-                var ripple = target.querySelector('.ripple');
+            
+            var rect = target.getBoundingClientRect();
+            var ripple = target.querySelector('.ripple');
+            
             if (!ripple) {
                 ripple = document.createElement('span');
                 ripple.className = 'ripple';
                 ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
                 target.appendChild(ripple);
             }
+            
             ripple.classList.remove('show');
             var top = e.pageY - rect.top - ripple.offsetHeight / 2 - document.body.scrollTop;
             var left = e.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
@@ -71,13 +34,8 @@ module.exports = function(){
 
     document.addEventListener('click', addRippleEffect, false);
 
-       // var elements = document.getElementsByClassName('btn--ripple');
-       // for (var i = 0; i < elements.length; i++){
-       //     document.addEventListener('click', addRippleEffect, false);
-       // }
-
 }
-},{"./utils":"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\dialog.js":[function(require,module,exports){
+},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/dialog.js":[function(require,module,exports){
 var utils = require('./utils');
 
 var Dialog = (function(){
@@ -203,7 +161,7 @@ var Dialog = (function(){
 })();
 
 module.exports = Dialog;
-},{"./utils":"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\dropdown-menu.js":[function(require,module,exports){
+},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/dropdown-menu.js":[function(require,module,exports){
 var utils = require('./utils');
 
 var DropDownMenu = (function(){
@@ -258,7 +216,7 @@ alert('Element is ' + offset + ' vertical pixels from <body>');
 })();
 
 module.exports = DropDownMenu;
-},{"./utils":"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\fastclick.js":[function(require,module,exports){
+},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/fastclick.js":[function(require,module,exports){
 ;(function () {
 	'use strict';
 
@@ -1101,7 +1059,71 @@ module.exports = DropDownMenu;
 	}
 }());
 
-},{}],"c:\\projetos\\frameworks\\nyna\\src\\js\\loading.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/index.js":[function(require,module,exports){
+/*
+	document.addEventListener('DOMContentLoaded', function() {
+		var phonepack = new PhonePack({
+			fastClick: true
+		});
+	}, false);
+*/
+
+var utils = require('./utils');
+var _FastClick = require('./fastclick');
+var _SlideMenu = require('./slide-menu');
+var _PullToRefresh = require('./pull-to-refresh');
+var _Buttons = require('./buttons');
+var _DropDownMenu = require('./dropdown-menu');
+var _Pages = require('./navigation');
+var _Dialog = require('./dialog');
+var _Loading = require('./loading');
+var _Notification = require('./notification');
+
+var PhonePack = (function(){
+	
+	function Phonepack(settings) {
+
+		var _config = {
+			fastClick: true
+		}
+
+		if (settings){
+			_config = utils.extend({}, _config, settings);
+		}
+
+		var _trigger = function() {
+			_Buttons();
+		}
+		
+		if (_config.fastClick){
+			_FastClick(document.body);
+		}
+
+		_trigger();
+
+		return {
+			SlideMenu: _SlideMenu,
+			PullToRefresh: _PullToRefresh,
+			Pages: _Pages,
+			DropDownMenu: _DropDownMenu, 
+			Dialog: _Dialog,
+			Loading: _Loading,
+			Notification: _Notification,
+			trigger: _trigger
+		}
+
+	}
+
+	return PhonePack;
+		
+})();
+
+window.PhonePack = PhonePack;
+
+
+
+
+},{"./buttons":"/home/ubuntu/workspace/phonepack/src/js/buttons.js","./dialog":"/home/ubuntu/workspace/phonepack/src/js/dialog.js","./dropdown-menu":"/home/ubuntu/workspace/phonepack/src/js/dropdown-menu.js","./fastclick":"/home/ubuntu/workspace/phonepack/src/js/fastclick.js","./loading":"/home/ubuntu/workspace/phonepack/src/js/loading.js","./navigation":"/home/ubuntu/workspace/phonepack/src/js/navigation.js","./notification":"/home/ubuntu/workspace/phonepack/src/js/notification.js","./pull-to-refresh":"/home/ubuntu/workspace/phonepack/src/js/pull-to-refresh.js","./slide-menu":"/home/ubuntu/workspace/phonepack/src/js/slide-menu.js","./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/loading.js":[function(require,module,exports){
 var utils = require('./utils');
 
 var Loading = (function(){
@@ -1202,7 +1224,7 @@ var Loading = (function(){
 })();
 
 module.exports = Loading;
-},{"./utils":"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\navigation.js":[function(require,module,exports){
+},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/navigation.js":[function(require,module,exports){
 var Page = (function(){
 
 	function Page(element){
@@ -1293,7 +1315,7 @@ var Page = (function(){
 })();
 
 module.exports = Page;
-},{}],"c:\\projetos\\frameworks\\nyna\\src\\js\\notification.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/notification.js":[function(require,module,exports){
 var utils = require('./utils');
 
 var Notification = (function(){
@@ -1405,7 +1427,7 @@ var Notification = (function(){
 })();
 
 module.exports = Notification;
-},{"./utils":"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\pull-to-refresh.js":[function(require,module,exports){
+},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/pull-to-refresh.js":[function(require,module,exports){
 var pullToRefresh = function(element){
 
 	var top, // left position of moving box
@@ -1436,11 +1458,10 @@ var pullToRefresh = function(element){
 	}
 
 	module.exports = pullToRefresh;
-},{}],"c:\\projetos\\frameworks\\nyna\\src\\js\\slide-menu.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/slide-menu.js":[function(require,module,exports){
 var utils = require('./utils');
 
 var SlideMenu = (function(){ 
-
 
 	function SlideMenu(element, params) {
 
@@ -1494,7 +1515,7 @@ var SlideMenu = (function(){
 })();
 
 module.exports = SlideMenu;
-},{"./utils":"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js"}],"c:\\projetos\\frameworks\\nyna\\src\\js\\utils.js":[function(require,module,exports){
+},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/utils.js":[function(require,module,exports){
 module.exports = {
 
 	extend: function(a, b){
@@ -1519,4 +1540,4 @@ module.exports = {
 	}
 
 }
-},{}]},{},["c:\\projetos\\frameworks\\nyna\\src\\js\\app.js"]);
+},{}]},{},["/home/ubuntu/workspace/phonepack/src/js/index.js"]);

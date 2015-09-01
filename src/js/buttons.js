@@ -15,7 +15,7 @@ module.exports = function() {
             
             if (!ripple) {
                 ripple = document.createElement('span');
-                ripple.className = 'ripple';
+                ripple.className = 'btn--ripple';
                 ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
                 target.appendChild(ripple);
             }

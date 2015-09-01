@@ -33,7 +33,7 @@ HEADER ROW STYLE
 	/* background: #f5f5f5;
 	border-bottom:1px solid #eee;*/
 	padding: 15px 0;
-	background: #512DA8;
+	background: #1976D2;
 }
 
 #header-row .brand{
@@ -246,11 +246,18 @@ Carousel
     font-family: "Helvetica Neue",sans-serif;
     background-image: url(http://goratchet.com/assets/img/device-sprite.png);
     background-repeat: no-repeat;
-    background-position: 0 0;
+    background-position: -780px 0;
     background-size: 296%;
     -webkit-transition: background-image .1s linear;
     -moz-transition: background-image .1s linear;
     transition: background-image .1s linear;
+}
+
+#iwindow {
+	margin-left: 37px;
+    padding-top: 115px;
+    width: 315px;
+    height: 560px;
 }
 
 /*Footer

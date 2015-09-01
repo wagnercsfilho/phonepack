@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <% include partials/head %>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
@@ -43,27 +43,26 @@
           <h2 class="subtitle">Include files</h2>
             <p>All needed files are in the dist folder.
             You can include PhonePack files in your html page.</p>
-  <pre>
-  <code>  &lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
-   &lt;script src="phonepack.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
+  <pre><code>&lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
+&lt;script src="phonepack.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
   
   <p>Start the application</p>
-  <pre><code>  /*Javascript*/
-    document.addEventListener('DOMContentLoaded', function() {
-    	var phonepack = new PhonePack({
-    		fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
-    	});
-    }, false);
+  <pre><code>/*Javascript*/
+document.addEventListener('DOMContentLoaded', function() {
+  var phonepack = new PhonePack({
+  	fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
+  });
+}, false);
   
-    /*jQuery*/
-    $(document).ready(function(){
-      var phonepack = new PhonePack();
-    });
+/*jQuery*/
+$(document).ready(function(){
+  var phonepack = new PhonePack();
+});
   
-    /*Options*/
-    var phonepack = new PhonePack({
-      fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
-    });</code></pre>
+/*Options*/
+var phonepack = new PhonePack({
+  fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
+});</code></pre>
   
       </div>
     </div>
@@ -72,17 +71,16 @@
   	  <h2 class="subtitle">Basic template</h2>
       <p>Use this basic template to get your app started.</p>
        <div class="zenburn">
-    			<pre>
-  <code class="html">&lt;!DOCTYPE html&gt;
+    			<pre><code class="html">&lt;!DOCTYPE html&gt;
   &lt;html&gt;
       &lt;head&gt;
         &lt;meta charset="utf-8"&gt;
         
-         <!-- Sets initial viewport load and disables zooming  -->
+        &lt;!-- Sets initial viewport load and disables zooming  --&gt;
         &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1"&gt;
         &lt;title&gt;PhonePack&lt;/title&gt;
   
-        &lt;!-- Material Design Icons  --&gt;
+        &lt;!-- Material Design Icons --&gt;
         &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;
         &lt;!-- Material Design Font  --&gt;
         &lt;link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'&gt;
