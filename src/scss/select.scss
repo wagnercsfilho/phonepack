@@ -1,0 +1,63 @@
+.select {
+    
+    position: relative;
+    
+    .select__input{
+        width: 100%;
+        font-size: 18px;
+        height: 29px;
+        padding: 2px 2px 1px;
+        font-size: 18px;
+        background: none;
+        border: none;
+        line-height: 29px;
+    }
+    
+    .select__label{
+        
+    }
+    
+    .select__border {
+        position: absolute;
+        right: 0;
+        bottom: 6px;
+        left: 0;
+        height: 2px;
+        background-color: $blue;
+        transform: scale(0);
+        transition-property: transform;
+        transition-duration: 0.6s;
+        transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .select__input:focus ~ .select__border{
+        transform: scale(1); 
+    }
+    
+}
+
+.select:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 7px;
+    left: 0;
+    height: 1px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.select:after {
+    position: absolute;
+    top: 0.75em;
+    right: 0.5em;
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: .25em solid transparent;
+    border-right: .25em solid transparent;
+    border-top: 0.375em solid rgba(0,0,0, 0.12);
+    pointer-events: none;
+}
+
+

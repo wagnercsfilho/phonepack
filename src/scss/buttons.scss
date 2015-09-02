@@ -181,6 +181,10 @@ button[disabled], html input[disabled] {
   color: rgba(0, 0, 0, 0.87);
   background-color: $white;
 }
+.btn--raised.btn--blue {
+  color: $white;
+  background-color: blue;
+}
 
 .btn--flat {
   transition-property: background-color;
@@ -215,7 +219,7 @@ button[disabled], html input[disabled] {
   width: 100%;
 }
 
-.btn--ripple {
+.btn--ripple__animation {
   position: absolute;
   background: rgba(0,0,0,.15);
   border-radius: 100%;
@@ -223,7 +227,7 @@ button[disabled], html input[disabled] {
   pointer-events: none;
 }
 
-.btn--ripple.show {
+.btn--ripple__animation.show {
   animation: ripple .5s ease-out;
 }
 

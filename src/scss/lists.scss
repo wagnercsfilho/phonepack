@@ -1,11 +1,10 @@
-
 .list {
   margin: 0;
   padding: 0;
   list-style: none;
   width: 100%;
   
-  .list-item {
+  .list__item {
     padding: 12px 16px;
     display: flex;
     flex-direction: row;
@@ -13,18 +12,18 @@
     align-items: center;
   }
 
-  .list-primary{
+  .list__primary{
     align-items: center; 
     display: flex;
     padding-right: 16px;
   }
  
-  .list-secondary{
+  .list__secondary{
     align-items: center;
     display: flex;
   }
 
-  .list-content{
+  .list__content{
     position: relative;
     line-height: 25px;
     flex-direction: column;
@@ -36,7 +35,7 @@
     overflow: hidden;
   } 
 
-  .list-item__has-separator .list-content:after {
+  .list__item--has-separator .list__content:after {
     content: '';
     position: absolute;
     right: 0;
@@ -44,9 +43,9 @@
     left: 0;
     height: 1px;
     background-color: rgba(0, 0, 0, 0.12);
-}
+  }
 
-  .list-descripton{
+  .list__descripton{
     font-size: 14px;
     color: rgba(0, 0, 0, 0.54);
     font-weight: 400;
@@ -56,14 +55,14 @@
     overflow: hidden;
   }
 
-  .list-divider {
+  .list__divider {
       height: 1px;
       margin-top: 8px;
       margin-bottom: 8px;
       background-color: rgba(0, 0, 0, 0.12);
   }
 
-  .list-subheader {
+  .list__subheader {
     padding: 12px 16px;
     color: rgba(0, 0, 0, 0.54);
   }

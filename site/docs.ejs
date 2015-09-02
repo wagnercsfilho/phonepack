@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <% include partials/head %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
     <script>
     	$(function(){
 		        // Check the initial Poistion of the Sticky Header
@@ -77,13 +75,13 @@
 					<li><a href="#content" rel="demos/content.html">Content</a></li>
 					<li><a href="#footer" rel="demos/footer.html">Footer</a></li>
 					<li><a href="#buttons" rel="demos/buttons.html">Buttons</a></li>
-					<li><a href="#">List</a></li>
-					<li><a href="#">Cards</a></li>
-					<li><a href="#">Forms & Inputs</a></li>
-					<li><a href="#">Toggle</a></li>
-					<li><a href="#">Checkbox</a></li>
-					<li><a href="#">Radio Button List</a></li>
-					<li><a href="#">Select</a></li>
+					<li><a href="#lists" rel="demos/lists.html">List</a></li>
+					<li><a href="#list-subheader" rel="demos/list-subheader.html">List Subheader</a></li>
+					<li><a href="#inputs" rel="demos/inputs.html">Inputs</a></li>
+					<li><a href="#switch" rel="demos/switch.html">Switch</a></li>
+					<li><a href="#checkbox" rel="demos/checkbox.html">Checkbox</a></li>
+		 			<li><a href="#radio" rel="demos/radio.html">Radio Button</a></li>
+					<li><a href="#select" rel="demos/select.html">Select</a></li>
 					<li><a href="#">Tabs</a></li>
 					<li><a href="#">Grid</a></li>
 					<li><a href="#">Colors</a></li>
@@ -102,23 +100,138 @@
 	
 		<div class="span6">
 
-			<h2 id="header">Header</h2>
-<pre><code>&lt;header class="header has-shadow bg-white"&gt;
- &lt;div class="title"&gt;Header&lt;/div&gt;
-&lt;header&gt;</code></pre>
 
-			<h2 id="content">Content</h2>
-<pre><code>&lt;section class="content has-header"&gt;
+<h2 id="header">Header</h2>
+<pre><code class="language-markup">
+&lt;header class="header has-shadow bg-white"&gt;
+ &lt;div class="title"&gt;Header&lt;/div&gt;
+&lt;header&gt;
+	</code>
+</pre>
+
+<h2 id="content">Content</h2>
+<pre><code class="language-markup">&lt;section class="content has-header"&gt;
   &lt;h1>Main Content&lt;/h1&gt;
 &lt;/section&gt;</code></pre>
 
-			<h2 id="footer">Footer</h2>
-<pre><code>&lt;footer class="footer bg-green"&gt;
+<h2 id="footer">Footer</h2>
+<pre><code class="language-markup">&lt;footer class="footer bg-green"&gt;
  &lt;div class="title"&gt;Footer&lt;/div&gt;
 &lt;footer&gt;</code></pre>
 
-			<h2 id="buttons">Buttons</h2>
-			<pre><code>&lt;button class="btn"&gt;&lt;/button&gt;</code></pre>
+<h2 id="buttons">Buttons</h2>
+<pre><code class="language-markup">&lt;button class="btn"&gt;My Button&lt;/button&gt;</code></pre>
+			
+<h2 id="lists">Lists</h2>
+<pre><code class="language-markup">
+&lt;ul class="list"&gt;
+  &lt;li class="list__item"&gt;Html5&lt;/li&gt;
+  &lt;li class="list__item"&gt;PHP&lt;/li&gt;
+  &lt;li class="list__item"&gt;NodeJS&lt;/li&gt;
+  &lt;li class="list__item"&gt;Ruby&lt;/li&gt;
+  &lt;li class="list__item"&gt;JavaScript&lt;/li&gt;
+  &lt;li class="list__item"&gt;Java&lt;/li&gt;
+&lt;ul&gt;
+</code></pre>
+
+<h2 id="list-subheader">Lists Subheader</h2>
+<pre><code class="language-markup">
+&lt;ul class="list"&gt;
+    &lt;li class="list__subheader"&gt;Front-end&lt;/li&gt;
+	&lt;li class="list__item"&gt;Html5&lt;/li&gt;
+    &lt;li class="list__item"&gt;CSS&lt;/li&gt;
+    &lt;li class="list__item"&gt;JavaScript&lt;/li&gt;
+    &lt;li class="list__subheader"&gt;Back-end&lt;/li&gt;
+    &lt;li class="list__item"&gt;Java&lt;/li&gt;
+    &lt;li class="list__item"&gt;NodeJS&lt;/li&gt;
+    &lt;li class="list__item"&gt;PHP&lt;/li&gt;
+    &lt;li class="list__item"&gt;Ruby&lt;/li&gt;
+&lt;ul&gt;
+</code></pre>
+
+<h2 id="inputs">Inputs</h2>
+<pre><code class="language-markup">&lt;div class="text-field"&gt;
+  &lt;input type="text" class="text-field__input" placeholder="Last name"&gt;
+  &lt;div class="text-field__border"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="switch">Switch</h2>
+<pre><code class="language-markup">&lt;div class="switch"&gt;
+    &lt;input type="checkbox" id="switch1" class="switch__input"&gt;
+    &lt;label for="switch1" class="switch__label">Switch&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="switch"&gt;
+    &lt;input type="checkbox" id="switch2" class="switch__input" checked&gt;
+    &lt;label for="switch2" class="switch__label">Switch with help&lt;/label&gt;
+    &lt;span class="switch__help">Lorem ipsum dolor sit amet.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="switch"&gt;
+    &lt;input type="checkbox" id="switch3" class="switch__input" disabled&gt;
+    &lt;label for="switch3" class="switch__label">Switch disabled&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="switch"&gt;
+    &lt;input type="checkbox" id="switch4" class="switch__input" disabled checked&gt;
+    &lt;label for="switch4" class="switch__label"&gt;Checked and disabled&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="checkbox">Checkbox</h2>
+<pre><code class="language-markup">&lt;div class="checkbox"&gt;
+    &lt;input type="checkbox" id="checkbox1" class="checkbox__input"&gt;
+    &lt;label for="checkbox1" class="checkbox__label">Checkbox&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;div class="checkbox"&gt;
+    &lt;input type="checkbox" id="checkbox3" class="checkbox__input" disabled=""&gt;
+    &lt;label for="checkbox3" class="checkbox__label">Checkbox disabled&lt;/label&gt;
+    &lt;span class="checkbox__help">Lorem ipsum dolor sit amet.&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="checkbox checkbox--standalone">
+    &lt;input type="checkbox" id="checkbox5" class="checkbox__input"&gt;
+    &lt;label for="checkbox5" class="checkbox__label">&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
+<h2 id="radio">Radio Button</h2>
+<pre><code class="language-markup">
+&lt;div class="radio-group"&gt;
+
+	&lt;div class="radio-button"&gt;
+   		&lt;input type="radio" id="radio1" name="radio1" class="radio-button__input"&gt;
+    	 &lt;label for="radio1" class="radio-button__label">Radio Button 1&lt;/label&gt;
+    &lt;/div&gt;
+
+ 	&lt;div class="radio-button"&gt;
+   		&lt;input type="radio" id="radio2" name="radio1" class="radio-button__input"&gt;
+     	&lt;label for="radio2" class="radio-button__label">Radio Button 2&lt;/label&gt;
+     	&lt;span class="radio-button__help">Lorem ipsum dolor sit amet.&lt;/span&gt;
+ 	&lt;/div&gt;
+ 	
+&lt;/div&gt;
+
+&lt;div class="radio-button"&gt;
+    &lt;input type="radio" id="radio3" class="radio-button__input" disabled&gt;
+    &lt;label for="radio3" class="radio-button__label">Radio disabled&lt;/label&gt;
+&lt;/div>
+
+&lt;div class="radio-button"&gt;
+    &lt;input type="radio" id="radio4" class="radio-button__input" disabled checked&gt;
+    &lt;label for="radio4" class="radio-button__label">Radio checked and disabled&lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h2 id="select">Select</h2>
+<pre><code class="language-markup">
+&lt;div class="select"&gt;
+  &lt;label class="select__label"&gt;&lt;/label&gt;
+  &lt;select class="select__input"&gt;
+  	&lt;option&gt;&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;div class="select__border"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
 
 		</div>
 		
