@@ -221,7 +221,8 @@ Carousel
 .side-bar ul li{list-style: none;}
 .side-bar ul li a{color: rgba(102, 102, 102, 0.8);}
 .side-bar ul li a:hover,
-.side-bar ul li a:active{color: #0088cc;}
+.side-bar ul li a:active,
+.side-bar ul li a.active{color: #0088cc;}
 
 .side-bar h3{margin-bottom: 10px;}
 

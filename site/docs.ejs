@@ -10,6 +10,7 @@
 		        var sideMenu = $('#sideBar').offset().top;
 		        var iFrameDevice = $('#iFrameDevice');
 		        var refElement = null;
+		        offset = 0;
 		 
 		        $(window).scroll(function(){
 		                if( $(window).scrollTop() > sideMenu ) {
@@ -27,11 +28,15 @@
         					 
         					 if ((_link) && (_refElement[0] !== refElement)){
         					 
-	        					 if (($(window).scrollTop() > _refElement.offset().top) && (_refElement[0] !== refElement)) {
+	        					 if (($(window).scrollTop() + 50 > _refElement.offset().top && _refElement[0] !== refElement &&  _refElement.offset().top + 50 > offset) || ( _refElement.offset().top < offset && offset > $(window).scrollTop() + 50 && $(window).scrollTop() + 50 > _refElement.offset().top)) {
+	        					 		
 	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
 	        					 	refElement = _refElement[0];
-	        					 	
-	        					 	window.location.hash = _currLink.attr("href");
+	        					 	offset =  _refElement.offset().top;
+	        					 	$('#sideBar a').removeClass('active');
+	        					 	_currLink.addClass('active');
+	        					 	//window.location.hash = _currLink.attr("href");
+	        					 	return false;
 				                 }
 				                 
         					 }
