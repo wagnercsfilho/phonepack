@@ -1042,6 +1042,10 @@ th {
   padding-right: 16px;
 }
 
+.list .list__primary.with-icon {
+  width: 38px;
+}
+
 .list .list__secondary {
   -webkit-box-align: center;
   -webkit-align-items: center;
@@ -1066,16 +1070,19 @@ th {
   -webkit-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
 }
 
-.list .list__item--has-separator .list__content:after {
+.list .with-separator .list__content:after {
   content: '';
   position: absolute;
   right: 0;
@@ -1085,7 +1092,7 @@ th {
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-.list .list__descripton {
+.list .list__caption {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.54);
   font-weight: 400;
@@ -1102,9 +1109,18 @@ th {
   background-color: rgba(0, 0, 0, 0.12);
 }
 
+.list .list__divider.list__divider--pushed {
+  margin-left: 72px;
+}
+
 .list .list__subheader {
   padding: 12px 16px;
   color: rgba(0, 0, 0, 0.54);
+}
+
+.list .list__subheader.list__subheader--pushed {
+  margin-left: 72px;
+  padding-left: 0;
 }
 
 .slide-menu {
