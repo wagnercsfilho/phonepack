@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <% include partials/head %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
 
@@ -13,7 +11,7 @@
   
     <!--PAGE TITLE-->
   	<div class="row">
-  		<div class="span12">
+  		<div class="col-md-12">
     		<div class="page-header">
     				<h1>
     				Getting started
@@ -24,14 +22,14 @@
   
     <!-- /. PAGE TITLE-->
     <div class="row row-content">
-      <div class="span12">
+      <div class="col-md-12">
         <h2 class="subtitle">Download via Bower</h2>
         <p>PhonePack is available through Bower</p>
-        <pre><code>bower install phonepack</code></pre>
+        <pre><code class="language-markup">bower install phonepack</code></pre>
       </div>
     </div>
     <div class="row row-content">
-          <div class="span12">
+          <div class="col-md-12">
         <h2 class="subtitle">Don’t use bower?</h2>
         <p>PhonePack is available via download</p>
         <a class="btn btn-large btn-primary" href="https://github.com/wagnercsfilho/phonepack/archive/master.zip">Download Phonepack</a>
@@ -39,15 +37,15 @@
       </div>
     </div>
     <div class="row row-content">
-      <div class="span12">
+      <div class="col-md-12">
           <h2 class="subtitle">Include files</h2>
             <p>All needed files are in the dist folder.
             You can include PhonePack files in your html page.</p>
-  <pre><code>&lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
+  <pre><code class="language-markup">&lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
 &lt;script src="phonepack.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
   
   <p>Start the application</p>
-  <pre><code>/*Javascript*/
+  <pre><code class="language-javascript">/*Javascript*/
 document.addEventListener('DOMContentLoaded', function() {
   var phonepack = new PhonePack({
   	fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
@@ -67,11 +65,10 @@ var phonepack = new PhonePack({
       </div>
     </div>
     <div class="row row-content">
-  	  <div class="span12">
+  	  <div class="col-md-12">
   	  <h2 class="subtitle">Basic template</h2>
       <p>Use this basic template to get your app started.</p>
-       <div class="zenburn">
-    			<pre><code class="html">&lt;!DOCTYPE html&gt;
+    			<pre><code class="language-markup">&lt;!DOCTYPE html&gt;
   &lt;html&gt;
       &lt;head&gt;
         &lt;meta charset="utf-8"&gt;
@@ -117,7 +114,7 @@ var phonepack = new PhonePack({
   
   &lt;/body&gt;
   &lt;/html&gt;</code></pre>
-        </div>
+
   	  </div>
   	 </div>
   

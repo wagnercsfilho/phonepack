@@ -17,109 +17,106 @@ a:hover{text-decoration: none;}
 
 h1,h2,h3,h4,h5,h6{ font-family:'Source Sans Pro', sans-serif}
 
-h1{font-size:50px; font-weight: 200; color: #555; margin-bottom: 20px;}
-h2{font-size: 30px; font-weight: 300; color:#444; margin: 30px 0}
-h3{font-size: 20px; font-weight: 400; margin: 20px 0;}
+h1{font-weight: 200; color: #555;}
+h2{font-size: 22px; font-weight: 300; color:#444; margin: 30px 0}
+h3{font-size: 14px; font-weight: 400; margin: 20px 0;}
 h4{font-size:18px; font-weight: 400}
 
 .row-content{
 	margin-bottom: 10px;
 }
 
-/*
-HEADER ROW STYLE
-===========================*/
-#header-row{
-	/* background: #f5f5f5;
-	border-bottom:1px solid #eee;*/
-	padding: 15px 0;
-	background: #1976D2;
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 450px;
+  margin-bottom: 60px;
+  margin-top: 60px;
+  background: url(../img/slide-bg.png) no-repeat bottom center;
 }
-
-#header-row .brand{
-	font-family:'Source Sans Pro', sans-serif;
-	font-size: 50px;
-	text-transform: capitalize;
-	margin-bottom: 30px;
-	margin-top: 20px;
-	color:#fff;
-	font-weight:200;
-}
-
-#header-row .brand a{
-	color: #fff;
-}
-
-#header-row .navbar{margin:20px 0 0 0;}
-
-#header-row .navbar .navbar-inner{
-	border:none;
-	box-shadow: none;
-	margin: 0;
-	background: transparent;
-}
-
-#header-row .navbar .navbar-inner ul.nav > li > a{
-	box-shadow: none;
-	background: transparent;
-	color: rgba(255, 255, 255, 0.8);
-	text-shadow: none;
-}
-#header-row .navbar .navbar-inner ul.nav li.active a{
-	color: #fff;
-}
-
-/*
-Carousel
-===========================*/
-
-.carousel-control{
-	background: transparent;
-	width: 14px;
-	height: 14px;
-	font-size: 14px;
-	top:50%;
-}
-
-.carousel-control.right{right:-30px;}
-.carousel-control.left{left:-30px;}
-
-
-
-.carousel{
-	height: 500px;
-	background: url(../img/slide-bg.png) no-repeat bottom center;
-}
-
-.carousel > img{
-	max-width: 100%;
-}
-
+/* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-      background-color: transparent;
-      position: relative;
-      max-width: 100%;
-      padding: 0 20px;
-      margin-top:20%;
-
+  z-index: 10;
+  text-align: left;
+  color: #666;
+  text-shadow: none;
 }
 
-.carousel-caption > h1{
-	font-size: 50px;
-	text-transform: capitalize;
-	margin-bottom: 30px;
-	color:#555;
-	font-weight:200;
-	line-height: 55px;
+
+.carousel-caption h1{
+    font-size: 52px;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+    margin-top: 70px;
+    color: #555;
+    font-weight: 200;
+    line-height: 60px;
+    text-shadow: none;
+    text-align: left;
 }
 .carousel-caption .lead{
 	color: #888;
 	font-size: 18px;
 	line-height: 24px;
-	padding-bottom: 40px;
-	font-weight: 400
+	padding-bottom: 20px;
+	font-weight: 400;
+	text-shadow: none;
+	text-align: left;
 }
 
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 450px;
+}
+
+.carousel-control.left, .carousel-control.right {
+	background: none;
+}
+
+.carousel-control{
+	width: 5%;
+	color: rgb(220, 220, 220);
+}
+
+.carousel-indicators li{
+	background-color: #ebebeb;
+}
+
+.carousel-indicators .active{
+	background-color: #ddd;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+	.carousel-caption {
+	    right: 8%;
+	    left: 8%;
+	    bottom: 0;
+	    padding-bottom: 0;
+	    padding-top: 0;
+   }
+	
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+
+}
 
 /* Divider
 ==================*/
@@ -139,6 +136,10 @@ Carousel
 }
 .feature-box img{
 	width: 50%;
+}
+.feature-box-2 div{
+	text-align: center;
+	margin-bottom: 40px;
 }
 .cnt-title { text-align: center; margin-bottom: 50px;}
 .cnt-title span {
@@ -219,10 +220,11 @@ Carousel
 
 .side-bar ul{margin: 0; padding: 0;}
 .side-bar ul li{list-style: none;}
-.side-bar ul li a{color: rgba(102, 102, 102, 0.8);}
+.side-bar ul li a{color: rgba(102, 102, 102, 0.8); padding-left: 0;}
 .side-bar ul li a:hover,
 .side-bar ul li a:active,
-.side-bar ul li a.active{color: #0088cc;}
+.side-bar ul li a.active{color: #0088cc; background: none; border-right: 2px solid #0088cc;}
+
 
 .side-bar h3{margin-bottom: 10px;}
 
