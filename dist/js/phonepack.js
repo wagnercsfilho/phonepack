@@ -6,17 +6,17 @@ module.exports = function() {
     var addRippleEffect = function (e) {
         var target = e.target;
 
-        if ((target.classList.contains('btn--ripple')) 
-            || (utils.clousestClass(target, 'btn--ripple')) 
+        if ((target.classList.contains('button--ripple')) 
+            || (utils.clousestClass(target, 'button--ripple')) 
             || (utils.clousestClass(target, 'tab--ripple')) 
             || (target.classList.contains('tab--ripple'))) {
             
             var rect = target.getBoundingClientRect();
-            var ripple = target.querySelector('.ripple');
+            var ripple = target.querySelector('.button--ripple__animation');
             
             if (!ripple) {
                 ripple = document.createElement('span');
-                ripple.className = 'btn--ripple__animation';
+                ripple.className = 'button--ripple__animation';
                 ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
                 target.appendChild(ripple);
             }
@@ -1060,14 +1060,6 @@ module.exports = DropDownMenu;
 }());
 
 },{}],"/home/ubuntu/workspace/phonepack/src/js/index.js":[function(require,module,exports){
-/*
-	document.addEventListener('DOMContentLoaded', function() {
-		var phonepack = new PhonePack({
-			fastClick: true
-		});
-	}, false);
-*/
-
 var utils = require('./utils');
 var _FastClick = require('./fastclick');
 var _SlideMenu = require('./slide-menu');
@@ -1081,7 +1073,7 @@ var _Notification = require('./notification');
 
 var PhonePack = (function(){
 	
-	function Phonepack(settings) {
+	function PhonePack(settings) {
 
 		var _config = {
 			fastClick: true
@@ -1090,17 +1082,13 @@ var PhonePack = (function(){
 		if (settings){
 			_config = utils.extend({}, _config, settings);
 		}
-
-		var _trigger = function() {
-			_Buttons();
-		}
 		
 		if (_config.fastClick){
 			_FastClick(document.body);
 		}
-
-		_trigger();
-
+		
+		_Buttons();
+		
 		return {
 			SlideMenu: _SlideMenu,
 			PullToRefresh: _PullToRefresh,
@@ -1108,9 +1096,10 @@ var PhonePack = (function(){
 			DropDownMenu: _DropDownMenu, 
 			Dialog: _Dialog,
 			Loading: _Loading,
-			Notification: _Notification,
-			trigger: _trigger
+			Notification: _Notification
+			
 		}
+
 
 	}
 

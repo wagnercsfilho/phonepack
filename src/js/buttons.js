@@ -5,17 +5,17 @@ module.exports = function() {
     var addRippleEffect = function (e) {
         var target = e.target;
 
-        if ((target.classList.contains('btn--ripple')) 
-            || (utils.clousestClass(target, 'btn--ripple')) 
+        if ((target.classList.contains('button--ripple')) 
+            || (utils.clousestClass(target, 'button--ripple')) 
             || (utils.clousestClass(target, 'tab--ripple')) 
             || (target.classList.contains('tab--ripple'))) {
             
             var rect = target.getBoundingClientRect();
-            var ripple = target.querySelector('.ripple');
+            var ripple = target.querySelector('.button--ripple__animation');
             
             if (!ripple) {
                 ripple = document.createElement('span');
-                ripple.className = 'btn--ripple__animation';
+                ripple.className = 'button--ripple__animation';
                 ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
                 target.appendChild(ripple);
             }

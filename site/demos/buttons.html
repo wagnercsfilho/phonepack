@@ -14,10 +14,10 @@
         <link rel="stylesheet" type="text/css" href="../../css/phonepack.min.css">
 
         <!-- PhonePack JavaScript  -->
-        <script src="../../js/phonepack.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../js/phonepack.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
           document.addEventListener('DOMContentLoaded', function() {
-            console.log(PhonePack)
+            var phonepack = new PhonePack();
           }, false);
         </script>
       </head>
@@ -29,8 +29,11 @@
     
     <section class="content has-header">
         
-        <button class="btn btn--m btn--blue btn--raised">I'm a Button</button>
-        
+        <button class="button button--m button--blue button--raised button--ripple">I'm a Button</button>
+        <button class="button button--m button--blue button--flat button--ripple">I'm a Button</button>
+        <button class="button button--m button--blue button--fab button--ripple"><i class="icon material-icons">menu</i></button>
+        <button class="button button--m button--blue button--icon button--ripple"><i class="icon material-icons">menu</i></button>
+
     </section>
   
   </body>

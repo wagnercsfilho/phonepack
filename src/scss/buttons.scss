@@ -1,4 +1,4 @@
-.btn, .btn:hover, .btn:active, .btn:focus {
+.button, .button:hover, .button:active, .button:focus {
   text-decoration: none;
   outline: none;
 }
@@ -7,7 +7,7 @@ button[disabled], html input[disabled] {
   cursor: default;
 }
 
-.btn {
+.button {
   z-index: 2;
   display: inline-block;
   vertical-align: top;
@@ -26,32 +26,32 @@ button[disabled], html input[disabled] {
     align-items: center;
     justify-content: center;
 }
-.btn--s {
+.button--s {
     padding-left: 12px;
     padding-right: 12px;
     font-size: 11px;
     line-height: 30px;
 }
-.btn--m {
+.button--m {
     padding-left: 14px;
     padding-right: 14px;
     font-size: 13px;
     line-height: 36px;
 }
-.btn--l {
+.button--l {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 14px;
     line-height: 40px;
 }
 
-.btn--fab {
+.button--fab {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition-property: box-shadow;
   transition-duration: 0.2s;
   border-radius: 50%;
 }
-.btn--fab.btn--s {
+.button--fab.button--s {
     padding-left: 12px;
     padding-right: 12px;
     font-size: 11px;
@@ -60,7 +60,7 @@ button[disabled], html input[disabled] {
     width: 30px;
     padding: 0;
 }
-.btn--fab.btn--m {
+.button--fab.button--m {
     padding-left: 14px;
     padding-right: 14px;
     font-size: 13px; 
@@ -69,7 +69,7 @@ button[disabled], html input[disabled] {
     width: 36px;
     padding: 0;
 }
-.btn--fab.btn--l {
+.button--fab.button--l {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 14px;
@@ -78,42 +78,42 @@ button[disabled], html input[disabled] {
     width: 40px;
     padding: 0;
 }
-.btn--fab.btn--blue {
+.button--fab.button--blue {
   color: $white;
   background-color: $blue;
 }
 
-.btn--fab.btn--green {
+.button--fab.button--green {
   color: $white;
   background-color: $green;
 }
-.btn--fab.btn--orange {
+.button--fab.button--orange {
   color: $white;
   background-color: $orange;
 }
-.btn--fab.btn--red {
+.button--fab.button--red {
   color: $white;
   background-color: $red;
 }
-.btn--fab.btn--black {
+.button--fab.button--black {
   color: $white;
   background-color: $black;
 }
-.btn--fab.btn--grey {
+.button--fab.button--grey {
   color: $white;
   background-color: $grey;
 }
-.btn--fab.btn--white {
+.button--fab.button--white {
   color: rgba(0, 0, 0, 0.87);
   background-color: $white;
 }
 
-.btn--icon {
+.button--icon {
   transition-property: background-color;
   transition-duration: 0.2s;
   border-radius: 50%;
 }
-.btn--icon.btn--s {
+.button--icon.button--s {
     padding-left: 12px;
     padding-right: 12px;
     font-size: 11px;
@@ -122,7 +122,7 @@ button[disabled], html input[disabled] {
     width: 30px;
     padding: 0;
 }
-.btn--icon.btn--m {
+.button--icon.button--m {
     padding-left: 14px;
     padding-right: 14px;
     font-size: 13px;
@@ -131,7 +131,7 @@ button[disabled], html input[disabled] {
     width: 36px;
     padding: 0;
 }
-.btn--icon.btn--l {
+.button--icon.button--l {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 14px;
@@ -141,85 +141,85 @@ button[disabled], html input[disabled] {
     padding: 0;
 }
 @each $label, $color in $colors {
-    .btn--icon.btn--#{$label} {
+    .button--icon.button--#{$label} {
       color: $color;
     }
 } 
 
-.btn--raised {
+.button--raised {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   transition-property: box-shadow;
   transition-duration: 0.2s;
 }
-.btn--raised[disabled], .btn--raised.btn--is-disabled {
+.button--raised[disabled], .button--raised.button--is-disabled {
   box-shadow: none !important;
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.26) !important;
   background-color: #E0E0E0 !important;
 }
-.btn--raised.btn--green {
+.button--raised.button--green {
   color: $white;
   background-color: $green;
 }
-.btn--raised.btn--orange {
+.button--raised.button--orange {
   color: $white;
   background-color: $red;
 }
-.btn--raised.btn--red {
+.button--raised.button--red {
   color: $white;
   background-color: $red;
 }
-.btn--raised.btn--black {
+.button--raised.button--black {
   color: $white;
   background-color: $black;
 }
-.btn--raised.btn--grey {
+.button--raised.button--grey {
   color: $white;
   background-color: $grey;
 }
-.btn--raised.btn--white {
+.button--raised.button--white {
   color: rgba(0, 0, 0, 0.87);
   background-color: $white;
 }
-.btn--raised.btn--blue {
+.button--raised.button--blue {
   color: $white;
-  background-color: blue;
+  background-color: $blue;
 }
 
-.btn--flat {
+.button--flat {
   transition-property: background-color;
   transition-duration: 0.2s;
 }
-.btn--flat[disabled], .btn--flat.btn--is-disabled {
+.button--flat[disabled], .button--flat.button--is-disabled {
   box-shadow: none !important;
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.26) !important;
   background-color: transparent !important;
 }
-.btn--flat.btn--black {
+.button--flat.button--black {
   color: $black;
 }
-.btn--flat.btn--blue {
+.button--flat.button--blue {
   color: $blue;
 }
-.btn--flat.btn--green {
+.button--flat.button--green {
   color: $green;
 }
-.btn--flat.btn--orange {
+.button--flat.button--orange {
   color: $orange;
 }
-.btn--flat.btn--red {
+.button--flat.button--red {
   color: $red;
 }
-.btn--flat.btn--grey {
+.button--flat.button--grey {
   color: $grey;
 }
 
-.btn--block{
+.button--block{
   width: 100%;
 }
 
-.btn--ripple__animation {
+.button--ripple__animation {
   position: absolute;
   background: rgba(0,0,0,.15);
   border-radius: 100%;
@@ -227,8 +227,8 @@ button[disabled], html input[disabled] {
   pointer-events: none;
 }
 
-.btn--ripple__animation.show {
-  animation: ripple .5s ease-out;
+.button--ripple__animation.show {
+  animation: ripple .8s ease-out;
 }
 
 @keyframes
