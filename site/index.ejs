@@ -2,6 +2,17 @@
 <html lang="en">
 <head>
     <% include partials/head %>
+    <style type="text/css">
+  #example5{
+        margin: 40px 0px;
+  }
+  .sharrre .button{
+    float:left;
+    width:60px;
+  }
+</style>
+<script type="text/javascript" src="js/sharrre.min.js"></script>
+    
 </head>
 <body>
   
@@ -9,39 +20,23 @@
 
   <div class="container">
     
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-
-            <div class="carousel-caption">
+      
+            <div class="feat">
               <div class="row">
                 <div class="col-md-6">
-                        <h1>Create powerful hybrid applications</h1>
-                        <p class="lead">Free and open source Pure Javascript and CSS frameworks for HTML5, PhoneGap & Cordova apps</p>
-                        <a class="btn btn-large btn-primary" href="https://github.com/wagnercsfilho/phonepack/archive/master.zip">Download Phonepack</a>
-                        <span>Currently v0.0.1-beta MIT Licensed</span>
+                        <h1>Create powerful apps</h1>
+                        <p class="lead hidden-xs">Free and open source Pure Javascript and CSS frameworks for HTML5, PhoneGap & Cordova apps</p>
+                        <a class="btn btn-lg btn-info" href="getting-started.html">Getting Started</a>
+                        <a class="btn btn-lg btn-default hidden-xs" href="https://github.com/wagnercsfilho/phonepack/archive/master.zip">Download v0.0.1-beta</a>
+                        <div id="example5">
+  <div id="shareme" data-url="http://phonepack.org/" data-text="Create Powerful PhoneGap & Cordova apps with PhonePack (Open source Javascript and CSS frameworks for HTML5)."></div>
+  <div class="clearfix"></div>
+</div>
                 </div>
-                <div class="col-md-6"> <img src="img/slide/slide2.jpg" style="width: 100%"></div>
+                <div class="col-md-6"> <img src="img/slide/s1.png"></div>
               </div>
             </div>
-
-        </div>
-
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
 
   
     <!-- Feature
@@ -77,5 +72,31 @@
 
   <% include partials/footer %>
 
+<script type="text/javascript">
+
+      $('#shareme').sharrre({
+  share: {
+    googlePlus: true,
+    facebook: true,
+    twitter: true,
+    digg: true,
+    delicious: false,
+    stumbleupon: false,
+    linkedin: true,
+    pinterest: false
+  },
+  buttons: {
+    googlePlus: {size: 'tall', annotation:'bubble'},
+    facebook: {layout: 'box_count'},
+    twitter: {count: 'vertical'},
+    delicious: {size: 'tall'},
+    stumbleupon: {layout: '5'},
+    linkedin: {counter: 'top'}
+  },
+  enableHover: false,
+  enableCounter: false,
+  enableTracking: true
+});
+    </script>
 </body>
 </html>

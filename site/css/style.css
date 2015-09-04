@@ -31,25 +31,17 @@ h4{font-size:18px; font-weight: 400}
 -------------------------------------------------- */
 
 /* Carousel base class */
-.carousel {
-  height: 450px;
-  margin-bottom: 60px;
-  margin-top: 60px;
+.feat {
+    position: relative;
+  margin-bottom: 0px;
+  margin-top: 0px;
   background: url(../img/slide-bg.png) no-repeat bottom center;
 }
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-  z-index: 10;
-  text-align: left;
-  color: #666;
-  text-shadow: none;
-}
 
-
-.carousel-caption h1{
+.feat h1{
     font-size: 52px;
     text-transform: capitalize;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     margin-top: 70px;
     color: #555;
     font-weight: 200;
@@ -57,7 +49,7 @@ h4{font-size:18px; font-weight: 400}
     text-shadow: none;
     text-align: left;
 }
-.carousel-caption .lead{
+.feat .lead{
 	color: #888;
 	font-size: 18px;
 	line-height: 24px;
@@ -67,56 +59,16 @@ h4{font-size:18px; font-weight: 400}
 	text-align: left;
 }
 
-/* Declare heights because of positioning of img element */
-.carousel .item {
-  height: 450px;
-}
-
-.carousel-control.left, .carousel-control.right {
-	background: none;
-}
-
-.carousel-control{
-	width: 5%;
-	color: rgb(220, 220, 220);
-}
-
-.carousel-indicators li{
-	background-color: #ebebeb;
-}
-
-.carousel-indicators .active{
-	background-color: #ddd;
+.feat img{
+	position: relative;
+    z-index: -5;
+    width: 75%;
 }
 
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
-@media (min-width: 768px) {
-	.carousel-caption {
-	    right: 8%;
-	    left: 8%;
-	    bottom: 0;
-	    padding-bottom: 0;
-	    padding-top: 0;
-   }
-	
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 20px;
-    font-size: 21px;
-    line-height: 1.4;
-  }
-
-  .featurette-heading {
-    font-size: 50px;
-  }
-}
-
-@media (min-width: 992px) {
-
-}
 
 /* Divider
 ==================*/
@@ -131,7 +83,7 @@ h4{font-size:18px; font-weight: 400}
 /*Feature
 ==========================*/
 .feature-box{
-	margin-top: 60px;
+	margin-top: 0px;
 	text-align: center;
 }
 .feature-box img{
@@ -141,7 +93,7 @@ h4{font-size:18px; font-weight: 400}
 	text-align: center;
 	margin-bottom: 40px;
 }
-.cnt-title { text-align: center; margin-bottom: 50px;}
+.cnt-title { text-align: center; margin-bottom: 70px;}
 .cnt-title span {
 	font-size: 24px;
 	font-weight: 200;
@@ -158,7 +110,7 @@ h4{font-size:18px; font-weight: 400}
 
 .page-header{
 	border-bottom: 1px solid #f5f5f5;
-	margin: 50px 0 30px;
+	margin: 30px 0 30px;
 }
 .subtitle{
 	margin-bottom: 0;
@@ -212,6 +164,9 @@ h4{font-size:18px; font-weight: 400}
 	margin: 4px 5px 0 0;
 }
 
+.navbar-default .navbar-nav>li>a{
+	font-size: 15px;
+}
 
 /*Sidebar
 ========================*/
@@ -220,7 +175,7 @@ h4{font-size:18px; font-weight: 400}
 
 .side-bar ul{margin: 0; padding: 0;}
 .side-bar ul li{list-style: none;}
-.side-bar ul li a{color: rgba(102, 102, 102, 0.8); padding-left: 0;}
+.side-bar ul li a{color: rgba(102, 102, 102, 0.8); padding: 2px 15px; padding-left: 0; }
 .side-bar ul li a:hover,
 .side-bar ul li a:active,
 .side-bar ul li a.active{color: #0088cc; background: none; border-right: 2px solid #0088cc;}
@@ -280,8 +235,20 @@ margin-top:40px;
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-
+	.feat{
+		text-align: center;
+	}
+	.feat h1{
+		margin-top: 10px;
+		text-align: center;
+	}
+ }
+ .feat img{
+ 	margin-top: 20px;
  }
 
 /* Landscape phones and down */
-@media (max-width: 480px) { ... }
+@media (max-width: 480px) {  }
+
+@media (min-width: 992px) {
+}
