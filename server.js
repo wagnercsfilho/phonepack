@@ -24,6 +24,10 @@ app.get('/blog.html', function (req, res) {
   res.render('blog');
 });
 
+app.get('/docs/demos/:path/:page', function(req, res) {
+  res.render('demos/' + req.params.path + '/' + req.params.page);
+});
+
 app.get('/examples.html', function (req, res) {
   res.render('examples');
 });

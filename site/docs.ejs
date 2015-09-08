@@ -16,8 +16,8 @@
 
 		        $(window).scroll(function(){
 		                if( $(window).scrollTop() > sideMenu ) {
-		                        $('#sideBar').css({position: 'fixed', top: '0px'});
-		                        $('#device').css({position: 'fixed', top: '0px'});
+		                        $('#sideBar').css({position: 'fixed', top: '70px'});
+		                        $('#device').css({position: 'fixed', top: '70px'});
 		                } else {
 		                        $('#sideBar').css({position: 'static', top: '0px'});
 		                        $('#device').css({position: 'static', top: '0px'});
@@ -28,13 +28,20 @@
         					 var _refElement = $(_currLink.attr("href"));
         					 var _link = _currLink.attr('rel');
         					 
-        					 if (_link){
+        					 if (_link) {
         					 	
 	        					 if ((currentElement !== _refElement[0]) && ($(window).scrollTop() > _refElement.offset().top - 10) && ( $(window).scrollTop() < ((_refElement.offset().top - 10) + _refElement.height()))) {
 	        					 	currentElement = _refElement[0];
 	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
+	        					 	
+	        					 	if (!_currLink.parents('li.active').length) {
+	        					 		$('li.active').removeClass('active');
+	        					 	}
+	        					 	
 	        					 	$('#sideBar a').removeClass('active');
+	        					 	
 	        					 	_currLink.addClass('active');
+	        					 	_currLink.parents('li').addClass('active');
 	        					 	window.location.hash = _currLink.attr("href");
 	        					 	return false;
 				                 }
@@ -73,12 +80,26 @@
 
 				<h3>CSS</h3>
 				<ul class="nav nav-list">
-					<li><a href="#header" rel="demos/header.html">Header</a></li>
+					<li>
+						<a href="#header" rel="docs/demos/header/header">Header</a>
+						<ul class="nav">
+						    <li><a href="#header-shadow" rel="docs/demos/header/shadow">With Shadow</a></li>
+						    <li><a href="#header-colors" rel="docs/demos/header/colors">Custom Colors</a></li>
+						    <li><a href="#header-buttons" rel="docs/demos/header/buttons">Buttons</a></li>
+						</ul>
+					</li>
 					<li><a href="#content" rel="demos/content.html">Content</a></li>
 					<li><a href="#footer" rel="demos/footer.html">Footer</a></li>
 					<li><a href="#buttons" rel="demos/buttons.html">Buttons</a></li>
-					<li><a href="#lists" rel="demos/lists.html">List</a></li>
-					<li><a href="#list-subheader" rel="demos/list-subheader.html">List Subheader</a></li>
+					<li>
+						<a href="#lists" rel="demos/lists.html">List</a>
+						<ul class="nav">
+						    <li><a href="#list-subheader" rel="demos/list-subheader.html">Subheader</a></li>
+						    <li><a href="#list-icon" rel="demos/list-icon.html">Icon</a></li>
+						    <li><a href="#list-image" rel="demos/list-image.html">Image</a></li>
+						</ul>
+					</li>
+					
 					<li><a href="#inputs" rel="demos/inputs.html">Inputs</a></li>
 					<li><a href="#switch" rel="demos/switch.html">Switch</a></li>
 					<li><a href="#checkbox" rel="demos/checkbox.html">Checkbox</a></li>
@@ -105,10 +126,46 @@
 <section id="header">
 <h2>Header</h2>
 <pre><code class="language-markup">
-&lt;header class="header has-shadow bg-white"&gt;
+&lt;header class="header"&gt;
  &lt;div class="title"&gt;Header&lt;/div&gt;
-&lt;header&gt;
-	</code>
+&lt;header&gt;</code>
+</pre>
+</section>
+
+<section id="header-shadow">
+<h2>Header with Shadow</h2>
+<pre><code class="language-markup">
+&lt;header class="header header-shadow bg-white"&gt;
+ &lt;div class="title"&gt;Header with Shadow&lt;/div&gt;
+&lt;header&gt;</code>
+</pre>
+</section>
+
+<section id="header-colors">
+<h2>Header Custom Colors</h2>
+<pre><code class="language-markup">
+&lt;header class="header header-shadow bg-blue text-white"&gt;
+ &lt;div class="title"&gt;Header Colors&lt;/div&gt;
+&lt;header&gt;</code>
+</pre>
+</section>
+
+<section id="header-buttons">
+<h2>Header with Buttons</h2>
+<pre><code class="language-markup">
+&lt;header class="header header-shadow bg-lime text-black"&gt;
+  	&lt;div class="header__buttons"&gt;
+		&lt;button class="button button--m button--icon button--ripple text-white"&gt;
+			&lt;i class="icon material-icons">menu&lt;/i&gt;
+		&lt;/button&gt;
+	&lt;/div&gt;
+    &lt;div class="header__title">Header Buttons&lt;/div&gt;
+    &lt;div class="header__buttons"&gt;
+		&lt;a class="button button--m button--icon button--ripple"&gt;
+			&lt;i class="material-icons">search&lt;/i&gt;
+		&lt;/a&gt;
+	&lt;/div&gt;
+&lt;header&gt;</code>
 </pre>
 </section>
 
