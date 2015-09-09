@@ -14,12 +14,6 @@ var config = {
 	pluginName: 'phonepack'
 }
 
-gulp.task('scripts', function(){
-	gulp.src('src/js/*.js')
-	.pipe(uglify())
-	.pipe(gulp.dest('dist/js'));
-});
-
 gulp.task('sass', function(){
 	gulp.src('src/scss/index.scss')
 	.pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
@@ -41,7 +35,7 @@ gulp.task('watch', ['browserify-watch'], function(){
     host: process.env.IP
 	});
 
-	gulp.watch('src/js/*.js', ['browserify']).on('change', browserSync.reload);
+	gulp.watch('src/js/*.js').on('change', browserSync.reload);
 	gulp.watch('src/scss/**/*.scss', ['sass']);
 	gulp.watch("demo/**/*.html").on('change', browserSync.reload);
 });

@@ -7,6 +7,10 @@ button[disabled], html input[disabled] {
   cursor: default;
 }
 
+.button:hover,.button:active{
+  opacity: 0.9;
+}
+
 .button {
   z-index: 2;
   display: inline-block;
@@ -16,7 +20,7 @@ button[disabled], html input[disabled] {
   border: none;
   border-radius: 2px;
   background-color: transparent;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
@@ -31,18 +35,30 @@ button[disabled], html input[disabled] {
     padding-right: 12px;
     font-size: 11px;
     line-height: 30px;
+    
+    .icon{
+      font-size: 16px;
+    }
 }
 .button--m {
     padding-left: 14px;
     padding-right: 14px;
     font-size: 13px;
     line-height: 36px;
+    
+    .icon{
+      font-size: 20px;
+    }
 }
 .button--l {
     padding-left: 16px;
     padding-right: 16px;
     font-size: 14px;
-    line-height: 40px;
+    line-height: 47px;
+    
+    .icon{
+      font-size: 24px;
+    }
 }
 
 .button--fab {
@@ -74,38 +90,20 @@ button[disabled], html input[disabled] {
     padding-right: 16px;
     font-size: 14px;
     line-height: 55px;
-    height: 40px;
-    width: 40px;
+    height: 47px;
+    width: 47px;
     padding: 0;
 }
-.button--fab.button--blue {
-  color: $white;
-  background-color: $blue;
+.button--fab.button--fab-floating{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transform: translateY(0);
+  transition: transform 0.4s;
 }
 
-.button--fab.button--green {
-  color: $white;
-  background-color: $green;
-}
-.button--fab.button--orange {
-  color: $white;
-  background-color: $orange;
-}
-.button--fab.button--red {
-  color: $white;
-  background-color: $red;
-}
-.button--fab.button--black {
-  color: $white;
-  background-color: $black;
-}
-.button--fab.button--grey {
-  color: $white;
-  background-color: $grey;
-}
-.button--fab.button--white {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: $white;
+.button--fab.button--fab-floating.hidden{
+  transform: translateY(100px);
 }
 
 .button--icon {
@@ -136,15 +134,10 @@ button[disabled], html input[disabled] {
     padding-right: 16px;
     font-size: 14px;
     line-height: 12px;
-    height: 40px;
-    width: 40px;
+    height: 47px;
+    width: 47px;
     padding: 0;
 }
-@each $label, $color in $colors {
-    .button--icon.button--#{$label} {
-      color: $color;
-    }
-} 
 
 .button--raised {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -157,34 +150,6 @@ button[disabled], html input[disabled] {
   color: rgba(0, 0, 0, 0.26) !important;
   background-color: #E0E0E0 !important;
 }
-.button--raised.button--green {
-  color: $white;
-  background-color: $green;
-}
-.button--raised.button--orange {
-  color: $white;
-  background-color: $red;
-}
-.button--raised.button--red {
-  color: $white;
-  background-color: $red;
-}
-.button--raised.button--black {
-  color: $white;
-  background-color: $black;
-}
-.button--raised.button--grey {
-  color: $white;
-  background-color: $grey;
-}
-.button--raised.button--white {
-  color: rgba(0, 0, 0, 0.87);
-  background-color: $white;
-}
-.button--raised.button--blue {
-  color: $white;
-  background-color: $blue;
-}
 
 .button--flat {
   transition-property: background-color;
@@ -195,24 +160,6 @@ button[disabled], html input[disabled] {
   cursor: not-allowed;
   color: rgba(0, 0, 0, 0.26) !important;
   background-color: transparent !important;
-}
-.button--flat.button--black {
-  color: $black;
-}
-.button--flat.button--blue {
-  color: $blue;
-}
-.button--flat.button--green {
-  color: $green;
-}
-.button--flat.button--orange {
-  color: $orange;
-}
-.button--flat.button--red {
-  color: $red;
-}
-.button--flat.button--grey {
-  color: $grey;
 }
 
 .button--block{

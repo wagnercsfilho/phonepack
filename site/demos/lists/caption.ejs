@@ -1,34 +1,10 @@
-<!DOCTYPE html>
-  <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-        <title>PhonePack</title>
+<% include ../partials/head %>
   
-        <!-- Material Design Icons  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Material Design Font  -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  
-        <!-- PhonePack CSS  -->
-        <link rel="stylesheet" type="text/css" href="../../css/phonepack.min.css">
-
-        <!-- PhonePack JavaScript  -->
-        <script src="../../js/phonepack.min.js" type="text/javascript" charset="utf-8"></script>
-        <script type="text/javascript">
-          document.addEventListener('DOMContentLoaded', function() {
-            console.log(PhonePack)
-          }, false);
-        </script>
-      </head>
-  <body>
-  
-    <header class="header has-shadow bg-white">
-      <div class="title">Lists with caption</div>
+    <header class="header header--shadow">
+      <div class="header__title">Lists with caption</div>
     </header>
     
     <section class="content has-header">
-        
         <ul class="list">
             
            <div class="list__subheader">Chat</div>
@@ -69,8 +45,6 @@
 	        
             
         <ul>
-        
-    </section>
+    </section> 
   
-  </body>
-  </html>
+<% include ../partials/footer %>

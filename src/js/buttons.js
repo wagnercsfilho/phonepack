@@ -1,7 +1,7 @@
 var utils = require('./utils');
 
 module.exports = function() {
-
+    
     var addRippleEffect = function (e) {
         var target = e.target;
 
@@ -30,7 +30,22 @@ module.exports = function() {
 
         return false;
     }
+    
 
     document.addEventListener('click', addRippleEffect, false);
+    if (document.querySelector(".content")){
+        var el = document.querySelector(".content");
+        var lastScrollTop = 0;
+        
+        document.querySelector(".content").addEventListener("scroll", function(e) {
+            var st = this.scrollTop;
+            if (st > lastScrollTop){
+               document.querySelector('.button--fab-floating').classList.add('hidden');
+            } else {
+              document.querySelector('.button--fab-floating').classList.remove('hidden');
+            }
+            lastScrollTop = st;
+        }); 
+    };
 
 }

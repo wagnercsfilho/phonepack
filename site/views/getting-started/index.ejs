@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <% include partials/head %>
+    <% include ../partials/head %>
 </head>
 <body>
 
-  <% include partials/header %>
-
-  <div class="container">
+  <% include ../partials/header %>
   
-    <!--PAGE TITLE-->
-  	<div class="row">
-  		<div class="col-md-12">
-    		<div class="page-header">
+  <div class="page-header">
+    <div class="container">
     				<h1>
     				Getting started
     			</h1>
-    		</div>
-  		</div>
-  	</div>
-  
-    <!-- /. PAGE TITLE-->
+    			<h4>Once you've downloaded PhonePack, here's what to do next.</h4>
+    </div>
+  </div>
+
+  <div class="container">
+
     <div class="row row-content">
       <div class="col-md-12">
         <h2 class="subtitle">Download via Bower</h2>
@@ -68,7 +65,8 @@ var phonepack = new PhonePack({
   	  <div class="col-md-12">
   	  <h2 class="subtitle">Basic template</h2>
       <p>Use this basic template to get your app started.</p>
-    			<pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+<pre><code class="language-markup">
+&lt;!DOCTYPE html&gt;
   &lt;html&gt;
       &lt;head&gt;
         &lt;meta charset="utf-8"&gt;
@@ -112,15 +110,15 @@ var phonepack = new PhonePack({
         &lt;/ul&gt;
       &lt;/section&gt;
   
-  &lt;/body&gt;
-  &lt;/html&gt;</code></pre>
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
 
   	  </div>
   	 </div>
   
   </div>
 
-<% include partials/footer %>
+<% include ../partials/footer %>
 
 </body>
 </html>

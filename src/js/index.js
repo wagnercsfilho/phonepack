@@ -9,7 +9,10 @@ var _Dialog = require('./dialog');
 var _Loading = require('./loading');
 var _Notification = require('./notification');
 
+
+
 var PhonePack = (function(){
+	
 	
 	function PhonePack(settings) {
 
@@ -37,6 +40,8 @@ var PhonePack = (function(){
 			Notification: _Notification
 			
 		}
+		
+	
 
 
 	}

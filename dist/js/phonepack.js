@@ -2,7 +2,7 @@
 var utils = require('./utils');
 
 module.exports = function() {
-
+    
     var addRippleEffect = function (e) {
         var target = e.target;
 
@@ -31,8 +31,23 @@ module.exports = function() {
 
         return false;
     }
+    
 
     document.addEventListener('click', addRippleEffect, false);
+    if (document.querySelector(".content")){
+        var el = document.querySelector(".content");
+        var lastScrollTop = 0;
+        
+        document.querySelector(".content").addEventListener("scroll", function(e) {
+            var st = this.scrollTop;
+            if (st > lastScrollTop){
+               document.querySelector('.button--fab-floating').classList.add('hidden');
+            } else {
+              document.querySelector('.button--fab-floating').classList.remove('hidden');
+            }
+            lastScrollTop = st;
+        }); 
+    };
 
 }
 },{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/dialog.js":[function(require,module,exports){
@@ -1071,7 +1086,10 @@ var _Dialog = require('./dialog');
 var _Loading = require('./loading');
 var _Notification = require('./notification');
 
+
+
 var PhonePack = (function(){
+	
 	
 	function PhonePack(settings) {
 
@@ -1099,6 +1117,8 @@ var PhonePack = (function(){
 			Notification: _Notification
 			
 		}
+		
+	
 
 
 	}
