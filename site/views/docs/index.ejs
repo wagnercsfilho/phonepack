@@ -17,7 +17,7 @@
 		        $(window).scroll(function(){
 		                if( $(window).scrollTop() > sideMenu ) {
 		                        $('#sideBar').css({position: 'fixed', top: '70px', bottom: '0',  overflow: 'auto'});
-		                        $('#device').css({position: 'fixed', top: '0px', bottom: '0', height: 'auto'});
+		                        $('#device').css({position: 'fixed', top: '20px', bottom: '0', height: 'auto'});
 		                } else {
 		                        $('#sideBar').css({position: 'static', top: '0px'});
 		                        $('#device').css({position: 'static', top: '0px', height: '813px'});
@@ -33,7 +33,7 @@
         					 	var offset = _refElement.offset().top;
         					 	var scrollTop = $(window).scrollTop();
         					 	
-	        					 if ((currentElement !== _refElement[0]) && (scrollTop + 200 > offset) && (scrollTop + 200 < ((offset) + _refElement.height()))) {
+	        					 if ((currentElement !== _refElement[0]) && (scrollTop + 200 > offset) && (scrollTop < ((offset) + _refElement.height() - 50))) {
 	        					 	currentElement = _refElement[0];
 	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
 	        					 	
