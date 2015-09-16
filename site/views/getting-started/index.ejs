@@ -15,8 +15,17 @@
     			<h4>Once you've downloaded PhonePack, here's what to do next.</h4>
     </div>
   </div>
+  
 
   <div class="container">
+    
+      <div class="row">
+  
+  <div class="col-md-2 hidden-xs hidden-sm">
+			<% include partials/menu %>
+		</div>
+
+  <div class="col-md-8 col-xs-12">
 
     <div class="row row-content">
       <div class="col-md-12">
@@ -44,9 +53,7 @@
   <p>Start the application</p>
   <pre><code class="language-javascript">/*Javascript*/
 document.addEventListener('DOMContentLoaded', function() {
-  var phonepack = new PhonePack({
-  	fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
-  });
+  var phonepack = new PhonePack();
 }, false);
   
 /*jQuery*/
@@ -93,17 +100,17 @@ var phonepack = new PhonePack({
       &lt;/head&gt;
   &lt;body&gt;
   
-    &lt;header class="header bg-lime header-shadow"&gt;
-      &lt;div class="title"&gt;PhonePack&lt;/div&gt;
+    &lt;header class="header header--shadow bg-lime "&gt;
+      &lt;div class="header__title"&gt;PhonePack&lt;/div&gt;
     &lt;/header&gt;
   
     &lt;section class="content has-header"&gt;
       &lt;ul class="list"&gt;
-          &lt;li class="list-item list-item__has-separator"&gt;
-            &lt;div class="list-content"&gt;
+          &lt;li class="list__item list__item--separator"&gt;
+            &lt;div class="list__content"&gt;
               List item 01
-              &lt;div class="list-descripton"&gt;
-                Text Item
+              &lt;div class="list__caption"&gt;
+                Caption Item
               &lt;/div&gt;
             &lt;/div&gt;
           &lt;/li&gt;
@@ -117,6 +124,7 @@ var phonepack = new PhonePack({
   	 </div>
   
   </div>
+</div>
 
 <% include ../partials/footer %>
 

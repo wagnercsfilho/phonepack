@@ -47,6 +47,12 @@
     transform: scale(0);
 }
 
+.checkbox__input:checked + .checkbox__label:before {
+  transform: scale(0); }
+
+.checkbox__input:checked + .checkbox__label:after {
+  transform: scale(1); }
+
 .checkbox__input[disabled] + .checkbox__label {
     cursor: not-allowed;
 }

@@ -23,7 +23,7 @@
 		                        $('#device').css({position: 'static', top: '0px', height: '813px'});
 		                }
 		                
-		                $('#sideBar a').each(function(){
+		                $('#sideBar>ul>li a').each(function(){
 		                	 var _currLink = $(this);
         					 var _refElement = $(_currLink.attr("href"));
         					 var _link = _currLink.attr('rel');
@@ -33,7 +33,7 @@
         					 	var offset = _refElement.offset().top;
         					 	var scrollTop = $(window).scrollTop();
         					 	
-	        					 if ((currentElement !== _refElement[0]) && (scrollTop + 200 > offset) && (scrollTop < ((offset) + _refElement.height() - 50))) {
+	        					 if ((currentElement !== _refElement[0]) && (scrollTop + 100 > offset) && (scrollTop + 100 < ((offset) + _refElement.height()))) {
 	        					 	currentElement = _refElement[0];
 	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
 	        					 	
@@ -41,7 +41,7 @@
 	        					 		$('li.active').removeClass('active');
 	        					 	}
 	        					 	
-	        					 	$('#sideBar a').removeClass('active');
+	        					 	$('#sideBar>ul>li a').removeClass('active');
 	        					 	$('.docs section').css('opacity', '0.6');
 	        					 	
 	        					 	_currLink.addClass('active');
@@ -67,7 +67,7 @@
 <div class="page-header">
 	<div class="container">
 			<h1>
-				Documentation
+				CSS
 			</h1>
 			<h4>Design patterns that serve as basic building blocks.</h4>
 	</div>
