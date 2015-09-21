@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/dist'));
 
 require('./site/app/index')(app);
 
-var server = app.listen(process.env.PORT || 3000, function () {
+var server = app.listen(process.env.PORT || 3030, function () {
   var host = server.address().address;
   var port = server.address().port;
 });

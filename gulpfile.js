@@ -30,9 +30,9 @@ gulp.task('sass', function(){
 
 gulp.task('watch', ['browserify-watch'], function(){
 	browserSync.init({
-		server: "./",
-    port: process.env.PORT,
-    host: process.env.IP
+		server: "./"/*,
+    port: process.env.PORT || null,
+    host: process.env.IP || null*/
 	});
 
 	gulp.watch('src/js/*.js').on('change', browserSync.reload);

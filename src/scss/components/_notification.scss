@@ -11,6 +11,10 @@
     transition: transform 0.2s ease-in-out;
     display: flex;
 
+    &.notification--is-shown{
+        transform: translateY(0);
+    }
+
     .notification__content {
         display: block;
         font-size: 14px;
@@ -25,8 +29,4 @@
       padding-right: 16px;
     }
 
-}
-
-.notification--is-shown{
-    transform: translateY(0);
 }

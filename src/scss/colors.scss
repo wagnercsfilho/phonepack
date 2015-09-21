@@ -1,9 +1,0 @@
-@each $label, $color in $colors {
-    .bg-#{$label} {
-	    background-color: $color !important;
-	 }
-
-	 .text-#{$label}{
-		color: $color !important;
-	}
-} 

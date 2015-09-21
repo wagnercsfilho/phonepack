@@ -1,5 +1,4 @@
-var utils = require('./utils');
-
+ 
 var SlideMenu = (function(){ 
 
 	function SlideMenu(element, params) {

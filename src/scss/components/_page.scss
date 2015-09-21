@@ -1,0 +1,29 @@
+.pages {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 99;
+  background-color: #ffffff;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+
+  &.pages--slideUp{
+     opacity: 0;
+    transform: translateY(10%);
+  }
+
+  &.pages--slide-up-show{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.pages--hidden{
+    visibility: hidden;
+  }
+
+  &.pages--visibility{
+    visibility: visible;
+  }
+
+}

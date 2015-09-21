@@ -1,57 +1,62 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/ubuntu/workspace/phonepack/src/js/buttons.js":[function(require,module,exports){
-var utils = require('./utils');
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\button.js":[function(require,module,exports){
+var utils = require('../utils/utils');
+var dom = require('../utils/dom');
 
-module.exports = function() {
-    
-    var addRippleEffect = function (e) {
+var Buttons = (function(){
+
+    dom('button--ripple').click(addRippleEffect);
+    dom('tab--ripple').click(addRippleEffect);
+
+
+    function addRippleEffect(e) {
         var target = e.target;
 
-        if ((target.classList.contains('button--ripple')) 
-            || (utils.clousestClass(target, 'button--ripple')) 
-            || (utils.clousestClass(target, 'tab--ripple')) 
-            || (target.classList.contains('tab--ripple'))) {
-            
-            var rect = target.getBoundingClientRect();
-            var ripple = target.querySelector('.button--ripple__animation');
-            
-            if (!ripple) {
-                ripple = document.createElement('span');
-                ripple.className = 'button--ripple__animation';
-                ripple.style.height = ripple.style.width = Math.max(rect.width, rect.height) + 'px';
-                target.appendChild(ripple);
-            }
-            
-            ripple.classList.remove('show');
-            var top = e.pageY - rect.top - ripple.offsetHeight / 2 - document.body.scrollTop;
-            var left = e.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
-            ripple.style.top = top + 'px';
-            ripple.style.left = left + 'px';
-            ripple.classList.add('show');
+        var rect = target.getBoundingClientRect();
+        var ripple = target.querySelector('.button--ripple__animation');
+
+        if (!ripple) {
+            ripple = document.createElement('span');
+            ripple.className = 'button--ripple__animation';
+            ripple.style.height = ripple.style.width = Math.max(rect.width * 2, rect.height * 2) + 'px';
+            target.appendChild(ripple);
         }
+
+        ripple.classList.remove('show');
+        var top = e.pageY - rect.top - ripple.offsetHeight / 2 - document.body.scrollTop;
+        var left = e.pageX - rect.left - ripple.offsetWidth / 2 - document.body.scrollLeft;
+        ripple.style.top = top + 'px';
+        ripple.style.left = left + 'px';
+        ripple.classList.add('show');
 
         return false;
     }
-    
 
-    document.addEventListener('click', addRippleEffect, false);
-    if (document.querySelector(".content")){
-        var el = document.querySelector(".content");
+    function floatButton(element){
+        var btn = document.querySelector('.button--fab-floating');
         var lastScrollTop = 0;
         
-        document.querySelector(".content").addEventListener("scroll", function(e) {
+        element.addEventListener("scroll", hideShowOnScroll);
+ 
+        function hideShowOnScroll(e) {
             var st = this.scrollTop;
-            if (st > lastScrollTop){
-               document.querySelector('.button--fab-floating').classList.add('hidden');
+            if (st > lastScrollTop) {
+                btn.classList.add('hidden');
             } else {
-              document.querySelector('.button--fab-floating').classList.remove('hidden');
-            }
+                btn.classList.remove('hidden');
+            } 
             lastScrollTop = st;
-        }); 
-    };
+        } 
+    }
 
-}
-},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/dialog.js":[function(require,module,exports){
-var utils = require('./utils');
+    return {
+        floatButton: floatButton
+    }
+
+})();
+
+module.exports = Buttons;
+},{"../utils/dom":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\dom.js","../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dialog.js":[function(require,module,exports){
+var utils = require('../utils/utils');
 
 var Dialog = (function(){
 
@@ -176,8 +181,8 @@ var Dialog = (function(){
 })();
 
 module.exports = Dialog;
-},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/dropdown-menu.js":[function(require,module,exports){
-var utils = require('./utils');
+},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dropdown-menu.js":[function(require,module,exports){
+var utils = require('../utils/utils');
 
 var DropDownMenu = (function(){
 
@@ -231,7 +236,450 @@ alert('Element is ' + offset + ' vertical pixels from <body>');
 })();
 
 module.exports = DropDownMenu;
-},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/fastclick.js":[function(require,module,exports){
+},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\loading.js":[function(require,module,exports){
+var utils = require('../utils/utils');
+
+var Loading = (function(){
+
+	function Loading(params){
+
+		var self = this;
+
+		var options = {
+			title: null,
+			spinner: true
+		}
+
+		this.options = utils.extend({}, options, params);
+
+		self.overlay = document.createElement("div");
+		self.overlay.className = 'loading-filter';
+
+		self.dialog = document.createElement("div");
+		self.dialog.className = 'loading';
+
+		var main = document.createElement("div");
+		main.className = 'loading__main';
+
+		if (this.options.spinner){
+			var spinner = document.createElement("div");
+			spinner.className = 'loading__spinner';
+
+			var sp = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">'+
+					 ' <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>'+
+					 '</svg>';
+			spinner.innerHTML = sp;
+			main.appendChild(spinner);
+
+		}
+
+		if (self.options.title){
+			var title = document.createElement("div");
+			title.className = 'loading__title';
+			title.innerHTML = self.options.title;
+			main.appendChild(title);
+		}
+
+		self.dialog.appendChild(main);
+
+		document.body.appendChild(self.overlay);
+		document.body.appendChild(self.dialog);
+	
+		return self;
+	}
+
+	Loading.prototype.show = function(confirmCallback, cancelCallback){
+
+		var self = this;
+
+		setTimeout(function(){ 
+			this.overlay.classList.add('loading-filter--is-shown');
+			this.dialog.classList.add('loading--is-shown');
+		}.bind(self), 0);
+
+		return self;
+
+	}
+
+	Loading.prototype.hide = function(){
+
+		var self = this;
+
+		setTimeout(function(){ 
+			var self = this;
+			self.overlay.classList.remove('loading-filter--is-shown');
+			self.dialog.classList.remove('loading--is-shown');
+
+			
+			self.overlay.addEventListener('webkitTransitionEnd', function(){
+				self.overlay.remove()
+			});
+			
+			self.overlay.addEventListener('transitionend', function(){
+				self.overlay.remove()
+			});
+
+			self.dialog.addEventListener('webkitTransitionEnd', function(){
+				self.dialog.remove()
+			});			
+
+			self.dialog.addEventListener('transitionend', function(){
+				self.dialog.remove()
+			});
+			
+		}.bind(self), 0);
+
+		return self;
+	}
+
+	return Loading;
+
+})();
+
+module.exports = Loading;
+},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\navigation.js":[function(require,module,exports){
+var utils = require('../utils/utils');
+
+var Page = (function(){
+
+	function Page(element){
+		var self = this;
+		self.element = element;
+		self.currentPage = null;
+		self.prevPage = null;
+		element.classList.add('pages');
+	}
+
+	Page.prototype.changePage = function(page, callback){
+		var self = this;
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function(){
+			if (request.readyState === 4 && (request.status == 200 || request.status == 0 )){
+				self.element.innerHTML = request.responseText;
+				setTimeout(function() {
+					self.element.classList.add('pages--visibility');
+				}, 10);
+				if (callback){
+					callback();
+				}
+			}
+		};
+		request.open('GET', page, true);
+		request.send();
+	}
+
+	Page.prototype.pushPage = function(page, callback){
+		var request = new XMLHttpRequest();
+		var self = this;
+
+		request.onreadystatechange = function(){
+			if (request.readyState === 4 && (request.status == 200 || request.status == 0 )){
+
+				/*var prevPages = document.getElementsByClassName('pages');
+		        for (var i = 0; i < prevPages.length; i++){
+		            prevPages[i].classList.add('hidden');
+		        }*/
+
+				var nextPage = document.createElement("div");
+				nextPage.className = 'pages pages--slide-up';
+				nextPage.innerHTML = request.responseText;
+				document.body.appendChild(nextPage);
+
+				setTimeout(function() {
+					nextPage.classList.add('pages--slide-up-show');
+				}, 50);
+
+				if (self.currentPage){
+					self.prevPage = self.currentPage;
+				}
+				self.currentPage = nextPage; 
+
+				if (callback){
+					callback();
+				}
+
+			}
+		}
+
+		request.open('GET', page, true);
+		request.send();
+	}
+
+	Page.prototype.closeCurrentPage = function(){
+		var self = this;
+
+		self.currentPage.classList.remove('pages--slide-up-show');
+		self.currentPage.addEventListener('webkitTransitionEnd', function(){
+				if (self.currentPage){
+					self.currentPage.remove();
+				}
+				self.currentPage = self.prevPage;
+		});
+			
+		self.currentPage.addEventListener('transitionend', function(){
+			if (self.currentPage){
+				self.currentPage.remove();
+			}
+			self.currentPage = self.prevPage;
+		});
+
+	}
+
+	return Page;
+
+})();
+
+module.exports = Page;
+},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\notification.js":[function(require,module,exports){
+var utils = require('../utils/utils');
+
+var Notification = (function(){
+
+	var instance = null;
+
+	function Notification(text, options){
+
+		if (instance){
+			instance.hide();
+		}
+
+		var self = this;
+
+		var _options = {
+			type: 'simple',
+			time: 3000
+		}
+
+		this.options = utils.extend({}, _options, options);
+
+		self.notification = document.createElement('div');
+		self.notification.className = 'notification';
+
+		self.notification.addEventListener('click', function(){
+			self.hide();
+		}, false);
+
+		if (self.options.type !== 'simple'){
+			var icon = document.createElement('i');
+			icon.className = 'material-icons notification__icon';
+
+			switch (self.options.type){
+				case 'info': 
+					icon.innerHTML = 'info_outline';
+					icon.classList.add('color-blue');
+					break;
+
+				case 'success':
+					icon.innerHTML = 'check';
+					icon.classList.add('color-green');
+					break;
+
+				case 'warning':
+					icon.innerHTML = 'warning';
+					icon.classList.add('color-yellow');
+					break;
+
+				case 'error':
+					icon.innerHTML = 'info';
+					icon.classList.add('color-red');
+					break;
+
+				default:
+					icon.innerHTML = 'info_outline';
+					icon.classList.add('color-blue');
+			}
+
+			self.notification.appendChild(icon);		
+			
+		}
+
+		var notification_content = document.createElement('div'); 
+		notification_content.className = 'notification__content';
+		notification_content.innerHTML = text;
+
+		self.notification.appendChild(notification_content);
+		
+		setTimeout(function() {
+			self.notification.classList.add('notification--is-shown');
+		}, 0);
+
+		instance = self;
+
+		return self;
+	}
+
+	Notification.prototype.show = function(){
+		var self = this;
+
+		document.body.appendChild(self.notification);
+
+		if (self.options.time > 0){
+			setTimeout(function() {
+				self.hide();
+			}, self.options.time);
+		}
+
+		return self;
+	}
+
+	Notification.prototype.hide = function(){
+		var self = this;
+
+		self.notification.classList.remove('notification--is-shown');
+		self.notification.addEventListener('webkitTransitionEnd', function(){
+				self.notification.remove();
+		});
+			
+		self.notification.addEventListener('transitionend', function(){
+			self.notification.remove();
+		});
+
+		return self;
+	}
+
+	return Notification;
+
+})();
+
+module.exports = Notification;
+},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\pull-to-refresh.js":[function(require,module,exports){
+var pullToRefresh = function(element){
+
+	var top, // left position of moving box
+		starty, // starting x coordinate of touch point
+		dist = 0, // distance traveled by touch point
+		touchobj = null; // Touch object holder
+
+		this.element = element;
+
+		this.element.addEventListener('touchstart', function(e){
+			        touchobj = e.changedTouches[0] 
+			        top = parseInt(content.style.top) 
+			        starty = parseInt(touchobj.clientY)
+			        e.preventDefault()
+		    }, false);
+
+		this.element.addEventListener('touchmove', function(e){
+			        touchobj = e.changedTouches[0] 
+			        var dist = parseInt(touchobj.clientY) - starty;      
+					content.style.top =  top + dist + 'px';
+			        e.preventDefault()
+		    }, false);
+
+		this.element.addEventListener('touchend', function(e){     
+			content.style.top = 56 + 'px';
+			        e.preventDefault()
+		    }, false);
+	}
+
+	module.exports = pullToRefresh;
+},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\slide-menu.js":[function(require,module,exports){
+ 
+var SlideMenu = (function(){ 
+
+	function SlideMenu(element, params) {
+
+		var options = {
+			overlay: true
+		}
+
+		this.element = element;
+		this.options = utils.extend({}, options, params);
+	}
+
+	var listenCLoseSlideMenu = function(element) {
+		var self = this;
+		element.addEventListener('click', function(){
+			self.toggle();
+		});
+	}
+
+	var removeListenCLoseSlideMenu = function(element){
+		element.removeEventListener("click");
+	}
+
+	SlideMenu.prototype.toggle = function(){
+
+		if (!this.element.classList.contains('visible')) {
+
+			var overlay = document.createElement("div");
+			if (this.options.overlay){
+				overlay.className = 'overlay';
+			} else {
+				overlay.className = 'overlay transparent';
+			}
+			document.body.appendChild(overlay);
+			listenCLoseSlideMenu.call(this, overlay);
+
+			this.element.classList.add('visible');
+
+			
+		} else {
+			this.element.classList.remove('visible');
+
+			var overlays = document.getElementsByClassName("overlay");
+			removeListenCLoseSlideMenu.call(this, overlays[0]);
+			document.body.removeChild(overlays[0]);
+		}
+
+	}
+
+	return SlideMenu;
+
+})();
+
+module.exports = SlideMenu;
+},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\index.js":[function(require,module,exports){
+var utils = require('./utils/utils'),
+	dom = require('./utils/dom'), 
+	FastClick = require('./libs/fastclick'),
+	SlideMenu = require('./components/slide-menu'),
+	PullToRefresh = require('./components/pull-to-refresh'),
+	Buttons = require('./components/button'),
+	DropDownMenu = require('./components/dropdown-menu'),
+	Pages = require('./components/navigation'),
+	Dialog = require('./components/dialog'),
+	Loading = require('./components/loading'),
+	Notification = require('./components/notification');
+ 
+var PhonePack = (function(){	
+	
+	function PhonePack(options) {
+
+		var _options = {
+			fastClick: true
+		}
+
+		if (options){
+			_options = utils.extend({}, _options, options);
+		}
+		
+		if (_options.fastClick){
+			FastClick(document.body);
+		}
+				
+		return {
+			SlideMenu: SlideMenu,
+			PullToRefresh: PullToRefresh,
+			Pages: Pages,
+			DropDownMenu: DropDownMenu, 
+			Dialog: Dialog,
+			Loading: Loading,
+			Notification: Notification		
+		}
+
+	}
+
+	return PhonePack;
+		
+})();
+
+window.PhonePack = PhonePack;
+
+
+
+
+},{"./components/button":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\button.js","./components/dialog":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dialog.js","./components/dropdown-menu":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dropdown-menu.js","./components/loading":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\loading.js","./components/navigation":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\navigation.js","./components/notification":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\notification.js","./components/pull-to-refresh":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\pull-to-refresh.js","./components/slide-menu":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\slide-menu.js","./libs/fastclick":"c:\\projetos\\Javascript\\phonepack\\src\\js\\libs\\fastclick.js","./utils/dom":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\dom.js","./utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\libs\\fastclick.js":[function(require,module,exports){
 ;(function () {
 	'use strict';
 
@@ -1074,457 +1522,66 @@ module.exports = DropDownMenu;
 	}
 }());
 
-},{}],"/home/ubuntu/workspace/phonepack/src/js/index.js":[function(require,module,exports){
-var utils = require('./utils');
-var _FastClick = require('./fastclick');
-var _SlideMenu = require('./slide-menu');
-var _PullToRefresh = require('./pull-to-refresh');
-var _Buttons = require('./buttons');
-var _DropDownMenu = require('./dropdown-menu');
-var _Pages = require('./navigation');
-var _Dialog = require('./dialog');
-var _Loading = require('./loading');
-var _Notification = require('./notification');
+},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\dom.js":[function(require,module,exports){
+var dom = (function(){
 
+	var eventsClickListeners = [];
 
+	document.addEventListener('click', clickEvents, false);
 
-var PhonePack = (function(){
-	
-	
-	function PhonePack(settings) {
+	function clousestClass(el, className) {
 
-		var _config = {
-			fastClick: true
+		if (verifyClass(el, className)){
+			return el;
 		}
 
-		if (settings){
-			_config = utils.extend({}, _config, settings);
-		}
-		
-		if (_config.fastClick){
-			_FastClick(document.body);
-		}
-		
-		_Buttons();
-		
-		return {
-			SlideMenu: _SlideMenu,
-			PullToRefresh: _PullToRefresh,
-			Pages: _Pages,
-			DropDownMenu: _DropDownMenu, 
-			Dialog: _Dialog,
-			Loading: _Loading,
-			Notification: _Notification
-			
-		}
-		
-	
-
-
-	}
-
-	return PhonePack;
-		
-})();
-
-window.PhonePack = PhonePack;
-
-
-
-
-},{"./buttons":"/home/ubuntu/workspace/phonepack/src/js/buttons.js","./dialog":"/home/ubuntu/workspace/phonepack/src/js/dialog.js","./dropdown-menu":"/home/ubuntu/workspace/phonepack/src/js/dropdown-menu.js","./fastclick":"/home/ubuntu/workspace/phonepack/src/js/fastclick.js","./loading":"/home/ubuntu/workspace/phonepack/src/js/loading.js","./navigation":"/home/ubuntu/workspace/phonepack/src/js/navigation.js","./notification":"/home/ubuntu/workspace/phonepack/src/js/notification.js","./pull-to-refresh":"/home/ubuntu/workspace/phonepack/src/js/pull-to-refresh.js","./slide-menu":"/home/ubuntu/workspace/phonepack/src/js/slide-menu.js","./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/loading.js":[function(require,module,exports){
-var utils = require('./utils');
-
-var Loading = (function(){
-
-	function Loading(params){
-
-		var self = this;
-
-		var options = {
-			title: null,
-			spinner: true
+		function verifyClass(el){
+			if (el.classList.contains(className)) {
+		      return el;
+		    }
 		}
 
-		this.options = utils.extend({}, options, params);
-
-		self.overlay = document.createElement("div");
-		self.overlay.className = 'loading-filter';
-
-		self.dialog = document.createElement("div");
-		self.dialog.className = 'loading';
-
-		var main = document.createElement("div");
-		main.className = 'loading__main';
-
-		if (this.options.spinner){
-			var spinner = document.createElement("div");
-			spinner.className = 'loading__spinner';
-
-			var sp = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">'+
-					 ' <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>'+
-					 '</svg>';
-			spinner.innerHTML = sp;
-			main.appendChild(spinner);
-
-		}
-
-		if (self.options.title){
-			var title = document.createElement("div");
-			title.className = 'loading__title';
-			title.innerHTML = self.options.title;
-			main.appendChild(title);
-		}
-
-		self.dialog.appendChild(main);
-
-		document.body.appendChild(self.overlay);
-		document.body.appendChild(self.dialog);
-	
-		return self;
-	}
-
-	Loading.prototype.show = function(confirmCallback, cancelCallback){
-
-		var self = this;
-
-		setTimeout(function(){ 
-			this.overlay.classList.add('loading-filter--is-shown');
-			this.dialog.classList.add('loading--is-shown');
-		}.bind(self), 0);
-
-		return self;
-
-	}
-
-	Loading.prototype.hide = function(){
-
-		var self = this;
-
-		setTimeout(function(){ 
-			var self = this;
-			self.overlay.classList.remove('loading-filter--is-shown');
-			self.dialog.classList.remove('loading--is-shown');
-
-			
-			self.overlay.addEventListener('webkitTransitionEnd', function(){
-				self.overlay.remove()
-			});
-			
-			self.overlay.addEventListener('transitionend', function(){
-				self.overlay.remove()
-			});
-
-			self.dialog.addEventListener('webkitTransitionEnd', function(){
-				self.dialog.remove()
-			});			
-
-			self.dialog.addEventListener('transitionend', function(){
-				self.dialog.remove()
-			});
-			
-		}.bind(self), 0);
-
-		return self;
-	}
-
-	return Loading;
-
-})();
-
-module.exports = Loading;
-},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/navigation.js":[function(require,module,exports){
-var Page = (function(){
-
-	function Page(element){
-		var self = this;
-		self.element = element;
-		self.currentPage = null;
-		self.prevPage = null;
-		element.classList.add('pages');
-	}
-
-	Page.prototype.changePage = function(page, callback){
-		var self = this;
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function(){
-			if (request.readyState === 4 && (request.status == 200 || request.status == 0 )){
-				self.element.innerHTML = request.responseText;
-				setTimeout(function() {
-					self.element.classList.add('pages--visibility');
-				}, 10);
-				if (callback){
-					callback();
-				}
+	  	while (el && el.parentNode) {
+		    el = el.parentNode;
+		    if (el.classList) {
+			      return verifyClass(el, className);
 			}
-		};
-		request.open('GET', page, true);
-		request.send();
+	  	}
+
+	  	return null;
 	}
 
-	Page.prototype.pushPage = function(page, callback){
-		var request = new XMLHttpRequest();
-		var self = this;
+	function clickEvents(e){
+		var element = e.target;
 
-		request.onreadystatechange = function(){
-			if (request.readyState === 4 && (request.status == 200 || request.status == 0 )){
-
-				/*var prevPages = document.getElementsByClassName('pages');
-		        for (var i = 0; i < prevPages.length; i++){
-		            prevPages[i].classList.add('hidden');
-		        }*/
-
-				var nextPage = document.createElement("div");
-				nextPage.className = 'pages pages--slide-up';
-				nextPage.innerHTML = request.responseText;
-				document.body.appendChild(nextPage);
-
-				setTimeout(function() {
-					nextPage.classList.add('pages--slide-up-show');
-				}, 50);
-
-				if (self.currentPage){
-					self.prevPage = self.currentPage;
-				}
-				self.currentPage = nextPage; 
-
-				if (callback){
-					callback();
-				}
-
+		eventsClickListeners.forEach(function(ev){
+			var el = clousestClass(element, ev.element);
+			if (el){
+				ev.fn(e);
 			}
-		}
-
-		request.open('GET', page, true);
-		request.send();
-	}
-
-	Page.prototype.closeCurrentPage = function(){
-		var self = this;
-
-		self.currentPage.classList.remove('pages--slide-up-show');
-		self.currentPage.addEventListener('webkitTransitionEnd', function(){
-				if (self.currentPage){
-					self.currentPage.remove();
-				}
-				self.currentPage = self.prevPage;
 		});
-			
-		self.currentPage.addEventListener('transitionend', function(){
-			if (self.currentPage){
-				self.currentPage.remove();
-			}
-			self.currentPage = self.prevPage;
-		});
-
 	}
 
-	return Page;
-
-})();
-
-module.exports = Page;
-},{}],"/home/ubuntu/workspace/phonepack/src/js/notification.js":[function(require,module,exports){
-var utils = require('./utils');
-
-var Notification = (function(){
-
-	var instance = null;
-
-	function Notification(text, options){
-
-		if (instance){
-			instance.hide();
-		}
-
-		var self = this;
-
-		var _options = {
-			type: 'simple',
-			time: 3000
-		}
-
-		this.options = utils.extend({}, _options, options);
-
-		self.notification = document.createElement('div');
-		self.notification.className = 'notification';
-
-		self.notification.addEventListener('click', function(){
-			self.hide();
-		}, false);
-
-		if (self.options.type !== 'simple'){
-			var icon = document.createElement('i');
-			icon.className = 'material-icons notification__icon';
-
-			switch (self.options.type){
-				case 'info': 
-					icon.innerHTML = 'info_outline';
-					icon.classList.add('color-blue');
-					break;
-
-				case 'success':
-					icon.innerHTML = 'check';
-					icon.classList.add('color-green');
-					break;
-
-				case 'warning':
-					icon.innerHTML = 'warning';
-					icon.classList.add('color-yellow');
-					break;
-
-				case 'error':
-					icon.innerHTML = 'info';
-					icon.classList.add('color-red');
-					break;
-
-				default:
-					icon.innerHTML = 'info_outline';
-					icon.classList.add('color-blue');
-			}
-
-			self.notification.appendChild(icon);		
-			
-		}
-
-		var notification_content = document.createElement('div'); 
-		notification_content.className = 'notification__content';
-		notification_content.innerHTML = text;
-
-		self.notification.appendChild(notification_content);
-		
-		setTimeout(function() {
-			self.notification.classList.add('notification--is-shown');
-		}, 0);
-
-		instance = self;
-
-		return self;
-	}
-
-	Notification.prototype.show = function(){
-		var self = this;
-
-		document.body.appendChild(self.notification);
-
-		if (self.options.time > 0){
-			setTimeout(function() {
-				self.hide();
-			}, self.options.time);
-		}
-
-		return self;
-	}
-
-	Notification.prototype.hide = function(){
-		var self = this;
-
-		self.notification.classList.remove('notification--is-shown');
-		self.notification.addEventListener('webkitTransitionEnd', function(){
-				self.notification.remove();
-		});
-			
-		self.notification.addEventListener('transitionend', function(){
-			self.notification.remove();
-		});
-
-		return self;
-	}
-
-	return Notification;
-
-})();
-
-module.exports = Notification;
-},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/pull-to-refresh.js":[function(require,module,exports){
-var pullToRefresh = function(element){
-
-	var top, // left position of moving box
-		starty, // starting x coordinate of touch point
-		dist = 0, // distance traveled by touch point
-		touchobj = null; // Touch object holder
-
+	function DOM(element){
 		this.element = element;
-
-		this.element.addEventListener('touchstart', function(e){
-			        touchobj = e.changedTouches[0] 
-			        top = parseInt(content.style.top) 
-			        starty = parseInt(touchobj.clientY)
-			        e.preventDefault()
-		    }, false);
-
-		this.element.addEventListener('touchmove', function(e){
-			        touchobj = e.changedTouches[0] 
-			        var dist = parseInt(touchobj.clientY) - starty;      
-					content.style.top =  top + dist + 'px';
-			        e.preventDefault()
-		    }, false);
-
-		this.element.addEventListener('touchend', function(e){     
-			content.style.top = 56 + 'px';
-			        e.preventDefault()
-		    }, false);
+		return this;
 	}
 
-	module.exports = pullToRefresh;
-},{}],"/home/ubuntu/workspace/phonepack/src/js/slide-menu.js":[function(require,module,exports){
-var utils = require('./utils');
-
-var SlideMenu = (function(){ 
-
-	function SlideMenu(element, params) {
-
-		var options = {
-			overlay: true
-		}
-
-		this.element = element;
-		this.options = utils.extend({}, options, params);
+	DOM.prototype.click = function(callback){
+		eventsClickListeners.push({ element: this.element, fn: callback });
 	}
 
-	var listenCLoseSlideMenu = function(element) {
-		var self = this;
-		element.addEventListener('click', function(){
-			self.toggle();
-		});
+
+	function element(element) {
+		return new DOM(element);
 	}
 
-	var removeListenCLoseSlideMenu = function(element){
-		element.removeEventListener("click");
-	}
-
-	SlideMenu.prototype.toggle = function(){
-
-		if (!this.element.classList.contains('visible')) {
-
-			var overlay = document.createElement("div");
-			if (this.options.overlay){
-				overlay.className = 'overlay';
-			} else {
-				overlay.className = 'overlay transparent';
-			}
-			document.body.appendChild(overlay);
-			listenCLoseSlideMenu.call(this, overlay);
-
-			this.element.classList.add('visible');
-
-			
-		} else {
-			this.element.classList.remove('visible');
-
-			var overlays = document.getElementsByClassName("overlay");
-			removeListenCLoseSlideMenu.call(this, overlays[0]);
-			document.body.removeChild(overlays[0]);
-		}
-
-	}
-
-	return SlideMenu;
+	return element;
 
 })();
 
-module.exports = SlideMenu;
-},{"./utils":"/home/ubuntu/workspace/phonepack/src/js/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/utils.js":[function(require,module,exports){
+module.exports = dom;
+},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js":[function(require,module,exports){
 module.exports = {
 
 	extend: function(a, b){
@@ -1549,4 +1606,4 @@ module.exports = {
 	}
 
 }
-},{}]},{},["/home/ubuntu/workspace/phonepack/src/js/index.js"]);
+},{}]},{},["c:\\projetos\\Javascript\\phonepack\\src\\js\\index.js"]);

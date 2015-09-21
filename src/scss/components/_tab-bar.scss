@@ -1,4 +1,4 @@
-$tab-opacity: 0.7;
+$tab-opacity: 0.6;
 
 @mixin border-bottom($color) {
   border-bottom: 2px solid $color;
@@ -30,12 +30,13 @@ $tab-opacity: 0.7;
     .icon{
       vertical-align: middle;
     }
+    
   }
   
   .tab-item:hover{
     cursor: pointer;
   }
- 
+  
   .tab--ripple{
     position: relative;
     overflow: hidden;
@@ -44,7 +45,7 @@ $tab-opacity: 0.7;
   .tab-item.active{
     height: 46px;
   }
-   
+  
 } 
 
 @each $label, $color in $colors {
@@ -52,14 +53,14 @@ $tab-opacity: 0.7;
   .tab-item__color-#{$label}{
     color:  rgba($color, $tab-opacity) !important;
     .tab-item.active, .tab-item:hover{
-       color: $color;
-    }
-  }
+     color: $color;
+   }
+ }
 
-  .tab-item__indicator-#{$label}{
-    .tab-item.active{
-      @include border-bottom($color);
-    }
-  } 
- 
+ .tab-item__indicator-#{$label}{
+  .tab-item.active{
+    @include border-bottom($color);
+  }
+} 
+
 }

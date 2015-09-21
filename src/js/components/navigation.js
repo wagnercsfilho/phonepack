@@ -1,3 +1,5 @@
+var utils = require('../utils/utils');
+
 var Page = (function(){
 
 	function Page(element){

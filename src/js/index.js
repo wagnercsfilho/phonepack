@@ -1,48 +1,40 @@
-var utils = require('./utils');
-var _FastClick = require('./fastclick');
-var _SlideMenu = require('./slide-menu');
-var _PullToRefresh = require('./pull-to-refresh');
-var _Buttons = require('./buttons');
-var _DropDownMenu = require('./dropdown-menu');
-var _Pages = require('./navigation');
-var _Dialog = require('./dialog');
-var _Loading = require('./loading');
-var _Notification = require('./notification');
-
-
-
-var PhonePack = (function(){
+var utils = require('./utils/utils'),
+	dom = require('./utils/dom'), 
+	FastClick = require('./libs/fastclick'),
+	SlideMenu = require('./components/slide-menu'),
+	PullToRefresh = require('./components/pull-to-refresh'),
+	Buttons = require('./components/button'),
+	DropDownMenu = require('./components/dropdown-menu'),
+	Pages = require('./components/navigation'),
+	Dialog = require('./components/dialog'),
+	Loading = require('./components/loading'),
+	Notification = require('./components/notification');
+ 
+var PhonePack = (function(){	
 	
-	
-	function PhonePack(settings) {
+	function PhonePack(options) {
 
-		var _config = {
+		var _options = {
 			fastClick: true
 		}
 
-		if (settings){
-			_config = utils.extend({}, _config, settings);
+		if (options){
+			_options = utils.extend({}, _options, options);
 		}
 		
-		if (_config.fastClick){
-			_FastClick(document.body);
+		if (_options.fastClick){
+			FastClick(document.body);
 		}
-		
-		_Buttons();
-		
+				
 		return {
-			SlideMenu: _SlideMenu,
-			PullToRefresh: _PullToRefresh,
-			Pages: _Pages,
-			DropDownMenu: _DropDownMenu, 
-			Dialog: _Dialog,
-			Loading: _Loading,
-			Notification: _Notification
-			
+			SlideMenu: SlideMenu,
+			PullToRefresh: PullToRefresh,
+			Pages: Pages,
+			DropDownMenu: DropDownMenu, 
+			Dialog: Dialog,
+			Loading: Loading,
+			Notification: Notification		
 		}
-		
-	
-
 
 	}
 

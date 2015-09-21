@@ -1,0 +1,12 @@
+@mixin transition($property, $speed, $effect) {
+	transition: $property $speed $effect;
+}
+
+@mixin hover-background($color) {
+	background-color: rgba($color, .8);
+	@include transition(background-color, 100ms, ease-in);
+
+	&:hover {
+		background-color: $color;
+	}
+}

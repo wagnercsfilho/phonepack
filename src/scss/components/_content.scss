@@ -1,0 +1,25 @@
+.content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;  
+  overflow-y: auto; 
+
+  &.content--padding{
+    padding: 16px;
+  }
+
+  &.has-header {
+      top: 56px;
+  }
+
+  &.has-sub-header {
+      top: 104px;  
+  }
+
+  &.has-footer {
+      bottom: 48px;  
+  }
+
+}

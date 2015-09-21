@@ -1,0 +1,195 @@
+@keyframes
+ripple { 
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+button[disabled], html input[disabled] {
+  cursor: default;
+}
+
+.button, .button:hover, .button:active, .button:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+.button {
+  z-index: 2;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+  padding: 0 14px 0 14px;
+  border: none;
+  border-radius: 2px;
+  background-color: transparent;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 36px;
+
+  &.button--block{
+    width: 100%;
+  }
+
+  .button--ripple__animation {
+    position: absolute;
+    background: rgba(0,0,0,.15);
+    border-radius: 100%;
+    transform: scale(0);
+    pointer-events: none;
+
+    &.show {
+      animation: ripple .8s ease-out;
+    }
+
+  }
+
+  .icon{
+      font-size: 24px;
+  }
+
+}
+
+.button--small {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 11px;
+    line-height: 30px;
+    
+    .icon{
+      font-size: 16px;
+    }
+}
+
+.button--large {
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 14px;
+    line-height: 47px;
+    
+    .icon{
+      font-size: 24px;
+    }
+}
+
+.button--fab {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition-property: box-shadow;
+  transition-duration: 0.2s;
+  border-radius: 50%;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 13px; 
+  line-height: 10px;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+
+  &.button--small {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 11px;
+    line-height: 8px;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+  }
+
+  &.button--large {
+      padding-left: 16px;
+      padding-right: 16px;
+      font-size: 14px;
+      line-height: 55px;
+      height: 47px;
+      width: 47px;
+      padding: 0;
+  }
+
+  &.button--fab-floating{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    transform: translateY(0);
+    transition: transform 0.4s;
+
+    &.hidden{
+      transform: translateY(100px);
+    }
+
+  }
+
+}
+
+.button--icon {
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  border-radius: 50%;
+  padding-left: 14px;
+  padding-right: 14px;
+  font-size: 13px;
+  line-height: 10px;
+  height: 36px;
+  width: 36px;
+  padding: 0;
+
+  &.button--small {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 11px;
+    line-height: 8px;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+  }
+
+  &.button--l {
+      padding-left: 16px;
+      padding-right: 16px;
+      font-size: 14px;
+      line-height: 12px;
+      height: 47px;
+      width: 47px;
+      padding: 0;
+  }
+
+}
+
+.button--raised {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition-property: box-shadow;
+  transition-duration: 0.2s;
+
+  &[disabled], &.button--is-disabled {
+    box-shadow: none !important;
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.26) !important;
+    background-color: #E0E0E0 !important;
+  }
+
+}
+
+.button--flat {
+  transition-property: background-color;
+  transition-duration: 0.2s;
+
+  &[disabled], &.button--is-disabled {
+    box-shadow: none !important;
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.26) !important;
+    background-color: transparent !important;
+  }
+
+}
+
+
+
+

@@ -3,19 +3,20 @@
     padding-top: 8px;
     padding-bottom: 8px;
     margin: 8px 0 8px 0;
-}
 
-.text-field:before {
-    position: absolute;
-    right: 0;
-    bottom: 7px;
-    left: 0;
-    height: 1px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
+    &:before {
+        position: absolute;
+        right: 0;
+        bottom: 7px;
+        left: 0;
+        height: 1px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
 
-.text-field:before {
-    content: '';
+    &:before {
+        content: '';
+    }
+
 }
 
 .text-field__border {
