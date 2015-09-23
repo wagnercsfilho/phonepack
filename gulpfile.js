@@ -29,11 +29,16 @@ gulp.task('sass', function(){
 });
 
 gulp.task('watch', ['browserify-watch'], function(){
-	browserSync.init({
-		server: "./"/*,
-    port: process.env.PORT || null,
-    host: process.env.IP || null*/
-	});
+	var port = {
+		server: "./"
+	};
+	
+	if (process.env.PORT){
+		port.port = process.env.PORT,
+		port.host = process.env.IP
+	}
+	
+	browserSync.init(port);
 
 	gulp.watch('src/js/*.js').on('change', browserSync.reload);
 	gulp.watch('src/scss/**/*.scss', ['sass']);
