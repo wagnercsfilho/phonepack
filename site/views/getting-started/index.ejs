@@ -50,23 +50,6 @@
             You can include PhonePack files in your html page.</p>
   <pre><code class="language-markup">&lt;link rel="stylesheet" type="text/css" href="phonepack.css"&gt;
 &lt;script src="phonepack.js" type="text/javascript" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
-  
-  <p>Start the application</p>
-  <pre><code class="language-javascript">/*Javascript*/
-document.addEventListener('DOMContentLoaded', function() {
-  var phonepack = new PhonePack();
-}, false);
-  
-/*jQuery*/
-$(document).ready(function(){
-  var phonepack = new PhonePack();
-});
-  
-/*Options*/
-var phonepack = new PhonePack({
-  fastClick: true // Library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers.
-});</code></pre>
-  
       </div>
     </div>
     <div class="row row-content">

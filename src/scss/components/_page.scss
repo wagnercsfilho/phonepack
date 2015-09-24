@@ -8,7 +8,7 @@
   background-color: #ffffff;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 
-  &.pages--slideUp{
+  &.pages--slide-up{
      opacity: 0;
     transform: translateY(10%);
   }

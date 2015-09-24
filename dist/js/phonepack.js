@@ -340,9 +340,27 @@ module.exports = Loading;
 },{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/navigation.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
-var Page = (function(){
+var Page = (function() {
 
-	function Page(element){
+	function renderPage(element, instance, callback) {
+		document.body.appendChild(element);
+
+		setTimeout(function() {
+			element.classList.add('pages--slide-up-show');
+			if (instance.currentPage) {
+				instance.prevPage = instance.currentPage;
+			}
+
+			instance.currentPage = element;
+
+			if (callback) {
+				callback();
+			}
+			
+		}, 40);
+	}
+
+	function Page(element) {
 		var self = this;
 		self.element = element;
 		self.currentPage = null;
@@ -350,16 +368,16 @@ var Page = (function(){
 		element.classList.add('pages');
 	}
 
-	Page.prototype.changePage = function(page, callback){
+	Page.prototype.changePage = function(page, callback) {
 		var self = this;
 		var request = new XMLHttpRequest();
-		request.onreadystatechange = function(){
-			if (request.readyState === 4 && (request.status == 200 || request.status == 0 )){
+		request.onreadystatechange = function() {
+			if (request.readyState === 4 && (request.status == 200 || request.status == 0)) {
 				self.element.innerHTML = request.responseText;
 				setTimeout(function() {
 					self.element.classList.add('pages--visibility');
 				}, 10);
-				if (callback){
+				if (callback) {
 					callback();
 				}
 			}
@@ -368,12 +386,12 @@ var Page = (function(){
 		request.send();
 	}
 
-	Page.prototype.pushPage = function(page, callback){
+	Page.prototype.pushPage = function(page, cbAfter, callback) {
 		var request = new XMLHttpRequest();
 		var self = this;
 
-		request.onreadystatechange = function(){
-			if (request.readyState === 4 && (request.status == 200 || request.status == 0 )){
+		request.onreadystatechange = function() {
+			if (request.readyState === 4 && (request.status == 200 || request.status == 0)) {
 
 				/*var prevPages = document.getElementsByClassName('pages');
 		        for (var i = 0; i < prevPages.length; i++){
@@ -383,19 +401,19 @@ var Page = (function(){
 				var nextPage = document.createElement("div");
 				nextPage.className = 'pages pages--slide-up';
 				nextPage.innerHTML = request.responseText;
-				document.body.appendChild(nextPage);
 
-				setTimeout(function() {
-					nextPage.classList.add('pages--slide-up-show');
-				}, 50);
-
-				if (self.currentPage){
-					self.prevPage = self.currentPage;
-				}
-				self.currentPage = nextPage; 
-
-				if (callback){
-					callback();
+				// send a callback with the element html created
+				if (callback) {
+					cbAfter(nextPage, function(el) {
+						console.log(nextPage)
+						renderPage(nextPage, self, function() {
+							callback(nextPage);
+						});
+					});
+				} else {
+					renderPage(nextPage, self, function() {
+						cbAfter();
+					});
 				}
 
 			}
@@ -405,19 +423,19 @@ var Page = (function(){
 		request.send();
 	}
 
-	Page.prototype.closeCurrentPage = function(){
+	Page.prototype.closeCurrentPage = function() {
 		var self = this;
 
 		self.currentPage.classList.remove('pages--slide-up-show');
-		self.currentPage.addEventListener('webkitTransitionEnd', function(){
-				if (self.currentPage){
-					self.currentPage.remove();
-				}
-				self.currentPage = self.prevPage;
+		self.currentPage.addEventListener('webkitTransitionEnd', function() {
+			if (self.currentPage) {
+				self.currentPage.remove();
+			}
+			self.currentPage = self.prevPage;
 		});
-			
-		self.currentPage.addEventListener('transitionend', function(){
-			if (self.currentPage){
+
+		self.currentPage.addEventListener('transitionend', function() {
+			if (self.currentPage) {
 				self.currentPage.remove();
 			}
 			self.currentPage = self.prevPage;
