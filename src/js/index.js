@@ -12,20 +12,6 @@ var utils = require('./utils/utils'),
  
 var PhonePack = (function(){	
 	
-	function PhonePack(options) {
-
-		var _options = {
-			fastClick: true
-		}
-
-		if (options){
-			_options = utils.extend({}, _options, options);
-		}
-		
-		if (_options.fastClick){
-			FastClick(document.body);
-		}
-				
 		return {
 			SlideMenu: SlideMenu,
 			PullToRefresh: PullToRefresh,
@@ -36,13 +22,9 @@ var PhonePack = (function(){
 			Notification: Notification		
 		}
 
-	}
-
-	return PhonePack;
-		
 })();
 
-window.PhonePack = PhonePack;
+window.phonepack = PhonePack;
 
 
 

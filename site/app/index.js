@@ -8,16 +8,12 @@ module.exports = function(app){
       res.render('views/getting-started/index');
     });
     
-    app.get('/docs.html', function (req, res) {
-      res.render('views/docs/index');
+    app.get('/css.html', function (req, res) {
+      res.render('views/css/index');
     });
     
-    app.get('/blog.html', function (req, res) {
-      res.render('views/blog/index');
-    });
-    
-    app.get('/examples.html', function (req, res) {
-      res.render('views/examples/index');
+    app.get('/javascript.html', function (req, res) {
+      res.render('views/javascript/index');
     });
     
     app.get('/docs/demos/:path/:page', function(req, res) {

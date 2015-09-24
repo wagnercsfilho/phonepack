@@ -42,13 +42,13 @@ var Dialog = (function(){
 
 		if (self.options.options.cancel){
 			self.btnCancel = document.createElement('button');
-			self.btnCancel.className = 'btn btn--m btn--red btn--flat btn--ripple';
+			self.btnCancel.className = 'button button--flat btn--ripple text-red';
 			self.btnCancel.innerHTML = self.options.options.cancel;
 			actions.appendChild(self.btnCancel);
 		}
 
 		self.btnOk = document.createElement('button');
-		self.btnOk.className = 'btn btn--m btn--blue btn--flat btn--ripple';
+		self.btnOk.className = 'button button--flat button--ripple text-blue';
 		self.btnOk.innerHTML = self.options.options.ok;
 		actions.appendChild(self.btnOk);
 

@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\button.js":[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"/home/ubuntu/workspace/phonepack/src/js/components/button.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 var dom = require('../utils/dom');
 
@@ -55,7 +55,7 @@ var Buttons = (function(){
 })();
 
 module.exports = Buttons;
-},{"../utils/dom":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\dom.js","../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dialog.js":[function(require,module,exports){
+},{"../utils/dom":"/home/ubuntu/workspace/phonepack/src/js/utils/dom.js","../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/dialog.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
 var Dialog = (function(){
@@ -100,13 +100,13 @@ var Dialog = (function(){
 
 		if (self.options.options.cancel){
 			self.btnCancel = document.createElement('button');
-			self.btnCancel.className = 'btn btn--m btn--red btn--flat btn--ripple';
+			self.btnCancel.className = 'button button--flat btn--ripple text-red';
 			self.btnCancel.innerHTML = self.options.options.cancel;
 			actions.appendChild(self.btnCancel);
 		}
 
 		self.btnOk = document.createElement('button');
-		self.btnOk.className = 'btn btn--m btn--blue btn--flat btn--ripple';
+		self.btnOk.className = 'button button--flat button--ripple text-blue';
 		self.btnOk.innerHTML = self.options.options.ok;
 		actions.appendChild(self.btnOk);
 
@@ -181,7 +181,7 @@ var Dialog = (function(){
 })();
 
 module.exports = Dialog;
-},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dropdown-menu.js":[function(require,module,exports){
+},{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/dropdown-menu.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
 var DropDownMenu = (function(){
@@ -236,7 +236,7 @@ alert('Element is ' + offset + ' vertical pixels from <body>');
 })();
 
 module.exports = DropDownMenu;
-},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\loading.js":[function(require,module,exports){
+},{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/loading.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
 var Loading = (function(){
@@ -337,7 +337,7 @@ var Loading = (function(){
 })();
 
 module.exports = Loading;
-},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\navigation.js":[function(require,module,exports){
+},{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/navigation.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
 var Page = (function(){
@@ -430,7 +430,7 @@ var Page = (function(){
 })();
 
 module.exports = Page;
-},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\notification.js":[function(require,module,exports){
+},{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/notification.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
 var Notification = (function(){
@@ -466,22 +466,22 @@ var Notification = (function(){
 			switch (self.options.type){
 				case 'info': 
 					icon.innerHTML = 'info_outline';
-					icon.classList.add('color-blue');
+					icon.classList.add('text-blue');
 					break;
 
 				case 'success':
 					icon.innerHTML = 'check';
-					icon.classList.add('color-green');
+					icon.classList.add('text-green');
 					break;
 
 				case 'warning':
 					icon.innerHTML = 'warning';
-					icon.classList.add('color-yellow');
+					icon.classList.add('text-yellow');
 					break;
 
 				case 'error':
 					icon.innerHTML = 'info';
-					icon.classList.add('color-red');
+					icon.classList.add('text-red');
 					break;
 
 				default:
@@ -542,7 +542,7 @@ var Notification = (function(){
 })();
 
 module.exports = Notification;
-},{"../utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\pull-to-refresh.js":[function(require,module,exports){
+},{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/pull-to-refresh.js":[function(require,module,exports){
 var pullToRefresh = function(element){
 
 	var top, // left position of moving box
@@ -573,7 +573,7 @@ var pullToRefresh = function(element){
 	}
 
 	module.exports = pullToRefresh;
-},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\slide-menu.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/components/slide-menu.js":[function(require,module,exports){
  
 var SlideMenu = (function(){ 
 
@@ -629,7 +629,7 @@ var SlideMenu = (function(){
 })();
 
 module.exports = SlideMenu;
-},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\index.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/index.js":[function(require,module,exports){
 var utils = require('./utils/utils'),
 	dom = require('./utils/dom'), 
 	FastClick = require('./libs/fastclick'),
@@ -644,20 +644,6 @@ var utils = require('./utils/utils'),
  
 var PhonePack = (function(){	
 	
-	function PhonePack(options) {
-
-		var _options = {
-			fastClick: true
-		}
-
-		if (options){
-			_options = utils.extend({}, _options, options);
-		}
-		
-		if (_options.fastClick){
-			FastClick(document.body);
-		}
-				
 		return {
 			SlideMenu: SlideMenu,
 			PullToRefresh: PullToRefresh,
@@ -668,18 +654,14 @@ var PhonePack = (function(){
 			Notification: Notification		
 		}
 
-	}
-
-	return PhonePack;
-		
 })();
 
-window.PhonePack = PhonePack;
+window.phonepack = PhonePack;
 
 
 
 
-},{"./components/button":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\button.js","./components/dialog":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dialog.js","./components/dropdown-menu":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\dropdown-menu.js","./components/loading":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\loading.js","./components/navigation":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\navigation.js","./components/notification":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\notification.js","./components/pull-to-refresh":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\pull-to-refresh.js","./components/slide-menu":"c:\\projetos\\Javascript\\phonepack\\src\\js\\components\\slide-menu.js","./libs/fastclick":"c:\\projetos\\Javascript\\phonepack\\src\\js\\libs\\fastclick.js","./utils/dom":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\dom.js","./utils/utils":"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js"}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\libs\\fastclick.js":[function(require,module,exports){
+},{"./components/button":"/home/ubuntu/workspace/phonepack/src/js/components/button.js","./components/dialog":"/home/ubuntu/workspace/phonepack/src/js/components/dialog.js","./components/dropdown-menu":"/home/ubuntu/workspace/phonepack/src/js/components/dropdown-menu.js","./components/loading":"/home/ubuntu/workspace/phonepack/src/js/components/loading.js","./components/navigation":"/home/ubuntu/workspace/phonepack/src/js/components/navigation.js","./components/notification":"/home/ubuntu/workspace/phonepack/src/js/components/notification.js","./components/pull-to-refresh":"/home/ubuntu/workspace/phonepack/src/js/components/pull-to-refresh.js","./components/slide-menu":"/home/ubuntu/workspace/phonepack/src/js/components/slide-menu.js","./libs/fastclick":"/home/ubuntu/workspace/phonepack/src/js/libs/fastclick.js","./utils/dom":"/home/ubuntu/workspace/phonepack/src/js/utils/dom.js","./utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/libs/fastclick.js":[function(require,module,exports){
 ;(function () {
 	'use strict';
 
@@ -1522,7 +1504,7 @@ window.PhonePack = PhonePack;
 	}
 }());
 
-},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\dom.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/utils/dom.js":[function(require,module,exports){
 var dom = (function(){
 
 	var eventsClickListeners = [];
@@ -1581,7 +1563,7 @@ var dom = (function(){
 })();
 
 module.exports = dom;
-},{}],"c:\\projetos\\Javascript\\phonepack\\src\\js\\utils\\utils.js":[function(require,module,exports){
+},{}],"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js":[function(require,module,exports){
 module.exports = {
 
 	extend: function(a, b){
@@ -1606,4 +1588,4 @@ module.exports = {
 	}
 
 }
-},{}]},{},["c:\\projetos\\Javascript\\phonepack\\src\\js\\index.js"]);
+},{}]},{},["/home/ubuntu/workspace/phonepack/src/js/index.js"]);

@@ -2134,12 +2134,6 @@ button[disabled], html input[disabled] {
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-@media screen and (min-device-width: 768px) {
-  .dialog {
-    width: 60%;
-  }
-}
-
 .dialog-filter {
   position: fixed;
   top: 0;
@@ -2161,7 +2155,8 @@ button[disabled], html input[disabled] {
   opacity: 1;
 }
 
-.dialog-filter .dialog {
+.dialog {
+  border-radius: 2px;
   position: fixed;
   top: 32px;
   left: 0;
@@ -2184,29 +2179,35 @@ button[disabled], html input[disabled] {
   padding: 24px 24px 8px 24px;
 }
 
-.dialog-filter .dialog.dialog--is-shown {
+.dialog.dialog--is-shown {
   opacity: 1;
   -webkit-transform: translateY(0);
       -ms-transform: translateY(0);
           transform: translateY(0);
 }
 
-.dialog-filter .dialog .dialog__title {
+.dialog .dialog__title {
   font-size: 20px;
   font-weight: 500;
   line-height: 28px;
   padding-bottom: 24px;
 }
 
-.dialog-filter .dialog .dialog__content {
+.dialog .dialog__content {
   padding-top: 0;
   color: rgba(0, 0, 0, 0.54) !important;
   padding-bottom: 24px;
 }
 
-.dialog-filter .dialog .dialog__actions {
+.dialog .dialog__actions {
   padding-top: 8px;
   text-align: right;
+}
+
+@media screen and (min-device-width: 768px) {
+  .dialog {
+    width: 40%;
+  }
 }
 
 .spinner {
@@ -2336,6 +2337,7 @@ button[disabled], html input[disabled] {
 }
 
 .loading {
+  border-radius: 2px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -2357,13 +2359,7 @@ button[disabled], html input[disabled] {
   -webkit-transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
           transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
   padding: 24px;
-  width: 80%;
-}
-
-@media screen and (min-device-width: 768px) {
-  .loading {
-    width: 40%;
-  }
+  width: 70%;
 }
 
 .loading--is-shown {
@@ -2393,6 +2389,12 @@ button[disabled], html input[disabled] {
 .loading__spinner {
   float: left;
   padding-right: 24px;
+}
+
+@media screen and (min-device-width: 768px) {
+  .loading {
+    width: 40%;
+  }
 }
 
 .notification {

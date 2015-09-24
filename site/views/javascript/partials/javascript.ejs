@@ -1,0 +1,45 @@
+<!-- DIALOG --> 
+
+<section id="dialog" style="padding-top: 0">
+<h3>Dialog</h3>
+<h4>Lorem ipsum dolor sit amet</h4>
+<pre><code class="language-javascript">
+var dialog = new phonepack.Dialog({
+    title: 'Loading...',
+    content: 'Lorem ipsum dolor sit amet',         
+}).show(function(){
+    dialog.hide();
+});
+</code>
+</pre>
+</section>
+
+<!-- LOADING --> 
+
+<section id="loading">
+<h3>Loading</h3>
+<h4>Lorem ipsum dolor sit amet</h4>
+<pre><code class="language-javascript">
+var loading = new phonepack.Loading({
+    title: 'Dialog'      
+}).show();
+                
+setTimeout(function() {
+    loading.hide();
+}, 100);
+</code>
+</pre>
+</section>
+
+<!-- NOTIFICATION --> 
+
+<section id="notification">
+<h3>Notification</h3>
+<h4>Lorem ipsum dolor sit amet</h4>
+<pre><code class="language-javascript">
+var notification = new phonepack.Notification('Warning message', {
+    type: 'warning'
+}).show();
+</code>
+</pre>
+</section>

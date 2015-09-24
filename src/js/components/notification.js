@@ -33,22 +33,22 @@ var Notification = (function(){
 			switch (self.options.type){
 				case 'info': 
 					icon.innerHTML = 'info_outline';
-					icon.classList.add('color-blue');
+					icon.classList.add('text-blue');
 					break;
 
 				case 'success':
 					icon.innerHTML = 'check';
-					icon.classList.add('color-green');
+					icon.classList.add('text-green');
 					break;
 
 				case 'warning':
 					icon.innerHTML = 'warning';
-					icon.classList.add('color-yellow');
+					icon.classList.add('text-yellow');
 					break;
 
 				case 'error':
 					icon.innerHTML = 'info';
-					icon.classList.add('color-red');
+					icon.classList.add('text-red');
 					break;
 
 				default:

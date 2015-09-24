@@ -18,6 +18,7 @@
 }
 
 .loading {
+  border-radius: 2px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -34,16 +35,7 @@
   transition-duration: 0.6s;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1); 
   padding: 24px;
-  width: 80%;
-}
-
-@media screen 
-  and (min-device-width: 768px) { 
-
-  .loading{
-  	width: 40%;
-  }
-
+  width: 70%;
 }
 
 .loading--is-shown {
@@ -65,4 +57,13 @@
 .loading__spinner{
   float: left;
   padding-right: 24px;
+}
+
+@media screen 
+  and (min-device-width: 768px) { 
+
+  .loading{
+  	width: 40%;
+  }
+
 }

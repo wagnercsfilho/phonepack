@@ -1,12 +1,3 @@
-@media screen 
-  and (min-device-width: 768px) { 
-
-  .dialog{
-    width: 60%;
-  }
-
-}
-
 .dialog-filter {
   position: fixed;
   top: 0;
@@ -23,8 +14,11 @@
   &.dialog-filter--is-shown { 
     opacity: 1; 
   }
+  
+}
 
   .dialog {
+    border-radius: 2px;
     position: fixed;
     top: 32px;
     left: 0;
@@ -64,7 +58,14 @@
         text-align: right;
     }
 
+}
+
+
+@media screen 
+  and (min-device-width: 768px) { 
+
+  .dialog{
+    width: 40%;
   }
 
 }
-
