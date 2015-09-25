@@ -1,30 +1,34 @@
 var utils = require('./utils/utils'),
 	dom = require('./utils/dom'), 
 	FastClick = require('./libs/fastclick'),
-	SlideMenu = require('./components/slide-menu'),
+	SideMenu = require('./components/side-menu'),
 	PullToRefresh = require('./components/pull-to-refresh'),
 	Buttons = require('./components/button'),
 	DropDownMenu = require('./components/dropdown-menu'),
-	Pages = require('./components/navigation'),
+	Navigation = require('./components/navigation'),
 	Dialog = require('./components/dialog'),
 	Loading = require('./components/loading'),
 	Notification = require('./components/notification');
  
-var PhonePack = (function(){	
+(function(){
+
+	var PhonePack = (function(){	
+		
+			return {
+				SideMenu: SideMenu,
+				PullToRefresh: PullToRefresh,
+				Navigation: Navigation,
+				DropDownMenu: DropDownMenu, 
+				Dialog: Dialog,
+				Loading: Loading,
+				Notification: Notification		
+			}
 	
-		return {
-			SlideMenu: SlideMenu,
-			PullToRefresh: PullToRefresh,
-			Pages: Pages,
-			DropDownMenu: DropDownMenu, 
-			Dialog: Dialog,
-			Loading: Loading,
-			Notification: Notification		
-		}
-
+	})();
+	
+	window.phonepack = PhonePack;
+	
 })();
-
-window.phonepack = PhonePack;
 
 
 

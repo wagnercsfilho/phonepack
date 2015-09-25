@@ -43,3 +43,67 @@ var notification = new phonepack.Notification('Warning message', {
 </code>
 </pre>
 </section>
+
+<!-- PAGES --> 
+
+<section id="navigation">
+<h3>Navigation</h3>
+<h4>Lorem ipsum dolor sit amet</h4>
+<pre><code class="language-javascript">
+// Instance a new page class
+var navigation = new phonepack.Navigation(document.getElementById('pages'));
+
+// Push a new page into the DOM
+navigation.pushPage('example-page.html', doSomething);
+
+// Close the current page pushed in the DOM
+navigation.closeCurrentPage();
+
+// Replace a new page in DOM
+navigation.changePage('example-page.html', doSomething);
+
+
+// Push a new page into the DOM
+navigation.pushPage('example-page.html', preRenderCallback, doSomething);
+
+// Recive the html template element into the first param (templateElement)
+// In second param, recive a function for render a element (render)
+function preRenderCallback(templateElement, render){
+    // callback call render element
+    render();
+}
+
+function doSomething(){
+    // Callback page
+}
+</code>
+</pre>
+</section>
+
+<!-- PAGES --> 
+
+<section id="side-menu">
+<h3>Side Menu</h3>
+<h4>Lorem ipsum dolor sit amet</h4>
+<pre><code class="language-javascript">
+// Get menu element instance
+sideMenu = new phonepack.sideMenu(document.getElementById('side-menu'));
+
+// show/hide menu
+sideMenu.toggle();
+</code>
+</pre>
+</section>
+
+<!-- DROPDOWN MENU --> 
+
+<section id="dropdown-menu">
+<h3>DropDown Menu</h3>
+<h4>Lorem ipsum dolor sit amet</h4>
+<pre><code class="language-javascript">
+document.querySelector('#open').addEventListener('click', function() {
+    phonepack.DropDownMenu(this, document.getElementById('dropMenu'));
+});
+</code>
+</pre>
+</section>

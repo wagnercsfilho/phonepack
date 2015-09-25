@@ -54,7 +54,7 @@ button[disabled], html input[disabled] {
   }
 
   .icon{
-      font-size: 24px;
+      font-size: 26px;
   }
 
 }
@@ -93,6 +93,7 @@ button[disabled], html input[disabled] {
   height: 56px;
   width: 56px;
   padding: 0;
+  text-align: center;
 
   &.button--small {
     padding-left: 12px;
@@ -109,9 +110,13 @@ button[disabled], html input[disabled] {
       padding-right: 16px;
       font-size: 14px;
       line-height: 55px;
-      height: 67px;
-      width: 67px;
+      height: 66px;
+      width: 66px;
       padding: 0;
+      
+      .icon{
+        font-size: 32px;
+      }
   }
 
   &.button--fab-floating{
@@ -137,8 +142,8 @@ button[disabled], html input[disabled] {
   padding-right: 14px;
   font-size: 13px;
   line-height: 10px;
-  height: 36px;
-  width: 36px;
+  height: 40px;
+  width: 40px;
   padding: 0;
 
   &.button--small {
@@ -146,19 +151,23 @@ button[disabled], html input[disabled] {
     padding-right: 12px;
     font-size: 11px;
     line-height: 8px;
-    height: 30px;
-    width: 30px;
+    height: 36px;
+    width: 36px;
     padding: 0;
   }
 
-  &.button--l {
+  &.button--large {
       padding-left: 16px;
       padding-right: 16px;
       font-size: 14px;
-      line-height: 12px;
-      height: 47px;
-      width: 47px;
+      line-height: 55px;
+      height: 56px;
+      width: 56px;
       padding: 0;
+      
+      .icon{
+        font-size: 32px;
+      }
   }
 
 }

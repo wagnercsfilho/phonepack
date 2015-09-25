@@ -1,4 +1,4 @@
-.slide-menu {
+.side-menu {
   width: 80%;
   height: 100%;
   max-height: 100%;
@@ -7,24 +7,27 @@
   position: absolute;
   top: 0; 
   left: 0;
-  background: #fafafa;
+  background: #ffffff;
   z-index: 100;
-  display: flex;
   overflow-y: auto;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
 
-  &.slide-menu.visible{
+  &.side-menu.visible{
     transform: translateX(0);
   }
 
-  &.slide-menu.visible ~ .overlay{
+  &.side-menu.visible ~ .overlay{
     background-color: rgba(0,0,0,.5);
     visibility: visible;
   }
 
-  &.slide-menu.visible ~ .overlay.transparent{
+  &.side-menu.visible ~ .overlay.transparent{
     background-color: transparent;
     visibility: visible;
+  }
+  
+  .header{
+    position: initial ;
   }
   
 }

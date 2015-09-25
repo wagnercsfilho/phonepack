@@ -1,14 +1,15 @@
- 
-var SlideMenu = (function(){ 
+var utils = require('../utils/utils');
 
-	function SlideMenu(element, params) {
+var SideMenu = (function(){ 
 
-		var options = {
+	function SideMenu(element, options) {
+
+		var _options = {
 			overlay: true
 		}
 
 		this.element = element;
-		this.options = utils.extend({}, options, params);
+		this.options = utils.extend({}, _options, options);
 	}
 
 	var listenCLoseSlideMenu = function(element) {
@@ -22,7 +23,7 @@ var SlideMenu = (function(){
 		element.removeEventListener("click");
 	}
 
-	SlideMenu.prototype.toggle = function(){
+	SideMenu.prototype.toggle = function(){
 
 		if (!this.element.classList.contains('visible')) {
 
@@ -48,8 +49,8 @@ var SlideMenu = (function(){
 
 	}
 
-	return SlideMenu;
+	return SideMenu;
 
 })();
 
-module.exports = SlideMenu;
+module.exports = SideMenu;

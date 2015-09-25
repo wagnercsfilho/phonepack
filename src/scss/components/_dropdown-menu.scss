@@ -10,6 +10,7 @@
 	transform-origin: 100% 0;
 	padding: 8px 0;
 	border-radius: 2px;
+	text-align: left;
 
 	&.visible{
 		transform: scale(1);
@@ -35,6 +36,7 @@
 		color: rgba(0, 0, 0, 0.87);
 		line-height: 32px;
 		width: 100%;
+		text-align: left;
 	}
 
 	li.dropdown-item:hover,
@@ -68,6 +70,7 @@
 		align-items: center;
 		flex-grow: 1;
 		padding-left: 10px;
+		text-align: left;
 	}
 
 	.dropdown-divider {

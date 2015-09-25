@@ -1,17 +1,18 @@
 var utils = require('../utils/utils');
 
-var Page = (function() {
+var Navigation = (function() {
 
-	function renderPage(element, instance, callback) {
+	function renderPage(element, callback) {
+		var self = this;
 		document.body.appendChild(element);
 
 		setTimeout(function() {
 			element.classList.add('pages--slide-up-show');
-			if (instance.currentPage) {
-				instance.prevPage = instance.currentPage;
+			if (self.currentPage) {
+				self.prevPage = self.currentPage;
 			}
 
-			instance.currentPage = element;
+			self.currentPage = element;
 
 			if (callback) {
 				callback();
@@ -20,15 +21,16 @@ var Page = (function() {
 		}, 40);
 	}
 
-	function Page(element) {
+	function Navigation(element) {
 		var self = this;
 		self.element = element;
 		self.currentPage = null;
 		self.prevPage = null;
+		
 		element.classList.add('pages');
 	}
 
-	Page.prototype.changePage = function(page, callback) {
+	Navigation.prototype.replacePage = function(page, callback) {
 		var self = this;
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
@@ -46,17 +48,12 @@ var Page = (function() {
 		request.send();
 	}
 
-	Page.prototype.pushPage = function(page, cbAfter, callback) {
+	Navigation.prototype.pushPage = function(page, cbAfter, callback) {
 		var request = new XMLHttpRequest();
 		var self = this;
 
 		request.onreadystatechange = function() {
 			if (request.readyState === 4 && (request.status == 200 || request.status == 0)) {
-
-				/*var prevPages = document.getElementsByClassName('pages');
-		        for (var i = 0; i < prevPages.length; i++){
-		            prevPages[i].classList.add('hidden');
-		        }*/
 
 				var nextPage = document.createElement("div");
 				nextPage.className = 'pages pages--slide-up';
@@ -65,13 +62,12 @@ var Page = (function() {
 				// send a callback with the element html created
 				if (callback) {
 					cbAfter(nextPage, function(el) {
-						console.log(nextPage)
-						renderPage(nextPage, self, function() {
+						renderPage.call(self, nextPage, function() {
 							callback(nextPage);
 						});
 					});
 				} else {
-					renderPage(nextPage, self, function() {
+					renderPage.call(self, nextPage, function() {
 						cbAfter();
 					});
 				}
@@ -83,7 +79,7 @@ var Page = (function() {
 		request.send();
 	}
 
-	Page.prototype.closeCurrentPage = function() {
+	Navigation.prototype.closeCurrentPage = function() {
 		var self = this;
 
 		self.currentPage.classList.remove('pages--slide-up-show');
@@ -103,8 +99,8 @@ var Page = (function() {
 
 	}
 
-	return Page;
+	return Navigation;
 
 })();
 
-module.exports = Page;
+module.exports = Navigation;

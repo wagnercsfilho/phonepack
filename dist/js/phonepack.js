@@ -340,18 +340,19 @@ module.exports = Loading;
 },{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/navigation.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
-var Page = (function() {
+var Navigation = (function() {
 
-	function renderPage(element, instance, callback) {
+	function renderPage(element, callback) {
+		var self = this;
 		document.body.appendChild(element);
 
 		setTimeout(function() {
 			element.classList.add('pages--slide-up-show');
-			if (instance.currentPage) {
-				instance.prevPage = instance.currentPage;
+			if (self.currentPage) {
+				self.prevPage = self.currentPage;
 			}
 
-			instance.currentPage = element;
+			self.currentPage = element;
 
 			if (callback) {
 				callback();
@@ -360,15 +361,16 @@ var Page = (function() {
 		}, 40);
 	}
 
-	function Page(element) {
+	function Navigation(element) {
 		var self = this;
 		self.element = element;
 		self.currentPage = null;
 		self.prevPage = null;
+		
 		element.classList.add('pages');
 	}
 
-	Page.prototype.changePage = function(page, callback) {
+	Navigation.prototype.replacePage = function(page, callback) {
 		var self = this;
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
@@ -386,17 +388,12 @@ var Page = (function() {
 		request.send();
 	}
 
-	Page.prototype.pushPage = function(page, cbAfter, callback) {
+	Navigation.prototype.pushPage = function(page, cbAfter, callback) {
 		var request = new XMLHttpRequest();
 		var self = this;
 
 		request.onreadystatechange = function() {
 			if (request.readyState === 4 && (request.status == 200 || request.status == 0)) {
-
-				/*var prevPages = document.getElementsByClassName('pages');
-		        for (var i = 0; i < prevPages.length; i++){
-		            prevPages[i].classList.add('hidden');
-		        }*/
 
 				var nextPage = document.createElement("div");
 				nextPage.className = 'pages pages--slide-up';
@@ -405,13 +402,12 @@ var Page = (function() {
 				// send a callback with the element html created
 				if (callback) {
 					cbAfter(nextPage, function(el) {
-						console.log(nextPage)
-						renderPage(nextPage, self, function() {
+						renderPage.call(self, nextPage, function() {
 							callback(nextPage);
 						});
 					});
 				} else {
-					renderPage(nextPage, self, function() {
+					renderPage.call(self, nextPage, function() {
 						cbAfter();
 					});
 				}
@@ -423,7 +419,7 @@ var Page = (function() {
 		request.send();
 	}
 
-	Page.prototype.closeCurrentPage = function() {
+	Navigation.prototype.closeCurrentPage = function() {
 		var self = this;
 
 		self.currentPage.classList.remove('pages--slide-up-show');
@@ -443,11 +439,11 @@ var Page = (function() {
 
 	}
 
-	return Page;
+	return Navigation;
 
 })();
 
-module.exports = Page;
+module.exports = Navigation;
 },{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/components/notification.js":[function(require,module,exports){
 var utils = require('../utils/utils');
 
@@ -591,18 +587,19 @@ var pullToRefresh = function(element){
 	}
 
 	module.exports = pullToRefresh;
-},{}],"/home/ubuntu/workspace/phonepack/src/js/components/slide-menu.js":[function(require,module,exports){
- 
-var SlideMenu = (function(){ 
+},{}],"/home/ubuntu/workspace/phonepack/src/js/components/side-menu.js":[function(require,module,exports){
+var utils = require('../utils/utils');
 
-	function SlideMenu(element, params) {
+var SideMenu = (function(){ 
 
-		var options = {
+	function SideMenu(element, options) {
+
+		var _options = {
 			overlay: true
 		}
 
 		this.element = element;
-		this.options = utils.extend({}, options, params);
+		this.options = utils.extend({}, _options, options);
 	}
 
 	var listenCLoseSlideMenu = function(element) {
@@ -616,7 +613,7 @@ var SlideMenu = (function(){
 		element.removeEventListener("click");
 	}
 
-	SlideMenu.prototype.toggle = function(){
+	SideMenu.prototype.toggle = function(){
 
 		if (!this.element.classList.contains('visible')) {
 
@@ -642,44 +639,48 @@ var SlideMenu = (function(){
 
 	}
 
-	return SlideMenu;
+	return SideMenu;
 
 })();
 
-module.exports = SlideMenu;
-},{}],"/home/ubuntu/workspace/phonepack/src/js/index.js":[function(require,module,exports){
+module.exports = SideMenu;
+},{"../utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/index.js":[function(require,module,exports){
 var utils = require('./utils/utils'),
 	dom = require('./utils/dom'), 
 	FastClick = require('./libs/fastclick'),
-	SlideMenu = require('./components/slide-menu'),
+	SideMenu = require('./components/side-menu'),
 	PullToRefresh = require('./components/pull-to-refresh'),
 	Buttons = require('./components/button'),
 	DropDownMenu = require('./components/dropdown-menu'),
-	Pages = require('./components/navigation'),
+	Navigation = require('./components/navigation'),
 	Dialog = require('./components/dialog'),
 	Loading = require('./components/loading'),
 	Notification = require('./components/notification');
  
-var PhonePack = (function(){	
-	
-		return {
-			SlideMenu: SlideMenu,
-			PullToRefresh: PullToRefresh,
-			Pages: Pages,
-			DropDownMenu: DropDownMenu, 
-			Dialog: Dialog,
-			Loading: Loading,
-			Notification: Notification		
-		}
+(function(){
 
+	var PhonePack = (function(){	
+		
+			return {
+				SideMenu: SideMenu,
+				PullToRefresh: PullToRefresh,
+				Navigation: Navigation,
+				DropDownMenu: DropDownMenu, 
+				Dialog: Dialog,
+				Loading: Loading,
+				Notification: Notification		
+			}
+	
+	})();
+	
+	window.phonepack = PhonePack;
+	
 })();
 
-window.phonepack = PhonePack;
 
 
 
-
-},{"./components/button":"/home/ubuntu/workspace/phonepack/src/js/components/button.js","./components/dialog":"/home/ubuntu/workspace/phonepack/src/js/components/dialog.js","./components/dropdown-menu":"/home/ubuntu/workspace/phonepack/src/js/components/dropdown-menu.js","./components/loading":"/home/ubuntu/workspace/phonepack/src/js/components/loading.js","./components/navigation":"/home/ubuntu/workspace/phonepack/src/js/components/navigation.js","./components/notification":"/home/ubuntu/workspace/phonepack/src/js/components/notification.js","./components/pull-to-refresh":"/home/ubuntu/workspace/phonepack/src/js/components/pull-to-refresh.js","./components/slide-menu":"/home/ubuntu/workspace/phonepack/src/js/components/slide-menu.js","./libs/fastclick":"/home/ubuntu/workspace/phonepack/src/js/libs/fastclick.js","./utils/dom":"/home/ubuntu/workspace/phonepack/src/js/utils/dom.js","./utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/libs/fastclick.js":[function(require,module,exports){
+},{"./components/button":"/home/ubuntu/workspace/phonepack/src/js/components/button.js","./components/dialog":"/home/ubuntu/workspace/phonepack/src/js/components/dialog.js","./components/dropdown-menu":"/home/ubuntu/workspace/phonepack/src/js/components/dropdown-menu.js","./components/loading":"/home/ubuntu/workspace/phonepack/src/js/components/loading.js","./components/navigation":"/home/ubuntu/workspace/phonepack/src/js/components/navigation.js","./components/notification":"/home/ubuntu/workspace/phonepack/src/js/components/notification.js","./components/pull-to-refresh":"/home/ubuntu/workspace/phonepack/src/js/components/pull-to-refresh.js","./components/side-menu":"/home/ubuntu/workspace/phonepack/src/js/components/side-menu.js","./libs/fastclick":"/home/ubuntu/workspace/phonepack/src/js/libs/fastclick.js","./utils/dom":"/home/ubuntu/workspace/phonepack/src/js/utils/dom.js","./utils/utils":"/home/ubuntu/workspace/phonepack/src/js/utils/utils.js"}],"/home/ubuntu/workspace/phonepack/src/js/libs/fastclick.js":[function(require,module,exports){
 ;(function () {
 	'use strict';
 

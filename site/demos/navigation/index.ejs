@@ -2,11 +2,6 @@
   
     <div id="pages" ng-app="app">
         <header class="header header--shadow bg-white text-black">
-          <div class="header__buttons">
-    		<button class="button button--icon button--ripple text-black">
-    			<i class="icon material-icons">menu</i>
-    		</button>
-    	  </div>
           <div class="header__title">All Contacts</div>
         </header>
         
@@ -70,17 +65,20 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
             
-            var pages = new phonepack.Pages(document.getElementById('pages'));
+            var navigation = new phonepack.Navigation(document.getElementById('pages'));
             
             var li = document.querySelectorAll('#open');
             for (var i = 0; i < li.length; i++) {
-                li[i].addEventListener('click', function(){
-                    pages.pushPage('/docs/demos/pages/details', function(){
+                var row = li[i];
+                row.addEventListener('click', function(){
+                    
+                    navigation.pushPage('/docs/demos/navigation/details', function(){
                          document.querySelector('#close').addEventListener('click', function(){
-                            pages.closeCurrentPage();
+                            navigation.closeCurrentPage();
                             return false;
                         });
                     })
+                    
                 });
             }
             
