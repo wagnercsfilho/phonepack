@@ -22,7 +22,7 @@
     "cordova",
     "mobile",
     "web",
-    "component",
+    "component"
   ],
   "license": "MIT",
   "ignore": [
@@ -37,6 +37,6 @@
     "test",
     "tests",
     "site",
-    "phonepack.zip",
+    "phonepack.zip"
   ]
 }
