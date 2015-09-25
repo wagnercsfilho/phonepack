@@ -14,7 +14,15 @@ var config = {
 	pluginName: 'phonepack'
 }
 
+gulp.task('fonts', function(){
+	
+	gulp.src('src/fonts/**/*')
+      .pipe(gulp.dest('dist/fonts/'));
+      
+});
+
 gulp.task('sass', function(){
+	
 	gulp.src('src/scss/index.scss')
 	.pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
 	.pipe(prefix('last 2 versions'))
@@ -84,4 +92,4 @@ function bundleShare(b) {
 	.pipe(browserSync.stream());
 }
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['fonts', 'sass', 'watch']);

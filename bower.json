@@ -1,0 +1,42 @@
+{
+  "name": "phonepack",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wagnercsfilho/phonepack",
+  "authors": [
+    "wagnercsfilho <wagnercsfilho@hotmail.com>"
+  ],
+  "description": "Free and open source Pure Javascript and CSS frameworks for HTML5, PhoneGap & Cordova apps.",
+  "main": [
+    "dist/js/phonepack.js",
+    "dist/css/phonepack.css",
+    "dist/fonts/*"
+  ],
+  "keywords": [
+    "css",
+    "html",
+    "ios",
+    "android",
+    "angularjs",
+    "react",
+    "phonegap",
+    "cordova",
+    "mobile",
+    "web",
+    "component",
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "*.md",
+    "*.json",
+    "src",
+    "Procfile",
+    "gulpfile.js",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "site",
+    "phonepack.zip",
+  ]
+}

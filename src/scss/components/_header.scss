@@ -1,10 +1,12 @@
+ $min-height: 56px;
+ 
 .header {
   display: flex;
   width: 100%;
   position: absolute;
   top: 0;
   z-index: 5;
-  min-height: 56px;
+  min-height: $min-height;
   background: $white;
   align-items: center;
   flex-wrap: nowrap;
@@ -13,7 +15,7 @@
   .header__title {
     position: relative; 
     font-size: 20px;
-    line-height: 1;
+    line-height: $min-height;
     letter-spacing: .02em;
     font-weight: 400; 
     padding-left: 16px;
@@ -22,6 +24,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    min-height: $min-height;
   }
   
   .header__buttons {
