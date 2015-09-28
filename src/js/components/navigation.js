@@ -1,40 +1,38 @@
-var utils = require('../utils/utils');
+function renderPage(element, callback) {
+	var self = this;
 
-var Navigation = (function() {
+	document.body.appendChild(element);
+	setTimeout(function() {
+		element.classList.add('pages--slide-up-show');
+		if (self.currentPage) {
+			self.prevPage = self.currentPage;
+		}
 
-	function renderPage(element, callback) {
-		var self = this;
-		document.body.appendChild(element);
+		self.currentPage = element;
 
-		setTimeout(function() {
-			element.classList.add('pages--slide-up-show');
-			if (self.currentPage) {
-				self.prevPage = self.currentPage;
-			}
+		if (callback) {
+			callback();
+		}
 
-			self.currentPage = element;
+	}, 40);
+}
 
-			if (callback) {
-				callback();
-			}
-			
-		}, 40);
-	}
+class Navigation {
 
-	function Navigation(element) {
+	constructor(element) {
 		var self = this;
 		self.element = element;
 		self.currentPage = null;
 		self.prevPage = null;
-		
+
 		element.classList.add('pages');
 	}
 
-	Navigation.prototype.replacePage = function(page, callback) {
+	replacePage(page, callback) {
 		var self = this;
 		var request = new XMLHttpRequest();
 		request.onreadystatechange = function() {
-			if (request.readyState === 4 && (request.status == 200 || request.status == 0)) {
+			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 				self.element.innerHTML = request.responseText;
 				setTimeout(function() {
 					self.element.classList.add('pages--visibility');
@@ -48,12 +46,12 @@ var Navigation = (function() {
 		request.send();
 	}
 
-	Navigation.prototype.pushPage = function(page, cbAfter, callback) {
+	pushPage(page, cbAfter, callback) {
 		var request = new XMLHttpRequest();
 		var self = this;
 
 		request.onreadystatechange = function() {
-			if (request.readyState === 4 && (request.status == 200 || request.status == 0)) {
+			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 
 				var nextPage = document.createElement("div");
 				nextPage.className = 'pages pages--slide-up';
@@ -66,20 +64,21 @@ var Navigation = (function() {
 							callback(nextPage);
 						});
 					});
-				} else {
+				}
+				else {
 					renderPage.call(self, nextPage, function() {
 						cbAfter();
 					});
 				}
 
 			}
-		}
+		};
 
 		request.open('GET', page, true);
 		request.send();
 	}
 
-	Navigation.prototype.closeCurrentPage = function() {
+	closeCurrentPage() {
 		var self = this;
 
 		self.currentPage.classList.remove('pages--slide-up-show');
@@ -99,8 +98,6 @@ var Navigation = (function() {
 
 	}
 
-	return Navigation;
+}
 
-})();
-
-module.exports = Navigation;
+export default Navigation;

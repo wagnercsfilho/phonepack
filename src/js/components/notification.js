@@ -1,12 +1,12 @@
-var utils = require('../utils/utils');
+import utils from '../utils/utils';
 
-var Notification = (function(){
+var instance = null;
 
-	var instance = null;
+class Notification {
 
-	function Notification(text, options){
+	constructor(text, options) {
 
-		if (instance){
+		if (instance) {
 			instance.hide();
 		}
 
@@ -15,23 +15,23 @@ var Notification = (function(){
 		var _options = {
 			type: 'simple',
 			time: 3000
-		}
+		};
 
 		this.options = utils.extend({}, _options, options);
 
 		self.notification = document.createElement('div');
 		self.notification.className = 'notification';
 
-		self.notification.addEventListener('click', function(){
+		self.notification.addEventListener('click', function() {
 			self.hide();
 		}, false);
 
-		if (self.options.type !== 'simple'){
+		if (self.options.type !== 'simple') {
 			var icon = document.createElement('i');
 			icon.className = 'material-icons notification__icon';
 
-			switch (self.options.type){
-				case 'info': 
+			switch (self.options.type) {
+				case 'info':
 					icon.innerHTML = 'info_outline';
 					icon.classList.add('text-blue');
 					break;
@@ -56,16 +56,16 @@ var Notification = (function(){
 					icon.classList.add('color-blue');
 			}
 
-			self.notification.appendChild(icon);		
-			
+			self.notification.appendChild(icon);
+
 		}
 
-		var notification_content = document.createElement('div'); 
+		var notification_content = document.createElement('div');
 		notification_content.className = 'notification__content';
 		notification_content.innerHTML = text;
 
 		self.notification.appendChild(notification_content);
-		
+
 		setTimeout(function() {
 			self.notification.classList.add('notification--is-shown');
 		}, 0);
@@ -75,12 +75,12 @@ var Notification = (function(){
 		return self;
 	}
 
-	Notification.prototype.show = function(){
+	show() {
 		var self = this;
 
 		document.body.appendChild(self.notification);
 
-		if (self.options.time > 0){
+		if (self.options.time > 0) {
 			setTimeout(function() {
 				self.hide();
 			}, self.options.time);
@@ -89,23 +89,21 @@ var Notification = (function(){
 		return self;
 	}
 
-	Notification.prototype.hide = function(){
+	hide() {
 		var self = this;
 
 		self.notification.classList.remove('notification--is-shown');
-		self.notification.addEventListener('webkitTransitionEnd', function(){
-				self.notification.remove();
+		self.notification.addEventListener('webkitTransitionEnd', function() {
+			self.notification.remove();
 		});
-			
-		self.notification.addEventListener('transitionend', function(){
+
+		self.notification.addEventListener('transitionend', function() {
 			self.notification.remove();
 		});
 
 		return self;
 	}
 
-	return Notification;
+}
 
-})();
-
-module.exports = Notification;
+export default Notification;

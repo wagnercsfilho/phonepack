@@ -1,58 +1,78 @@
-var dom = (function(){
+var DOM = (function() {
 
-	var eventsClickListeners = [];
+	var eventsListeners = [];
 
-	document.addEventListener('click', clickEvents, false);
-
-	function clousestClass(el, className) {
-
-		if (verifyClass(el, className)){
-			return el;
-		}
-
-		function verifyClass(el){
-			if (el.classList.contains(className)) {
-		      return el;
-		    }
-		}
-
-	  	while (el && el.parentNode) {
-		    el = el.parentNode;
-		    if (el.classList) {
-			      return verifyClass(el, className);
-			}
-	  	}
-
-	  	return null;
-	}
-
-	function clickEvents(e){
+	document.addEventListener('click', handler, false);
+	
+	function handler(e) {
 		var element = e.target;
+		
+		console.log(e);
 
-		eventsClickListeners.forEach(function(ev){
-			var el = clousestClass(element, ev.element);
-			if (el){
-				ev.fn(e);
-			}
+		eventsListeners.forEach(function(ev) {
+			//TODO
 		});
 	}
 
-	function DOM(element){
-		this.element = element;
-		return this;
+	function clousestClass(el, className) {
+
+		if (verifyClass(el, className)) {
+			return el;
+		}
+
+		function verifyClass(el) {
+			if (el.classList.contains(className)) {
+				return el;
+			}
+		}
+
+		while (el && el.parentNode) {
+			el = el.parentNode;
+			if (el.classList) {
+				return verifyClass(el, className);
+			}
+		}
+
+		return null;
 	}
 
-	DOM.prototype.click = function(callback){
-		eventsClickListeners.push({ element: this.element, fn: callback });
+	
+
+	class DOM {
+
+		constructor(element) {
+			this.element = document.querySelectorAll(element);
+			return this;
+		}
+
+		on(eventName, callback) {
+			eventsListeners.push({
+				eventName: eventName,
+				element: this.getElement(),
+				fn: callback
+			});
+		}
+
+		click(callback) {
+			eventsListeners.push({
+				element: this.element,
+				fn: callback
+			});
+		}
+
+		getElement() {
+			return this.element;
+		}
+
 	}
 
 
-	function element(element) {
-		return new DOM(element);
+	function element(el) {
+		return new DOM(el);
 	}
 
 	return element;
 
 })();
 
-module.exports = dom;
+export default DOM;

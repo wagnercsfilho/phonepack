@@ -1,10 +1,10 @@
-var utils = require('../utils/utils');
-var dom = require('../utils/dom');
+import utils from '../utils/utils';
+import $ from '../utils/dom';
 
-var Buttons = (function(){
+var Buttons = (function() {
 
-    dom('button--ripple').click(addRippleEffect);
-    dom('tab--ripple').click(addRippleEffect);
+    $('button--ripple').click(addRippleEffect);
+    $('tab--ripple').click(addRippleEffect);
 
 
     function addRippleEffect(e) {
@@ -30,27 +30,28 @@ var Buttons = (function(){
         return false;
     }
 
-    function floatButton(element){
+    function floatButton(element) {
         var btn = document.querySelector('.button--fab-floating');
         var lastScrollTop = 0;
-        
+
         element.addEventListener("scroll", hideShowOnScroll);
- 
+
         function hideShowOnScroll(e) {
             var st = this.scrollTop;
             if (st > lastScrollTop) {
                 btn.classList.add('hidden');
-            } else {
+            }
+            else {
                 btn.classList.remove('hidden');
-            } 
+            }
             lastScrollTop = st;
-        } 
+        }
     }
 
     return {
         floatButton: floatButton
-    }
+    };
 
 })();
 
-module.exports = Buttons;
+export default Buttons;

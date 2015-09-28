@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	sass = require('gulp-sass'),
+	sourcemaps = require('gulp-sourcemaps'),
 	prefix = require('gulp-autoprefixer'),
 	browserSync = require('browser-sync').create(),
 	browserify = require('browserify'),
@@ -8,88 +9,107 @@ var gulp = require('gulp'),
 	source = require('vinyl-source-stream'),
 	buffer = require('vinyl-buffer'),
 	rename = require('gulp-rename'),
-	minifycss = require('gulp-minify-css');
+	babel = require('babelify'),
+	minifycss = require('gulp-minify-css'),
+	jshint = require('gulp-jshint');
 
 var config = {
 	pluginName: 'phonepack'
 }
 
-gulp.task('fonts', function(){
-	
+gulp.task('fonts', function() {
+
 	gulp.src('src/fonts/**/*')
-      .pipe(gulp.dest('dist/fonts/'));
-      
+		.pipe(gulp.dest('dist/fonts/'));
+
 });
 
-gulp.task('sass', function(){
-	
+gulp.task('sass', function() {
+
 	gulp.src('src/scss/index.scss')
-	.pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-	.pipe(prefix('last 2 versions'))
-	.pipe(rename(config.pluginName + ".css"))
-	.pipe(gulp.dest('dist/css'))
-	.pipe(rename({
-            suffix: ".min"
-    }))
-    .pipe(minifycss())
-    .pipe(gulp.dest('dist/css'))
-	.pipe(browserSync.stream());
+		.pipe(sass({
+			outputStyle: 'expanded'
+		}).on('error', sass.logError))
+		.pipe(prefix('last 2 versions'))
+		.pipe(rename(config.pluginName + ".css"))
+		.pipe(gulp.dest('dist/css'))
+		.pipe(rename({
+			suffix: ".min"
+		}))
+		.pipe(minifycss())
+		.pipe(gulp.dest('dist/css'))
+		.pipe(browserSync.stream());
 });
 
-gulp.task('watch', ['browserify-watch'], function(){
+gulp.task('jshint', function() {
+  return gulp.src('./src/js/**/*.js')
+    .pipe(jshint({
+    	esnext: true
+    }))
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('watch', ['browserify-watch'], function() {
 	var port = {
 		server: "./"
 	};
-	
-	if (process.env.PORT){
+
+	if (process.env.PORT) {
 		port.port = process.env.PORT,
-		port.host = process.env.IP
+			port.host = process.env.IP
 	}
-	
+
 	browserSync.init(port);
 
-	gulp.watch('src/js/*.js').on('change', browserSync.reload);
-	gulp.watch('src/scss/**/*.scss', ['sass']);
-	gulp.watch("demo/**/*.html").on('change', browserSync.reload);
+	gulp.watch('./src/js/**/*.js', ['jshint']);
+	gulp.watch('./src/scss/**/*.scss', ['sass']);
 });
 
-gulp.task('browserify-watch', function(){
-  watch = true;
-  browserifyShare();
+gulp.task('browserify-watch', function() {
+	browserifyShare(true);
 });
 
-function browserifyShare(){
-  var b = browserify({
-    cache: {},
-    packageCache: {},
-    fullPaths: true,
-    notify: false
-  });
-  
-  if(watch) {
-    // if watch is enable, wrap this bundle inside watchify
-    b = watchify(b);
-    b.on('update', function(){
-      bundleShare(b);
-    });
-  }
-  
-  b.add('./src/js/index.js');
-  bundleShare(b);
+function browserifyShare(watch) {
+	var b = browserify({
+		cache: {},
+		packageCache: {},
+		fullPaths: true,
+		notify: false,
+		debug: true,
+		standalone: config.pluginName
+	});
+
+	if (watch) {
+		// if watch is enable, wrap this bundle inside watchify
+		b = watchify(b).transform(babel);
+		b.on('update', function() {
+			bundleShare(b);
+		});
+	}
+
+	b.add('./src/js/index.js');
+	bundleShare(b);
 }
 
 function bundleShare(b) {
-  b.bundle()
-    .pipe(source(config.pluginName + '.js'))
-	.pipe(buffer())
-	.pipe(gulp.dest('./dist/js/'))
-	.pipe(uglify())
-	.pipe(rename({
-            suffix: ".min"
-    }))
-	.pipe(gulp.dest('./dist/js/'))
-
-	.pipe(browserSync.stream());
+	b.bundle()
+		.pipe(source(config.pluginName + '.js'))
+		.pipe(buffer())
+		.pipe(gulp.dest('./dist/js/'))
+		.pipe(uglify())
+		.pipe(rename({
+			suffix: ".min"
+		}))
+		.pipe(sourcemaps.init({
+			loadMaps: true
+		}))
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest('./dist/js/'))
+		.pipe(browserSync.stream())
+		.on('error', function(err) {
+			console.error(err);
+			this.emit('end');
+		});
 }
 
-gulp.task('default', ['fonts', 'sass', 'watch']);
+gulp.task('default', ['fonts', 'sass', 'jshint', 'watch']);

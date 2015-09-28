@@ -7704,7 +7704,6 @@ button[disabled], html input[disabled] {
           justify-content: stretch;
   line-height: normal;
   box-sizing: border-box;
-  min-height: 200px;
   position: relative;
 }
 

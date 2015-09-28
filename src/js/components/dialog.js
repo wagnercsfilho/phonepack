@@ -1,19 +1,18 @@
-var utils = require('../utils/utils');
+import utils from '../utils/utils';
 
-var Dialog = (function(){
+class Dialog {
 
-	function Dialog(params){
-
+	constructor(params) {
 		var self = this;
 
 		var options = {
 			title: null,
 			content: null,
-			options: { 
+			options: {
 				ok: 'OK',
 				cancel: null
 			}
-		}
+		};
 
 		this.options = utils.extend({}, options, params);
 
@@ -23,14 +22,14 @@ var Dialog = (function(){
 		self.dialog = document.createElement("div");
 		self.dialog.className = 'dialog';
 
-		if (self.options.title){
+		if (self.options.title) {
 			var title = document.createElement("div");
 			title.className = 'dialog__title';
 			title.innerHTML = self.options.title;
 			self.dialog.appendChild(title);
 		}
 
-		if (self.options.content){
+		if (self.options.content) {
 			var content = document.createElement("div");
 			content.className = 'dialog__content';
 			content.innerHTML = self.options.content;
@@ -40,7 +39,7 @@ var Dialog = (function(){
 		var actions = document.createElement("div");
 		actions.className = 'dialog__actions';
 
-		if (self.options.options.cancel){
+		if (self.options.options.cancel) {
 			self.btnCancel = document.createElement('button');
 			self.btnCancel.className = 'button button--flat btn--ripple text-red';
 			self.btnCancel.innerHTML = self.options.options.cancel;
@@ -56,30 +55,30 @@ var Dialog = (function(){
 
 		document.body.appendChild(self.overlay);
 		document.body.appendChild(self.dialog);
-	
+
 		return self;
 	}
 
-	Dialog.prototype.show = function(confirmCallback, cancelCallback){
+	show(confirmCallback, cancelCallback) {
 
 		var self = this;
 
-		setTimeout(function(){ 
+		setTimeout(function() {
 			this.overlay.classList.add('dialog-filter--is-shown');
 			this.dialog.classList.add('dialog--is-shown');
 		}.bind(self), 0);
 
-		self.btnOk.addEventListener('click', function(){
-			confirmCallback()
+		self.btnOk.addEventListener('click', function() {
+			confirmCallback();
 		});
 
-		if (self.btnCancel){
-			self.btnCancel.addEventListener('click', function(){
+		if (self.btnCancel) {
+			self.btnCancel.addEventListener('click', function() {
 				cancelCallback();
 			});
 		}
 
-		self.overlay.addEventListener('click', function(){
+		self.overlay.addEventListener('click', function() {
 			self.hide();
 		}, false);
 
@@ -87,39 +86,38 @@ var Dialog = (function(){
 
 	}
 
-	Dialog.prototype.hide = function(){
+	hide() {
 
 		var self = this;
 
-		setTimeout(function(){ 
+		setTimeout(function() {
 			var self = this;
 			self.overlay.classList.remove('dialog-filter--is-shown');
 			self.dialog.classList.remove('dialog--is-shown');
 
-			
-			self.overlay.addEventListener('webkitTransitionEnd', function(){
-				self.overlay.remove()
-			});
-			
-			self.overlay.addEventListener('transitionend', function(){
-				self.overlay.remove()
+
+			self.overlay.addEventListener('webkitTransitionEnd', function() {
+				self.overlay.remove();
 			});
 
-			self.dialog.addEventListener('webkitTransitionEnd', function(){
-				self.dialog.remove()
-			});			
-
-			self.dialog.addEventListener('transitionend', function(){
-				self.dialog.remove()
+			self.overlay.addEventListener('transitionend', function() {
+				self.overlay.remove();
 			});
-			
+
+			self.dialog.addEventListener('webkitTransitionEnd', function() {
+				self.dialog.remove();
+			});
+
+			self.dialog.addEventListener('transitionend', function() {
+				self.dialog.remove();
+			});
+
 		}.bind(self), 0);
 
 		return self;
 	}
 
-	return Dialog;
+}
 
-})();
 
-module.exports = Dialog;
+export default Dialog;

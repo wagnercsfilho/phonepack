@@ -1,36 +1,37 @@
-var utils = require('../utils/utils');
+import utils from '../utils/utils';
 
-var SideMenu = (function(){ 
+var listenCLoseSlideMenu = function(element) {
+	var self = this;
+	element.addEventListener('click', function() {
+		self.toggle();
+	});
+};
 
-	function SideMenu(element, options) {
+var removeListenCLoseSlideMenu = function(element) {
+	element.removeEventListener("click");
+};
+
+class SideMenu {
+
+	constructor(element, options) {
 
 		var _options = {
 			overlay: true
-		}
+		};
 
 		this.element = element;
 		this.options = utils.extend({}, _options, options);
 	}
 
-	var listenCLoseSlideMenu = function(element) {
-		var self = this;
-		element.addEventListener('click', function(){
-			self.toggle();
-		});
-	}
-
-	var removeListenCLoseSlideMenu = function(element){
-		element.removeEventListener("click");
-	}
-
-	SideMenu.prototype.toggle = function(){
+	toggle() {
 
 		if (!this.element.classList.contains('visible')) {
 
 			var overlay = document.createElement("div");
-			if (this.options.overlay){
+			if (this.options.overlay) {
 				overlay.className = 'overlay';
-			} else {
+			}
+			else {
 				overlay.className = 'overlay transparent';
 			}
 			document.body.appendChild(overlay);
@@ -38,8 +39,9 @@ var SideMenu = (function(){
 
 			this.element.classList.add('visible');
 
-			
-		} else {
+
+		}
+		else {
 			this.element.classList.remove('visible');
 
 			var overlays = document.getElementsByClassName("overlay");
@@ -49,8 +51,6 @@ var SideMenu = (function(){
 
 	}
 
-	return SideMenu;
+}
 
-})();
-
-module.exports = SideMenu;
+export default SideMenu;
