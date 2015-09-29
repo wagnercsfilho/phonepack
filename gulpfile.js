@@ -11,11 +11,21 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	babel = require('babelify'),
 	minifycss = require('gulp-minify-css'),
-	jshint = require('gulp-jshint');
+	jshint = require('gulp-jshint'),
+	header = require('gulp-header');
 
 var config = {
 	pluginName: 'phonepack'
 }
+
+var pkg = require('./package.json');
+var banner = ['/**',
+  ' * <%= pkg.name %> - <%= pkg.description %>',
+  ' * @version v<%= pkg.version %>',
+  ' * @link <%= pkg.homepage %>',
+  ' * @license <%= pkg.license %>',
+  ' */',
+  ''].join('\n');
 
 gulp.task('fonts', function() {
 
@@ -95,6 +105,7 @@ function bundleShare(b) {
 	b.bundle()
 		.pipe(source(config.pluginName + '.js'))
 		.pipe(buffer())
+		.pipe(header(banner, { pkg : pkg } ))
 		.pipe(gulp.dest('./dist/js/'))
 		.pipe(uglify())
 		.pipe(rename({
