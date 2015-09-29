@@ -17,9 +17,7 @@ document.addEventListener('click', function(e) {
 
 }, true);
 
-class DropDownMenu {
-
-	constructor(element, elMenu) {
+function DropDownMenu(element, elMenu) {
 		var self = this;
 
 		self.element = element;
@@ -38,7 +36,6 @@ class DropDownMenu {
 
 		removed = false;
 
-	}
 }
 
 export default DropDownMenu;

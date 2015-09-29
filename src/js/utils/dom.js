@@ -1,71 +1,175 @@
 var DOM = (function() {
 
-	var eventsListeners = [];
+	Element.prototype.matches = (Element.prototype.matches || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector || Element.prototype.oMatchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.webkitMatchesSelector);
+
+	var eventsListeners = {};
 
 	document.addEventListener('click', handler, false);
-	
+	document.addEventListener('dblclick', handler, false);
+	document.addEventListener('touchend', handler, false);
+	document.addEventListener('touchstart', handler, false);
+
+
 	function handler(e) {
 		var element = e.target;
-		
-		console.log(e);
 
-		eventsListeners.forEach(function(ev) {
-			//TODO
-		});
+		if (eventsListeners[e.type]) {
+			eventsListeners[e.type].forEach(function(ev) {
+				if (closest(element, ev.selector)) {
+					ev.fn(e);
+				}
+			});
+		}
 	}
 
-	function clousestClass(el, className) {
+	function closest(el, selector) {
 
-		if (verifyClass(el, className)) {
-			return el;
-		}
-
-		function verifyClass(el) {
-			if (el.classList.contains(className)) {
-				return el;
-			}
+		if (Element.prototype.closest) {
+			return el.closest(selector);
 		}
 
 		while (el && el.parentNode) {
-			el = el.parentNode;
-			if (el.classList) {
-				return verifyClass(el, className);
+			if (el.matches(selector)) {
+				return el;
 			}
+
+			el = el.parentNode;
 		}
 
 		return null;
 	}
 
-	
-
 	class DOM {
 
-		constructor(element) {
-			this.element = document.querySelectorAll(element);
+		constructor(selector) {
+			this.selector = selector;
+			this.elements = document.querySelectorAll(selector);
+
 			return this;
 		}
 
 		on(eventName, callback) {
-			eventsListeners.push({
-				eventName: eventName,
-				element: this.getElement(),
+			var obj = {
+				selector: this.selector,
+				element: this.elements,
 				fn: callback
-			});
+			};
+
+			if (!eventsListeners[eventName]) {
+				eventsListeners[eventName] = [obj];
+			}
+			else {
+				eventsListeners[eventName].push(obj);
+			}
 		}
 
 		click(callback) {
-			eventsListeners.push({
-				element: this.element,
-				fn: callback
+			[].forEach.call(this.elements, function(el) {
+				el.addEventListener('click', callback);
+			});
+		}
+		
+		dblclick(callback) {
+			[].forEach.call(this.elements, function(el) {
+				el.addEventListener('dblclick', callback);
+			});
+		}
+		
+		ontouchend(callback) {
+			[].forEach.call(this.elements, function(el) {
+				el.addEventListener('touchend', callback);
+			});
+		}
+		
+		ontouchstart(callback) {
+			[].forEach.call(this.elements, function(el) {
+				el.addEventListener('touchstart', callback);
 			});
 		}
 
-		getElement() {
-			return this.element;
+		addClass(className) {
+			[].forEach.call(this.elements, function(el) {
+				el.classList.add(className);
+			});
+		}
+
+		toggleClass(className) {
+			[].forEach.call(this.elements, function(el) {
+				el.classList.toggle(className);
+			});
+		}
+
+		removeClass(className) {
+			[].forEach.call(this.elements, function(el) {
+				el.classList.remove(className);
+			});
+		}
+
+		append(htmlContent) {
+			[].forEach.call(this.elements, function(el) {
+				return el.insertAdjacentHTML('beforeend', htmlContent);
+			});
+		}
+
+		prepend(htmlContent) {
+			[].forEach.call(this.elements, function(el) {
+				return el.insertAdjacentHTML('afterbegin', htmlContent);
+			});
+		}
+
+		insertBefore(htmlContent) {
+			[].forEach.call(this.elements, function(el) {
+				return el.insertAdjacentHTML('beforebegin', htmlContent);
+			});
+		}
+
+		insertAfter(htmlContent) {
+			[].forEach.call(this.elements, function(el) {
+				return el.insertAdjacentHTML('afterend', htmlContent);
+			});
+		}
+
+		next() {
+			[].forEach.call(this.elements, function(el) {
+				return el.nextElementSibling;
+			});
+		}
+
+		setAttribute(attrName) {
+			[].forEach.call(this.elements, function(el) {
+				el.setAttribute("disabled", "disabled");
+			});
+		}
+
+		removeAttibute(attrName) {
+			[].forEach.call(this.elements, function(el) {
+				el.removeAttibute(attrName);
+			});
+		}
+
+		getAttribute(attrName) {
+			return this.element[0].getAttribute(attrName);
+		}
+
+		hasAttribute(attrName) {
+			return this.element[0].hasAttribute(attrName);
+		}
+
+		html(content) {
+			[].forEach.call(this.elements, function(el) {
+				el.innerHTML = content;
+			});
+		}
+
+		outerHTML() {
+			return this.element[0].outerHTML;
+		}
+
+		closest(selector) {
+			return closest(this.element[0], selector);
 		}
 
 	}
-
 
 	function element(el) {
 		return new DOM(el);

@@ -7,27 +7,27 @@
 
             <div class="header__buttons">
                 <button class="button button--icon button--ripple" id="open">
-                    <i class="icon material-icons">more_vert</i>
+                    <i class="icon mdi mdi-dots-vertical"></i>
                 </button>
 
                 <div class="dropdown-menu" id="dropMenu">
                     <ul>
                         <li class="dropdown-item" id="moveToTrash">
                             <div class="item-primary">
-                                <i class="icon material-icons">more_vert</i>
+                                <i class="icon mdi mdi-dots-vertical"></i>
                             </div>
                             <div class="item-content">Move to trash</div>
                         </li>
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item">
                             <div class="item-primary">
-                                <i class="icon material-icons">more_vert</i>
+                                <i class="icon mdi mdi-dots-vertical"></i>
                             </div>
                             <div class="item-content">Undo</div>
                         </li>
                         <li class="dropdown-item">
                             <div class="item-primary">
-                                <i class="icon material-icons">more_vert</i>
+                                <i class="icon mdi mdi-dots-vertical"></i>
                             </div>
                             <div class="item-content">Redo</div>
                         </li>
@@ -56,9 +56,9 @@
                 phonepack.DropDownMenu(this, document.getElementById('dropMenu'));
             });
             
-            document.querySelector("#moveToTrash").addEventListener('click', function(){
+            document.querySelector("#moveToTrash").addEventListener('touchend', function(){
                 alert('Action!');
-            })
+            }, false)
 
         }, false);
     </script>

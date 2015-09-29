@@ -1,10 +1,9 @@
-import utils from '../utils/utils';
 import $ from '../utils/dom';
 
 var Buttons = (function() {
 
-    $('button--ripple').click(addRippleEffect);
-    $('tab--ripple').click(addRippleEffect);
+    $('.button--ripple').on('click', addRippleEffect);
+    $('.tab--ripple').on('click', addRippleEffect);
 
 
     function addRippleEffect(e) {
