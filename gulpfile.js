@@ -66,7 +66,7 @@ gulp.task('watch', ['browserify-watch'], function() {
 
 	if (process.env.PORT) {
 		port.port = process.env.PORT,
-			port.host = process.env.IP
+		port.host = process.env.IP
 	}
 
 	browserSync.init(port);
@@ -90,7 +90,6 @@ function browserifyShare(watch) {
 	});
 
 	if (watch) {
-		// if watch is enable, wrap this bundle inside watchify
 		b = watchify(b).transform(babel);
 		b.on('update', function() {
 			bundleShare(b);
