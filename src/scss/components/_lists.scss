@@ -11,11 +11,11 @@
     position: relative;
     align-items: center;
 
-    &.list__item-separator .list__content:after {
+    &.list__item--separator .list__content:after {
       content: '';
       position: absolute;
       right: 0;
-      bottom: -12px;
+      bottom: -20px;
       left: 0;
       height: 1px;
       background-color: rgba(0, 0, 0, 0.12);

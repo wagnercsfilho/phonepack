@@ -251,8 +251,20 @@
 <section id="cards">      
 <h3>Cards</h3>
 <pre><code class="language-markup">
-&lt;div class="card"&gt;
- &lt;div class="card__image"&gt;
+&lt;div class="list card"&gt;
+ &lt;div class="list__item card__text"&gt;
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Mauris sagittis pellentesque lacus eleifend lacinia...
+ &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</section>
+
+<section id="cards-image">      
+<h3>Cards</h3>
+<pre><code class="language-markup">
+&lt;div class="list card"&gt;
+ &lt;div class="list__item card__image"&gt;
   &lt;img src="http://www.getmdl.io/assets/demos/welcome_card.jpg" class="card__image--pic"&gt;
   &lt;h2 class="card__image--title"&gt;Welcome&lt;/h2&gt;
   &lt;div class="card__image--menu"&gt;
@@ -260,6 +272,57 @@
      &lt;i class="icon material-icons"&gt;share&lt;/i&gt;
     &lt;/button&gt;
   &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="list__item card__text"&gt;
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  Mauris sagittis pellentesque lacus eleifend lacinia...
+ &lt;/div&gt;
+ &lt;div class="list__item card__actions"&gt;
+  &lt;button class="button button--flat button--ripple color-blue"&gt;GET STARTED&lt;/button&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</section>
+
+<section id="cards-avatar">      
+<h3>Card Avatar</h3>
+<pre><code class="language-markup">
+&lt;div class=&quot;list card&quot;&gt;
+ &lt;div class=&quot;list__item card__avatar&quot;&gt;
+     &lt;div class=&quot;list_primary&quot;&gt;
+        &lt;img ng-src=&quot;http://lorempixel.com/50/50/people&quot; class=&quot;img-circle&quot;&gt;&lt;/img&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list_content&quot;&gt;
+        Alice Maria
+     &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class=&quot;list__item card__image&quot;&gt;
+     &lt;img src=&quot;http://lorempixel.com/640/480/food/&quot; class=&quot;card__image--pic&quot;&gt;
+     &lt;h2 class=&quot;card__image--title&quot;&gt;Welcome&lt;/h2&gt;
+     &lt;div class=&quot;card__image--menu&quot;&gt;
+         &lt;button class=&quot;button button--icon button--ripple&quot;&gt;
+            &lt;i class=&quot;icon material-icons&quot;&gt;share&lt;/i&gt;
+         &lt;/button&gt;
+     &lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class=&quot;list__item card__text&quot;&gt;
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ Mauris sagittis pellentesque lacus eleifend lacinia...
+ &lt;/div&gt;
+ &lt;div class=&quot;list__item card__actions&quot;&gt;
+     &lt;button class=&quot;button button--flat button--ripple text-blue&quot;&gt;LIKE&lt;/button&gt;
+     &lt;button class=&quot;button button--flat button--ripple text-blue&quot;&gt;SHARED&lt;/button&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</section>
+
+<section id="cards-background-image">      
+<h3>Background Image</h3>
+<pre><code class="language-markup">
+&lt;div class="card" style="background: url('http://lorempixel.com/640/480/people/')"&gt;
+ &lt;div class="list__item card__title"&gt;
+    &lt;h2 class="card__title--text"&gt;Welcome&lt;/h2&gt;
  &lt;/div&gt;
  &lt;div class="card__text"&gt;
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.

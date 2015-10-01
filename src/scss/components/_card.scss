@@ -1,4 +1,4 @@
-.card {
+.list.card {
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -11,8 +11,9 @@
     border-radius: 2px;
     box-sizing: border-box;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    margin-bottom: 16px;
 
-    .card__image{
+    .list__item.card__title{
 	    align-items: center;
 	    color: #FFFFFF;
 	    display: block;
@@ -21,12 +22,15 @@
 	    line-height: normal;
 	    box-sizing: border-box;
 	    position: relative;
+	    border-top: 1px solid rgba(0, 0, 0, 0.1);
+	    padding: 0;
+	    min-height: 100px;
 
-	    .card__image--pic{
+	    .card__title--pic{
 	    	width: 100%;
 	    }
 
-	    .card__image--title {
+	    .card__title--text {
 		    align-self: flex-end;
 		    color: inherit;
 		    display: block;
@@ -42,14 +46,14 @@
 		    left: 16px;
 		}
 
-		.card__image--menu {
+		.card__title--menu {
 		    position: absolute;
 		    right: 16px;
 		    top: 16px;
 		    color: #fff;
 		}
 		
-		.card__image--action {
+		.card__title--action {
 		    position: absolute;
 		    right: 16px;
 		    bottom: -30px;
@@ -58,7 +62,7 @@
 
 	}
 
-	.card__text {
+	.list__item.card__text {
 	    color: rgba(0,0,0,.54);
 	    font-size: 13px;
 	    line-height: 18px;
@@ -67,7 +71,7 @@
 	    width: 90%;
 	}
 
-	.card__actions {
+	.list__item.card__actions {
 	    font-size: 16px;
 	    line-height: normal;
 	    width: 100%;
@@ -76,5 +80,27 @@
 	    box-sizing: border-box;
 	    border-top: 1px solid rgba(0,0,0,.1);
 	}
+	
+	.list__item.card__avatar{
 
+            img{
+                width: 40px;
+                margin-right: 10px;
+            }
+            
+    }
+
+	&.card--background-image{
+    	background-size: cover;
+    	color: #fff;
+    	
+    	.list__item.card__title,
+    	.list__item.card__text, 
+    	.list__item.card__actions
+    	{
+    		background: rgba(0, 0, 0, 0.2);
+    		color: #fff;
+    		border: none;
+    	}
+    }
 }

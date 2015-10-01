@@ -6777,11 +6777,11 @@ input[type="checkbox"], input[type="radio"] {
           align-items: center;
 }
 
-.list .list__item.list__item-separator .list__content:after {
+.list .list__item.list__item--separator .list__content:after {
   content: '';
   position: absolute;
   right: 0;
-  bottom: -12px;
+  bottom: -20px;
   left: 0;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.12);
@@ -7668,7 +7668,7 @@ button[disabled], html input[disabled] {
   visibility: visible;
 }
 
-.card {
+.list.card {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -7686,9 +7686,10 @@ button[disabled], html input[disabled] {
   border-radius: 2px;
   box-sizing: border-box;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  margin-bottom: 16px;
 }
 
-.card .card__image {
+.list.card .list__item.card__title {
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -7706,13 +7707,16 @@ button[disabled], html input[disabled] {
   line-height: normal;
   box-sizing: border-box;
   position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  min-height: 100px;
 }
 
-.card .card__image .card__image--pic {
+.list.card .list__item.card__title .card__title--pic {
   width: 100%;
 }
 
-.card .card__image .card__image--title {
+.list.card .list__item.card__title .card__title--text {
   -webkit-align-self: flex-end;
       -ms-flex-item-align: end;
           align-self: flex-end;
@@ -7733,21 +7737,21 @@ button[disabled], html input[disabled] {
   left: 16px;
 }
 
-.card .card__image .card__image--menu {
+.list.card .list__item.card__title .card__title--menu {
   position: absolute;
   right: 16px;
   top: 16px;
   color: #fff;
 }
 
-.card .card__image .card__image--action {
+.list.card .list__item.card__title .card__title--action {
   position: absolute;
   right: 16px;
   bottom: -30px;
   color: #fff;
 }
 
-.card .card__text {
+.list.card .list__item.card__text {
   color: rgba(0, 0, 0, 0.54);
   font-size: 13px;
   line-height: 18px;
@@ -7756,7 +7760,7 @@ button[disabled], html input[disabled] {
   width: 90%;
 }
 
-.card .card__actions {
+.list.card .list__item.card__actions {
   font-size: 16px;
   line-height: normal;
   width: 100%;
@@ -7764,4 +7768,23 @@ button[disabled], html input[disabled] {
   padding: 8px;
   box-sizing: border-box;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list.card .list__item.card__avatar img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.list.card.card--background-image {
+  background-size: cover;
+  color: #fff;
+}
+
+.list.card.card--background-image .list__item.card__title,
+.list.card.card--background-image .list__item.card__text,
+.list.card.card--background-image
+.list__item.card__actions {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  border: none;
 }
