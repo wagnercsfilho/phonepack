@@ -13,10 +13,7 @@
 
 .radio-button__label:before, .radio-button__label:after {
     display: inline-block;
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px; 
+    font: normal normal normal 24px/1 MaterialDesignIcons;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transform: translate(0, 0);
@@ -29,11 +26,12 @@
 }
 
 .radio-button__label:after {
-    content: "\e837";
+    content: "\f4b2";
     color: #009688;
 }
 .radio-button__label:before {
-    content: "\e836";
+    content: "\f4b1";
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .radio-button__input:checked + .radio-button__label:before {

@@ -15,10 +15,7 @@
 
 .checkbox__label:before, .checkbox__label:after {
     display: inline-block;
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
+    font: normal normal normal 24px/1 MaterialDesignIcons;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,7 +28,8 @@
 }
 
 .checkbox__label:before {
-    content: "\e835";
+    content: "\f203";
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .checkbox__input:not(:checked) + .checkbox__label:before {
@@ -39,7 +37,7 @@
 }
 
 .checkbox__label:after {
-    content: "\e834";
+    content: "\f204";
     color: $teal;
 }
 

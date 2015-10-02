@@ -207,13 +207,41 @@
 <section id="lists-caption">			
 <h3>List Caption</h3>
 <pre><code class="language-markup">
-&lt;ul class="list"&gt;
-  &lt;li class="list__item"&gt;Html5&lt;/li&gt;
-  &lt;li class="list__item"&gt;PHP&lt;/li&gt;
-  &lt;li class="list__item"&gt;NodeJS&lt;/li&gt;
-  &lt;li class="list__item"&gt;Ruby&lt;/li&gt;
-  &lt;li class="list__item"&gt;JavaScript&lt;/li&gt;
-  &lt;li class="list__item"&gt;Java&lt;/li&gt;
+&lt;ul class=&quot;list&quot;&gt;
+ &lt;li class=&quot;list__subheader&quot;&gt;Chat&lt;/li&gt;
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/1&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; 
+         Fred 
+         &lt;div class=&quot;list__caption&quot;&gt;
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         &lt;/div&gt; 
+     &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/2&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; 
+         Lisa 
+         &lt;div class=&quot;list__caption&quot;&gt;
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         &lt;/div&gt; 
+     &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/3&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; 
+         John
+         &lt;div class=&quot;list__caption&quot;&gt;
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+         &lt;/div&gt; 
+     &lt;/div&gt;
+ &lt;/li&gt;
 &lt;ul&gt;
 </code></pre>
 </section>
@@ -221,13 +249,60 @@
 <section id="lists-icon">			
 <h3>Lists Icon</h3>
 <pre><code class="language-markup">
-&lt;ul class="list"&gt;
-  &lt;li class="list__item"&gt;Html5&lt;/li&gt;
-  &lt;li class="list__item"&gt;PHP&lt;/li&gt;
-  &lt;li class="list__item"&gt;NodeJS&lt;/li&gt;
-  &lt;li class="list__item"&gt;Ruby&lt;/li&gt;
-  &lt;li class="list__item"&gt;JavaScript&lt;/li&gt;
-  &lt;li class="list__item"&gt;Java&lt;/li&gt;
+&lt;ul class=&quot;list&quot;&gt;
+ &lt;li class=&quot;list__subheader&quot;&gt;Icon left&lt;/li&gt;
+ &lt;li class=&quot;list__item&quot;&gt; 
+    &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-inbox&quot;&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;list__content&quot;&gt;Inbox&lt;/div&gt;
+ &lt;/li&gt;
+ 
+ &lt;li class=&quot;list__item&quot;&gt; 
+    &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-star-circle&quot;&gt;&lt;/i&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;list__content&quot;&gt;Starred&lt;/div&gt;
+ &lt;/li&gt;
+ 
+ &lt;div class=&quot;list__divider list__divider--pushed&quot;&gt;&lt;/div&gt;
+ &lt;div class=&quot;list__subheader list__subheader--pushed&quot;&gt;Icon Circled&lt;/div&gt;
+ 
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;i class=&quot;icon icon--circled bg-green color-white mdi mdi-inbox&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; All mail &lt;/div&gt;
+ &lt;/li&gt;
+ 
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;i class=&quot;icon icon--circled bg-red color-white mdi mdi-delete&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Trash &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;div class=&quot;list__divider list__divider--pushed&quot;&gt;&lt;/div&gt;
+ &lt;div class=&quot;list__subheader list__subheader--pushed&quot;&gt;Icon Right&lt;/div&gt;
+ 
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;i class=&quot;icon icon--circled bg-grey color-white mdi mdi-inbox&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Inbox &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon color-grey mdi mdi-information-outline&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ 
+ &lt;li class=&quot;list__item&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;i class=&quot;icon icon--circled bg-grey color-white mdi mdi-delete&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Trash &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon color-grey mdi mdi-information-outline&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
 &lt;ul&gt;
 </code></pre>
 </section>
@@ -235,14 +310,67 @@
 <section id="lists-image">			
 <h3>Lists Image</h3>
 <pre><code class="language-markup">
-&lt;ul class="list"&gt;
-  &lt;li class="list__item"&gt;Html5&lt;/li&gt;
-  &lt;li class="list__item"&gt;PHP&lt;/li&gt;
-  &lt;li class="list__item"&gt;NodeJS&lt;/li&gt;
-  &lt;li class="list__item"&gt;Ruby&lt;/li&gt;
-  &lt;li class="list__item"&gt;JavaScript&lt;/li&gt;
-  &lt;li class="list__item"&gt;Java&lt;/li&gt;
-&lt;ul&gt;
+&lt;ul class=&quot;list&quot;&gt;
+ &lt;li class=&quot;list__subheader&quot;&gt;Contacts&lt;/li&gt;
+ &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/1&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Fred &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/2&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Lisa &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/3&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; John&lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ 
+ &lt;li class=&quot;list__separator&quot;&gt;&lt;/li&gt;
+ &lt;li class=&quot;list__subheader&quot;&gt;Favorites&lt;/li&gt;
+ &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/5&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Brad &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/6&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Will &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/4&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Item 01 &lt;/div&gt;
+     &lt;div class=&quot;list__secondary&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
+     &lt;/div&gt;
+ &lt;/li&gt;
+ 
+ &lt;ul&gt;
 </code></pre>
 </section>
 <!-- /LISTS --> 
@@ -450,13 +578,55 @@
 <section id="tabs">
 <h3>Tabs</h3>
 <pre><code class="language-markup">
-&lt;div class="select"&gt;
-  &lt;label class="select__label"&gt;&lt;/label&gt;
-  &lt;select class="select__input"&gt;
-  	&lt;option&gt;&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;div class="select__border"&gt;&lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;div class=&quot;sub-header header--shadow&quot;&gt;
+    &lt;div class=&quot;tab-bar bg-indigo tab-bar--text-white tab-bar--indicator-bottom-white&quot;&gt;
+      &lt;div class=&quot;tab-bar__item ripple active&quot;&gt;
+        TEXT 1
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot;&gt;
+        TEXT 2
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot;&gt;
+        TEXT 3
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
+</section>
+
+<section id="tabs-icons">
+<h3>Tabs Icons</h3>
+<pre><code class="language-markup">
+&lt;div class=&quot;sub-header header--shadow&quot;&gt;
+    &lt;div class=&quot;tab-bar bg-indigo tab-bar--text-white tab-bar--indicator-bottom-white&quot;&gt;
+      &lt;div class=&quot;tab-bar__item ripple active&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-home&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-comment&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-bell-outline&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
+</section>
+
+<section id="tabs-bottom">
+<h3>Tabs Bottom</h3>
+<pre><code class="language-markup">
+&lt;div class=&quot;footer&quot;&gt;
+    &lt;div class=&quot;tab-bar bg-white tab-bar--text-black tab-bar--indicator-top-black&quot;&gt;
+      &lt;div class=&quot;tab-bar__item ripple active&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-home&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-comment&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot;&gt;
+        &lt;i class=&quot;icon mdi mdi-bell-outline&quot;&gt;&lt;/i&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
 </section>
 
 <section id="grid">

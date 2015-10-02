@@ -15,8 +15,9 @@ var DOM = (function() {
 
 		if (eventsListeners[e.type]) {
 			eventsListeners[e.type].forEach(function(ev) {
-				if (closest(element, ev.selector)) {
-					ev.fn(e);
+				let _elementTarget = closest(element, ev.selector); 
+				if (_elementTarget) {
+					ev.fn(e, _elementTarget);
 				}
 			});
 		}

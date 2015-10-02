@@ -1,9 +1,5 @@
 $tab-opacity: 0.6;
 
-@mixin border-bottom($color) {
-  border-bottom: 2px solid $color;
-}
-
 .tab-bar {
   display: flex;
   height: 48px;
@@ -14,7 +10,7 @@ $tab-opacity: 0.6;
   align-items: center;
   justify-content: center;
   
-  .tab-item {
+  .tab-bar__item {
     flex: 1;
     height: 48px;
     line-height: 48px;
@@ -31,36 +27,71 @@ $tab-opacity: 0.6;
       vertical-align: middle;
     }
     
+    &:hover{
+      cursor: pointer;
+    }
+    
+    &.active{
+      height: 46px;
+    }
+    
   }
   
-  .tab-item:hover{
-    cursor: pointer;
+  &.tab-bar--indicator-top{
+    .tab-bar__item{
+      border-top-width: 2px;
+      border-top-style: solid;
+    }
   }
   
-  .tab--ripple{
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tab-item.active{
-    height: 46px;
+  &.tab-bar--indicator-bottom{
+    .tab-bar__item{
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+    }
   }
   
 } 
 
+.footer{
+  .tab-bar {
+    height: 56px;
+    
+    .tab-bar__item{
+      height: 56px;
+      line-height: 56px;
+      
+      &.active{
+        height: 55px;
+      }
+    }
+    
+  }
+}
+
 @each $label, $color in $colors {
 
-  .tab-item__color-#{$label}{
+  .tab-bar--text-#{$label}{
     color:  rgba($color, $tab-opacity) !important;
-    .tab-item.active, .tab-item:hover{
+    .tab-bar__item.active, .tab-bar__item:hover{
      color: $color;
    }
  }
 
- .tab-item__indicator-#{$label}{
-  .tab-item.active{
-    @include border-bottom($color);
-  }
-} 
+ .tab-bar--indicator-top-#{$label}{
+    .tab-bar__item.active{
+      border-top-color: $color;
+      border-top-width: 2px;
+      border-top-style: solid;
+    }
+  }  
+  
+  .tab-bar--indicator-bottom-#{$label}{
+    .tab-bar__item.active{
+      border-bottom-color: $color;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+    }
+  } 
 
 }

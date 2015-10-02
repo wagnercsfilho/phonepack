@@ -83,9 +83,9 @@ function browserifyShare(watch) {
 	var b = browserify({
 		cache: {},
 		packageCache: {},
-		fullPaths: true,
+		//fullPaths: true,
 		notify: false,
-		debug: true,
+		//debug: true,
 		standalone: config.pluginName
 	});
 

@@ -32,3 +32,20 @@ p {
   border-radius: 50%;
 }
 
+.ripple{
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-animation {
+    position: absolute;
+    background: rgba(0,0,0,.15);
+    border-radius: 100%;
+    transform: scale(0);
+    pointer-events: none;
+
+    &.show {
+      animation: ripple .8s ease-out;
+    }
+
+}

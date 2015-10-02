@@ -1,11 +1,3 @@
-@keyframes
-ripple { 
-  to {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
 button[disabled], html input[disabled] {
   cursor: default;
 }
@@ -40,18 +32,6 @@ button[disabled], html input[disabled] {
     width: 100%;
   }
 
-  .button--ripple__animation {
-    position: absolute;
-    background: rgba(0,0,0,.15);
-    border-radius: 100%;
-    transform: scale(0);
-    pointer-events: none;
-
-    &.show {
-      animation: ripple .8s ease-out;
-    }
-
-  }
 
   .icon{
       font-size: 26px;
@@ -202,6 +182,11 @@ button[disabled], html input[disabled] {
 
 }
 
-
-
+@keyframes
+ripple { 
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
 
