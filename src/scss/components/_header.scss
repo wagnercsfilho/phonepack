@@ -25,6 +25,17 @@
     white-space: nowrap;
     overflow: hidden;
     min-height: $min-height;
+    
+    .header__caption{
+      display: block;
+      line-height: 2px;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+  
+  &.header--caption .header__title{
+    line-height: 40px;
   }
   
   .header__buttons {
