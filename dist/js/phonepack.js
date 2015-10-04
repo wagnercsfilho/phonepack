@@ -69,7 +69,7 @@ var Buttons = (function () {
 exports['default'] = Buttons;
 module.exports = exports['default'];
 
-},{"../utils/dom":10}],2:[function(require,module,exports){
+},{"../utils/dom":11}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -211,7 +211,7 @@ var Dialog = (function () {
 exports['default'] = Dialog;
 module.exports = exports['default'];
 
-},{"../utils/utils":11}],3:[function(require,module,exports){
+},{"../utils/utils":12}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -262,7 +262,7 @@ function DropDownMenu(element, elMenu) {
 exports['default'] = DropDownMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":11}],4:[function(require,module,exports){
+},{"../utils/utils":12}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -374,7 +374,7 @@ var Loading = (function () {
 exports['default'] = Loading;
 module.exports = exports['default'];
 
-},{"../utils/utils":11}],5:[function(require,module,exports){
+},{"../utils/utils":12}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -623,7 +623,7 @@ var Notification = (function () {
 exports['default'] = Notification;
 module.exports = exports['default'];
 
-},{"../utils/utils":11}],7:[function(require,module,exports){
+},{"../utils/utils":12}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -737,7 +737,49 @@ var SideMenu = (function () {
 exports['default'] = SideMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":11}],9:[function(require,module,exports){
+},{"../utils/utils":12}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var _utilsDom = require('../utils/dom');
+
+var _utilsDom2 = _interopRequireDefault(_utilsDom);
+
+var TabBar = function TabBar(element) {
+    _classCallCheck(this, TabBar);
+
+    var contentsEl = (0, _utilsDom2['default'])('.content');
+    contentsEl.addClass('tab-hide').addClass('content--tab');
+
+    var activeTab = element.querySelector('.active');
+    if (activeTab) {
+        var selectorContent = activeTab.getAttribute('ref');
+        var content = (0, _utilsDom2['default'])(selectorContent).removeClass('tab-hide').addClass('tab-show');
+    }
+
+    (0, _utilsDom2['default'])('.tab-bar__item').on('click', function (e) {
+        var element = e.target;
+        var selectorContent = element.getAttribute('ref');
+        var content = (0, _utilsDom2['default'])(selectorContent);
+        contentsEl.removeClass('tab-show').addClass('tab-hide');
+        content.removeClass('tab-hide').addClass('tab-show');
+
+        (0, _utilsDom2['default'])('.tab-bar__item').removeClass('active');
+        element.classList.add('active');
+    });
+};
+
+exports['default'] = TabBar;
+module.exports = exports['default'];
+
+},{"../utils/dom":11}],10:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -778,6 +820,10 @@ var _componentsNotification = require('./components/notification');
 
 var _componentsNotification2 = _interopRequireDefault(_componentsNotification);
 
+var _componentsTabBarJs = require('./components/tab-bar.js');
+
+var _componentsTabBarJs2 = _interopRequireDefault(_componentsTabBarJs);
+
 var phonepack = function phonepack(selector) {
 	return (0, _utilsDom2['default'])(selector);
 };
@@ -789,6 +835,7 @@ phonepack.DropDownMenu = _componentsDropdownMenu2['default'];
 phonepack.Dialog = _componentsDialog2['default'];
 phonepack.Loading = _componentsLoading2['default'];
 phonepack.Notification = _componentsNotification2['default'];
+phonepack.TabBar = _componentsTabBarJs2['default'];
 
 phonepack.ready = function (callback) {
 	document.addEventListener('DOMContentLoaded', function () {
@@ -798,7 +845,7 @@ phonepack.ready = function (callback) {
 
 module.exports = phonepack;
 
-},{"./components/button":1,"./components/dialog":2,"./components/dropdown-menu":3,"./components/loading":4,"./components/navigation":5,"./components/notification":6,"./components/pull-to-refresh":7,"./components/side-menu":8,"./utils/dom":10}],10:[function(require,module,exports){
+},{"./components/button":1,"./components/dialog":2,"./components/dropdown-menu":3,"./components/loading":4,"./components/navigation":5,"./components/notification":6,"./components/pull-to-refresh":7,"./components/side-menu":8,"./components/tab-bar.js":9,"./utils/dom":11}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -850,12 +897,25 @@ var DOM = (function () {
 		return null;
 	}
 
+	function isArray(value) {
+		if (Object.prototype.toString.call(value) === '[object Array]') {
+			return true;
+		}
+
+		return false;
+	}
+
 	var DOM = (function () {
 		function DOM(selector) {
 			_classCallCheck(this, DOM);
 
-			this.selector = selector;
-			this.elements = document.querySelectorAll(selector);
+			if (typeof selector === 'object') {
+				this.selector = selector.selector;
+				this.elements = selector;
+			} else {
+				this.selector = selector;
+				this.elements = document.querySelectorAll(selector);
+			}
 
 			return this;
 		}
@@ -909,6 +969,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					el.classList.add(className);
 				});
+				return this;
 			}
 		}, {
 			key: 'toggleClass',
@@ -916,6 +977,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					el.classList.toggle(className);
 				});
+				return this;
 			}
 		}, {
 			key: 'removeClass',
@@ -923,6 +985,12 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					el.classList.remove(className);
 				});
+				return this;
+			}
+		}, {
+			key: 'hasClass',
+			value: function hasClass(className) {
+				return this.elements[0].classList.contains(className);
 			}
 		}, {
 			key: 'append',
@@ -930,6 +998,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					return el.insertAdjacentHTML('beforeend', htmlContent);
 				});
+				return this;
 			}
 		}, {
 			key: 'prepend',
@@ -937,6 +1006,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					return el.insertAdjacentHTML('afterbegin', htmlContent);
 				});
+				return this;
 			}
 		}, {
 			key: 'insertBefore',
@@ -944,6 +1014,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					return el.insertAdjacentHTML('beforebegin', htmlContent);
 				});
+				return this;
 			}
 		}, {
 			key: 'insertAfter',
@@ -951,6 +1022,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					return el.insertAdjacentHTML('afterend', htmlContent);
 				});
+				return this;
 			}
 		}, {
 			key: 'next',
@@ -958,6 +1030,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					return el.nextElementSibling;
 				});
+				return this;
 			}
 		}, {
 			key: 'setAttribute',
@@ -965,6 +1038,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					el.setAttribute("disabled", "disabled");
 				});
+				return this;
 			}
 		}, {
 			key: 'removeAttibute',
@@ -972,6 +1046,7 @@ var DOM = (function () {
 				[].forEach.call(this.elements, function (el) {
 					el.removeAttibute(attrName);
 				});
+				return this;
 			}
 		}, {
 			key: 'getAttribute',
@@ -1015,7 +1090,7 @@ var DOM = (function () {
 exports['default'] = DOM;
 module.exports = exports['default'];
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1049,5 +1124,5 @@ exports["default"] = {
 };
 module.exports = exports["default"];
 
-},{}]},{},[9])(9)
+},{}]},{},[10])(10)
 });

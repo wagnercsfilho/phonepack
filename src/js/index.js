@@ -7,6 +7,7 @@ import Navigation from './components/navigation';
 import Dialog from './components/dialog';
 import Loading from './components/loading';
 import Notification from './components/notification';
+import TabBar from './components/tab-bar.js';
 
 var phonepack = function(selector) {
 	return DOM(selector);
@@ -19,6 +20,7 @@ phonepack.DropDownMenu = DropDownMenu;
 phonepack.Dialog = Dialog;
 phonepack.Loading = Loading;
 phonepack.Notification = Notification;
+phonepack.TabBar = TabBar;
 
 phonepack.ready = function(callback) {
 	document.addEventListener('DOMContentLoaded', function() {

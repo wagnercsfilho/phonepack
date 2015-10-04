@@ -95,3 +95,16 @@ $tab-opacity: 0.6;
   } 
 
 }
+
+.tab-hide{
+  opacity: 0;
+}
+
+.tab-show{
+  opacity: 1 !important;
+}
+
+.content--tab{
+  opacity: 0;
+  transition: opacity 1s;
+}
