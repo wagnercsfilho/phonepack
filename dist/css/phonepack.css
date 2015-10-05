@@ -7068,6 +7068,11 @@ input[type="checkbox"], input[type="radio"] {
   width: 40px;
 }
 
+.list .list__item .list__primary img,
+.list .list__item .list__primary i {
+  width: 40px;
+}
+
 .list .list__item .list__secondary {
   -webkit-box-align: center;
   -webkit-align-items: center;
@@ -7930,7 +7935,6 @@ button[disabled], html input[disabled] {
           flex-direction: column;
   font-size: 16px;
   font-weight: 400;
-  z-index: 1;
   position: relative;
   background: #fff;
   border-radius: 2px;

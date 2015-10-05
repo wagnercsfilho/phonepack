@@ -764,8 +764,8 @@ var TabBar = function TabBar(element) {
         var content = (0, _utilsDom2['default'])(selectorContent).removeClass('tab-hide').addClass('tab-show');
     }
 
-    (0, _utilsDom2['default'])('.tab-bar__item').on('click', function (e) {
-        var element = e.target;
+    (0, _utilsDom2['default'])('.tab-bar__item').on('click', function (e, target) {
+        var element = target;
         var selectorContent = element.getAttribute('ref');
         var content = (0, _utilsDom2['default'])(selectorContent);
         contentsEl.removeClass('tab-show').addClass('tab-hide');

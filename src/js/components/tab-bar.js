@@ -12,8 +12,8 @@ class TabBar {
             let content = $(selectorContent).removeClass('tab-hide').addClass('tab-show');
         }
         
-        $('.tab-bar__item').on('click', function(e){
-            let element = e.target;
+        $('.tab-bar__item').on('click', function(e, target){
+            let element = target;
             let selectorContent = element.getAttribute('ref');
             let content = $(selectorContent);
             contentsEl.removeClass('tab-show').addClass('tab-hide');
