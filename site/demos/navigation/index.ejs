@@ -1,149 +1,45 @@
 <% include ../partials/head %>
-  
-    <div id="pages" ng-app="app">
-        <header class="header header--shadow bg-white text-black">
-          <div class="header__title">All Contacts</div>
-        </header>
-        
-        
-        <section class="content has-header">
-            <ul class="list">
-               <li class="list__subheader">A</li>
-               <li class="list__item with-separator" id="open"> 
-    	        	<div class="list__primary">
-    	        		<img src="http://lorempixel.com/60/60/people/1" width="40" height="40" class="img-circle">
-    	        	</div>
-    	        	<div class="list__content"> 
-        	        	AVA 
-    				</div>
-    	        </li>
-    	        <li class="list__item with-separator" id="open"> 
-    	        	<div class="list__primary">
-    	        		<img src="http://lorempixel.com/60/60/people/2" width="40" height="40" class="img-circle">
-    	        	</div>
-    	        	<div class="list__content"> 
-        	        	ABIGAIL 
-    	        	</div>
-    	        </li>
-    	        <li class="list__item with-separator" id="open"> 
-    	        	<div class="list__primary">
-    	        		<img src="http://lorempixel.com/60/60/people/3" width="40" height="40" class="img-circle">
-    	        	</div>
-    	        	<div class="list__content"> 
-        	        	ANNA
-    	        	</div>
-    	        </li>
-    	        <li class="list__subheader">B</li>
-    	        <li class="list__item with-separator" id="open"> 
-    	        	<div class="list__primary">
-    	        		<img src="http://lorempixel.com/60/60/people/4" width="40" height="40" class="img-circle">
-    	        	</div>
-    	        	<div class="list__content"> 
-        	        	BRITTANY 
-    				</div>
-    	        </li>
-    	        <li class="list__item with-separator" id="open"> 
-    	        	<div class="list__primary">
-    	        		<img src="http://lorempixel.com/60/60/people/5" width="40" height="40" class="img-circle">
-    	        	</div>
-    	        	<div class="list__content"> 
-        	        	BARBARA 
-    	        	</div>
-    	        </li>
-    	        <li class="list__item with-separator" id="open"> 
-    	        	<div class="list__primary">
-    	        		<img src="http://lorempixel.com/60/60/people/6" width="40" height="40" class="img-circle">
-    	        	</div>
-    	        	<div class="list__content"> 
-        	        	BETH
-    	        	</div>
-    	        </li>
-            </ul>
-        </section>
-    </div>
-    
+
+    <div id="navigation" class="navigation"></div>
+
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
-            
-            var navigation = new phonepack.Navigation(document.getElementById('pages'));
-            
-            var li = document.querySelectorAll('#open');
-            for (var i = 0; i < li.length; i++) {
-                var row = li[i];
-                row.addEventListener('click', function(){
-                    
-                    navigation.pushPage('/docs/demos/navigation/details', function(){
-                         document.querySelector('#close').addEventListener('click', function(){
-                            navigation.closeCurrentPage();
-                            return false;
-                        });
-                    })
-                    
-                });
-            }
-            
-          }, false);
-          
-          
-          /*
-          angular.module('app', [])
-            .run(function($rootScope, $timeout, $compile, $controller){
 
-                $rootScope.pages = new phonepack.Pages(document.getElementById('pages'));
+            var logged = false;
             
-                var li = document.querySelectorAll('#open');
-                for (var i = 0; i < li.length; i++) {
-                    li[i].addEventListener('click', function(){
-                        pages.pushPage('/docs/demos/pages/details', function(templateEl, next){
-                            
-                            $rootScope.$apply(function(){
-                                $compile(templateEl)($rootScope)
-                                next();
-                            });
-                            
-                        }, function(){
-                            
-                            document.querySelector('#close').addEventListener('click', function(){
-                                pages.closeCurrentPage();
-                                return false;
-                            });
-                            
-                        })
-                    });
+            var options = {
+                page: '/docs/demos/navigation/list'
+            };
+            
+            window.navigation = new phonepack.Navigation(document.getElementById('navigation'), options);
+            
+            navigation.on('beforePush', function(template, next){
+                if (!logged && template.getAttribute('ref') !== 'login'){
+                    navigation.pushPage('/docs/demos/navigation/login');
+                } else {
+                    next();
                 }
-            })
-            .controller('page1', function($rootScope, $scope, $compile){
-                $scope.contacts = ['AVA', 'ABIGAIL', 'ANNA', 'BRITTANY', 'BARBARA', 'BETH'];
-                $scope.open = function(){
-                    
-                    $rootScope.pages.pushPage('/docs/demos/pages/details', function(templateEl, next){
-                            
-                            $rootScope.$apply(function(){
-                                $compile(templateEl)($rootScope)
-                                next();
-                            });
-                            
-                        }, function(){
-                            
-                            document.querySelector('#close').addEventListener('click', function(){
-                                pages.closeCurrentPage();
-                                return false;
-                            });
-                            
-                        })
-                    
-                }
-            })
-            .controller('page2', function($rootScope, $scope){
-                $rootScope.bar = 'Barre';
-                
-                $scope.back = function(){
-                    alert('sd')
-                    $rootScope.pages.closeCurrentPage();
-                }
-            }) */
- 
+            });
+            
+            phonepack('#login').on('click', function(){
+               var email = document.querySelector('#txtEmail');
+               var password = document.querySelector('#txtPassword');
+               
+               if (email.value == 'admin@admin.com' && password.value == 'admin'){
+                   logged = true;
+                   navigation.pushPage('/docs/demos/navigation/list');
+               } else {
+                  var notification = new phonepack.Notification();
+                  notification.success('Failed Login!');
+               }
+            });
+            
+            phonepack('#open').on('click', function() {
+                    navigation.pushPage('/docs/demos/navigation/details', { foo: 'bar' }, function(){ });
+                });
+
+        }, false);
+
     </script>
-  
-<% include ../partials/footer %>
-      
+
+    <% include ../partials/footer %>

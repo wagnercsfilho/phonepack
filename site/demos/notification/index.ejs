@@ -13,9 +13,8 @@
             
             document.querySelector('#open').addEventListener('click', function(){
                 
-                var notification = new phonepack.Notification('Warning message', {
-                    type: 'warning'
-                }).show();
+                var notification = new phonepack.Notification();
+                notification.warning('Warning message');
                 
             });
             

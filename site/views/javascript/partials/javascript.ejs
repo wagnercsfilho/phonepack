@@ -37,11 +37,12 @@ setTimeout(function() {
 <h3>Notification</h3>
 <h4>Lorem ipsum dolor sit amet</h4>
 <pre><code class="language-javascript">
-var notification = new phonepack.Notification('Warning message', {
-    type: 'warning'
-}).show();
-</code>
-</pre>
+var notification = new phonepack.Notification();
+notification.simple('Warning message');
+notification.info('Warning message');
+notification.success('Warning message');
+notification.warning('Warning message');
+notification.error('Warning message');</code></pre>
 </section>
 
 <!-- PAGES --> 

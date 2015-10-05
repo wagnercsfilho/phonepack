@@ -97,14 +97,16 @@ $tab-opacity: 0.6;
 }
 
 .tab-hide{
+  visibility: hidden;
   opacity: 0;
 }
 
 .tab-show{
+  visibility: visibility;
   opacity: 1 !important;
 }
 
 .content--tab{
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 0.2s;
 }

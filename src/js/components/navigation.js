@@ -1,31 +1,59 @@
-function renderPage(element, callback) {
+import utils from '../utils/utils';
+
+var eventEmitter = {
+	'beforePush': null,
+	'afterPush': null
+};
+
+function renderPage(template, callback) {
 	var self = this;
 
-	document.body.appendChild(element);
+	self.element.appendChild(template);
 	setTimeout(function() {
-		element.classList.add('pages--slide-up-show');
-		if (self.currentPage) {
-			self.prevPage = self.currentPage;
-		}
+		template.classList.add('pages--slide-up-show');
+	    self.prevPage =	self.currentPage;
+		self.currentPage = template;
+		
+		if (eventEmitter.afterPush) eventEmitter.afterPush(template);
 
-		self.currentPage = element;
+		if (callback) callback();
 
-		if (callback) {
-			callback();
-		}
-
-	}, 40);
+	}, 25);
 }
 
 class Navigation {
 
-	constructor(element) {
+	constructor(element, options) {
 		var self = this;
 		self.element = element;
 		self.currentPage = null;
 		self.prevPage = null;
+		self._params = null;
+		
+		var _options = {
+			page: null
+		};
 
-		element.classList.add('pages');
+		self.options = utils.extend({}, _options, options);
+		
+		if (self.options.page){
+			self.pushPage(self.options.page);
+		}
+
+	}
+	
+	get params(){
+		let params = this._params;
+		this._params = null;
+		return params;
+	}
+	
+	set params(value){
+		this._params = value;
+	}
+
+	on(event, fn) {
+		eventEmitter[event] = fn;
 	}
 
 	replacePage(page, callback) {
@@ -46,28 +74,29 @@ class Navigation {
 		request.send();
 	}
 
-	pushPage(page, cbAfter, callback) {
-		var request = new XMLHttpRequest();
+	pushPage(page, params, callback) {
 		var self = this;
+		self.params = params;
+		var request = new XMLHttpRequest();
 
 		request.onreadystatechange = function() {
 			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 
-				var nextPage = document.createElement("div");
-				nextPage.className = 'pages pages--slide-up';
-				nextPage.innerHTML = request.responseText;
-
-				// send a callback with the element html created
-				if (callback) {
-					cbAfter(nextPage, function(el) {
-						renderPage.call(self, nextPage, function() {
-							callback(nextPage);
+				let temp = document.createElement("div");
+				temp.innerHTML = request.responseText;
+				
+				let template = temp.querySelector('.pages');
+				template.classList.add('pages--slide-up');
+				if (eventEmitter.beforePush) {
+					eventEmitter.beforePush(template, function() {
+						renderPage.call(self, template, function() {
+							if (callback) callback(template);
 						});
 					});
 				}
 				else {
-					renderPage.call(self, nextPage, function() {
-						cbAfter();
+					renderPage.call(self, template, function() {
+						if (callback) callback(template);
 					});
 				}
 
@@ -80,21 +109,21 @@ class Navigation {
 
 	closeCurrentPage() {
 		var self = this;
+		
+		var removeDomPage = function() {
+			self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
+			self.currentPage.removeEventListener('transitionend', removeDomPage);
+			
+			if (self.currentPage) {
+				self.currentPage.remove();
+			}
+			
+			self.currentPage = self.prevPage;
+		};
 
 		self.currentPage.classList.remove('pages--slide-up-show');
-		self.currentPage.addEventListener('webkitTransitionEnd', function() {
-			if (self.currentPage) {
-				self.currentPage.remove();
-			}
-			self.currentPage = self.prevPage;
-		});
-
-		self.currentPage.addEventListener('transitionend', function() {
-			if (self.currentPage) {
-				self.currentPage.remove();
-			}
-			self.currentPage = self.prevPage;
-		});
+		self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
+		self.currentPage.addEventListener('transitionend', removeDomPage);
 
 	}
 

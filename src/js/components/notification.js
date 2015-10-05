@@ -2,6 +2,29 @@ import utils from '../utils/utils';
 
 var instance = null;
 
+function _show(text) {
+	var self = this;
+
+	let notification_content = document.createElement('div');
+	notification_content.className = 'notification__content';
+	notification_content.innerHTML = text;
+
+	self.notification.appendChild(notification_content);
+	setTimeout(function() {
+		self.notification.classList.add('notification--is-shown');
+	}, 0);
+
+	document.body.appendChild(self.notification);
+
+	if (self.options.time > 0) {
+		setTimeout(function() {
+			self.hide();
+		}, self.options.time);
+	}
+
+	return self;
+}
+
 class Notification {
 
 	constructor(text, options) {
@@ -11,7 +34,6 @@ class Notification {
 		}
 
 		var self = this;
-
 		var _options = {
 			type: 'simple',
 			time: 3000
@@ -26,67 +48,58 @@ class Notification {
 			self.hide();
 		}, false);
 
-		if (self.options.type !== 'simple') {
-			var icon = document.createElement('i');
-			icon.className = 'material-icons notification__icon';
-
-			switch (self.options.type) {
-				case 'info':
-					icon.innerHTML = 'info_outline';
-					icon.classList.add('text-blue');
-					break;
-
-				case 'success':
-					icon.innerHTML = 'check';
-					icon.classList.add('text-green');
-					break;
-
-				case 'warning':
-					icon.innerHTML = 'warning';
-					icon.classList.add('text-yellow');
-					break;
-
-				case 'error':
-					icon.innerHTML = 'info';
-					icon.classList.add('text-red');
-					break;
-
-				default:
-					icon.innerHTML = 'info_outline';
-					icon.classList.add('color-blue');
-			}
-
-			self.notification.appendChild(icon);
-
-		}
-
-		var notification_content = document.createElement('div');
-		notification_content.className = 'notification__content';
-		notification_content.innerHTML = text;
-
-		self.notification.appendChild(notification_content);
-
-		setTimeout(function() {
-			self.notification.classList.add('notification--is-shown');
-		}, 0);
-
-		instance = self;
-
 		return self;
 	}
+	
+	simple(text) {
+		_show.call(this, text);
 
-	show() {
-		var self = this;
+		instance = this;
+		return this;
+	}
 
-		document.body.appendChild(self.notification);
+	info(text) {
+		let icon = document.createElement('i');
+		icon.className = 'notification__icon text-blue mdi mdi-information-outline ';
+		this.notification.appendChild(icon);
 
-		if (self.options.time > 0) {
-			setTimeout(function() {
-				self.hide();
-			}, self.options.time);
-		}
+		_show.call(this, text);
 
-		return self;
+		instance = this;
+		return this;
+	}
+
+	success(text) {
+		let icon = document.createElement('i');
+		icon.className = 'notification__icon text-green mdi mdi-check';
+		this.notification.appendChild(icon);
+		
+		_show.call(this, text);
+
+		instance = this;
+		return this;
+	}
+
+	warning(text) {
+		let icon = document.createElement('i');
+		icon.className = 'notification__icon text-yellow mdi mdi-alert';
+		this.notification.appendChild(icon);
+		
+		_show.call(this, text);
+
+		instance = this;
+		return this;
+	}
+
+	error(text) {
+		let icon = document.createElement('i');
+		icon.className = 'notification__icon text-red mdi mdi-alert-circle';
+		this.notification.appendChild(icon);
+		
+		_show.call(this, text);
+
+		instance = this;
+		return this;
 	}
 
 	hide() {

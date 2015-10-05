@@ -383,39 +383,61 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-function renderPage(element, callback) {
+var _utilsUtils = require('../utils/utils');
+
+var _utilsUtils2 = _interopRequireDefault(_utilsUtils);
+
+var eventEmitter = {
+	'beforePush': null,
+	'afterPush': null
+};
+
+function renderPage(template, callback) {
 	var self = this;
 
-	document.body.appendChild(element);
+	self.element.appendChild(template);
 	setTimeout(function () {
-		element.classList.add('pages--slide-up-show');
-		if (self.currentPage) {
-			self.prevPage = self.currentPage;
-		}
+		template.classList.add('pages--slide-up-show');
+		self.prevPage = self.currentPage;
+		self.currentPage = template;
 
-		self.currentPage = element;
+		if (eventEmitter.afterPush) eventEmitter.afterPush(template);
 
-		if (callback) {
-			callback();
-		}
-	}, 40);
+		if (callback) callback();
+	}, 25);
 }
 
 var Navigation = (function () {
-	function Navigation(element) {
+	function Navigation(element, options) {
 		_classCallCheck(this, Navigation);
 
 		var self = this;
 		self.element = element;
 		self.currentPage = null;
 		self.prevPage = null;
+		self._params = null;
 
-		element.classList.add('pages');
+		var _options = {
+			page: null
+		};
+
+		self.options = _utilsUtils2['default'].extend({}, _options, options);
+
+		if (self.options.page) {
+			self.pushPage(self.options.page);
+		}
 	}
 
 	_createClass(Navigation, [{
+		key: 'on',
+		value: function on(event, fn) {
+			eventEmitter[event] = fn;
+		}
+	}, {
 		key: 'replacePage',
 		value: function replacePage(page, callback) {
 			var self = this;
@@ -436,29 +458,32 @@ var Navigation = (function () {
 		}
 	}, {
 		key: 'pushPage',
-		value: function pushPage(page, cbAfter, callback) {
-			var request = new XMLHttpRequest();
+		value: function pushPage(page, params, callback) {
 			var self = this;
+			self.params = params;
+			var request = new XMLHttpRequest();
 
 			request.onreadystatechange = function () {
 				if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
+					(function () {
 
-					var nextPage = document.createElement("div");
-					nextPage.className = 'pages pages--slide-up';
-					nextPage.innerHTML = request.responseText;
+						var temp = document.createElement("div");
+						temp.innerHTML = request.responseText;
 
-					// send a callback with the element html created
-					if (callback) {
-						cbAfter(nextPage, function (el) {
-							renderPage.call(self, nextPage, function () {
-								callback(nextPage);
+						var template = temp.querySelector('.pages');
+						template.classList.add('pages--slide-up');
+						if (eventEmitter.beforePush) {
+							eventEmitter.beforePush(template, function () {
+								renderPage.call(self, template, function () {
+									if (callback) callback(template);
+								});
 							});
-						});
-					} else {
-						renderPage.call(self, nextPage, function () {
-							cbAfter();
-						});
-					}
+						} else {
+							renderPage.call(self, template, function () {
+								if (callback) callback(template);
+							});
+						}
+					})();
 				}
 			};
 
@@ -470,20 +495,30 @@ var Navigation = (function () {
 		value: function closeCurrentPage() {
 			var self = this;
 
-			self.currentPage.classList.remove('pages--slide-up-show');
-			self.currentPage.addEventListener('webkitTransitionEnd', function () {
-				if (self.currentPage) {
-					self.currentPage.remove();
-				}
-				self.currentPage = self.prevPage;
-			});
+			var removeDomPage = function removeDomPage() {
+				self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
+				self.currentPage.removeEventListener('transitionend', removeDomPage);
 
-			self.currentPage.addEventListener('transitionend', function () {
 				if (self.currentPage) {
 					self.currentPage.remove();
 				}
+
 				self.currentPage = self.prevPage;
-			});
+			};
+
+			self.currentPage.classList.remove('pages--slide-up-show');
+			self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
+			self.currentPage.addEventListener('transitionend', removeDomPage);
+		}
+	}, {
+		key: 'params',
+		get: function get() {
+			var params = this._params;
+			this._params = null;
+			return params;
+		},
+		set: function set(value) {
+			this._params = value;
 		}
 	}]);
 
@@ -493,7 +528,7 @@ var Navigation = (function () {
 exports['default'] = Navigation;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{"../utils/utils":12}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -512,6 +547,29 @@ var _utilsUtils2 = _interopRequireDefault(_utilsUtils);
 
 var instance = null;
 
+function _show(text) {
+	var self = this;
+
+	var notification_content = document.createElement('div');
+	notification_content.className = 'notification__content';
+	notification_content.innerHTML = text;
+
+	self.notification.appendChild(notification_content);
+	setTimeout(function () {
+		self.notification.classList.add('notification--is-shown');
+	}, 0);
+
+	document.body.appendChild(self.notification);
+
+	if (self.options.time > 0) {
+		setTimeout(function () {
+			self.hide();
+		}, self.options.time);
+	}
+
+	return self;
+}
+
 var Notification = (function () {
 	function Notification(text, options) {
 		_classCallCheck(this, Notification);
@@ -521,7 +579,6 @@ var Notification = (function () {
 		}
 
 		var self = this;
-
 		var _options = {
 			type: 'simple',
 			time: 3000
@@ -536,68 +593,64 @@ var Notification = (function () {
 			self.hide();
 		}, false);
 
-		if (self.options.type !== 'simple') {
-			var icon = document.createElement('i');
-			icon.className = 'material-icons notification__icon';
-
-			switch (self.options.type) {
-				case 'info':
-					icon.innerHTML = 'info_outline';
-					icon.classList.add('text-blue');
-					break;
-
-				case 'success':
-					icon.innerHTML = 'check';
-					icon.classList.add('text-green');
-					break;
-
-				case 'warning':
-					icon.innerHTML = 'warning';
-					icon.classList.add('text-yellow');
-					break;
-
-				case 'error':
-					icon.innerHTML = 'info';
-					icon.classList.add('text-red');
-					break;
-
-				default:
-					icon.innerHTML = 'info_outline';
-					icon.classList.add('color-blue');
-			}
-
-			self.notification.appendChild(icon);
-		}
-
-		var notification_content = document.createElement('div');
-		notification_content.className = 'notification__content';
-		notification_content.innerHTML = text;
-
-		self.notification.appendChild(notification_content);
-
-		setTimeout(function () {
-			self.notification.classList.add('notification--is-shown');
-		}, 0);
-
-		instance = self;
-
 		return self;
 	}
 
 	_createClass(Notification, [{
-		key: 'show',
-		value: function show() {
-			var self = this;
+		key: 'simple',
+		value: function simple(text) {
+			_show.call(this, text);
 
-			document.body.appendChild(self.notification);
+			instance = this;
+			return this;
+		}
+	}, {
+		key: 'info',
+		value: function info(text) {
+			var icon = document.createElement('i');
+			icon.className = 'notification__icon text-blue mdi mdi-information-outline ';
+			this.notification.appendChild(icon);
 
-			if (self.options.time > 0) {
-				setTimeout(function () {
-					self.hide();
-				}, self.options.time);
-			}
+			_show.call(this, text);
 
-			return self;
+			instance = this;
+			return this;
+		}
+	}, {
+		key: 'success',
+		value: function success(text) {
+			var icon = document.createElement('i');
+			icon.className = 'notification__icon text-green mdi mdi-check';
+			this.notification.appendChild(icon);
+
+			_show.call(this, text);
+
+			instance = this;
+			return this;
+		}
+	}, {
+		key: 'warning',
+		value: function warning(text) {
+			var icon = document.createElement('i');
+			icon.className = 'notification__icon text-yellow mdi mdi-alert';
+			this.notification.appendChild(icon);
+
+			_show.call(this, text);
+
+			instance = this;
+			return this;
+		}
+	}, {
+		key: 'error',
+		value: function error(text) {
+			var icon = document.createElement('i');
+			icon.className = 'notification__icon text-red mdi mdi-alert-circle';
+			this.notification.appendChild(icon);
+
+			_show.call(this, text);
+
+			instance = this;
+			return this;
 		}
 	}, {
 		key: 'hide',

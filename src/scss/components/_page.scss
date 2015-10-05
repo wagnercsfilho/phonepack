@@ -7,23 +7,18 @@
   z-index: 99;
   background-color: #ffffff;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-
-  &.pages--slide-up{
-     opacity: 0;
+  &.pages--slide-up {
+    opacity: 0;
     transform: translateY(10%);
   }
-
-  &.pages--slide-up-show{
+  &.pages--slide-up-show {
     opacity: 1;
     transform: translateY(0);
   }
-
-  &.pages--hidden{
+  &.pages--hidden {
     visibility: hidden;
   }
-
-  &.pages--visibility{
+  &.pages--visibility {
     visibility: visible;
   }
-
 }

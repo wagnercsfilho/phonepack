@@ -6437,7 +6437,7 @@ input[type="checkbox"], input[type="radio"] {
   -webkit-flex-shrink: 0;
       -ms-flex-negative: 0;
           flex-shrink: 0;
-  margin: 0 10px 0 10px;
+  margin: 0 5px 0 10px;
 }
 
 .header .header__buttons + .title {
@@ -7004,17 +7004,19 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .tab-hide {
+  visibility: hidden;
   opacity: 0;
 }
 
 .tab-show {
+  visibility: visibility;
   opacity: 1 !important;
 }
 
 .content--tab {
   opacity: 0;
-  -webkit-transition: opacity 1s;
-          transition: opacity 1s;
+  -webkit-transition: opacity 0.2s;
+          transition: opacity 0.2s;
 }
 
 .list {
