@@ -6462,11 +6462,18 @@ input[type="checkbox"], input[type="radio"] {
 
 .content {
   position: absolute;
+  background: #ffffff;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content.content--pull-to-refresh {
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+          transition: transform 0.2s ease-in-out;
 }
 
 .content.content--padding {
@@ -7606,8 +7613,8 @@ button[disabled], html input[disabled] {
 }
 
 .spinner {
-  -webkit-animation: rotator 1.4s linear infinite;
-          animation: rotator 1.4s linear infinite;
+  -webkit-animation: rotator 1.4s linear;
+          animation: rotator 1.4s linear;
 }
 
 @-webkit-keyframes rotator {
@@ -7638,8 +7645,8 @@ button[disabled], html input[disabled] {
   -webkit-transform-origin: center;
       -ms-transform-origin: center;
           transform-origin: center;
-  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-          animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  -webkit-animation: dash 1.4s ease-in-out, colors 5.6s ease-in-out;
+          animation: dash 1.4s ease-in-out, colors 5.6s ease-in-out;
 }
 
 @-webkit-keyframes colors {
@@ -7707,6 +7714,73 @@ button[disabled], html input[disabled] {
     stroke-dashoffset: 187;
     -webkit-transform: rotate(450deg);
             transform: rotate(450deg);
+  }
+}
+
+.spinner--pull-to-refresh {
+  height: 28px;
+  width: 28px;
+  border: 5px solid #4285F4;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+  -webkit-transition: rotate 0.2s;
+          transition: rotate 0.2s;
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    border-color: #4285F4;
+    border-right-color: transparent;
+  }
+  25% {
+    border-color: #DE3E35;
+    border-right-color: transparent;
+  }
+  50% {
+    border-color: #F7C223;
+    border-right-color: transparent;
+  }
+  75% {
+    border-color: #1B9A59;
+    border-right-color: transparent;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    border-color: #4285F4;
+    border-right-color: transparent;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    border-color: #4285F4;
+    border-right-color: transparent;
+  }
+  25% {
+    border-color: #DE3E35;
+    border-right-color: transparent;
+  }
+  50% {
+    border-color: #F7C223;
+    border-right-color: transparent;
+  }
+  75% {
+    border-color: #1B9A59;
+    border-right-color: transparent;
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+    border-color: #4285F4;
+    border-right-color: transparent;
   }
 }
 

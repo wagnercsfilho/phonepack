@@ -1,9 +1,9 @@
-<!-- DIALOG --> 
+<!-- DIALOG -->
 
 <section id="dialog" style="padding-top: 0">
-<h3>Dialog</h3>
-<h4>Lorem ipsum dolor sit amet</h4>
-<pre><code class="language-javascript">
+    <h3>Dialog</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
 var dialog = new phonepack.Dialog({
     title: 'Loading...',
     content: 'Lorem ipsum dolor sit amet',         
@@ -14,12 +14,12 @@ var dialog = new phonepack.Dialog({
 </pre>
 </section>
 
-<!-- LOADING --> 
+<!-- LOADING -->
 
 <section id="loading">
-<h3>Loading</h3>
-<h4>Lorem ipsum dolor sit amet</h4>
-<pre><code class="language-javascript">
+    <h3>Loading</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
 var loading = new phonepack.Loading({
     title: 'Dialog'      
 }).show();
@@ -31,12 +31,12 @@ setTimeout(function() {
 </pre>
 </section>
 
-<!-- NOTIFICATION --> 
+<!-- NOTIFICATION -->
 
 <section id="notification">
-<h3>Notification</h3>
-<h4>Lorem ipsum dolor sit amet</h4>
-<pre><code class="language-javascript">
+    <h3>Notification</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
 var notification = new phonepack.Notification();
 notification.simple('Warning message');
 notification.info('Warning message');
@@ -45,48 +45,49 @@ notification.warning('Warning message');
 notification.error('Warning message');</code></pre>
 </section>
 
-<!-- PAGES --> 
+<!-- PAGES -->
 
 <section id="navigation">
-<h3>Navigation</h3>
-<h4>Lorem ipsum dolor sit amet</h4>
-<pre><code class="language-javascript">
+    <h3>Navigation</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
 // Instance a new page class
 var navigation = new phonepack.Navigation(document.getElementById('pages'));
 
 // Push a new page into the DOM
-navigation.pushPage('example-page.html', doSomething);
-
-// Close the current page pushed in the DOM
-navigation.closeCurrentPage();
+navigation.pushPage('example-page.html', { paramObj: { foo: 'bar } }, doSomething);
 
 // Replace a new page in DOM
 navigation.changePage('example-page.html', doSomething);
 
-
-// Push a new page into the DOM
-navigation.pushPage('example-page.html', preRenderCallback, doSomething);
-
-// Recive the html template element into the first param (templateElement)
-// In second param, recive a function for render a element (render)
-function preRenderCallback(templateElement, render){
-    // callback call render element
-    render();
-}
-
 function doSomething(){
     // Callback page
 }
+
+// Close the current page pushed in the DOM
+navigation.closeCurrentPage();
+
+//Get page params
+var naviParams = navigation.getParams();
+console.log(naviParams.paramObj);
+
+/*
+    Output: 
+    {
+        foo: 'bar'
+    }
+*/
+
 </code>
 </pre>
 </section>
 
-<!-- PAGES --> 
+<!-- PAGES -->
 
 <section id="side-menu">
-<h3>Side Menu</h3>
-<h4>Lorem ipsum dolor sit amet</h4>
-<pre><code class="language-javascript">
+    <h3>Side Menu</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
 // Get menu element instance
 sideMenu = new phonepack.sideMenu(document.getElementById('side-menu'));
 
@@ -96,14 +97,29 @@ sideMenu.toggle();
 </pre>
 </section>
 
-<!-- DROPDOWN MENU --> 
+<!-- DROPDOWN MENU -->
 
 <section id="dropdown-menu">
-<h3>DropDown Menu</h3>
-<h4>Lorem ipsum dolor sit amet</h4>
-<pre><code class="language-javascript">
+    <h3>DropDown Menu</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
 document.querySelector('#open').addEventListener('click', function() {
     phonepack.DropDownMenu(this, document.getElementById('dropMenu'));
+});
+</code>
+</pre>
+</section>
+
+<!-- PULL TO REFRESH -->
+
+<section id="pull-to-refresh">
+    <h3>Pull to refresh (only mobile)</h3>
+    <h4>Lorem ipsum dolor sit amet</h4>
+    <pre><code class="language-javascript">
+var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), function(){
+    setTimeout(function(){
+        pullToRefresh.hide();
+    }, 5000);
 });
 </code>
 </pre>

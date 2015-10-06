@@ -1,0 +1,35 @@
+<% include ../partials/head %>
+  
+    <header class="header header--shadow text-black">
+      <div class="header__title">Pull to Refresh</div>
+    </header>
+    
+    <section class="content has-header">
+        <ul class="list">
+        </ul>
+    </section>
+    
+    <script>
+        
+        var list = document.querySelector('.list');
+        for(var i = 0; i < 10; i++) {
+            var listItem = document.createElement('li');
+            listItem.className = 'list__item';
+            listItem.innerHTML = i.toString();
+            list.appendChild(listItem);
+        }
+        
+        var pull = new phonepack.PullToRefresh(document.querySelector('.content'), function(){
+            setTimeout(function(){
+                var listItem = document.createElement('li');
+                listItem.className = 'list__item';
+                listItem.innerHTML = i++;
+                list.appendChild(listItem);
+                pull.hide();
+            }, 5000);
+        });
+        
+        
+    </script> 
+<% include ../partials/footer %>
+      
