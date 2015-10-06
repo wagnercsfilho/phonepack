@@ -728,7 +728,7 @@ var pullToRefresh = (function () {
 		self.element.addEventListener('touchmove', function (e) {
 			var touchobj = e.changedTouches[0];
 
-			if (self.element.offsetTop == self.top) {
+			if (self.element.offsetTop == self.top && self.element.scrollTop === 0) {
 				createLoding.call(self);
 			}
 
