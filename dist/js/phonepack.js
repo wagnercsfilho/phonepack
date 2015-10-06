@@ -690,18 +690,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function removeTransition() {
 	var self = this;
 
-	var handlerTransitionEnd = function handlerTransitionEnd() {
-		self.element.classList.remove('content--pull-to-refresh');
-	};
+	self.element.style.top = self.top + 'px';
+	self.loading.remove();
+}
 
-	self.element.addEventListener('webkitTransitionEnd', handlerTransitionEnd);
-	self.element.addEventListener('transitionend', handlerTransitionEnd);
+function createLoding() {
+	var self = this;
 
-	self.element.classList.add('content--pull-to-refresh');
-	setTimeout(function () {
-		self.element.style.transform = 'translateY(0px)';
-		self.loading.remove();
-	}, 20);
+	self.loading = document.createElement('div');
+	self.loading.style.position = 'absolute';
+	self.loading.style.left = '47%';
+	self.loading.style.top = self.top + 'px';
+	self.loading.zIndex = -1;
+	self.loading.className = 'spinner--pull-to-refresh';
+
+	self.element.parentNode.insertBefore(self.loading, self.element);
 }
 
 var pullToRefresh = (function () {
@@ -709,55 +712,47 @@ var pullToRefresh = (function () {
 		_classCallCheck(this, pullToRefresh);
 
 		var self = this,
-		    top,
-		    // left position of moving box
-		starty,
+		    starty,
 		    // starting x coordinate of touch point
 		dist = 0,
-		    endDist = 0,
-		    // distance traveled by touch point
-		touchobj;
+		    endDist = 0;
 
 		self.element = element;
-		top = self.element.offsetTop;
+		self.top = self.element.offsetTop;
 
 		self.element.addEventListener('touchstart', function (e) {
-
-			self.loading = document.createElement('div');
-			self.loading.style.position = 'absolute';
-			self.loading.style.left = '47%';
-			self.loading.style.top = top + 'px';
-			self.loading.zIndex = -1;
-			self.loading.className = 'spinner--pull-to-refresh';
-
-			self.element.parentNode.insertBefore(self.loading, self.element);
-
-			touchobj = e.changedTouches[0];
+			var touchobj = e.changedTouches[0];
 			starty = parseInt(touchobj.clientY);
-			e.preventDefault();
 		}, false);
 
 		self.element.addEventListener('touchmove', function (e) {
-			touchobj = e.changedTouches[0];
-			dist = parseInt(touchobj.clientY) - starty;
-			self.element.style.transform = 'translateY(' + dist + 'px)';
-			self.loading.style.transform = 'rotate(' + dist * 3 + 'deg)';
-			e.preventDefault();
+			var touchobj = e.changedTouches[0];
+
+			if (self.element.offsetTop == self.top) {
+				createLoding.call(self);
+			}
+
+			if (parseInt(touchobj.clientY) >= starty && self.element.scrollTop === 0) {
+				dist = parseInt(touchobj.clientY) - starty;
+				self.element.style.top = self.top + dist + 'px';
+				self.loading.style.transform = 'rotate(' + dist * 3 + 'deg)';
+			}
 		}, false);
 
 		self.element.addEventListener('touchend', function (e) {
+			var touchobj = e.changedTouches[0];
+			endDist = touchobj.clientY;
 
-			endDist = e.changedTouches[0].clientY;
-			if (endDist - starty >= 50) {
-				self.element.style.transform = 'translateY(40px)';
-				self.loading.style.animation = 'rotate 0.9s infinite linear';
-				callback();
-				return;
+			if (self.element.scrollTop === 0) {
+				if (endDist - starty >= 50) {
+					self.element.style.top = self.top + 40 + 'px';
+					self.loading.style.animation = 'rotate 0.9s infinite linear';
+					callback();
+					return;
+				}
 			}
 
 			removeTransition.call(self);
-
-			e.preventDefault();
 		}, false);
 	}
 

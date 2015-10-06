@@ -6,8 +6,7 @@
   right: 0;
   bottom: 0;  
   overflow-y: auto; 
-  -webkit-overflow-scrolling: touch;
-  
+
   &.content--pull-to-refresh{
     transition: transform 0.2s ease-in-out;
   }
