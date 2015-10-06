@@ -716,29 +716,25 @@ var pullToRefresh = (function () {
 		dist = 0,
 		    endDist = 0,
 		    // distance traveled by touch point
-		touchobj,
-		    spinner;
+		touchobj;
 
-		self.started = false;
 		self.element = element;
 		top = self.element.offsetTop;
 
 		self.element.addEventListener('touchstart', function (e) {
 
-			if (!self.started) {
-				self.loading = document.createElement('div');
-				self.loading.style.position = 'absolute';
-				self.loading.style.left = '47%';
-				self.loading.style.top = top + 'px';
-				self.loading.zIndex = -1;
-				self.loading.className = 'spinner--pull-to-refresh';
+			self.loading = document.createElement('div');
+			self.loading.style.position = 'absolute';
+			self.loading.style.left = '47%';
+			self.loading.style.top = top + 'px';
+			self.loading.zIndex = -1;
+			self.loading.className = 'spinner--pull-to-refresh';
 
-				self.element.parentNode.insertBefore(self.loading, self.element);
+			self.element.parentNode.insertBefore(self.loading, self.element);
 
-				touchobj = e.changedTouches[0];
-				starty = parseInt(touchobj.clientY);
-				e.preventDefault();
-			}
+			touchobj = e.changedTouches[0];
+			starty = parseInt(touchobj.clientY);
+			e.preventDefault();
 		}, false);
 
 		self.element.addEventListener('touchmove', function (e) {
@@ -747,8 +743,6 @@ var pullToRefresh = (function () {
 			self.element.style.transform = 'translateY(' + dist + 'px)';
 			self.loading.style.transform = 'rotate(' + dist * 3 + 'deg)';
 			e.preventDefault();
-
-			self.started = true;
 		}, false);
 
 		self.element.addEventListener('touchend', function (e) {
@@ -772,7 +766,6 @@ var pullToRefresh = (function () {
 		value: function hide() {
 			var self = this;
 			removeTransition.call(self);
-			self.started = false;
 		}
 	}]);
 
