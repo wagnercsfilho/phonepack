@@ -1,14 +1,8 @@
-function removeTransition() {
+import $ from '../utils/dom';
+
+function createLoading() {
 	var self = this;
 
-	self.element.style.top = self.top + 'px';
-	self.loading.remove();
-
-}
-
-function createLoding() {
-	var self = this;
-	
 	self.loading = document.createElement('div');
 	self.loading.style.position = 'absolute';
 	self.loading.style.left = '47%';
@@ -22,59 +16,52 @@ function createLoding() {
 class pullToRefresh {
 
 	constructor(element, callback) {
-
-		var self = this,
-			starty, // starting x coordinate of touch point
-			dist = 0,
-			endDist = 0;
-
+		var self = this;
+		var moveDistance = null;
+		self.loading = null;
 		self.element = element;
 		self.top = self.element.offsetTop;
+		
+		createLoading.call(self);
 
-		self.element.addEventListener('touchstart', function(e) {
-			var touchobj = e.changedTouches[0];
-			starty = parseInt(touchobj.clientY);
-
-		}, false);
-
-		self.element.addEventListener('touchmove', function(e) {
-			var touchobj = e.changedTouches[0];
+		$(self.element).touch(function(evt, dir, phase, swipetype, distance) {
 			
-			if (self.element.offsetTop == self.top && self.element.scrollTop === 0){
-				createLoding.call(self);
-			}
-			
-
-			if (parseInt(touchobj.clientY) >= starty && self.element.scrollTop === 0) {
-				dist = parseInt(touchobj.clientY) - starty;
-				self.element.style.top = self.top + dist + 'px';
-				self.loading.style.transform = 'rotate(' + dist * 3 + 'deg)';
+			if (dir === 'down' && self.element.scrollTop === 0) {
+				if (!moveDistance) moveDistance = distance;
+				self.element.style.transform = 'translateY(' + (distance - moveDistance) + 'px)';
+				self.loading.style.transform = 'rotate('+ distance +'deg)';
+				evt.preventDefault();
 			}
 
-		}, false);
+			if (dir === 'down' && phase === 'end' && self.element.scrollTop === 0) {
 
-		self.element.addEventListener('touchend', function(e) {
-			var touchobj = e.changedTouches[0];
-			endDist = touchobj.clientY;
-
-			if (self.element.scrollTop === 0) {
-				if ((endDist - starty) >= 50) {
-					self.element.style.top = self.top + 40 + 'px';
-					self.loading.style.animation = 'rotate 0.9s infinite linear';
+				if (distance >= 50) {
+					self.element.style.transform = 'translateY(50px)';
+					self.loading.style.animation = 'rotate 0.8s infinite linear';
 					callback();
-					return;
 				}
+				else {
+					self.element.style.transform = 'translateY(0)';
+					self.loading.style.animation = null;
+				}
+				
+				moveDistance = null;
+
 			}
+			
+			if (phase === 'cancel' && self.element.scrollTop === 0){
+				self.element.style.transform = 'translateY(0)';
+				self.loading.style.animation = null;
+				moveDistance = null;
+			}
+		});
 
-			removeTransition.call(self);
-
-
-		}, false);
 	}
 
 	hide() {
 		var self = this;
-		removeTransition.call(self);
+		self.element.style.transform = 'translateY(0)';
+		self.loading.style.animation = null;
 	}
 }
 

@@ -7115,6 +7115,7 @@ input[type="checkbox"], input[type="radio"] {
           justify-content: center;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .list .list__item .list__content .list__caption {
@@ -7783,6 +7784,39 @@ button[disabled], html input[disabled] {
   }
 }
 
+.spinner--infinite-scroll {
+  height: 28px;
+  width: 28px;
+  border: 5px solid #4285F4;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: rotatoIS 0.8s infinite linear;
+          animation: rotatoIS 0.8s infinite linear;
+  margin: 0 auto;
+}
+
+@-webkit-keyframes rotatoIS {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotatoIS {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 .loading-filter {
   position: fixed;
   top: 0;
@@ -8116,4 +8150,18 @@ button[disabled], html input[disabled] {
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
   border: none;
+}
+
+.infinite-scroll-loading {
+  display: none;
+  text-align: center;
+  padding: 5px 0;
+  opacity: 0;
+  -webkit-transition: opacity 1s ease;
+          transition: opacity 1s ease;
+}
+
+.infinite-scroll-loading.is-shown {
+  opacity: 1;
+  display: block;
 }

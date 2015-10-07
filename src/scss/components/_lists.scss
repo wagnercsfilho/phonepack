@@ -52,6 +52,7 @@
       justify-content: center;
       text-overflow: ellipsis;
       white-space: nowrap;
+      overflow: hidden;
       
       .list__caption {
         font-size: 14px;

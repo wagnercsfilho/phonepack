@@ -57,3 +57,18 @@ $duration: 1.4s;
   75% { border-color: #1B9A59; border-right-color: transparent; }
   100%  { transform: rotate(360deg); border-color: #4285F4; border-right-color: transparent; }
 }
+
+.spinner--infinite-scroll {
+  height: 28px;
+  width: 28px;
+  border: 5px solid #4285F4;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: rotatoIS 0.8s infinite linear;
+  margin: 0 auto;
+}
+
+@keyframes rotatoIS {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

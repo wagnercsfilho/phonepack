@@ -69,7 +69,7 @@ var Buttons = (function () {
 exports['default'] = Buttons;
 module.exports = exports['default'];
 
-},{"../utils/dom":11}],2:[function(require,module,exports){
+},{"../utils/dom":12}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -211,7 +211,7 @@ var Dialog = (function () {
 exports['default'] = Dialog;
 module.exports = exports['default'];
 
-},{"../utils/utils":12}],3:[function(require,module,exports){
+},{"../utils/utils":13}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -262,7 +262,65 @@ function DropDownMenu(element, elMenu) {
 exports['default'] = DropDownMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":12}],4:[function(require,module,exports){
+},{"../utils/utils":13}],4:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var _utilsUtils = require('../utils/utils');
+
+var _utilsUtils2 = _interopRequireDefault(_utilsUtils);
+
+var InfiniteScroll = (function () {
+    function InfiniteScroll(element, options, callback) {
+        _classCallCheck(this, InfiniteScroll);
+
+        var self = this;
+        var _options = {
+            distance: 0
+        };
+
+        self.options = _utilsUtils2['default'].extend({}, _options, options);
+        self.isShown = false;
+
+        self.loadEl = document.createElement('div');
+        self.loadEl.className = 'infinite-scroll-loading';
+        self.loadEl.innerHTML = '<div class="spinner--infinite-scroll"></div>';
+        element.appendChild(self.loadEl);
+
+        element.addEventListener('scroll', function (e) {
+
+            if (element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance && !self.isShown) {
+                self.loadEl.classList.add('is-shown');
+                self.isShown = true;
+                callback();
+            }
+        }, false);
+    }
+
+    _createClass(InfiniteScroll, [{
+        key: 'hide',
+        value: function hide() {
+            this.loadEl.classList.remove('is-shown');
+            this.isShown = false;
+        }
+    }]);
+
+    return InfiniteScroll;
+})();
+
+exports['default'] = InfiniteScroll;
+module.exports = exports['default'];
+
+},{"../utils/utils":13}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -374,7 +432,7 @@ var Loading = (function () {
 exports['default'] = Loading;
 module.exports = exports['default'];
 
-},{"../utils/utils":12}],5:[function(require,module,exports){
+},{"../utils/utils":13}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -528,7 +586,7 @@ var Navigation = (function () {
 exports['default'] = Navigation;
 module.exports = exports['default'];
 
-},{"../utils/utils":12}],6:[function(require,module,exports){
+},{"../utils/utils":13}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -676,7 +734,7 @@ var Notification = (function () {
 exports['default'] = Notification;
 module.exports = exports['default'];
 
-},{"../utils/utils":12}],7:[function(require,module,exports){
+},{"../utils/utils":13}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -685,16 +743,15 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-function removeTransition() {
-	var self = this;
+var _utilsDom = require('../utils/dom');
 
-	self.element.style.top = self.top + 'px';
-	self.loading.remove();
-}
+var _utilsDom2 = _interopRequireDefault(_utilsDom);
 
-function createLoding() {
+function createLoading() {
 	var self = this;
 
 	self.loading = document.createElement('div');
@@ -711,56 +768,51 @@ var pullToRefresh = (function () {
 	function pullToRefresh(element, callback) {
 		_classCallCheck(this, pullToRefresh);
 
-		var self = this,
-		    starty,
-		    // starting x coordinate of touch point
-		dist = 0,
-		    endDist = 0;
-
+		var self = this;
+		var moveDistance = null;
+		self.loading = null;
 		self.element = element;
 		self.top = self.element.offsetTop;
 
-		self.element.addEventListener('touchstart', function (e) {
-			var touchobj = e.changedTouches[0];
-			starty = parseInt(touchobj.clientY);
-		}, false);
+		createLoading.call(self);
 
-		self.element.addEventListener('touchmove', function (e) {
-			var touchobj = e.changedTouches[0];
+		(0, _utilsDom2['default'])(self.element).touch(function (evt, dir, phase, swipetype, distance) {
 
-			if (self.element.offsetTop == self.top && self.element.scrollTop === 0) {
-				createLoding.call(self);
+			if (dir === 'down' && self.element.scrollTop === 0) {
+				if (!moveDistance) moveDistance = distance;
+				self.element.style.transform = 'translateY(' + (distance - moveDistance) + 'px)';
+				self.loading.style.transform = 'rotate(' + distance + 'deg)';
+				evt.preventDefault();
 			}
 
-			if (parseInt(touchobj.clientY) >= starty && self.element.scrollTop === 0) {
-				dist = parseInt(touchobj.clientY) - starty;
-				self.element.style.top = self.top + dist + 'px';
-				self.loading.style.transform = 'rotate(' + dist * 3 + 'deg)';
-			}
-		}, false);
+			if (dir === 'down' && phase === 'end' && self.element.scrollTop === 0) {
 
-		self.element.addEventListener('touchend', function (e) {
-			var touchobj = e.changedTouches[0];
-			endDist = touchobj.clientY;
-
-			if (self.element.scrollTop === 0) {
-				if (endDist - starty >= 50) {
-					self.element.style.top = self.top + 40 + 'px';
-					self.loading.style.animation = 'rotate 0.9s infinite linear';
+				if (distance >= 50) {
+					self.element.style.transform = 'translateY(50px)';
+					self.loading.style.animation = 'rotate 0.8s infinite linear';
 					callback();
-					return;
+				} else {
+					self.element.style.transform = 'translateY(0)';
+					self.loading.style.animation = null;
 				}
+
+				moveDistance = null;
 			}
 
-			removeTransition.call(self);
-		}, false);
+			if (phase === 'cancel' && self.element.scrollTop === 0) {
+				self.element.style.transform = 'translateY(0)';
+				self.loading.style.animation = null;
+				moveDistance = null;
+			}
+		});
 	}
 
 	_createClass(pullToRefresh, [{
 		key: 'hide',
 		value: function hide() {
 			var self = this;
-			removeTransition.call(self);
+			self.element.style.transform = 'translateY(0)';
+			self.loading.style.animation = null;
 		}
 	}]);
 
@@ -770,7 +822,7 @@ var pullToRefresh = (function () {
 exports['default'] = pullToRefresh;
 module.exports = exports['default'];
 
-},{}],8:[function(require,module,exports){
+},{"../utils/dom":12}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -842,7 +894,7 @@ var SideMenu = (function () {
 exports['default'] = SideMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":12}],9:[function(require,module,exports){
+},{"../utils/utils":13}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -884,7 +936,7 @@ var TabBar = function TabBar(element) {
 exports['default'] = TabBar;
 module.exports = exports['default'];
 
-},{"../utils/dom":11}],10:[function(require,module,exports){
+},{"../utils/dom":12}],11:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -929,6 +981,10 @@ var _componentsTabBarJs = require('./components/tab-bar.js');
 
 var _componentsTabBarJs2 = _interopRequireDefault(_componentsTabBarJs);
 
+var _componentsInfiniteScrollJs = require('./components/infinite-scroll.js');
+
+var _componentsInfiniteScrollJs2 = _interopRequireDefault(_componentsInfiniteScrollJs);
+
 var phonepack = function phonepack(selector) {
 	return (0, _utilsDom2['default'])(selector);
 };
@@ -941,6 +997,7 @@ phonepack.Dialog = _componentsDialog2['default'];
 phonepack.Loading = _componentsLoading2['default'];
 phonepack.Notification = _componentsNotification2['default'];
 phonepack.TabBar = _componentsTabBarJs2['default'];
+phonepack.InfiniteScroll = _componentsInfiniteScrollJs2['default'];
 
 phonepack.ready = function (callback) {
 	document.addEventListener('DOMContentLoaded', function () {
@@ -950,7 +1007,7 @@ phonepack.ready = function (callback) {
 
 module.exports = phonepack;
 
-},{"./components/button":1,"./components/dialog":2,"./components/dropdown-menu":3,"./components/loading":4,"./components/navigation":5,"./components/notification":6,"./components/pull-to-refresh":7,"./components/side-menu":8,"./components/tab-bar.js":9,"./utils/dom":11}],11:[function(require,module,exports){
+},{"./components/button":1,"./components/dialog":2,"./components/dropdown-menu":3,"./components/infinite-scroll.js":4,"./components/loading":5,"./components/navigation":6,"./components/notification":7,"./components/pull-to-refresh":8,"./components/side-menu":9,"./components/tab-bar.js":10,"./utils/dom":12}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1180,6 +1237,90 @@ var DOM = (function () {
 			value: function closest(selector) {
 				return _closest(this.element[0], selector);
 			}
+		}, {
+			key: 'touch',
+			value: function touch(callback) {
+				if (isArray(this.elements)) {
+					[].forEach.call(this.elements, function (el) {
+						handlerTouch(el);
+					});
+				} else {
+					handlerTouch(this.elements);
+				}
+
+				function handlerTouch(el) {
+					var touchsurface = el,
+					    dir,
+					    swipeType,
+					    startX,
+					    startY,
+					    distX,
+					    distY,
+					    dist,
+					    threshold = 150,
+					    //required min distance traveled to be considered swipe
+					restraint = 100,
+					    // maximum distance allowed at the same time in perpendicular direction
+					allowedTime = 500,
+					    // maximum time allowed to travel that distance
+					elapsedTime,
+					    startTime,
+					    handletouch = callback || function (evt, dir, phase, swipetype, distance) {};
+
+					touchsurface.addEventListener('touchstart', function (e) {
+						var touchobj = e.changedTouches[0];
+						dir = 'none';
+						swipeType = 'none';
+						dist = 0;
+						startX = touchobj.pageX;
+						startY = touchobj.pageY;
+						startTime = new Date().getTime(); // record time when finger first makes contact with surface
+						handletouch(e, 'none', 'start', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
+						//e.preventDefault();
+					}, false);
+
+					touchsurface.addEventListener('touchmove', function (e) {
+						var touchobj = e.changedTouches[0];
+						distX = touchobj.pageX - startX; // get horizontal dist traveled by finger while in contact with surface
+						distY = touchobj.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+						if (Math.abs(distX) > Math.abs(distY)) {
+							// if distance traveled horizontally is greater than vertically, consider this a horizontal movement
+							dir = distX < 0 ? 'left' : 'right';
+							handletouch(e, dir, 'move', swipeType, distX); // fire callback function with params dir="left|right", phase="move", swipetype="none" etc
+						} else {
+								// else consider this a vertical movement
+								dir = distY < 0 ? 'up' : 'down';
+								handletouch(e, dir, 'move', swipeType, distY); // fire callback function with params dir="up|down", phase="move", swipetype="none" etc
+							}
+						// e.preventDefault(); // prevent scrolling when inside DIV
+					}, false);
+
+					touchsurface.addEventListener('touchend', function (e) {
+						var touchobj = e.changedTouches[0];
+						elapsedTime = new Date().getTime() - startTime; // get time elapsed
+						if (elapsedTime <= allowedTime) {
+							// first condition for awipe met
+							if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint) {
+								// 2nd condition for horizontal swipe met
+								swipeType = dir; // set swipeType to either "left" or "right"
+							} else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint) {
+									// 2nd condition for vertical swipe met
+									swipeType = dir; // set swipeType to either "top" or "down"
+								}
+						}
+						// Fire callback function with params dir="left|right|up|down", phase="end", swipetype=dir etc:
+						handletouch(e, dir, 'end', swipeType, dir == 'left' || dir == 'right' ? distX : distY);
+						//e.preventDefault();
+					}, false);
+
+					touchsurface.addEventListener('touchcancel', function (e) {
+						var touchobj = e.changedTouches[0];
+						dir = 'none';
+						swipeType = 'none';
+						handletouch(e, 'none', 'cancel', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
+					}, false);
+				}
+			}
 		}]);
 
 		return DOM;
@@ -1195,7 +1336,7 @@ var DOM = (function () {
 exports['default'] = DOM;
 module.exports = exports['default'];
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1229,5 +1370,5 @@ exports["default"] = {
 };
 module.exports = exports["default"];
 
-},{}]},{},[10])(10)
+},{}]},{},[11])(11)
 });

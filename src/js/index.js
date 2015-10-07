@@ -8,6 +8,7 @@ import Dialog from './components/dialog';
 import Loading from './components/loading';
 import Notification from './components/notification';
 import TabBar from './components/tab-bar.js';
+import InfiniteScroll from './components/infinite-scroll.js';
 
 var phonepack = function(selector) {
 	return DOM(selector);
@@ -21,6 +22,7 @@ phonepack.Dialog = Dialog;
 phonepack.Loading = Loading;
 phonepack.Notification = Notification;
 phonepack.TabBar = TabBar;
+phonepack.InfiniteScroll = InfiniteScroll;
 
 phonepack.ready = function(callback) {
 	document.addEventListener('DOMContentLoaded', function() {
