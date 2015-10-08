@@ -1,4 +1,5 @@
- $min-height: 56px;
+ $height: 56px;
+ $subHeader: 48px;
  
 .header {
   display: flex;
@@ -6,7 +7,7 @@
   position: absolute;
   top: 0;
   z-index: 5;
-  min-height: $min-height;
+  min-height: $height;
   background: $white;
   align-items: center;
   flex-wrap: nowrap;
@@ -55,14 +56,37 @@
     background: transparent !important;
   }
   
+  &.header--shrink{
+    transform: translateY(0);
+    transition: transform 0.2s ease;
+  } 
+  
+  &.header--shrink-hide{
+    transform: translateY(-100%);
+  }
+  
+  &.header--shrink-hide ~ .content{
+    top: $height;
+  }
+  
+  &.header--shrink-hide ~ .sub-header{
+    top: 0px;
+  }
+  
+  &.header--shrink-hide ~ .sub-header ~ .content{
+    top: 48px;
+  }
+  
 }
 
 .sub-header{
     position: absolute;
-    top: 56px;
+    top: $height;
     left: 0;
     right: 0;
-    height: 48px;
+    height: $subHeader;
+    transition: top 0.2s ease;
+    z-index: 1;
 }
 
 .header.header--shadow, .sub-header.header--shadow{

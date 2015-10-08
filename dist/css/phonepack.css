@@ -5504,8 +5504,35 @@ th {
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url(../fonts/Roboto-Light.ttf) format("truetype");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
   font-weight: 400;
   src: local("Roboto"), local("Roboto-Regular"), url(../fonts/Roboto-Regular.ttf) format("truetype");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url(../fonts/Roboto-Medium.ttf) format("truetype");
+  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
+}
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Bold"), local("Roboto-Bold"), url(../fonts/Roboto-Bold.ttf) format("truetype");
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
 }
 
@@ -6448,12 +6475,41 @@ input[type="checkbox"], input[type="radio"] {
   background: transparent !important;
 }
 
+.header.header--shrink {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: -webkit-transform 0.2s ease;
+          transition: transform 0.2s ease;
+}
+
+.header.header--shrink-hide {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+.header.header--shrink-hide ~ .content {
+  top: 56px;
+}
+
+.header.header--shrink-hide ~ .sub-header {
+  top: 0px;
+}
+
+.header.header--shrink-hide ~ .sub-header ~ .content {
+  top: 48px;
+}
+
 .sub-header {
   position: absolute;
   top: 56px;
   left: 0;
   right: 0;
   height: 48px;
+  -webkit-transition: top 0.2s ease;
+          transition: top 0.2s ease;
+  z-index: 1;
 }
 
 .header.header--shadow, .sub-header.header--shadow {
@@ -7728,6 +7784,11 @@ button[disabled], html input[disabled] {
           transform: rotate(0deg);
   -webkit-transition: rotate 0.2s;
           transition: rotate 0.2s;
+  display: none;
+}
+
+.spinner--pull-to-refresh.is-shown {
+  display: block;
 }
 
 @-webkit-keyframes rotate {

@@ -79,6 +79,10 @@ gulp.task('browserify-watch', function() {
 	browserifyShare(true);
 });
 
+gulp.task('browserify', function() {
+	browserifyShare(false);
+});
+
 function browserifyShare(watch) {
 	var b = browserify({
 		cache: {},
@@ -87,10 +91,10 @@ function browserifyShare(watch) {
 		notify: false,
 		//debug: true,
 		standalone: config.pluginName
-	});
+	}).transform(babel);
 
 	if (watch) {
-		b = watchify(b).transform(babel);
+		b = watchify(b);
 		b.on('update', function() {
 			bundleShare(b);
 		});

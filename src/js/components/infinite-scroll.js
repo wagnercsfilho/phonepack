@@ -18,7 +18,7 @@ class InfiniteScroll {
 
         element.addEventListener('scroll', function(e) {
 
-            if (element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance && (!self.isShown)) {
+            if ((element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance) && (!self.isShown)) {
                 self.loadEl.classList.add('is-shown');
                 self.isShown = true; 
                 callback();

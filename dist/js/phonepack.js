@@ -69,7 +69,7 @@ var Buttons = (function () {
 exports['default'] = Buttons;
 module.exports = exports['default'];
 
-},{"../utils/dom":12}],2:[function(require,module,exports){
+},{"../utils/dom":13}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -211,7 +211,7 @@ var Dialog = (function () {
 exports['default'] = Dialog;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],3:[function(require,module,exports){
+},{"../utils/utils":14}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -262,7 +262,7 @@ function DropDownMenu(element, elMenu) {
 exports['default'] = DropDownMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],4:[function(require,module,exports){
+},{"../utils/utils":14}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -320,7 +320,7 @@ var InfiniteScroll = (function () {
 exports['default'] = InfiniteScroll;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],5:[function(require,module,exports){
+},{"../utils/utils":14}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -432,7 +432,7 @@ var Loading = (function () {
 exports['default'] = Loading;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],6:[function(require,module,exports){
+},{"../utils/utils":14}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -586,7 +586,7 @@ var Navigation = (function () {
 exports['default'] = Navigation;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],7:[function(require,module,exports){
+},{"../utils/utils":14}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -734,7 +734,7 @@ var Notification = (function () {
 exports['default'] = Notification;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],8:[function(require,module,exports){
+},{"../utils/utils":14}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -781,6 +781,7 @@ var pullToRefresh = (function () {
 			if (dir === 'down' && self.element.scrollTop === 0) {
 				if (!moveDistance) moveDistance = distance;
 				self.element.style.transform = 'translateY(' + (distance - moveDistance) + 'px)';
+				self.loading.classList.add('is-shown');
 				self.loading.style.transform = 'rotate(' + distance + 'deg)';
 				evt.preventDefault();
 			}
@@ -794,6 +795,7 @@ var pullToRefresh = (function () {
 				} else {
 					self.element.style.transform = 'translateY(0)';
 					self.loading.style.animation = null;
+					self.loading.classList.remove('is-shown');
 				}
 
 				moveDistance = null;
@@ -802,6 +804,7 @@ var pullToRefresh = (function () {
 			if (phase === 'cancel' && self.element.scrollTop === 0) {
 				self.element.style.transform = 'translateY(0)';
 				self.loading.style.animation = null;
+				self.loading.classList.remove('is-shown');
 				moveDistance = null;
 			}
 		});
@@ -812,6 +815,7 @@ var pullToRefresh = (function () {
 		value: function hide() {
 			var self = this;
 			self.element.style.transform = 'translateY(0)';
+			self.loading.classList.remove('is-shown');
 			self.loading.style.animation = null;
 		}
 	}]);
@@ -822,7 +826,41 @@ var pullToRefresh = (function () {
 exports['default'] = pullToRefresh;
 module.exports = exports['default'];
 
-},{"../utils/dom":12}],9:[function(require,module,exports){
+},{"../utils/dom":13}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+exports['default'] = shrinkHeader;
+
+function shrinkHeader(element) {
+    var _content = document.querySelectorAll('.content');
+    var _lastScrollTop = 0;
+    var _subHeader = document.querySelector('.sub-header');
+
+    element.classList.add('header--shrink');
+
+    [].forEach.call(_content, function (el) {
+        el.addEventListener('scroll', handlerScroll);
+    });
+
+    function handlerScroll(e) {
+        var _el = e.target;
+        var _st = _el.scrollTop;
+
+        if (_st > _lastScrollTop) {
+            element.classList.add('header--shrink-hide');
+        } else {
+            element.classList.remove('header--shrink-hide');
+        }
+        _lastScrollTop = _st;
+    }
+}
+
+module.exports = exports['default'];
+
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -894,7 +932,7 @@ var SideMenu = (function () {
 exports['default'] = SideMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":13}],10:[function(require,module,exports){
+},{"../utils/utils":14}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -936,7 +974,7 @@ var TabBar = function TabBar(element) {
 exports['default'] = TabBar;
 module.exports = exports['default'];
 
-},{"../utils/dom":12}],11:[function(require,module,exports){
+},{"../utils/dom":13}],12:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -985,6 +1023,10 @@ var _componentsInfiniteScrollJs = require('./components/infinite-scroll.js');
 
 var _componentsInfiniteScrollJs2 = _interopRequireDefault(_componentsInfiniteScrollJs);
 
+var _componentsShrinkHeaderJs = require('./components/shrink-header.js');
+
+var _componentsShrinkHeaderJs2 = _interopRequireDefault(_componentsShrinkHeaderJs);
+
 var phonepack = function phonepack(selector) {
 	return (0, _utilsDom2['default'])(selector);
 };
@@ -998,6 +1040,7 @@ phonepack.Loading = _componentsLoading2['default'];
 phonepack.Notification = _componentsNotification2['default'];
 phonepack.TabBar = _componentsTabBarJs2['default'];
 phonepack.InfiniteScroll = _componentsInfiniteScrollJs2['default'];
+phonepack.shrinkHeader = _componentsShrinkHeaderJs2['default'];
 
 phonepack.ready = function (callback) {
 	document.addEventListener('DOMContentLoaded', function () {
@@ -1007,7 +1050,7 @@ phonepack.ready = function (callback) {
 
 module.exports = phonepack;
 
-},{"./components/button":1,"./components/dialog":2,"./components/dropdown-menu":3,"./components/infinite-scroll.js":4,"./components/loading":5,"./components/navigation":6,"./components/notification":7,"./components/pull-to-refresh":8,"./components/side-menu":9,"./components/tab-bar.js":10,"./utils/dom":12}],12:[function(require,module,exports){
+},{"./components/button":1,"./components/dialog":2,"./components/dropdown-menu":3,"./components/infinite-scroll.js":4,"./components/loading":5,"./components/navigation":6,"./components/notification":7,"./components/pull-to-refresh":8,"./components/shrink-header.js":9,"./components/side-menu":10,"./components/tab-bar.js":11,"./utils/dom":13}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1336,7 +1379,7 @@ var DOM = (function () {
 exports['default'] = DOM;
 module.exports = exports['default'];
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1370,5 +1413,5 @@ exports["default"] = {
 };
 module.exports = exports["default"];
 
-},{}]},{},[11])(11)
+},{}]},{},[12])(12)
 });

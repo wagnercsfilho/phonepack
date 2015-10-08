@@ -29,6 +29,7 @@ class pullToRefresh {
 			if (dir === 'down' && self.element.scrollTop === 0) {
 				if (!moveDistance) moveDistance = distance;
 				self.element.style.transform = 'translateY(' + (distance - moveDistance) + 'px)';
+				self.loading.classList.add('is-shown');
 				self.loading.style.transform = 'rotate('+ distance +'deg)';
 				evt.preventDefault();
 			}
@@ -43,6 +44,7 @@ class pullToRefresh {
 				else {
 					self.element.style.transform = 'translateY(0)';
 					self.loading.style.animation = null;
+					self.loading.classList.remove('is-shown');
 				}
 				
 				moveDistance = null;
@@ -52,6 +54,7 @@ class pullToRefresh {
 			if (phase === 'cancel' && self.element.scrollTop === 0){
 				self.element.style.transform = 'translateY(0)';
 				self.loading.style.animation = null;
+				self.loading.classList.remove('is-shown');
 				moveDistance = null;
 			}
 		});
@@ -61,6 +64,7 @@ class pullToRefresh {
 	hide() {
 		var self = this;
 		self.element.style.transform = 'translateY(0)';
+		self.loading.classList.remove('is-shown');
 		self.loading.style.animation = null;
 	}
 }

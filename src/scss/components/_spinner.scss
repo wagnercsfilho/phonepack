@@ -48,7 +48,13 @@ $duration: 1.4s;
   border-radius: 50%;
   transform: rotate(0deg);
   transition: rotate 0.2s;
+  display: none;
+  
+  &.is-shown{
+    display: block;
+  }
 }
+
 
 @keyframes rotate {
   0%    { transform: rotate(0deg); border-color: #4285F4; border-right-color: transparent; }
