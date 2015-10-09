@@ -209,7 +209,7 @@ var DOM = (function() {
 				handlerTouch(this.elements);
 			}
 
-			function handlerTouch (el) {
+			function handlerTouch(el) {
 				var touchsurface = el,
 					dir,
 					swipeType,
@@ -275,6 +275,46 @@ var DOM = (function() {
 					swipeType = 'none';
 					handletouch(e, 'none', 'cancel', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
 				}, false);
+				
+				touchsurface.addEventListener('touchleave', function(e) {
+					var touchobj = e.changedTouches[0];
+					dir = 'none';
+					swipeType = 'none';
+					handletouch(e, 'none', 'leave', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
+				}, false);
+			}
+		}
+
+		style(styleProp) {
+			var el = this.elements[0] || this.elements;
+			var value, defaultView = (el.ownerDocument || document).defaultView;
+			// W3C standard way:
+			if (defaultView && defaultView.getComputedStyle) {
+				// sanitize property name to css notation
+				// (hypen separated words eg. font-Size)
+				styleProp = styleProp.replace(/([A-Z])/g, "-$1").toLowerCase();
+				return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+			}
+			else if (el.currentStyle) { // IE
+				// sanitize property name to camelCase
+				styleProp = styleProp.replace(/\-(\w)/g, function(str, letter) {
+					return letter.toUpperCase();
+				});
+				value = el.currentStyle[styleProp];
+				// convert other units to pixels on IE
+				if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
+					return (function(value) {
+						var oldLeft = el.style.left,
+							oldRsLeft = el.runtimeStyle.left;
+						el.runtimeStyle.left = el.currentStyle.left;
+						el.style.left = value || 0;
+						value = el.style.pixelLeft + "px";
+						el.style.left = oldLeft;
+						el.runtimeStyle.left = oldRsLeft;
+						return value;
+					})(value);
+				}
+				return value;
 			}
 		}
 	}

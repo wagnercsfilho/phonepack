@@ -1,0 +1,32 @@
+.infinite-scroll-loading{
+    display: none;
+    text-align: center;
+    padding: 5px 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+    
+    
+    &.is-shown{
+        opacity: 1;
+        display: block;
+    }
+}
+
+.spinner--infinite-scroll {
+    height: 28px;
+    width: 28px;
+    border: 5px solid #4285F4;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: rotatoIS 0.8s infinite linear;
+    margin: 0 auto;
+}
+
+@keyframes rotatoIS {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

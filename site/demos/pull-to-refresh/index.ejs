@@ -19,7 +19,7 @@
             list.appendChild(listItem);
         }
         
-        var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), function(){
+        var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), { type: 'snake' }, function(){
             setTimeout(function(){
                 var listItem = document.createElement('li');
                 listItem.className = 'list__item';

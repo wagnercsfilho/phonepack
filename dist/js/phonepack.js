@@ -466,7 +466,7 @@ function renderPage(template, callback) {
 		if (eventEmitter.afterPush) eventEmitter.afterPush(template);
 
 		if (callback) callback();
-	}, 25);
+	}, 50);
 }
 
 var Navigation = (function () {
@@ -751,61 +751,127 @@ var _utilsDom = require('../utils/dom');
 
 var _utilsDom2 = _interopRequireDefault(_utilsDom);
 
+var _utilsUtils = require('../utils/utils');
+
+var _utilsUtils2 = _interopRequireDefault(_utilsUtils);
+
+function setTransform(element, value) {
+	element.style.webkitTransform = value;
+	element.style.MozTransform = value;
+	element.style.msTransform = value;
+	element.style.OTransform = value;
+	element.style.transform = value;
+}
+
+function setAnimation(element, value) {
+	element.style.webkitAnimation = value;
+	element.style.MozAnimation = value;
+	element.style.msAnimation = value;
+	element.style.OAnimation = value;
+	element.style.animation = value;
+}
+
 function createLoading() {
 	var self = this;
 
 	self.loading = document.createElement('div');
 	self.loading.style.position = 'absolute';
-	self.loading.style.left = '47%';
-	self.loading.style.top = self.top + 'px';
+	self.loading.style.top = self.top;
 	self.loading.zIndex = -1;
-	self.loading.className = 'spinner--pull-to-refresh';
+
+	if (self.options.type === 'snake') {
+		self.loading.style.left = '47%';
+		self.loading.className = 'snake--pull-to-refresh';
+	} else if (self.options.type === 'material') {
+		self.loading.className = 'material--pull-to-refresh';
+		var child = document.createElement('div');
+		child.className = 'bar';
+		self.loading.appendChild(child);
+	}
 
 	self.element.parentNode.insertBefore(self.loading, self.element);
 }
 
 var pullToRefresh = (function () {
-	function pullToRefresh(element, callback) {
+	function pullToRefresh(element, options, callback) {
 		_classCallCheck(this, pullToRefresh);
 
 		var self = this;
-		var moveDistance = null;
+		var moveDistance = 0;
+		var scale = 0;
+		var _options = {
+			type: 'snake'
+		};
+
 		self.loading = null;
 		self.element = element;
-		self.top = self.element.offsetTop;
+		self.element.classList.add('pull-to-refresh');
+		self.top = (0, _utilsDom2['default'])(element).style('padding-top');
 
-		createLoading.call(self);
+		self.options = _utilsUtils2['default'].extend({}, _options, options);
+
+		createLoading.call(self, self.type);
 
 		(0, _utilsDom2['default'])(self.element).touch(function (evt, dir, phase, swipetype, distance) {
 
 			if (dir === 'down' && self.element.scrollTop === 0) {
 				if (!moveDistance) moveDistance = distance;
-				self.element.style.transform = 'translateY(' + (distance - moveDistance) + 'px)';
-				self.loading.classList.add('is-shown');
-				self.loading.style.transform = 'rotate(' + distance + 'deg)';
+
+				if (self.options.type === 'snake') {
+					setTransform(self.element, 'translateY(' + (distance - moveDistance) + 'px)');
+					self.loading.classList.add('is-shown');
+					setTransform(self.loading, 'rotate(' + distance * 2 + 'deg)');
+				} else if (self.options.type === 'material') {
+					self.loading.classList.remove('not-loading');
+					self.loading.classList.remove('is-loading');
+
+					scale = (distance / 200).toFixed(1);
+					if (scale >= 1) scale = 1;
+					setTransform(self.loading.firstChild, 'scale(' + scale + ')');
+				}
+
 				evt.preventDefault();
 			}
 
 			if (dir === 'down' && phase === 'end' && self.element.scrollTop === 0) {
 
-				if (distance >= 50) {
-					self.element.style.transform = 'translateY(50px)';
-					self.loading.style.animation = 'rotate 0.8s infinite linear';
-					callback();
-				} else {
-					self.element.style.transform = 'translateY(0)';
-					self.loading.style.animation = null;
-					self.loading.classList.remove('is-shown');
-				}
+				if (self.options.type === 'snake') {
+					if (distance >= 50) {
+						setTransform(self.element, 'translateY(50px)');
+						setAnimation(self.loading, 'rotate 0.8s infinite linear');
+						callback();
+					} else {
+						setTransform(self.element, 'translateY(0)');
+						setAnimation(self.loading, null);
+						self.loading.classList.remove('is-shown');
+					}
 
-				moveDistance = null;
+					moveDistance = null;
+				} else if (self.options.type === 'material') {
+					if (scale >= 1) {
+						self.loading.classList.remove('not-loading');
+						self.loading.classList.add('is-loading');
+						callback();
+					} else {
+						self.loading.classList.remove('is-loading');
+						self.loading.classList.add('not-loading');
+					}
+
+					scale = 0;
+				}
 			}
 
 			if (phase === 'cancel' && self.element.scrollTop === 0) {
-				self.element.style.transform = 'translateY(0)';
-				self.loading.style.animation = null;
-				self.loading.classList.remove('is-shown');
-				moveDistance = null;
+				if (self.options.type === 'snake') {
+					setTransform(self.element, 'translateY(0)');
+					setAnimation(self.loading, null);
+					self.loading.classList.remove('is-shown');
+					moveDistance = null;
+				} else if (self.options.type === 'material') {
+					self.loading.classList.remove('is-loading');
+					self.loading.classList.add('not-loading');
+					scale = 0;
+				}
 			}
 		});
 	}
@@ -814,9 +880,15 @@ var pullToRefresh = (function () {
 		key: 'hide',
 		value: function hide() {
 			var self = this;
-			self.element.style.transform = 'translateY(0)';
-			self.loading.classList.remove('is-shown');
-			self.loading.style.animation = null;
+
+			if (self.options.type === 'snake') {
+				self.element.style.transform = 'translateY(0)';
+				self.loading.classList.remove('is-shown');
+				self.loading.style.animation = null;
+			} else if (self.options.type === 'material') {
+				self.loading.classList.remove('is-loading');
+				self.loading.classList.add('not-loading');
+			}
 		}
 	}]);
 
@@ -826,7 +898,7 @@ var pullToRefresh = (function () {
 exports['default'] = pullToRefresh;
 module.exports = exports['default'];
 
-},{"../utils/dom":13}],9:[function(require,module,exports){
+},{"../utils/dom":13,"../utils/utils":14}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -834,10 +906,15 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = shrinkHeader;
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _utilsDom = require('../utils/dom');
+
+var _utilsDom2 = _interopRequireDefault(_utilsDom);
+
 function shrinkHeader(element) {
     var _content = document.querySelectorAll('.content');
     var _lastScrollTop = 0;
-    var _subHeader = document.querySelector('.sub-header');
 
     element.classList.add('header--shrink');
 
@@ -848,11 +925,16 @@ function shrinkHeader(element) {
     function handlerScroll(e) {
         var _el = e.target;
         var _st = _el.scrollTop;
+        var _top = (0, _utilsDom2['default'])(_el).style('padding-top').replace('px', '');
 
-        if (_st > _lastScrollTop) {
-            element.classList.add('header--shrink-hide');
-        } else {
-            element.classList.remove('header--shrink-hide');
+        if (_el.scrollTop >= _top) {
+            if (_st > _lastScrollTop) {
+                _el.classList.add('is-shrink');
+                element.classList.add('header--shrink-hide');
+            } else {
+                element.classList.remove('header--shrink-hide');
+                _el.classList.remove('is-shrink');
+            }
         }
         _lastScrollTop = _st;
     }
@@ -860,7 +942,7 @@ function shrinkHeader(element) {
 
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{"../utils/dom":13}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1362,6 +1444,48 @@ var DOM = (function () {
 						swipeType = 'none';
 						handletouch(e, 'none', 'cancel', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
 					}, false);
+
+					touchsurface.addEventListener('touchleave', function (e) {
+						var touchobj = e.changedTouches[0];
+						dir = 'none';
+						swipeType = 'none';
+						handletouch(e, 'none', 'leave', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
+					}, false);
+				}
+			}
+		}, {
+			key: 'style',
+			value: function style(styleProp) {
+				var el = this.elements[0] || this.elements;
+				var value,
+				    defaultView = (el.ownerDocument || document).defaultView;
+				// W3C standard way:
+				if (defaultView && defaultView.getComputedStyle) {
+					// sanitize property name to css notation
+					// (hypen separated words eg. font-Size)
+					styleProp = styleProp.replace(/([A-Z])/g, "-$1").toLowerCase();
+					return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+				} else if (el.currentStyle) {
+					// IE
+					// sanitize property name to camelCase
+					styleProp = styleProp.replace(/\-(\w)/g, function (str, letter) {
+						return letter.toUpperCase();
+					});
+					value = el.currentStyle[styleProp];
+					// convert other units to pixels on IE
+					if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
+						return (function (value) {
+							var oldLeft = el.style.left,
+							    oldRsLeft = el.runtimeStyle.left;
+							el.runtimeStyle.left = el.currentStyle.left;
+							el.style.left = value || 0;
+							value = el.style.pixelLeft + "px";
+							el.style.left = oldLeft;
+							el.runtimeStyle.left = oldRsLeft;
+							return value;
+						})(value);
+					}
+					return value;
 				}
 			}
 		}]);

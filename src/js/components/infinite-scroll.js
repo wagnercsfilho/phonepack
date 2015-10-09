@@ -1,4 +1,4 @@
-import utils from '../utils/utils';
+import _ from '../utils/utils';
 
 class InfiniteScroll {
 
@@ -8,7 +8,7 @@ class InfiniteScroll {
             distance: 0
         };
 
-        self.options = utils.extend({}, _options, options);
+        self.options = _.extend({}, _options, options);
         self.isShown = false;
 
         self.loadEl = document.createElement('div');

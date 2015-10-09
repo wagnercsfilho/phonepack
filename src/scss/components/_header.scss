@@ -54,38 +54,35 @@
   
   &.header--transparent{
     background: transparent !important;
+    
+    .button .icon{
+      text-shadow: 1px 0px 1px rgba(150, 150, 150, 1);
+    }
   }
   
   &.header--shrink{
     transform: translateY(0);
-    transition: transform 0.2s ease;
+    transition: transform 0.1s ease;
   } 
   
   &.header--shrink-hide{
     transform: translateY(-100%);
   }
   
-  &.header--shrink-hide ~ .content{
-    top: $height;
+  
+  &.header--shrink-hide ~ .content.has-sub-header:not(.is-shrink){
+    padding-top: 48px;
   }
   
-  &.header--shrink-hide ~ .sub-header{
-    top: 0px;
-  }
-  
-  &.header--shrink-hide ~ .sub-header ~ .content{
-    top: 48px;
-  }
   
 }
 
 .sub-header{
     position: absolute;
-    top: $height;
+    top: $height - 2;
     left: 0;
     right: 0;
     height: $subHeader;
-    transition: top 0.2s ease;
     z-index: 1;
 }
 

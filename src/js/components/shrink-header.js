@@ -1,7 +1,8 @@
+import $ from '../utils/dom';
+
 export default function shrinkHeader(element) {
     let _content = document.querySelectorAll('.content');
     let _lastScrollTop = 0;
-    let _subHeader = document.querySelector('.sub-header');
 
     element.classList.add('header--shrink');
 
@@ -12,12 +13,17 @@ export default function shrinkHeader(element) {
     function handlerScroll(e) {
         let _el = e.target;
         let _st = _el.scrollTop;
+        let _top = $(_el).style('padding-top').replace('px', '');
 
-        if (_st > _lastScrollTop) {
-            element.classList.add('header--shrink-hide');
-        }
-        else {
-            element.classList.remove('header--shrink-hide');
+        if (_el.scrollTop >= _top) {
+            if (_st > _lastScrollTop) {
+                _el.classList.add('is-shrink');
+                element.classList.add('header--shrink-hide');
+            }
+            else {
+                element.classList.remove('header--shrink-hide');
+                _el.classList.remove('is-shrink');
+            }
         }
         _lastScrollTop = _st;
     }

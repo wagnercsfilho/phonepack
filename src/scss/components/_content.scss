@@ -1,6 +1,6 @@
 .content{
   position: absolute;
-  background: #ffffff;
+  background: transparent;
   top: 0;
   left: 0;
   right: 0;
@@ -16,11 +16,11 @@
   }
 
   &.has-header {
-      top: 56px;
+      padding-top: 56px;
   }
 
   &.has-sub-header {
-      top: 104px;  
+      padding-top: 104px;  
   }
 
   &.has-footer {

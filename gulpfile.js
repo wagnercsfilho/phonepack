@@ -20,12 +20,13 @@ var config = {
 
 var pkg = require('./package.json');
 var banner = ['/**',
-  ' * <%= pkg.name %> - <%= pkg.description %>',
-  ' * @version v<%= pkg.version %>',
-  ' * @link <%= pkg.homepage %>',
-  ' * @license <%= pkg.license %>',
-  ' */',
-  ''].join('\n');
+	' * <%= pkg.name %> - <%= pkg.description %>',
+	' * @version v<%= pkg.version %>',
+	' * @link <%= pkg.homepage %>',
+	' * @license <%= pkg.license %>',
+	' */',
+	''
+].join('\n');
 
 gulp.task('fonts', function() {
 
@@ -52,21 +53,26 @@ gulp.task('sass', function() {
 });
 
 gulp.task('jshint', function() {
-  return gulp.src('./src/js/**/*.js')
-    .pipe(jshint({
-    	esnext: true
-    }))
-    .pipe(jshint.reporter('default'));
+	return gulp.src('./src/js/**/*.js')
+		.pipe(jshint({
+			esnext: true
+		}))
+		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('watch', ['browserify-watch'], function() {
+gulp.task('watch', ['browserify'], function() {
+	gulp.watch('./src/js/**/*.js', ['jshint', 'browserify']);
+	gulp.watch('./src/scss/**/*.scss', ['sass']);
+});
+
+gulp.task('server', ['browserify-watch'], function() {
 	var port = {
 		server: "./"
 	};
 
 	if (process.env.PORT) {
 		port.port = process.env.PORT,
-		port.host = process.env.IP
+			port.host = process.env.IP
 	}
 
 	browserSync.init(port);
@@ -108,7 +114,9 @@ function bundleShare(b) {
 	b.bundle()
 		.pipe(source(config.pluginName + '.js'))
 		.pipe(buffer())
-		.pipe(header(banner, { pkg : pkg } ))
+		.pipe(header(banner, {
+			pkg: pkg
+		}))
 		.pipe(gulp.dest('./dist/js/'))
 		.pipe(uglify())
 		.pipe(rename({
@@ -126,4 +134,4 @@ function bundleShare(b) {
 		});
 }
 
-gulp.task('default', ['fonts', 'sass', 'jshint', 'watch']);
+gulp.task('default', ['fonts', 'sass', 'jshint', 'server']);

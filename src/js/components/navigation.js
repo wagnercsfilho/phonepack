@@ -11,14 +11,14 @@ function renderPage(template, callback) {
 	self.element.appendChild(template);
 	setTimeout(function() {
 		template.classList.add('pages--slide-up-show');
-	    self.prevPage =	self.currentPage;
+		self.prevPage = self.currentPage;
 		self.currentPage = template;
-		
+
 		if (eventEmitter.afterPush) eventEmitter.afterPush(template);
 
 		if (callback) callback();
 
-	}, 25);
+	}, 50);
 }
 
 class Navigation {
@@ -29,26 +29,26 @@ class Navigation {
 		self.currentPage = null;
 		self.prevPage = null;
 		self._params = null;
-		
+
 		var _options = {
 			page: null
 		};
 
 		self.options = utils.extend({}, _options, options);
-		
-		if (self.options.page){
+
+		if (self.options.page) {
 			self.pushPage(self.options.page);
 		}
 
 	}
-	
-	get params(){
+
+	get params() {
 		let params = this._params;
 		this._params = null;
 		return params;
 	}
-	
-	set params(value){
+
+	set params(value) {
 		this._params = value;
 	}
 
@@ -84,7 +84,7 @@ class Navigation {
 
 				let temp = document.createElement("div");
 				temp.innerHTML = request.responseText;
-				
+
 				let template = temp.querySelector('.pages');
 				template.classList.add('pages--slide-up');
 				if (eventEmitter.beforePush) {
@@ -109,15 +109,15 @@ class Navigation {
 
 	closeCurrentPage() {
 		var self = this;
-		
+
 		var removeDomPage = function() {
 			self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
 			self.currentPage.removeEventListener('transitionend', removeDomPage);
-			
+
 			if (self.currentPage) {
 				self.currentPage.remove();
 			}
-			
+
 			self.currentPage = self.prevPage;
 		};
 
