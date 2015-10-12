@@ -2,10 +2,27 @@ import utils from '../utils/utils';
 
 var eventEmitter = {
 	'beforePush': null,
-	'afterPush': null
+	'afterPush': null,
+	'beforeChange': null,
+	'afterChange': null
 };
 
-function renderPage(template, callback) {
+function changePage(template, callback) {
+	var self = this;
+
+	self.element.appendChild(template);
+	setTimeout(function() {
+		self.prevPage = self.currentPage;
+		self.currentPage = template;
+
+		if (eventEmitter.afterChange) eventEmitter.afterChange(template);
+
+		if (callback) callback();
+
+	}, 50);
+}
+
+function pushPage(template, callback) {
 	var self = this;
 
 	self.element.appendChild(template);
@@ -40,92 +57,108 @@ class Navigation {
 			self.pushPage(self.options.page);
 		}
 
-	}
+		document.addEventListener('backbutton', function(e) {
+				self.closeCurrentPage();
+		}, false);
 
-	get params() {
-		let params = this._params;
-		this._params = null;
-		return params;
-	}
+}
 
-	set params(value) {
-		this._params = value;
-	}
+get params() {
+	let params = this._params;
+	this._params = null;
+	return params;
+}
 
-	on(event, fn) {
-		eventEmitter[event] = fn;
-	}
+set params(value) {
+	this._params = value;
+}
 
-	replacePage(page, callback) {
-		var self = this;
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = function() {
-			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
-				self.element.innerHTML = request.responseText;
-				setTimeout(function() {
-					self.element.classList.add('pages--visibility');
-				}, 10);
-				if (callback) {
-					callback();
-				}
-			}
-		};
-		request.open('GET', page, true);
-		request.send();
-	}
+on(event, fn) {
+	eventEmitter[event] = fn;
+}
 
-	pushPage(page, params, callback) {
-		var self = this;
-		self.params = params;
-		var request = new XMLHttpRequest();
+changePage(page, params, callback) {
+	var self = this;
+	self.params = params;
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 
-		request.onreadystatechange = function() {
-			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
+			let temp = document.createElement("div");
+			temp.innerHTML = request.responseText;
 
-				let temp = document.createElement("div");
-				temp.innerHTML = request.responseText;
-
-				let template = temp.querySelector('.pages');
-				template.classList.add('pages--slide-up');
-				if (eventEmitter.beforePush) {
-					eventEmitter.beforePush(template, function() {
-						renderPage.call(self, template, function() {
-							if (callback) callback(template);
-						});
-					});
-				}
-				else {
-					renderPage.call(self, template, function() {
+			let template = temp.querySelector('.pages');
+			if (eventEmitter.beforeChange) {
+				eventEmitter.beforeChange(template, function() {
+					changePage.call(self, template, function() {
 						if (callback) callback(template);
 					});
-				}
-
+				});
 			}
-		};
-
-		request.open('GET', page, true);
-		request.send();
-	}
-
-	closeCurrentPage() {
-		var self = this;
-
-		var removeDomPage = function() {
-			self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
-			self.currentPage.removeEventListener('transitionend', removeDomPage);
-
-			if (self.currentPage) {
-				self.currentPage.remove();
+			else {
+				changePage.call(self, template, function() {
+					if (callback) callback(template);
+				});
 			}
 
-			self.currentPage = self.prevPage;
-		};
+		}
+	};
+	request.open('GET', page, true);
+	request.send();
+}
 
-		self.currentPage.classList.remove('pages--slide-up-show');
-		self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
-		self.currentPage.addEventListener('transitionend', removeDomPage);
+pushPage(page, params, callback) {
+	var self = this;
+	self.params = params;
+	var request = new XMLHttpRequest();
 
-	}
+	request.onreadystatechange = function() {
+		if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
+
+			let temp = document.createElement("div");
+			temp.innerHTML = request.responseText;
+
+			let template = temp.querySelector('.pages');
+			template.classList.add('pages--slide-up');
+			if (eventEmitter.beforePush) {
+				eventEmitter.beforePush(template, function() {
+					pushPage.call(self, template, function() {
+						if (callback) callback(template);
+					});
+				});
+			}
+			else {
+				pushPage.call(self, template, function() {
+					if (callback) callback(template);
+				});
+			}
+
+		}
+	};
+
+	request.open('GET', page, true);
+	request.send();
+}
+
+closeCurrentPage() {
+	var self = this;
+
+	var removeDomPage = function() {
+		self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
+		self.currentPage.removeEventListener('transitionend', removeDomPage);
+
+		if (self.currentPage) {
+			self.currentPage.remove();
+		}
+
+		self.currentPage = self.prevPage;
+	};
+
+	self.currentPage.classList.remove('pages--slide-up-show');
+	self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
+	self.currentPage.addEventListener('transitionend', removeDomPage);
+
+}
 
 }
 

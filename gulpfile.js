@@ -53,7 +53,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('jshint', function() {
-	return gulp.src('./src/js/**/*.js')
+	return gulp.src(['./src/js/index.js','./src/js/components/**/*.js', './src/js/utils/**/*.js'])
 		.pipe(jshint({
 			esnext: true
 		}))

@@ -275,13 +275,6 @@ var DOM = (function() {
 					swipeType = 'none';
 					handletouch(e, 'none', 'cancel', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
 				}, false);
-				
-				touchsurface.addEventListener('touchleave', function(e) {
-					var touchobj = e.changedTouches[0];
-					dir = 'none';
-					swipeType = 'none';
-					handletouch(e, 'none', 'leave', swipeType, 0); // fire callback function with params dir="none", phase="start", swipetype="none" etc
-				}, false);
 			}
 		}
 

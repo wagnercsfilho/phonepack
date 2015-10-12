@@ -5538,9 +5538,11 @@ th {
 
 * {
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   font-family: "Roboto", "Helvetica", "sans-serif";
   font-size: 1em;
   font-weight: 400;
@@ -5554,6 +5556,18 @@ html, body {
   -webkit-user-select: none;
   /* prevent copy paste, to allow, change 'none' to 'text' */
   overflow: hidden;
+}
+
+body {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 :focus {
@@ -6517,7 +6531,13 @@ input[type="checkbox"], input[type="radio"] {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow-y: auto;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content .content > * {
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 
 .content.content--pull-to-refresh {
@@ -6593,7 +6613,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .tab-bar .tab-bar__item.active {
-  height: 46px;
+  height: 48px;
 }
 
 .tab-bar.tab-bar--indicator-top .tab-bar__item {
@@ -8032,7 +8052,6 @@ button[disabled], html input[disabled] {
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0;
-  min-height: 100px;
 }
 
 .list.card .list__item.card__image .card__image--pic {

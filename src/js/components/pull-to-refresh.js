@@ -1,5 +1,7 @@
 import $ from '../utils/dom';
 import _ from '../utils/utils';
+import Hammer from '../libs/hammer';
+
 
 function setTransform(element, value) {
 	element.style.webkitTransform = value;
@@ -19,7 +21,6 @@ function setAnimation(element, value) {
 
 function createLoading() {
 	var self = this;
-
 	self.loading = document.createElement('div');
 	self.loading.style.position = 'absolute';
 	self.loading.style.top = self.top;
@@ -53,37 +54,22 @@ class pullToRefresh {
 		self.element = element;
 		self.element.classList.add('pull-to-refresh');
 		self.top = $(element).style('padding-top');
-
 		self.options = _.extend({}, _options, options);
-
 		createLoading.call(self, self.type);
 
-		$(self.element).touch(function(evt, dir, phase, swipetype, distance) {
+		var distX,
+			distY,
+			startX,
+			startY,
+			startTime,
+			elapsedTime;
 
-			if (dir === 'down' && self.element.scrollTop === 0) {
-				if (!moveDistance) moveDistance = distance;
+		self.element.addEventListener('touchend', function(e) {
+			elapsedTime = new Date().getTime() - startTime;
 
+			if (self.element.scrollTop === 0) {
 				if (self.options.type === 'snake') {
-					setTransform(self.element, 'translateY(' + (distance - moveDistance) + 'px)');
-					self.loading.classList.add('is-shown');
-					setTransform(self.loading, 'rotate(' + distance * 2 + 'deg)');
-				}
-				else if (self.options.type === 'material') {
-					self.loading.classList.remove('not-loading');
-					self.loading.classList.remove('is-loading');
-
-					scale = ((distance / 200).toFixed(1));
-					if (scale >= 1) scale = 1;
-					setTransform(self.loading.firstChild, 'scale(' + (scale) + ')');
-				}
-
-				evt.preventDefault();
-			}
-
-			if (dir === 'down' && phase === 'end' && self.element.scrollTop === 0) {
-
-				if (self.options.type === 'snake') {
-					if (distance >= 50) {
+					if (distY >= 50) {
 						setTransform(self.element, 'translateY(50px)');
 						setAnimation(self.loading, 'rotate 0.8s infinite linear');
 						callback();
@@ -109,34 +95,101 @@ class pullToRefresh {
 
 					scale = 0;
 				}
-
 			}
 
-			if (phase === 'cancel' && self.element.scrollTop === 0) {
+		}, false);
+		self.element.addEventListener('touchstart', function(e) {
+			var touchobj = e.changedTouches[0];
+			startX = touchobj.pageX;
+			startY = touchobj.pageY;
+			startTime = new Date().getTime();
+		}, false);
+		self.element.addEventListener('touchmove', function(e) {
+			var touchobj = e.changedTouches[0];
+			distX = touchobj.pageX - startX;
+			distY = touchobj.pageY - startY;
+
+			if (distY > 0 && self.element.scrollTop === 0) {
+				if (!moveDistance) moveDistance = distY;
+
 				if (self.options.type === 'snake') {
-					setTransform(self.element, 'translateY(0)');
-					setAnimation(self.loading, null);
-					self.loading.classList.remove('is-shown');
+					setTransform(self.element, 'translateY(' + (distY - moveDistance) + 'px)');
+					self.loading.classList.add('is-shown');
+					setTransform(self.loading, 'rotate(' + distY * 2 + 'deg)');
+				}
+				else if (self.options.type === 'material') {
+					self.loading.classList.remove('not-loading');
+					self.loading.classList.remove('is-loading');
+
+					scale = ((distY / 200).toFixed(1));
+					if (scale >= 1) scale = 1;
+					setTransform(self.loading.firstChild, 'scale(' + (scale) + ')');
+				}
+
+				e.preventDefault();
+			}
+
+			/*
+			if (self.element.scrollTop === 0 && ev.direction === 16) {
+				if (!moveDistance) moveDistance = ev.distance;
+
+				if (self.options.type === 'snake') {
+					setTransform(self.element, 'translateY(' + (ev.distance - moveDistance) + 'px)');
+					self.loading.classList.add('is-shown');
+					setTransform(self.loading, 'rotate(' + ev.distance * 2 + 'deg)');
+				}
+				else if (self.options.type === 'material') {
+					self.loading.classList.remove('not-loading');
+					self.loading.classList.remove('is-loading');
+
+					scale = ((ev.distance / 200).toFixed(1));
+					if (scale >= 1) scale = 1;
+					setTransform(self.loading.firstChild, 'scale(' + (scale) + ')');
+				}
+
+				ev.preventDefault();
+			}
+
+			if (ev.isFinal && self.element.scrollTop === 0 && ev.direction !== 8) {
+				if (self.options.type === 'snake') {
+					if (ev.distance >= 50) {
+						setTransform(self.element, 'translateY(50px)');
+						setAnimation(self.loading, 'rotate 0.8s infinite linear');
+						callback();
+					}
+					else {
+						setTransform(self.element, 'translateY(0)');
+						setAnimation(self.loading, null);
+						self.loading.classList.remove('is-shown');
+					}
+
 					moveDistance = null;
 				}
 				else if (self.options.type === 'material') {
-					self.loading.classList.remove('is-loading');
-					self.loading.classList.add('not-loading');
+					if (scale >= 1) {
+						self.loading.classList.remove('not-loading');
+						self.loading.classList.add('is-loading');
+						callback();
+					}
+					else {
+						self.loading.classList.remove('is-loading');
+						self.loading.classList.add('not-loading');
+					}
+
 					scale = 0;
 				}
 			}
-
+			*/
 		});
-
 	}
 
 	hide() {
 		var self = this;
 
 		if (self.options.type === 'snake') {
-			self.element.style.transform = 'translateY(0)';
+			setTransform(self.element, 'translateY(0)');
 			self.loading.classList.remove('is-shown');
-			self.loading.style.animation = null;
+			setAnimation(self.loading, null);
 		}
 		else if (self.options.type === 'material') {
 			self.loading.classList.remove('is-loading');
