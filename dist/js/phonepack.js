@@ -345,7 +345,8 @@ var Loading = (function () {
 
 		var options = {
 			title: null,
-			spinner: true
+			spinner: true,
+			overlay: true
 		};
 
 		this.options = _utilsUtils2['default'].extend({}, options, params);
@@ -366,6 +367,10 @@ var Loading = (function () {
 			var sp = '<svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">' + ' <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>' + '</svg>';
 			spinner.innerHTML = sp;
 			main.appendChild(spinner);
+
+			if (!self.options.title) {
+				spinner.style.padding = 0;
+			}
 		}
 
 		if (self.options.title) {
@@ -389,7 +394,10 @@ var Loading = (function () {
 			var self = this;
 
 			setTimeout(function () {
-				self.overlay.classList.add('loading-filter--is-shown');
+				if (self.options.overlay) {
+					self.overlay.classList.add('loading-filter--is-shown');
+				}
+				self.dialog.classList.add('loading--no-box-shadow');
 				self.dialog.classList.add('loading--is-shown');
 			}, 0);
 

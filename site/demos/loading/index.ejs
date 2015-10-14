@@ -13,12 +13,14 @@
             
             document.querySelector('#open').addEventListener('click', function(){
                 var loading = new phonepack.Loading({
-                    title: 'Wait, please!'      
+                    spinner: true,
+                    overlay: true,
+                    title: 'Loading'
                 }).show();
                 
                 setTimeout(function() {
                     loading.hide();
-                }, 5000);
+                }, 50000000);
             });
             
           }, false);

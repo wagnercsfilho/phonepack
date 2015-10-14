@@ -7,7 +7,8 @@ class Loading {
 
 		var options = {
 			title: null,
-			spinner: true
+			spinner: true,
+			overlay: true
 		};
 
 		this.options = utils.extend({}, options, params);
@@ -31,6 +32,10 @@ class Loading {
 			spinner.innerHTML = sp;
 			main.appendChild(spinner);
 
+			if (!self.options.title) {
+				spinner.style.padding = 0;
+			}
+
 		}
 
 		if (self.options.title) {
@@ -52,7 +57,10 @@ class Loading {
 		var self = this;
 
 		setTimeout(function() {
-			self.overlay.classList.add('loading-filter--is-shown');
+			if (self.options.overlay) {
+				self.overlay.classList.add('loading-filter--is-shown');
+			}
+			self.dialog.classList.add('loading--no-box-shadow');
 			self.dialog.classList.add('loading--is-shown');
 		}, 0);
 
