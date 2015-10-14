@@ -6542,7 +6542,7 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .content.content--padding {
-  padding: 16px;
+  margin: 16px;
 }
 
 .content.has-header {
