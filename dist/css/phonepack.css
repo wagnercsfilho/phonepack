@@ -5505,7 +5505,7 @@ th {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
-  src: local("Roboto Light"), local("Roboto-Light"), url(../fonts/Roboto-Light.ttf) format("truetype");
+  src: local("Roboto Light"), local("Roboto-Light"), url(/fonts/Roboto-Light.ttf) format("truetype");
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
 }
 
@@ -5514,7 +5514,7 @@ th {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local("Roboto"), local("Roboto-Regular"), url(../fonts/Roboto-Regular.ttf) format("truetype");
+  src: local("Roboto"), local("Roboto-Regular"), url(/fonts/Roboto-Regular.ttf) format("truetype");
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
 }
 
@@ -5523,7 +5523,7 @@ th {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: local("Roboto Medium"), local("Roboto-Medium"), url(../fonts/Roboto-Medium.ttf) format("truetype");
+  src: local("Roboto Medium"), local("Roboto-Medium"), url(/fonts/Roboto-Medium.ttf) format("truetype");
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
 }
 
@@ -5532,7 +5532,7 @@ th {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
-  src: local("Roboto Bold"), local("Roboto-Bold"), url(../fonts/Roboto-Bold.ttf) format("truetype");
+  src: local("Roboto Bold"), local("Roboto-Bold"), url(/fonts/Roboto-Bold.ttf) format("truetype");
   unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000;
 }
 
@@ -7282,7 +7282,6 @@ button[disabled], html input[disabled] {
 }
 
 .button {
-  z-index: 2;
   display: inline-block;
   vertical-align: top;
   margin: 0;
