@@ -6531,13 +6531,9 @@ input[type="checkbox"], input[type="radio"] {
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-.content .content > * {
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
 }
 
 .content.content--pull-to-refresh {
@@ -6559,6 +6555,11 @@ input[type="checkbox"], input[type="radio"] {
 
 .content.has-footer {
   bottom: 48px;
+}
+
+.content > * {
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 
 .tab-bar {
@@ -7920,7 +7921,6 @@ button[disabled], html input[disabled] {
   bottom: 0;
   z-index: 5;
   min-height: 56px;
-  background: #FFFFFF;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -8024,7 +8024,7 @@ button[disabled], html input[disabled] {
 }
 
 .list.card .list__item.card__title {
-  line-height: 18px;
+  font-size: 13px;
   word-break: break-word;
 }
 

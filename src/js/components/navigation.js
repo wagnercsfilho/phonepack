@@ -9,7 +9,7 @@ var eventEmitter = {
 
 function changePage(template, callback) {
 	var self = this;
-
+	self.currentPage.remove();
 	self.element.appendChild(template);
 	setTimeout(function() {
 		self.prevPage = self.currentPage;

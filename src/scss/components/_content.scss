@@ -5,13 +5,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  // Hack to force all relatively and absolutely positioned elements still render while scrolling
-  // Note: This is a bug for "-webkit-overflow-scrolling: touch"
-  .content > * {
-   transform: translateZ(0);
-  }
   &.content--pull-to-refresh {
     transition: transform 0.2s ease-in-out;
   }
@@ -27,4 +23,10 @@
   &.has-footer {
     bottom: 48px;
   }
+}
+
+// Hack to force all relatively and absolutely positioned elements still render while scrolling
+// Note: This is a bug for "-webkit-overflow-scrolling: touch"
+.content > * {
+  transform: translateZ(0);
 }
