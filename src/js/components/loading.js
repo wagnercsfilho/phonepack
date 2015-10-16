@@ -88,7 +88,6 @@ class Loading {
 		});
 
 		setTimeout(function() {
-			var self = this;
 			self.overlay.classList.remove('loading-filter--is-shown');
 			self.dialog.classList.remove('loading--is-shown');
 		}, 10);
