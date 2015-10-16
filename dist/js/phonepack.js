@@ -408,27 +408,27 @@ var Loading = (function () {
 		value: function hide() {
 			var self = this;
 
-			setTimeout((function () {
+			self.overlay.addEventListener('webkitTransitionEnd', function () {
+				self.overlay.remove();
+			});
+
+			self.overlay.addEventListener('transitionend', function () {
+				self.overlay.remove();
+			});
+
+			self.dialog.addEventListener('webkitTransitionEnd', function () {
+				self.dialog.remove();
+			});
+
+			self.dialog.addEventListener('transitionend', function () {
+				self.dialog.remove();
+			});
+
+			setTimeout(function () {
 				var self = this;
 				self.overlay.classList.remove('loading-filter--is-shown');
 				self.dialog.classList.remove('loading--is-shown');
-
-				self.overlay.addEventListener('webkitTransitionEnd', function () {
-					self.overlay.remove();
-				});
-
-				self.overlay.addEventListener('transitionend', function () {
-					self.overlay.remove();
-				});
-
-				self.dialog.addEventListener('webkitTransitionEnd', function () {
-					self.dialog.remove();
-				});
-
-				self.dialog.addEventListener('transitionend', function () {
-					self.dialog.remove();
-				});
-			}).bind(self), 0);
+			}, 10);
 
 			return self;
 		}

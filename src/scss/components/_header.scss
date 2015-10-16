@@ -7,11 +7,12 @@
   position: absolute;
   top: 0;
   z-index: 5;
-  min-height: $height;
+  height: $height;
   background: $white;
   align-items: center;
   flex-wrap: nowrap;
   justify-content: space-between;
+  flex-direction: row;
   
   .header__title {
     position: relative; 
