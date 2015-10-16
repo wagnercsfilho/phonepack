@@ -18,6 +18,22 @@ class Loading {
 
 		self.dialog = document.createElement("div");
 		self.dialog.className = 'loading';
+		
+		self.overlay.addEventListener('webkitTransitionEnd', function() {
+			self.overlay.remove();
+		});
+
+		self.overlay.addEventListener('transitionend', function() {
+			self.overlay.remove();
+		});
+
+		self.dialog.addEventListener('webkitTransitionEnd', function() {
+			self.dialog.remove();
+		});
+
+		self.dialog.addEventListener('transitionend', function() {
+			self.dialog.remove();
+		});
 
 		var main = document.createElement("div");
 		main.className = 'loading__main';
@@ -70,28 +86,9 @@ class Loading {
 
 	hide() {
 		var self = this;
-
-		self.overlay.addEventListener('webkitTransitionEnd', function() {
-			self.overlay.remove();
-		});
-
-		self.overlay.addEventListener('transitionend', function() {
-			self.overlay.remove();
-		});
-
-		self.dialog.addEventListener('webkitTransitionEnd', function() {
-			self.dialog.remove();
-		});
-
-		self.dialog.addEventListener('transitionend', function() {
-			self.dialog.remove();
-		});
-
+	
 		self.overlay.classList.remove('loading-filter--is-shown');
 		self.dialog.classList.remove('loading--is-shown');
-		
-		console.log(self.overlay);
-
 
 		return self;
 	}
