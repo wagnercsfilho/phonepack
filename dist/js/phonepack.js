@@ -246,17 +246,20 @@ function DropDownMenu(element, elMenu) {
 	self.element = element;
 	self.elMenu = elMenu;
 
-	if (self.elMenu.classList.contains('visible')) {
-		self.elMenu.classList.remove('visible');
-	} else if (!removed) {
-		var target = self.element.getBoundingClientRect();
+	self.element.addEventListener('click', function () {
 
-		self.elMenu.style.top = target.top + 'px';
-		self.elMenu.style.left = target.left - document.body.scrollLeft - 150 + 'px';
-		self.elMenu.classList.add('visible');
-	}
+		if (self.elMenu.classList.contains('visible')) {
+			self.elMenu.classList.remove('visible');
+		} else if (!removed) {
+			var target = self.element.getBoundingClientRect();
 
-	removed = false;
+			self.elMenu.style.top = target.top + 'px';
+			self.elMenu.style.left = target.left - document.body.scrollLeft - 150 + 'px';
+			self.elMenu.classList.add('visible');
+		}
+
+		removed = false;
+	}, false);
 }
 
 exports['default'] = DropDownMenu;

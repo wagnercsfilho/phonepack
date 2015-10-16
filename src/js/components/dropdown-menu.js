@@ -18,11 +18,13 @@ document.addEventListener('click', function(e) {
 }, true);
 
 function DropDownMenu(element, elMenu) {
-		var self = this;
+	var self = this;
 
-		self.element = element;
-		self.elMenu = elMenu;
+	self.element = element;
+	self.elMenu = elMenu;
 
+	self.element.addEventListener('click', function() {
+		
 		if (self.elMenu.classList.contains('visible')) {
 			self.elMenu.classList.remove('visible');
 		}
@@ -35,6 +37,8 @@ function DropDownMenu(element, elMenu) {
 		}
 
 		removed = false;
+		
+	}, false);
 
 }
 

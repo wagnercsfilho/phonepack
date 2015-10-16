@@ -8157,6 +8157,7 @@ html input[disabled] {
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
   border: none;
+  text-shadow: 1px 0px 1px #969696;
 }
 
 .infinite-scroll-loading {

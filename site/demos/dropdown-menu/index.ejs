@@ -52,9 +52,7 @@
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
 
-            document.querySelector('#open').addEventListener('click', function() {
-                phonepack.DropDownMenu(this, document.getElementById('dropMenu'));
-            });
+            phonepack.DropDownMenu(document.querySelector('#open'), document.getElementById('dropMenu'));
             
             document.querySelector("#moveToTrash").addEventListener('touchend', function(){
                 alert('Action!');
