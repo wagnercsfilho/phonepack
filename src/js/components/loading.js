@@ -71,26 +71,33 @@ class Loading {
 	hide() {
 		var self = this;
 
-		self.overlay.addEventListener('webkitTransitionEnd', function() {
-			self.overlay.remove();
-		});
+		setTimeout(function() {
+			self.overlay.addEventListener('webkitTransitionEnd', function() {
+				setTimeout(function() {
+					self.overlay.remove();
+				}, 0);
+			});
 
-		self.overlay.addEventListener('transitionend', function() {
-			self.overlay.remove();
-		});
+			self.overlay.addEventListener('transitionend', function() {
+				setTimeout(function() {
+					self.overlay.remove();
+					console.log('removed')
+				}, 0);
+			});
 
-		self.dialog.addEventListener('webkitTransitionEnd', function() {
-			self.dialog.remove();
-		});
+			self.dialog.addEventListener('webkitTransitionEnd', function() {
+				self.dialog.remove();
+			});
 
-		self.dialog.addEventListener('transitionend', function() {
-			self.dialog.remove();
-		});
+			self.dialog.addEventListener('transitionend', function() {
+				self.dialog.remove();
+			});
+		}, 0);
 
 		setTimeout(function() {
 			self.overlay.classList.remove('loading-filter--is-shown');
 			self.dialog.classList.remove('loading--is-shown');
-		}, 10);
+		}, 0);
 
 		return self;
 	}
