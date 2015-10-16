@@ -427,6 +427,8 @@ var Loading = (function () {
 			self.overlay.classList.remove('loading-filter--is-shown');
 			self.dialog.classList.remove('loading--is-shown');
 
+			console.log(self.overlay);
+
 			return self;
 		}
 	}]);
