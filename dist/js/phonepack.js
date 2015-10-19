@@ -217,45 +217,41 @@ module.exports = exports['default'];
 Object.defineProperty(exports, '__esModule', {
 	value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _utilsUtils = require('../utils/utils');
-
-var _utilsUtils2 = _interopRequireDefault(_utilsUtils);
-
 var removed = false;
 
 document.addEventListener('click', function (e) {
-	var _target = e.target;
-
 	removed = false;
 
 	var elements = document.getElementsByClassName('dropdown-menu');
 	for (var i = 0; i < elements.length; i++) {
-		if (elements[i].classList.contains('visible')) {
-			elements[i].classList.remove('visible');
+		if (elements[i].classList.contains('dropdown-menu--is-shown')) {
+			elements[i].classList.remove('dropdown-menu--is-shown');
 			removed = true;
 		}
 	}
 }, true);
 
-function DropDownMenu(element, elMenu) {
+function DropDownMenu(element, elMenu, position) {
 	var self = this;
 
 	self.element = element;
 	self.elMenu = elMenu;
+	self.position = position || 'left';
 
 	self.element.addEventListener('click', function () {
 
-		if (self.elMenu.classList.contains('visible')) {
-			self.elMenu.classList.remove('visible');
+		if (self.elMenu.classList.contains('dropdown-menu--is-shown')) {
+			self.elMenu.classList.remove('dropdown-menu--is-shown');
 		} else if (!removed) {
 			var target = self.element.getBoundingClientRect();
 
 			self.elMenu.style.top = target.top + 'px';
-			self.elMenu.style.left = target.left - document.body.scrollLeft - 150 + 'px';
-			self.elMenu.classList.add('visible');
+			if (self.position === 'left') {
+				self.elMenu.style.left = target.left - document.body.scrollLeft - 150 + 'px';
+			} else if (self.position === 'right') {
+				self.elMenu.style.left = target.left - document.body.scrollLeft + 100 + 'px';
+			}
+			self.elMenu.classList.add('dropdown-menu--is-shown');
 		}
 
 		removed = false;
@@ -265,7 +261,7 @@ function DropDownMenu(element, elMenu) {
 exports['default'] = DropDownMenu;
 module.exports = exports['default'];
 
-},{"../utils/utils":15}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -474,10 +470,10 @@ var eventEmitter = {
 
 function _changePage(template, callback) {
 	var self = this;
-	self.currentPage.remove();
 	self.element.appendChild(template);
 	setTimeout(function () {
 		self.prevPage = self.currentPage;
+		self.currentPage.remove();
 		self.currentPage = template;
 
 		if (eventEmitter.afterChange) eventEmitter.afterChange(template);
@@ -827,7 +823,7 @@ function createLoading() {
 	var self = this;
 	self.loading = document.createElement('div');
 	self.loading.style.position = 'absolute';
-	self.loading.style.top = self.top;
+	self.loading.style.top = parseInt(self.top.replace('px', '')) + 5 + 'px';
 	self.loading.zIndex = -1;
 
 	if (self.options.type === 'snake') {
@@ -847,10 +843,13 @@ var pullToRefresh = (function () {
 	function pullToRefresh(element, options, callback) {
 		_classCallCheck(this, pullToRefresh);
 
-		var self = this;
-		var moveDistance = 0;
-		var scale = 0;
-		var _options = {
+		var self = this,
+		    moveDistance = 0,
+		    scale = 0,
+		    distY,
+		    startY,
+		    touchobj,
+		    _options = {
 			type: 'snake'
 		};
 
@@ -861,12 +860,35 @@ var pullToRefresh = (function () {
 		self.options = _utilsUtils2['default'].extend({}, _options, options);
 		createLoading.call(self, self.type);
 
-		var distX, distY, startX, startY, startTime, elapsedTime;
+		self.element.addEventListener('touchstart', function (e) {
+			touchobj = e.changedTouches[0];
+			startY = touchobj.pageY;
+		}, false);
+		self.element.addEventListener('touchmove', function (e) {
+			touchobj = e.changedTouches[0];
+			distY = touchobj.pageY - startY;
 
+			if (distY > 0 && self.element.scrollTop === 0) {
+				if (!moveDistance) moveDistance = distY;
+
+				if (self.options.type === 'snake') {
+					setTransform(self.element, 'translateY(' + (distY - moveDistance) + 'px)');
+					self.loading.classList.add('is-shown');
+					setTransform(self.loading, 'rotate(' + distY * 2 + 'deg)');
+				} else if (self.options.type === 'material') {
+					self.loading.classList.remove('not-loading');
+					self.loading.classList.remove('is-loading');
+
+					scale = (distY / 200).toFixed(1);
+					if (scale >= 1) scale = 1;
+					setTransform(self.loading.firstChild, 'scale(' + scale + ')');
+				}
+
+				e.preventDefault();
+			}
+		});
 		self.element.addEventListener('touchend', function (e) {
-			elapsedTime = new Date().getTime() - startTime;
-
-			if (self.element.scrollTop === 0) {
+			if (distY > 0 && self.element.scrollTop === 0) {
 				if (self.options.type === 'snake') {
 					if (distY >= 50) {
 						setTransform(self.element, 'translateY(50px)');
@@ -892,83 +914,9 @@ var pullToRefresh = (function () {
 					scale = 0;
 				}
 			}
+
+			distY = 0;
 		}, false);
-		self.element.addEventListener('touchstart', function (e) {
-			var touchobj = e.changedTouches[0];
-			startX = touchobj.pageX;
-			startY = touchobj.pageY;
-			startTime = new Date().getTime();
-		}, false);
-		self.element.addEventListener('touchmove', function (e) {
-			var touchobj = e.changedTouches[0];
-			distX = touchobj.pageX - startX;
-			distY = touchobj.pageY - startY;
-
-			if (distY > 0 && self.element.scrollTop === 0) {
-				if (!moveDistance) moveDistance = distY;
-
-				if (self.options.type === 'snake') {
-					setTransform(self.element, 'translateY(' + (distY - moveDistance) + 'px)');
-					self.loading.classList.add('is-shown');
-					setTransform(self.loading, 'rotate(' + distY * 2 + 'deg)');
-				} else if (self.options.type === 'material') {
-					self.loading.classList.remove('not-loading');
-					self.loading.classList.remove('is-loading');
-
-					scale = (distY / 200).toFixed(1);
-					if (scale >= 1) scale = 1;
-					setTransform(self.loading.firstChild, 'scale(' + scale + ')');
-				}
-
-				e.preventDefault();
-			}
-
-			/*
-   if (self.element.scrollTop === 0 && ev.direction === 16) {
-   	if (!moveDistance) moveDistance = ev.distance;
-   		if (self.options.type === 'snake') {
-   		setTransform(self.element, 'translateY(' + (ev.distance - moveDistance) + 'px)');
-   		self.loading.classList.add('is-shown');
-   		setTransform(self.loading, 'rotate(' + ev.distance * 2 + 'deg)');
-   	}
-   	else if (self.options.type === 'material') {
-   		self.loading.classList.remove('not-loading');
-   		self.loading.classList.remove('is-loading');
-   			scale = ((ev.distance / 200).toFixed(1));
-   		if (scale >= 1) scale = 1;
-   		setTransform(self.loading.firstChild, 'scale(' + (scale) + ')');
-   	}
-   		ev.preventDefault();
-   }
-   	if (ev.isFinal && self.element.scrollTop === 0 && ev.direction !== 8) {
-   	if (self.options.type === 'snake') {
-   		if (ev.distance >= 50) {
-   			setTransform(self.element, 'translateY(50px)');
-   			setAnimation(self.loading, 'rotate 0.8s infinite linear');
-   			callback();
-   		}
-   		else {
-   			setTransform(self.element, 'translateY(0)');
-   			setAnimation(self.loading, null);
-   			self.loading.classList.remove('is-shown');
-   		}
-   			moveDistance = null;
-   	}
-   	else if (self.options.type === 'material') {
-   		if (scale >= 1) {
-   			self.loading.classList.remove('not-loading');
-   			self.loading.classList.add('is-loading');
-   			callback();
-   		}
-   		else {
-   			self.loading.classList.remove('is-loading');
-   			self.loading.classList.add('not-loading');
-   		}
-   			scale = 0;
-   	}
-   }
-   */
-		});
 	}
 
 	_createClass(pullToRefresh, [{
@@ -976,8 +924,19 @@ var pullToRefresh = (function () {
 		value: function hide() {
 			var self = this;
 
+			function handlerEndTranition() {
+				self.element.style.webkitTransitionDuration = '0s';
+				self.element.style.transitionDuration = '0s';
+			}
+
+			self.element.addEventListener('webkitTransitionEnd', handlerEndTranition);
+			self.element.addEventListener('transitionend', handlerEndTranition);
+
 			if (self.options.type === 'snake') {
+				self.element.style.webkitTransitionDuration = '0.4s';
+				self.element.style.transitionDuration = '0.4s';
 				setTransform(self.element, 'translateY(0)');
+
 				self.loading.classList.remove('is-shown');
 				setAnimation(self.loading, null);
 			} else if (self.options.type === 'material') {
@@ -1065,16 +1024,97 @@ var removeListenCLoseSlideMenu = function removeListenCLoseSlideMenu(element) {
 	element.removeEventListener("click");
 };
 
+var createOverlayElement = function createOverlayElement() {
+	var overlay = document.createElement("div");
+	if (this.options.overlay) {
+		overlay.className = 'overlay';
+	} else {
+		overlay.className = 'overlay transparent';
+	}
+	document.body.appendChild(overlay);
+	return overlay;
+};
+
+function setTransform(element, value) {
+	element.style.webkitTransform = value;
+	element.style.MozTransform = value;
+	element.style.msTransform = value;
+	element.style.OTransform = value;
+	element.style.transform = value;
+}
+
 var SideMenu = (function () {
 	function SideMenu(element, options) {
 		_classCallCheck(this, SideMenu);
 
-		var _options = {
-			overlay: true
+		var self = this,
+		    startX,
+		    distX,
+		    transitionDuration,
+		    clientWidth,
+		    touchobj,
+		    _options = {
+			overlay: false
 		};
 
-		this.element = element;
-		this.options = _utilsUtils2['default'].extend({}, _options, options);
+		self.element = element;
+		self.options = _utilsUtils2['default'].extend({}, _options, options);
+		self.overlayEl = null;
+
+		transitionDuration = '0.2s';
+
+		document.addEventListener('touchstart', function (e) {
+			touchobj = e.changedTouches[0];
+			startX = touchobj.pageX;
+			if (startX <= 10 && !self.element.classList.contains('visible') && self.options.overlay) {
+				self.overlayEl = createOverlayElement.call(self);
+				listenCLoseSlideMenu.call(self, self.overlayEl);
+			}
+		}, false);
+
+		document.addEventListener('touchmove', function (e) {
+			touchobj = e.changedTouches[0];
+			self.element.style.webkitTransitionDuration = '0s';
+			self.element.style.transitionDuration = '0s';
+			distX = touchobj.pageX - startX;
+
+			if (startX <= 10) {
+				if (self.options.overlay) self.overlayEl.style.opacity = distX * 0.001;
+				setTransform(self.element, 'translateX(' + distX + 'px)');
+			} else if (self.element.classList.contains('visible')) {
+				clientWidth = self.element.clientWidth;
+				setTransform(self.element, 'translateX(' + (clientWidth + distX) + 'px)');
+				if (self.options.overlay) self.overlayEl.style.opacity = (clientWidth + distX) * 0.001;
+			}
+		}, false);
+
+		document.addEventListener('touchend', function (e) {
+			self.element.style.webkitTransitionDuration = transitionDuration;
+			self.element.style.transitionDuration = transitionDuration;
+
+			if (startX <= 10) {
+				if (distX > 100) {
+					self.element.removeAttribute('style');
+					self.element.classList.add('visible');
+				} else {
+					setTransform(self.element, 'translateX(0)');
+				}
+			} else if (self.element.classList.contains('visible')) {
+				if (distX < -100) {
+					if (self.options.overlay) {
+						self.overlayEl.remove();
+						self.overlayEl = null;
+					}
+					self.element.removeAttribute('style');
+					self.element.classList.remove('visible');
+				} else {
+					self.element.removeAttribute('style');
+					self.element.classList.add('visible');
+				}
+
+				distX = 0;
+			}
+		}, false);
 	}
 
 	_createClass(SideMenu, [{
@@ -1083,22 +1123,18 @@ var SideMenu = (function () {
 
 			if (!this.element.classList.contains('visible')) {
 
-				var overlay = document.createElement("div");
-				if (this.options.overlay) {
-					overlay.className = 'overlay';
-				} else {
-					overlay.className = 'overlay transparent';
+				if (!this.overlayEl) {
+					this.overlayEl = createOverlayElement.call(this);
+					listenCLoseSlideMenu.call(this, this.overlayEl);
 				}
-				document.body.appendChild(overlay);
-				listenCLoseSlideMenu.call(this, overlay);
 
 				this.element.classList.add('visible');
 			} else {
 				this.element.classList.remove('visible');
-
-				var overlays = document.getElementsByClassName("overlay");
-				removeListenCLoseSlideMenu.call(this, overlays[0]);
-				document.body.removeChild(overlays[0]);
+				removeListenCLoseSlideMenu.call(this, this.overlayEl);
+				this.overlayEl.remove();
+				this.overlayEl = null;
+				console.log(this.overlayEl);
 			}
 		}
 	}]);

@@ -26,9 +26,6 @@ html input[disabled] {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   font-size: 13px;
   line-height: 36px;
   
@@ -74,6 +71,9 @@ html input[disabled] {
   width: 56px;
   padding: 0;
   text-align: center;
+  .icon {
+    line-height: 56px;
+  }
   &.button--small {
     padding-left: 12px;
     padding-right: 12px;
@@ -82,6 +82,9 @@ html input[disabled] {
     height: 36px;
     width: 36px;
     padding: 0;
+    .icon {
+      line-height: 36px;
+    }
   }
   &.button--large {
     padding-left: 16px;
@@ -95,6 +98,7 @@ html input[disabled] {
       font-size: 32px;
       width: 100%;
       text-align: center;
+      line-height: 66px;
     }
   }
   &.button--fab-floating {
@@ -120,10 +124,12 @@ html input[disabled] {
   height: 40px;
   width: 40px;
   padding: 0;
-  -ms-flex-pack: center;
-  -ms-flex-align: center;
-  align-items: center;
-  justify-content: center;
+  line-height: 1;
+  
+  .icon {
+    line-height: 40px;
+  }
+  
   &.button--small {
     padding-left: 12px;
     padding-right: 12px;
@@ -132,6 +138,9 @@ html input[disabled] {
     height: 36px;
     width: 36px;
     padding: 0;
+    .icon {
+      line-height: 36px;
+    }
   }
   &.button--large {
     padding-left: 16px;
@@ -143,6 +152,7 @@ html input[disabled] {
     padding: 0;
     .icon {
       font-size: 32px;
+      line-height: 56px;
     }
   }
 }

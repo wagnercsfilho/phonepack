@@ -7,6 +7,8 @@
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  transform: translate3d(0px, 0px, 0px);
+  transition: transform 0s ease;
   -webkit-overflow-scrolling: touch;
   &.content--pull-to-refresh {
     transition: transform 0.2s ease-in-out;

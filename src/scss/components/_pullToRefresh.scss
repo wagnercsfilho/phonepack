@@ -6,7 +6,7 @@
 .snake--pull-to-refresh {
     height: 28px;
     width: 28px;
-    border: 5px solid #4285F4;
+    border: 4px solid #4285F4;
     border-right-color: transparent;
     border-radius: 50%;
     transform: rotate(0deg);
@@ -20,25 +20,9 @@
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
-        border-color: #4285F4;
-        border-right-color: transparent;
-    }
-    25% {
-        border-color: #DE3E35;
-        border-right-color: transparent;
-    }
-    50% {
-        border-color: #F7C223;
-        border-right-color: transparent;
-    }
-    75% {
-        border-color: #1B9A59;
-        border-right-color: transparent;
     }
     100% {
         transform: rotate(360deg);
-        border-color: #4285F4;
-        border-right-color: transparent;
     }
 }
 
