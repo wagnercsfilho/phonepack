@@ -7248,22 +7248,28 @@ input[type="checkbox"], input[type="radio"] {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.side-menu.side-menu.visible {
+.side-menu.side-menu--visible {
   -webkit-transform: translateX(100%);
       -ms-transform: translateX(100%);
           transform: translateX(100%);
 }
 
-.side-menu.side-menu.visible ~ .overlay {
+.side-menu.side-menu--visible ~ .overlay {
   opacity: 0.5;
 }
 
-.side-menu.side-menu.visible ~ .overlay.transparent {
+.side-menu.side-menu--visible ~ .overlay.transparent {
   opacity: 0;
 }
 
 .side-menu .header {
   position: initial;
+}
+
+.side-menu ~ .side-menu--elastic {
+  -webkit-transform: translateX(80%);
+      -ms-transform: translateX(80%);
+          transform: translateX(80%);
 }
 
 .overlay {
@@ -7989,6 +7995,8 @@ html input[disabled] {
   position: relative;
   height: 100%;
   width: 100%;
+  -webkit-transition: -webkit-transform 0.2s ease;
+          transition: transform 0.2s ease;
 }
 
 .pages {

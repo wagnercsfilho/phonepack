@@ -1,0 +1,1 @@
+https://css-tricks.com/snippets/javascript/lazy-loading-images/

@@ -1049,24 +1049,31 @@ var SideMenu = (function () {
 
 		var self = this,
 		    startX,
+		    startTouchPosition,
 		    distX,
 		    transitionDuration,
 		    clientWidth,
 		    touchobj,
+		    isMoved,
 		    _options = {
-			overlay: false
+			type: 'overlap', // overlap or elastic
+			overlay: true // true or false
 		};
 
 		self.element = element;
 		self.options = _utilsUtils2['default'].extend({}, _options, options);
 		self.overlayEl = null;
+		self.page = document.querySelector('.navigation');
 
 		transitionDuration = '0.2s';
+		startTouchPosition = 30;
+		isMoved = false;
 
 		document.addEventListener('touchstart', function (e) {
 			touchobj = e.changedTouches[0];
 			startX = touchobj.pageX;
-			if (startX <= 10 && !self.element.classList.contains('visible') && self.options.overlay) {
+			if (startX <= startTouchPosition && !self.element.classList.contains('side-menu--visible') && self.options.overlay) {
+				clientWidth = self.element.clientWidth;
 				self.overlayEl = createOverlayElement.call(self);
 				listenCLoseSlideMenu.call(self, self.overlayEl);
 			}
@@ -1074,45 +1081,86 @@ var SideMenu = (function () {
 
 		document.addEventListener('touchmove', function (e) {
 			touchobj = e.changedTouches[0];
-			self.element.style.webkitTransitionDuration = '0s';
-			self.element.style.transitionDuration = '0s';
 			distX = touchobj.pageX - startX;
+			isMoved = true;
 
-			if (startX <= 10) {
-				if (self.options.overlay) self.overlayEl.style.opacity = distX * 0.001;
-				setTransform(self.element, 'translateX(' + distX + 'px)');
-			} else if (self.element.classList.contains('visible')) {
-				clientWidth = self.element.clientWidth;
+			if (startX <= startTouchPosition) {
+				self.element.style.webkitTransitionDuration = '0s';
+				self.element.style.transitionDuration = '0s';
+				if (distX >= clientWidth) {
+					return;
+				} else {
+					if (self.options.overlay) self.overlayEl.style.opacity = (distX * 0.002).toFixed(1);
+					setTransform(self.element, 'translateX(' + distX + 'px)');
+					if (self.options.type === 'elastic') {
+						setTransform(self.page, 'translateX(' + distX + 'px)');
+					}
+				}
+			} else if (self.element.classList.contains('side-menu--visible') && distX <= 0) {
+				self.element.style.webkitTransitionDuration = '0s';
+				self.element.style.transitionDuration = '0s';
 				setTransform(self.element, 'translateX(' + (clientWidth + distX) + 'px)');
-				if (self.options.overlay) self.overlayEl.style.opacity = (clientWidth + distX) * 0.001;
+				if (self.options.overlay) self.overlayEl.style.opacity = ((clientWidth + distX) * 0.002).toFixed(1);
+
+				if (self.options.type === 'elastic') {
+					setTransform(self.page, 'translateX(' + (clientWidth + distX) + 'px)');
+				}
 			}
 		}, false);
 
 		document.addEventListener('touchend', function (e) {
-			self.element.style.webkitTransitionDuration = transitionDuration;
-			self.element.style.transitionDuration = transitionDuration;
-
-			if (startX <= 10) {
-				if (distX > 100) {
-					self.element.removeAttribute('style');
-					self.element.classList.add('visible');
-				} else {
-					setTransform(self.element, 'translateX(0)');
-				}
-			} else if (self.element.classList.contains('visible')) {
-				if (distX < -100) {
-					if (self.options.overlay) {
+			if (isMoved) {
+				if (startX <= startTouchPosition) {
+					self.element.style.webkitTransitionDuration = transitionDuration;
+					self.element.style.transitionDuration = transitionDuration;
+					if (distX > 100) {
+						self.overlayEl.removeAttribute('style');
+						self.element.removeAttribute('style');
+						self.element.classList.add('side-menu--visible');
+						if (self.options.type === 'elastic') {
+							self.page.classList.add('side-menu--elastic');
+						}
+					} else {
 						self.overlayEl.remove();
 						self.overlayEl = null;
+						setTransform(self.element, 'translateX(0)');
+						if (self.options.type === 'elastic') {
+							setTransform(self.page, 'translateX(0)');
+						}
 					}
-					self.element.removeAttribute('style');
-					self.element.classList.remove('visible');
-				} else {
-					self.element.removeAttribute('style');
-					self.element.classList.add('visible');
+					if (self.options.type === 'elastic') {
+						self.element.removeAttribute('style');
+						self.page.removeAttribute('style');
+					}
+				} else if (self.element.classList.contains('side-menu--visible')) {
+					self.element.style.webkitTransitionDuration = transitionDuration;
+					self.element.style.transitionDuration = transitionDuration;
+					if (distX < -100) {
+						if (self.options.overlay) {
+							self.overlayEl.remove();
+							self.overlayEl = null;
+						}
+						self.element.removeAttribute('style');
+						self.element.classList.remove('side-menu--visible');
+
+						if (self.options.type === 'elastic') {
+							self.page.removeAttribute('style');
+							self.page.classList.remove('side-menu--elastic');
+						}
+					} else {
+						self.element.removeAttribute('style');
+						self.element.classList.add('side-menu--visible');
+
+						if (self.options.type === 'elastic') {
+							self.page.removeAttribute('style');
+							self.page.classList.add('side-menu--elastic');
+						}
+					}
+
+					distX = 0;
 				}
 
-				distX = 0;
+				isMoved = false;
 			}
 		}, false);
 	}
@@ -1121,20 +1169,26 @@ var SideMenu = (function () {
 		key: 'toggle',
 		value: function toggle() {
 
-			if (!this.element.classList.contains('visible')) {
-
+			if (!this.element.classList.contains('side-menu--visible')) {
 				if (!this.overlayEl) {
 					this.overlayEl = createOverlayElement.call(this);
 					listenCLoseSlideMenu.call(this, this.overlayEl);
 				}
 
-				this.element.classList.add('visible');
+				if (this.options.type === 'elastic') {
+					this.page.classList.add('side-menu--elastic');
+				}
+
+				this.element.classList.add('side-menu--visible');
 			} else {
-				this.element.classList.remove('visible');
+
+				if (this.options.type === 'elastic') {
+					this.page.classList.remove('side-menu--elastic');
+				}
+				this.element.classList.remove('side-menu--visible');
 				removeListenCLoseSlideMenu.call(this, this.overlayEl);
 				this.overlayEl.remove();
 				this.overlayEl = null;
-				console.log(this.overlayEl);
 			}
 		}
 	}]);
