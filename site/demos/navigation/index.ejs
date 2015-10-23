@@ -24,14 +24,12 @@
             phonepack('#login').on('click', function(){
                var email = document.querySelector('#txtEmail');
                var password = document.querySelector('#txtPassword');
-               
-               if (email.value == 'admin@admin.com' && password.value == 'admin'){
-                   logged = true;
-                   navigation.pushPage('/docs/demos/navigation/list');
-               } else {
-                  var notification = new phonepack.Notification();
-                  notification.success('Failed Login!');
-               }
+
+                logged = true;
+                var notification = new phonepack.Notification();
+                notification.success('Login!');
+                navigation.pushPage('/docs/demos/navigation/list');
+  
             });
             
             phonepack('#open').on('click', function() {

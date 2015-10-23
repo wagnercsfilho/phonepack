@@ -56,11 +56,12 @@ class Loading {
 	show(confirmCallback, cancelCallback) {
 		var self = this;
 
-		setTimeout(function() {
+		setTimeout(function() { 
 			if (self.options.overlay) {
 				self.overlay.classList.add('loading-filter--is-shown');
+			} else {
+				self.dialog.classList.add('loading--no-box-shadow');
 			}
-			self.dialog.classList.add('loading--no-box-shadow');
 			self.dialog.classList.add('loading--is-shown');
 		}, 0);
 

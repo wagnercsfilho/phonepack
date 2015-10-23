@@ -21,7 +21,9 @@ var dialog = new phonepack.Dialog({
     <h4>Lorem ipsum dolor sit amet</h4>
     <pre><code class="language-javascript">
 var loading = new phonepack.Loading({
-    title: 'Dialog'      
+    spinner: true,
+    overlay: true,
+    title: 'Loading'
 }).show();
                 
 setTimeout(function() {
@@ -47,12 +49,28 @@ notification.error('Warning message');</code></pre>
 
 <!-- PAGES -->
 
+
 <section id="navigation">
     <h3>Navigation</h3>
-    <h4>Lorem ipsum dolor sit amet</h4>
+    <h4>Navigation SPA pages</h4>
+    
+    <pre><code class="language-markup">
+&lt;!-- Entry point in views that will be inserted in the DOM  --&gt;
+&lt;div id="navigation" class="navigation"&gt&lt;/div&gt;
+    
+&lt;!-- All application pages should be between a DIV tag with class " .pages "  --&gt;
+&lt;div class="pages"&gt;&lt;/div&gt;
+    </code></pre>
+    
     <pre><code class="language-javascript">
+
+// Sets the homepage that will be loaded into the DOM.
+var options = {
+    page: 'startPage.html'
+};        
+
 // Instance a new page class
-var navigation = new phonepack.Navigation(document.getElementById('pages'));
+var navigation = new phonepack.Navigation(document.getElementById('pages'), options);
 
 // Push a new page into the DOM
 navigation.pushPage('example-page.html', { paramObj: { foo: 'bar } }, doSomething);
@@ -78,6 +96,23 @@ console.log(naviParams.paramObj);
     }
 */
 
+</code>
+</pre>
+<br>
+<h4>Events</h4>
+<h5>beforePush - This method is called before rendering the html of the page in the DOM.</h5>
+<pre><code class="language-javascript">
+navigation.on('beforePush', function(template, next){
+    // template: Html element
+    // next: Method should be called for to continue rendering the page in the DOM.
+});
+</code>
+</pre>
+<h5>afterPush - This method is called after rendering the html of the page in the DOM.</h5>
+<pre><code class="language-javascript">
+navigation.on('afterPush', function(template){
+    // template: Html element
+});
 </code>
 </pre>
 </section>
