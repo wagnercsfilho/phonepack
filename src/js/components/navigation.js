@@ -58,107 +58,111 @@ class Navigation {
 		}
 
 		document.addEventListener('backbutton', function(e) {
-				self.closeCurrentPage();
+			self.closeCurrentPage();
 		}, false);
 
-}
+	}
 
-get params() {
-	let params = this._params;
-	this._params = null;
-	return params;
-}
+	get params() {
+		let params = this._params;
+		this._params = null;
+		return params;
+	}
 
-set params(value) {
-	this._params = value;
-}
+	set params(value) {
+		this._params = value;
+	}
 
-on(event, fn) {
-	eventEmitter[event] = fn;
-}
+	on(event, fn) {
+		eventEmitter[event] = fn;
+	}
 
-changePage(page, params, callback) {
-	var self = this;
-	self.params = params;
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
+	changePage(page, params, callback) {
+		var self = this;
+		self.params = params;
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 
-			let temp = document.createElement("div");
-			temp.innerHTML = request.responseText;
+				let temp = document.createElement("div");
+				temp.innerHTML = request.responseText;
 
-			let template = temp.querySelector('.pages');
-			if (eventEmitter.beforeChange) {
-				eventEmitter.beforeChange(template, function() {
+				let template = temp.querySelector('.pages');
+				if (eventEmitter.beforeChange) {
+					eventEmitter.beforeChange(template, function() {
+						changePage.call(self, template, function() {
+							if (callback) callback(template);
+						});
+					});
+				}
+				else {
 					changePage.call(self, template, function() {
 						if (callback) callback(template);
 					});
-				});
+				}
+
 			}
-			else {
-				changePage.call(self, template, function() {
-					if (callback) callback(template);
-				});
-			}
+		};
+		request.open('GET', page, true);
+		request.send();
+	}
 
-		}
-	};
-	request.open('GET', page, true);
-	request.send();
-}
+	pushPage(page, params, callback) {
+		var self = this;
+		self.params = params;
+		var request = new XMLHttpRequest();
 
-pushPage(page, params, callback) {
-	var self = this;
-	self.params = params;
-	var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 
-	request.onreadystatechange = function() {
-		if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
+				let temp = document.createElement("div");
+				temp.innerHTML = request.responseText;
 
-			let temp = document.createElement("div");
-			temp.innerHTML = request.responseText;
-
-			let template = temp.querySelector('.pages');
-			template.classList.add('pages--slide-up');
-			if (eventEmitter.beforePush) {
-				eventEmitter.beforePush(template, function() {
+				let template = temp.querySelector('.pages');
+				template.classList.add('pages--slide-up');
+				if (eventEmitter.beforePush) {
+					eventEmitter.beforePush(template, function() {
+						pushPage.call(self, template, function() {
+							if (callback) callback(template);
+						});
+					});
+				}
+				else {
 					pushPage.call(self, template, function() {
 						if (callback) callback(template);
 					});
-				});
+				}
+
 			}
-			else {
-				pushPage.call(self, template, function() {
-					if (callback) callback(template);
-				});
+		};
+
+		request.open('GET', page, true);
+		request.send();
+	}
+
+	closeCurrentPage() {
+		var self = this;
+
+		var removeDomPage = function() {
+			self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
+			self.currentPage.removeEventListener('transitionend', removeDomPage);
+
+			if (self.currentPage) {
+				self.currentPage.remove();
 			}
 
-		}
-	};
+			self.currentPage = self.prevPage;
+		};
 
-	request.open('GET', page, true);
-	request.send();
-}
-
-closeCurrentPage() {
-	var self = this;
-
-	var removeDomPage = function() {
-		self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
-		self.currentPage.removeEventListener('transitionend', removeDomPage);
-
-		if (self.currentPage) {
-			self.currentPage.remove();
+		if (self.prevPage) {
+			self.currentPage.classList.remove('pages--slide-up-show');
+			self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
+			self.currentPage.addEventListener('transitionend', removeDomPage);
+		} else {
+			return;
 		}
 
-		self.currentPage = self.prevPage;
-	};
-
-	self.currentPage.classList.remove('pages--slide-up-show');
-	self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
-	self.currentPage.addEventListener('transitionend', removeDomPage);
-
-}
+	}
 
 }
 
