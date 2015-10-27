@@ -12,7 +12,7 @@ class TabBar {
                 let contentId = activeTab.getAttribute('ref') || activeTab.getAttribute('tab');
                 $(contentId).removeClass('tab-hide').addClass('tab-show');
             }
-        }
+        } 
 
         $('.tab-bar__item').on('click', function(e, element) {
             let contentId = element.getAttribute('ref') || element.getAttribute('tab');

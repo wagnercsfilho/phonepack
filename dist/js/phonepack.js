@@ -609,9 +609,13 @@ var Navigation = (function () {
 				self.currentPage = self.prevPage;
 			};
 
-			self.currentPage.classList.remove('pages--slide-up-show');
-			self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
-			self.currentPage.addEventListener('transitionend', removeDomPage);
+			if (self.prevPage) {
+				self.currentPage.classList.remove('pages--slide-up-show');
+				self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
+				self.currentPage.addEventListener('transitionend', removeDomPage);
+			} else {
+				return;
+			}
 		}
 	}, {
 		key: 'params',
@@ -1227,12 +1231,14 @@ var TabBar = function TabBar(element) {
 
         var activeTab = element.querySelector('.active');
         if (activeTab) {
-            (0, _utilsDom2['default'])(activeTab.getAttribute('ref')).removeClass('tab-hide').addClass('tab-show');
+            var contentId = activeTab.getAttribute('ref') || activeTab.getAttribute('tab');
+            (0, _utilsDom2['default'])(contentId).removeClass('tab-hide').addClass('tab-show');
         }
     }
 
     (0, _utilsDom2['default'])('.tab-bar__item').on('click', function (e, element) {
-        var content = (0, _utilsDom2['default'])(element.getAttribute('ref'));
+        var contentId = element.getAttribute('ref') || element.getAttribute('tab');
+        var content = (0, _utilsDom2['default'])(contentId);
         (0, _utilsDom2['default'])('.content').removeClass('tab-show').addClass('tab-hide');
         content.removeClass('tab-hide').addClass('tab-show');
         (0, _utilsDom2['default'])('.tab-bar__item').removeClass('active');
