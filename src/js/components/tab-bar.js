@@ -9,13 +9,13 @@ class TabBar {
 
             let activeTab = element.querySelector('.active');
             if (activeTab) {
-                let contentId = activeTab.getAttribute('ref') || activeTab.getAttribute('tab');
+                let contentId = activeTab.getAttribute('ref') || activeTab.getAttribute('data-tab');
                 $(contentId).removeClass('tab-hide').addClass('tab-show');
             }
         } 
 
         $('.tab-bar__item').on('click', function(e, element) {
-            let contentId = element.getAttribute('ref') || element.getAttribute('tab');
+            let contentId = element.getAttribute('ref') || element.getAttribute('data-tab');
             let content = $(contentId);
             $('.content').removeClass('tab-show').addClass('tab-hide');
             content.removeClass('tab-hide').addClass('tab-show');
