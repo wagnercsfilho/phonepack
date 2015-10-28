@@ -1231,13 +1231,13 @@ var TabBar = function TabBar(element) {
 
         var activeTab = element.querySelector('.active');
         if (activeTab) {
-            var contentId = activeTab.getAttribute('ref') || activeTab.getAttribute('tab');
+            var contentId = activeTab.getAttribute('ref') || activeTab.getAttribute('data-tab');
             (0, _utilsDom2['default'])(contentId).removeClass('tab-hide').addClass('tab-show');
         }
     }
 
     (0, _utilsDom2['default'])('.tab-bar__item').on('click', function (e, element) {
-        var contentId = element.getAttribute('ref') || element.getAttribute('tab');
+        var contentId = element.getAttribute('ref') || element.getAttribute('data-tab');
         var content = (0, _utilsDom2['default'])(contentId);
         (0, _utilsDom2['default'])('.content').removeClass('tab-show').addClass('tab-hide');
         content.removeClass('tab-hide').addClass('tab-show');
