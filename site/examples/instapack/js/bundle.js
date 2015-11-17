@@ -1949,8 +1949,6 @@ function dropDownMenuDirective($timeout) {
     return {
         restrict: 'A',
         link: function link(scope, el, attrs) {
-            console.log('message');
-
             $timeout(function () {
                 phonepack.DropDownMenu(el[0], document.getElementById(attrs['dropDownMenuId']));
             }, 0);
@@ -2630,7 +2628,7 @@ var TimelineController = (function () {
                 loading.hide();
             });
         }, function (err) {
-            alert(err);
+            alert('Could not retrieve your location.');
         });
     }
 
@@ -2669,7 +2667,7 @@ var TimelineController = (function () {
     }, {
         key: 'changeDistance',
         value: function changeDistance() {
-            alert('sdsd');
+            alert('Not yet implemented');
         }
     }]);
 
