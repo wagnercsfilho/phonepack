@@ -1,0 +1,28 @@
+<div class="list card" ng-repeat="m in media">
+    <div class="list__item card__avatar"> 
+        <div class="list__primary" ng-click="navigation.pushPage('app/profile/profile.html', {user: m.user})">
+            <img ng-src="{{ m.user.profile_picture }}" class="img-circle"></img>
+        </div>
+        <div class="list__content">
+            <span class="text-instaplace-blue">{{ m.user.username }}</span>
+            <div class="list__caption" ng-click="navigation.pushPage('app/local/media-local.html', { local: m.location })">
+                <span><i class="icon mdi mdi-map-marker" style="font-size: 13px;"></i> {{ m.location.name }}</span>
+            </div>
+            <span am-time-ago="{{m.created_time | amFromUnix }}" style="font-size: 12px;
+                                       position: absolute;
+                                       top: 1px;
+                                       right: 0;" class="text-grey"></span>
+        </div>
+    </div>
+    <div class="list__item card__text" style="padding-top: 0;" class="text-grey">
+        {{ m.caption.text }}
+    </div>
+    <div class="list__item card__image">
+        <img ng-src="{{ m.images.low_resolution.url }}" class="card__image--pic">
+        <div class="card__image--action"> 
+            <a class="button button--fab bg-pink text-white button--ripple" ng-click="openLink(m.link)">
+                <i class="icon mdi mdi-instagram"></i>
+            </a>
+        </div>
+    </div>
+</div>

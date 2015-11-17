@@ -6,32 +6,16 @@
 
   <div class="sub-header header--shadow">
     <div id="tab" class="tab-bar bg-indigo tab-bar--text-white tab-bar--indicator-bottom-white">
-      <div class="tab-bar__item ripple active" ref="#tab1">
+      <div class="tab-bar__item ripple active">
         TEXT 1
       </div>
-      <div class="tab-bar__item ripple" ref="#tab2">
+      <div class="tab-bar__item ripple">
         TEXT 2
       </div>
-      <div class="tab-bar__item ripple" ref="#tab3">
+      <div class="tab-bar__item ripple">
         TEXT 3
       </div>
     </div>
   </div>
-
-  <section class="content content--padding has-header has-sub-header" id="tab1">
-      Tab 1
-  </section>
-  
-  <section class="content content--padding has-header has-sub-header" id="tab2">
-      Tab 2
-  </section>
-  
-  <section class="content content--padding has-header has-sub-header" id="tab3">
-      Tab 3
-  </section>
-
-  <script>
-    var tabBar = new phonepack.TabBar(document.querySelector('#tab'));
-  </script>
 
   <% include ../partials/footer %>

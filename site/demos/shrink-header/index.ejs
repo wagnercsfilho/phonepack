@@ -1,7 +1,7 @@
 <% include ../partials/head %>
   
     <header class="header header--shadow text-black">
-      <div class="header__title">Infinity Scroll</div>
+      <div class="header__title">Shrink Header</div>
     </header>
     
     <section class="content has-header">
@@ -19,17 +19,8 @@
             list.appendChild(listItem);
         }
         
-        var infiniteScroll = new phonepack.InfiniteScroll(document.querySelector('.content'), { distance: 50 }, function(){
-            setTimeout(function(){
-                var listItem = document.createElement('li');
-                listItem.className = 'list__item';
-                listItem.innerHTML = i++;
-                list.appendChild(listItem);
-                infiniteScroll.hide();
-            }, 2000);
-        });
-        
-        
+        phonepack.shrinkHeader(document.querySelector('.header'));
+      
     </script> 
 <% include ../partials/footer %>
       

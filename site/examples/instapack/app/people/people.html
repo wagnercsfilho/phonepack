@@ -1,0 +1,27 @@
+<div class="pages" ng-controller="PeopleController as people">
+    <header class="header bg-instaplace-blue">
+        <div class="header__buttons">
+            <button class="button button--m button--icon button--ripple text-white" ng-click="sideMenu.toggle()">
+                <i class="icon mdi mdi-menu"></i>
+            </button>
+        </div>
+        <div class="header__title text-white">Pessoas</div>
+    </header>
+
+    <section class="content has-header">
+        <ul class="list">
+            <li class="list__item" ng-repeat="user in people.results" ng-click="navigation.pushPage('app/profile/profile.html', {user: user})">
+                <div class="list__primary">
+                    <img ng-src="{{ user.profile_picture }}" class="img-circle" width="40"></img>
+                </div>
+                <div class="list__content">
+                   {{ user.username }} 
+                   <div class="list__caption">
+                       {{ user.full_name }}
+                   </div>
+                </div>
+                
+            </li>
+        </ul>
+    </section>
+</div>

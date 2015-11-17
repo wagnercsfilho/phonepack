@@ -1,0 +1,21 @@
+<div class="pages" ng-controller="LocalController as local">
+    <header class="header bg-instaplace-blue" shrink-header>
+        <div class="header__buttons">
+            <button class="button button--m button--icon button--ripple text-white" ng-click="sideMenu.toggle()">
+                <i class="icon mdi mdi-menu"></i>
+            </button>
+        </div>
+        <div class="header__title text-white">Lugares</div>
+    </header>
+
+    <section class="content has-header">
+        <ul class="list">
+            <li class="list__item" ng-repeat="local in local.results" ng-click="navigation.pushPage('app/local/media-local.html', { local: local })">
+                <div class="list__primary">
+                    <i class="icon icon--circled bg-green text-white mdi mdi-map-marker"></i>
+                </div>
+                {{ local.name }}
+            </li>
+        </ul>
+    </section>
+</div>

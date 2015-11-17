@@ -1,0 +1,54 @@
+<div class="pages" ng-controller="ProfileController as profile">
+    <header class="header header--transparent bg-white text-white">
+        <div class="header__buttons">
+            <button class="button button--icon button--ripple text-white" ng-click="navigation.closeCurrentPage()">
+                <i class="icon mdi mdi-arrow-left"></i>
+            </button>
+        </div>
+        <div class="header__title"></div>
+    </header>
+
+    <section class="content">
+        <div class="list card" style="z-index: 2;"> 
+            <div class="list__item card__image">
+
+                <img ng-src="{{ profile.userProfile.profile_picture.replace('s150x150', 's600x600') }}" class="card__image--pic">
+                <h2 class="card__image--text">{{ user.username }}</h2>
+                <div class="card__image--action">
+                    <a class="button button--fab bg-pink text-white button--ripple" ng-click="profile.openProfile('https://instagram.com/' + profile.user.username)">
+                        <i class="icon mdi mdi-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="m16">
+            <div class="list card" ng-if="profile.userProfile.full_name">
+                <div class="list__item card__title">
+                    Full Name
+                </div>
+                <div class="list__item card__text">
+                    {{ profile.userProfile.full_name }}
+                </div>
+            </div>
+            
+            <div class="list card" ng-if="profile.userProfile.bio">
+                <div class="list__item card__title">
+                    Bio
+                </div>
+                <div class="list__item card__text">
+                    {{ profile.userProfile.bio }}
+                </div>
+            </div>
+            
+            <div class="list card" ng-if="profile.userProfile.website">
+                <div class="list__item card__title">
+                    Website
+                </div>
+                <div class="list__item card__text">
+                    {{ profile.userProfile.website }}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

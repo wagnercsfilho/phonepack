@@ -159,3 +159,65 @@ var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content
 </code>
 </pre>
 </section>
+
+<!-- TabBar -->
+
+<section id="tabbar">
+    <h3>TabBar</h3>
+    <h4>Javascript</h4>
+    <pre><code class="language-javascript">
+var tabBar = new phonepack.TabBar(document.querySelector('#tab'));
+    </code></pre>
+    <h4>Html</h4>
+    <pre><code class="language-markup">
+&lt;div class=&quot;sub-header header--shadow&quot;&gt;
+    &lt;div id=&quot;tab&quot; class=&quot;tab-bar bg-indigo tab-bar--text-white tab-bar--indicator-bottom-white&quot;&gt;
+      &lt;div class=&quot;tab-bar__item ripple active&quot; ref=&quot;#tab1&quot;&gt;
+        TEXT 1
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot; ref=&quot;#tab2&quot;&gt;
+        TEXT 2
+      &lt;/div&gt;
+      &lt;div class=&quot;tab-bar__item ripple&quot; ref=&quot;#tab3&quot;&gt;
+        TEXT 3
+      &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+  &lt;section class=&quot;content content--padding has-header has-sub-header&quot; id=&quot;tab1&quot;&gt;
+      Tab 1
+  &lt;/section&gt;
+  
+  &lt;section class=&quot;content content--padding has-header has-sub-header&quot; id=&quot;tab2&quot;&gt;
+      Tab 2
+  &lt;/section&gt;
+  
+  &lt;section class=&quot;content content--padding has-header has-sub-header&quot; id=&quot;tab3&quot;&gt;
+      Tab 3
+  &lt;/section&gt;
+</code>
+</pre>
+</section>
+
+
+<!-- InfiniteScroll -->
+<section id="infinite-scroll">
+    <h3>Infinite Scroll</h3>
+    <pre><code class="language-javascript">
+var content = document.querySelector('.content');
+
+var infiniteScroll = new phonepack.InfiniteScroll(content, { distance: 50 }, function(){
+  infiniteScroll.hide();
+});
+</code>
+</pre>
+</section>
+
+<!-- Shrink Header -->
+<section id="shrink-header">
+    <h3>Shrink Header</h3>
+    <pre><code class="language-javascript">
+phonepack.shrinkHeader(document.querySelector('.header'));
+</code>
+</pre>
+</section>
