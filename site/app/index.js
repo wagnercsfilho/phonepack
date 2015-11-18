@@ -16,6 +16,10 @@ module.exports = function(app){
       res.render('views/javascript/index');
     });
     
+    app.get('/examples.html', function (req, res) {
+      res.render('views/examples/index');
+    });
+    
     app.get('/docs/demos/:path/:page', function(req, res) {
       res.render('demos/' + req.params.path + '/' + req.params.page);
     });
