@@ -11,7 +11,7 @@ Three quick start options are available:
 
 ## Demo
 
-[Click here](http://phonepack.herokuapp.com/) to see Phonepack in action!
+[Click here](http://phonepack.org/) to see Phonepack in action!
 
 
 ### Running documentation locally
@@ -29,7 +29,7 @@ Code released under the [MIT license](LICENSE.md).
 
 Please ask a question on <a href="http://stackoverflow.com" target="_blank">Stackoverflow</a>, and tag it "phonepack".
 
-Twitter account (<a href="http://twitter.com/phonepack" target="_blank">@phonepack</a>).
+Twitter account (<a href="http://twitter.com/phonepackjs" target="_blank">@phonepack</a>).
 
 
 [release]: https://github.com/wagnercsfilho/phonepack/tags
