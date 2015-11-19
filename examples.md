@@ -23,10 +23,10 @@ permalink: /examples/
         <div class="col-md-2 hidden-xs hidden-sm">
             <div class="side-bar" id="sideBar">
 
-                <a href="/getting-started"><h4>GETTING STARTED</h4></a>
-                <a href="/css"><h4>CSS</h4></a>
-                <a href="/javascript"><h4>JAVASCRIPT</h4></a>
-                <a href="/examples"><h4 class="active">EXAMPLES</h4></a>
+                <a href="{{ "/getting-started" | prepend: site.baseurl }}"><h4>GETTING STARTED</h4></a>
+                <a href="{{ "/css" | prepend: site.baseurl }}"><h4>CSS</h4></a>
+                <a href="{{ "/javascript" | prepend: site.baseurl }}"><h4>JAVASCRIPT</h4></a>
+                <a href="{{ "/examples" | prepend: site.baseurl }}"><h4 class="active">EXAMPLES</h4></a>
 
             </div>
         </div>

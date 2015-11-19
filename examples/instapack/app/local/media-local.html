@@ -1,0 +1,14 @@
+<div class="pages" ng-controller="MediaLocalController as mediaLocal">
+    <header class="header bg-instaplace-blue" shrink-header>
+        <div class="header__buttons">
+            <button class="button button--icon button--ripple text-white" ng-click="navigation.closeCurrentPage()">
+                <i class="icon mdi mdi-arrow-left"></i>
+            </button> 
+        </div>
+        <div class="header__title text-white">{{ mediaLocal.local.name }}</div>
+    </header>
+
+    <section class="content has-header">
+        <timeline media="mediaLocal.results"></timeline>
+    </section>
+</div>

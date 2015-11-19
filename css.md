@@ -24,100 +24,100 @@ permalink: /css/
 		<div class="col-md-2 hidden-xs hidden-sm">
 <div class="side-bar" id="sideBar">
 
-	<a href="/getting-started"><h4>GETTING STARTED</h4></a>
+	<a href="{{ "/getting-started" | prepend: site.baseurl }}"><h4>GETTING STARTED</h4></a>
 	<h4 class="active">CSS</h4>
 	<ul class="nav nav-list">
 		<li>
-			<a href="#header" rel="docs/demos/header/header">Header</a>
+			<a href="#header" rel="{{ site.baseurl }}/demos/header/header">Header</a>
 			<ul class="nav">
-				<li><a href="#header-shadow" rel="docs/demos/header/shadow">With Shadow</a></li>
-				<li><a href="#header-colors" rel="docs/demos/header/colors">Custom Colors</a></li>
-				<li><a href="#header-buttons" rel="docs/demos/header/buttons">Buttons</a></li>
-				<li><a href="#header-caption" rel="docs/demos/header/caption">Caption</a></li>
+				<li><a href="#header-shadow" rel="{{ site.baseurl }}/demos/header/shadow">With Shadow</a></li>
+				<li><a href="#header-colors" rel="{{ site.baseurl }}/demos/header/colors">Custom Colors</a></li>
+				<li><a href="#header-buttons" rel="{{ site.baseurl }}/demos/header/buttons">Buttons</a></li>
+				<li><a href="#header-caption" rel="{{ site.baseurl }}/demos/header/caption">Caption</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#content" rel="docs/demos/content/index">Content</a>
+			<a href="#content" rel="{{ site.baseurl }}/demos/content/index">Content</a>
 			<ul class="nav">
-				<li><a href="#content-header" rel="docs/demos/content/header">Header</a></li>
-				<li><a href="#content-footer" rel="docs/demos/content/footer">Footer</a></li>
+				<li><a href="#content-header" rel="{{ site.baseurl }}/demos/content/header">Header</a></li>
+				<li><a href="#content-footer" rel="{{ site.baseurl }}/demos/content/footer">Footer</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#footer" rel="docs/demos/footer/index">Footer</a>
+			<a href="#footer" rel="{{ site.baseurl }}/demos/footer/index">Footer</a>
 			<ul class="nav">
-				<li><a href="#footer-colors" rel="docs/demos/footer/colors">Custom Colors</a></li>
-				<li><a href="#footer-buttons" rel="docs/demos/footer/buttons">Buttons</a></li>
+				<li><a href="#footer-colors" rel="{{ site.baseurl }}/demos/footer/colors">Custom Colors</a></li>
+				<li><a href="#footer-buttons" rel="{{ site.baseurl }}/demos/footer/buttons">Buttons</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#buttons" rel="docs/demos/buttons/index">Buttons</a>
+			<a href="#buttons" rel="{{ site.baseurl }}/demos/buttons/index">Buttons</a>
 			<ul class="nav">
-				<li><a href="#buttons-colors" rel="docs/demos/buttons/colors">Colors</a></li>
-				<li><a href="#buttons-raised" rel="docs/demos/buttons/raised">Raised</a></li>
-				<li><a href="#buttons-block" rel="docs/demos/buttons/block">Block</a></li>
-				<li><a href="#buttons-flat" rel="docs/demos/buttons/flat">Flat</a></li>
-				<li><a href="#buttons-icon" rel="docs/demos/buttons/icon">Icon</a></li>
-				<li><a href="#buttons-fab" rel="docs/demos/buttons/fab">Fab</a></li>
-				<li><a href="#buttons-floating" rel="docs/demos/buttons/floating">Floating</a></li>
-				<li><a href="#buttons-ripple" rel="docs/demos/buttons/ripple">Ripple</a></li>
+				<li><a href="#buttons-colors" rel="{{ site.baseurl }}/demos/buttons/colors">Colors</a></li>
+				<li><a href="#buttons-raised" rel="{{ site.baseurl }}/demos/buttons/raised">Raised</a></li>
+				<li><a href="#buttons-block" rel="{{ site.baseurl }}/demos/buttons/block">Block</a></li>
+				<li><a href="#buttons-flat" rel="{{ site.baseurl }}/demos/buttons/flat">Flat</a></li>
+				<li><a href="#buttons-icon" rel="{{ site.baseurl }}/demos/buttons/icon">Icon</a></li>
+				<li><a href="#buttons-fab" rel="{{ site.baseurl }}/demos/buttons/fab">Fab</a></li>
+				<li><a href="#buttons-floating" rel="{{ site.baseurl }}/demos/buttons/floating">Floating</a></li>
+				<li><a href="#buttons-ripple" rel="{{ site.baseurl }}/demos/buttons/ripple">Ripple</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#lists" rel="docs/demos/lists/index">List</a>
+			<a href="#lists" rel="{{ site.baseurl }}/demos/lists/index">List</a>
 			<ul class="nav">
-				<li><a href="#lists-subheader" rel="docs/demos/lists/subheader">Subheader</a></li>
-				<li><a href="#lists-caption" rel="docs/demos/lists/caption">Caption</a></li>
-				<li><a href="#lists-icon" rel="docs/demos/lists/icon">Icon</a></li>
-				<li><a href="#lists-image" rel="docs/demos/lists/image">Image</a></li>
+				<li><a href="#lists-subheader" rel="{{ site.baseurl }}/demos/lists/subheader">Subheader</a></li>
+				<li><a href="#lists-caption" rel="{{ site.baseurl }}/demos/lists/caption">Caption</a></li>
+				<li><a href="#lists-icon" rel="{{ site.baseurl }}/demos/lists/icon">Icon</a></li>
+				<li><a href="#lists-image" rel="{{ site.baseurl }}/demos/lists/image">Image</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#cards" rel="docs/demos/cards/index">Cards</a>
+			<a href="#cards" rel="{{ site.baseurl }}/demos/cards/index">Cards</a>
 			<ul class="nav">
-				<li><a href="#cards-image" rel="docs/demos/cards/image">Image</a></li>
-				<li><a href="#cards-avatar" rel="docs/demos/cards/avatar">Avatar</a></li>
-				<li><a href="#cards-background-image" rel="docs/demos/cards/background-image">Background Image</a></li>
+				<li><a href="#cards-image" rel="{{ site.baseurl }}/demos/cards/image">Image</a></li>
+				<li><a href="#cards-avatar" rel="{{ site.baseurl }}/demos/cards/avatar">Avatar</a></li>
+				<li><a href="#cards-background-image" rel="{{ site.baseurl }}/demos/cards/background-image">Background Image</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#text-fields" rel="docs/demos/text-fields/index">Text Fields</a>
+			<a href="#text-fields" rel="{{ site.baseurl }}/demos/text-fields/index">Text Fields</a>
 			<ul class="nav">
-				<li><a href="#text-fields-label" rel="docs/demos/text-fields/label-animate">Label Animate</a></li>
-				<li><a href="#text-fields-icon" rel="docs/demos/text-fields/icon">Icon</a></li>
+				<li><a href="#text-fields-label" rel="{{ site.baseurl }}/demos/text-fields/label-animate">Label Animate</a></li>
+				<li><a href="#text-fields-icon" rel="{{ site.baseurl }}/demos/text-fields/icon">Icon</a></li>
 			</ul>
 		</li>
 		<li>
-			<a href="#switch" rel="docs/demos/switch/index">Switch</a>
+			<a href="#switch" rel="{{ site.baseurl }}/demos/switch/index">Switch</a>
 		</li>
 		<li>
-			<a href="#checkbox" rel="docs/demos/checkbox/index">Checkbox</a>
+			<a href="#checkbox" rel="{{ site.baseurl }}/demos/checkbox/index">Checkbox</a>
 		</li>
 		<li>
-			<a href="#radio" rel="docs/demos/radio/index">Radio Button</a>
+			<a href="#radio" rel="{{ site.baseurl }}/demos/radio/index">Radio Button</a>
 		</li>
 		<li>
-			<a href="#select" rel="docs/demos/select/index">Select</a>
+			<a href="#select" rel="{{ site.baseurl }}/demos/select/index">Select</a>
 		</li>
 		<li>
-			<a href="#tabs" rel="docs/demos/tabs/index">Tabs</a>
+			<a href="#tabs" rel="{{ site.baseurl }}/demos/tabs/index">Tabs</a>
 			<ul class="nav">
-				<li><a href="#tabs-icons" rel="docs/demos/tabs/icons">Icons</a></li>
-				<li><a href="#tabs-bottom" rel="docs/demos/tabs/bottom">Bottom</a></li>
+				<li><a href="#tabs-icons" rel="{{ site.baseurl }}/demos/tabs/icons">Icons</a></li>
+				<li><a href="#tabs-bottom" rel="{{ site.baseurl }}/demos/tabs/bottom">Bottom</a></li>
 			</ul>
 		</li>
-		<li><a href="#grid" rel="docs/demos/grid/index">Grid</a></li>
-		<li><a href="#colors" rel="docs/demos/colors/index">Colors</a></li>
+		<li><a href="#grid" rel="{{ site.baseurl }}/demos/grid/index">Grid</a></li>
+		<li><a href="#colors" rel="{{ site.baseurl }}/demos/colors/index">Colors</a></li>
 		<li>
-			<a href="#icons" rel="docs/demos/icons/index">Icons</a>
+			<a href="#icons" rel="{{ site.baseurl }}/demos/icons/index">Icons</a>
 			<ul class="nav">
-				<li><a href="#icons-styled" rel="docs/demos/icons/styled">Styled</a></li>
+				<li><a href="#icons-styled" rel="{{ site.baseurl }}/demos/icons/styled">Styled</a></li>
 			</ul>
 		</li>
 	</ul>
 
-	<a href="/javascript"><h4>JAVASCRIPT</h4></a>
-	<a href="/examples"><h4>EXAMPLES</h4></a>
+	<a href="{{ "/javascript" | prepend: site.baseurl }}"><h4>JAVASCRIPT</h4></a>
+	<a href="{{ "/examples" | prepend: site.baseurl }}"><h4>EXAMPLES</h4></a>
 
 </div>
 		</div>

@@ -1,0 +1,26 @@
+.list.card {
+  margin-bottom: 16px; }
+  .list.card .list__item.card__image {
+    padding: 0; }
+  .list.card .list__item.card__avatar img {
+    width: 40px;
+    margin-right: 10px; }
+
+.list.card .list__item.card__image {
+  border: none; }
+
+.text-instaplace-blue {
+  font-size: bold;
+  color: #125688; }
+
+.bg-instaplace-blue {
+  background-color: #125688; }
+
+.m16 {
+  margin: 16px; }
+
+.p16 {
+  padding: 16px; }
+
+.list.card .list__item.card__image .card__image--action {
+  z-index: 5000; }

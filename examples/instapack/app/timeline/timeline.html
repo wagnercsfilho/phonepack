@@ -1,0 +1,43 @@
+<div class="pages" ng-controller="TimelineController as timeline">
+    <header class="header bg-instaplace-blue" shrink-header>
+        <div class="header__buttons">
+            <button class="button button--m button--icon button--ripple text-white" ng-click="sideMenu.toggle()">
+                <i class="icon mdi mdi-menu"></i>
+            </button>
+        </div>
+        <div class="header__title text-white">Timeline</div>
+        <div class="header__buttons">
+            <button class="button button--icon ripple text-white" drop-down-menu drop-down-menu-id="dropDownMenu">
+                <i class="icon mdi mdi-dots-vertical"></i>
+            </button>
+            <div class="dropdown-menu" id="dropDownMenu">
+                <ul>
+                    <li class="dropdown-item" ng-click="timeline.changeDistance()">
+                        <div class="item-primary">
+                            <i class="icon mdi mdi-dots-vertical"></i>
+                        </div>
+                        <div class="item-content">Distance</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="sub-header header--shadow">
+            <div class="tab-bar tab-bar--indicator-bottom-white tab-bar--text-white bg-instaplace-blue" tab-bar>
+                <div class="tab-bar__item ripple active" ref="#timeline">
+                    <i class="icon mdi mdi-file-image-box"></i>
+                </div>
+                <div class="tab-bar__item ripple" ref="#users">
+                    <i class="icon mdi mdi-map"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="content has-header has-sub-header" id="timeline" pull-to-refresh="pullToRefresh" onrefresh="timeline.onRefresh()" infinite-scroll="infiniteScroll" distance="100" oninfinite="timeline.onInfinite()" type="snake">
+        <timeline media="timeline.results"></timeline>
+    </section>
+    <section class="content has-header has-sub-header" id="users">
+        <map center="{{timeline.location.lat}}, {{timeline.location.long}}" zoom="15" style="height: 100%;">
+            <marker ng-repeat="result in timeline.results" icon="{{ result.images.thumbnail.url.replace('s150x150', 's50x50') }}" position="{{ result.location.latitude }}, {{ result.location.longitude }}" z-index="{{ $index }}" on-click="result.open(media.link);"></marker>
+        </map>
+    </section>
+</div>

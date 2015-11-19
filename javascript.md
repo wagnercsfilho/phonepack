@@ -4,6 +4,65 @@ title: PhonePack - JavaScript Components
 permalink: /javascript/
 ---
 
+ <script>
+    	$(function(){
+		        // Check the initial Poistion of the Sticky Header
+		        var sideMenu = $('#sideBar').offset().top;
+		        var iFrameDevice = $('#iFrameDevice');
+		        var currentElement = null;
+		        
+		        $(window).on('hashchange', function(e) {
+		        	e.preventDefault();
+			        return false;
+			    });
+
+		        $(window).scroll(function(){
+		                if( $(window).scrollTop() > sideMenu ) {
+		                        $('#sideBar').css({position: 'fixed', top: '0px', bottom: '0',  overflow: 'auto'});
+		                        $('#device').css({position: 'fixed', top: '0px', bottom: '0', height: 'auto'});
+		                } else {
+		                        $('#sideBar').css({position: 'static', top: '0px'});
+		                        $('#device').css({position: 'static', top: '0px', height: '813px'});
+		                }
+		                
+		                $('#sideBar>ul>li a').each(function(){
+		                	 var _currLink = $(this);
+        					 var _refElement = $(_currLink.attr("href"));
+        					 var _link = _currLink.attr('rel');
+        					 
+        					 if ((_link) && (_refElement.offset())) {
+        					 	
+        					 	var offset = _refElement.offset().top;
+        					 	var scrollTop = $(window).scrollTop();
+        					 	
+	        					 if ((currentElement !== _refElement[0]) && (scrollTop + 100 > offset) && (scrollTop + 100 < ((offset) + _refElement.height()))) {
+	        					 	currentElement = _refElement[0];
+	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
+	        					 	
+	        					 	if (!_currLink.parents('li.active').length) {
+	        					 		$('li.active').removeClass('active');
+	        					 	}
+	        					 	
+	        					 	$('#sideBar>ul>li a').removeClass('active');
+	        					 	$('.docs section').css('opacity', '0.6');
+	        					 	
+	        					 	_currLink.addClass('active');
+	        					 	_currLink.parents('li').addClass('active');
+	        					 	history.pushState(null, null, _currLink.attr("href"));
+	        					 	_refElement.css('opacity', 1);
+	        					 	$('.demo').remove();
+	        					 	_refElement.append('<a href="'+ _currLink.attr('rel') + '"  class="demo btn btn-default">Demo</a>');
+	        					 	//window.location.hash = _currLink.attr("href");
+	        					 	return false;
+				                 }
+				                 
+        					 }
+		                });
+		                
+		        });
+		});
+    </script>
+
 <div class="feat">
 
     {% include header.html %}
@@ -22,42 +81,42 @@ permalink: /javascript/
 	    <div class="col-md-2 hidden-xs hidden-sm">
 	        <div class="side-bar" id="sideBar">
 	
-	            <a href="/getting-started"><h4>GETTING STARTED</h4></a>
-	            <a href="/css"><h4>CSS</h4></a>
-	            <a href="/javascript"><h4 class="active">JAVASCRIPT</h4></a>
+	            <a href="{{ "/getting-started" | prepend: site.baseurl }}"><h4>GETTING STARTED</h4></a>
+	            <a href="{{ "/css" | prepend: site.baseurl }}"><h4>CSS</h4></a>
+	            <a href="{{ "/javascript" | prepend: site.baseurl }}"><h4 class="active">JAVASCRIPT</h4></a>
 	            <ul class="nav nav-list">
 	                <li>
-	                    <a href="#dialog" rel="docs/demos/dialog/index">Dialog</a>
+	                    <a href="#dialog" rel="{{ site.baseurl }}/demos/dialog/index">Dialog</a>
 	                </li>
 	                <li>
-	                    <a href="#loading" rel="docs/demos/loading/index">Loading</a>
+	                    <a href="#loading" rel="{{ site.baseurl }}/demos/loading/index">Loading</a>
 	                </li>
 	                <li>
-	                    <a href="#notification" rel="docs/demos/notification/index">Notification</a>
+	                    <a href="#notification" rel="{{ site.baseurl }}/demos/notification/index">Notification</a>
 	                </li>
 	                <li>
-	                    <a href="#navigation" rel="docs/demos/navigation/index">Navigation</a>
+	                    <a href="#navigation" rel="{{ site.baseurl }}/demos/navigation/index">Navigation</a>
 	                </li>
 	                <li>
-	                    <a href="#side-menu" rel="docs/demos/side-menu/index">Side Menu</a>
+	                    <a href="#side-menu" rel="{{ site.baseurl }}/demos/side-menu/index">Side Menu</a>
 	                </li>
 	                <li>
-	                    <a href="#dropdown-menu" rel="docs/demos/dropdown-menu/index">DropDown Menu</a>
+	                    <a href="#dropdown-menu" rel="{{ site.baseurl }}/demos/dropdown-menu/index">DropDown Menu</a>
 	                </li>
 	                <li>
-	                    <a href="#pull-to-refresh" rel="docs/demos/pull-to-refresh/index">Pull to refresh</a>
+	                    <a href="#pull-to-refresh" rel="{{ site.baseurl }}/demos/pull-to-refresh/index">Pull to refresh</a>
 	                </li>
 	                <li>
-	                    <a href="#tabbar" rel="docs/demos/tabs/dinamic">TabBar</a>
+	                    <a href="#tabbar" rel="{{ site.baseurl }}/demos/tabs/dinamic">TabBar</a>
 	                </li>
 	                <li>
-	                    <a href="#infinite-scroll" rel="docs/demos/infinite-scroll/index">Infinite Scroll</a>
+	                    <a href="#infinite-scroll" rel="{{ site.baseurl }}/demos/infinite-scroll/index">Infinite Scroll</a>
 	                </li>
 	                <li>
-	                    <a href="#shrink-header" rel="docs/demos/shrink-header/index">Shrink Header</a>
+	                    <a href="#shrink-header" rel="{{ site.baseurl }}/demos/shrink-header/index">Shrink Header</a>
 	                </li>
 	            </ul>
-	            <a href="/examples"><h4>EXAMPLES</h4></a>
+	            <a href="{{ "/examples" | prepend: site.baseurl }}"><h4>EXAMPLES</h4></a>
 	        </div>
 	    </div>
 	
@@ -69,7 +128,7 @@ permalink: /javascript/
     <pre><code class="language-javascript">
 var dialog = new phonepack.Dialog({
     title: 'Loading...',
-    content: 'Lorem ipsum dolor sit amet',         
+    content: 'Message',         
 }).show(function(){
     dialog.hide();
 });
@@ -101,11 +160,11 @@ setTimeout(function() {
     <h3>Notification</h3>
     <pre><code class="language-javascript">
 var notification = new phonepack.Notification();
-notification.simple('Warning message');
-notification.info('Warning message');
-notification.success('Warning message');
+notification.simple('simple message');
+notification.info('Info message');
+notification.success('Success message');
 notification.warning('Warning message');
-notification.error('Warning message');</code></pre>
+notification.error('Error message');</code></pre>
 </section>
 
 <!-- PAGES -->
@@ -140,7 +199,7 @@ navigation.pushPage('example-page.html', { paramObj: { foo: 'bar } }, doSomethin
 navigation.changePage('example-page.html', doSomething);
 
 function doSomething(){
-    // Callback page
+    // Callback
 }
 
 // Close the current page pushed in the DOM
@@ -287,63 +346,3 @@ phonepack.shrinkHeader(document.querySelector('.header'));
 		
 	</div>
 </div>
-
-
-    <script>
-    	$(function(){
-		        // Check the initial Poistion of the Sticky Header
-		        var sideMenu = $('#sideBar').offset().top;
-		        var iFrameDevice = $('#iFrameDevice');
-		        var currentElement = null;
-		        
-		        $(window).on('hashchange', function(e) {
-		        	e.preventDefault();
-			        return false;
-			    });
-
-		        $(window).scroll(function(){
-		                if( $(window).scrollTop() > sideMenu ) {
-		                        $('#sideBar').css({position: 'fixed', top: '0px', bottom: '0',  overflow: 'auto'});
-		                        $('#device').css({position: 'fixed', top: '0px', bottom: '0', height: 'auto'});
-		                } else {
-		                        $('#sideBar').css({position: 'static', top: '0px'});
-		                        $('#device').css({position: 'static', top: '0px', height: '813px'});
-		                }
-		                
-		                $('#sideBar>ul>li a').each(function(){
-		                	 var _currLink = $(this);
-        					 var _refElement = $(_currLink.attr("href"));
-        					 var _link = _currLink.attr('rel');
-        					 
-        					 if ((_link) && (_refElement.offset())) {
-        					 	
-        					 	var offset = _refElement.offset().top;
-        					 	var scrollTop = $(window).scrollTop();
-        					 	
-	        					 if ((currentElement !== _refElement[0]) && (scrollTop + 100 > offset) && (scrollTop + 100 < ((offset) + _refElement.height()))) {
-	        					 	currentElement = _refElement[0];
-	        					 	iFrameDevice.attr('src', _currLink.attr('rel'));
-	        					 	
-	        					 	if (!_currLink.parents('li.active').length) {
-	        					 		$('li.active').removeClass('active');
-	        					 	}
-	        					 	
-	        					 	$('#sideBar>ul>li a').removeClass('active');
-	        					 	$('.docs section').css('opacity', '0.6');
-	        					 	
-	        					 	_currLink.addClass('active');
-	        					 	_currLink.parents('li').addClass('active');
-	        					 	history.pushState(null, null, _currLink.attr("href"));
-	        					 	_refElement.css('opacity', 1);
-	        					 	$('.demo').remove();
-	        					 	_refElement.append('<a href="'+ _currLink.attr('rel') + '"  class="demo btn btn-default">Demo</a>');
-	        					 	//window.location.hash = _currLink.attr("href");
-	        					 	return false;
-				                 }
-				                 
-        					 }
-		                });
-		                
-		        });
-		});
-    </script>

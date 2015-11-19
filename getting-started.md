@@ -22,10 +22,10 @@ permalink: /getting-started/
     <div class="col-md-2 hidden-xs hidden-sm">
       <div class="side-bar" id="sideBar">
 
-        <a href="/getting-started.html"><h4 class="active">GETTING STARTED</h4></a>
-        <a href="/css.html"><h4>CSS</h4></a>
-        <a href="/javascript.html"><h4>JAVASCRIPT</h4></a>
-        <a href="/examples.html"><h4>EXAMPLES</h4></a>
+        <a href="{{ "/getting-started" | prepend: site.baseurl }}"><h4 class="active">GETTING STARTED</h4></a>
+        <a href="{{ "/css" | prepend: site.baseurl }}"><h4>CSS</h4></a>
+        <a href="{{ "/javascript" | prepend: site.baseurl }}"><h4>JAVASCRIPT</h4></a>
+        <a href="{{ "/examples" | prepend: site.baseurl }}"><h4>EXAMPLES</h4></a>
       </div>
     </div>
  
