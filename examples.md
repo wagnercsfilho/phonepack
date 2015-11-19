@@ -4,7 +4,7 @@ title: PhonePack - Examples Apps
 permalink: /examples/
 ---
 
-<div class="feat"> 
+<div class="feat">
 
     {% include header.html %}
 
@@ -50,7 +50,7 @@ permalink: /examples/
                                     <a href="http://www.phonepack.org/examples/instapack/" target="_blank" class="btn btn-primary btn-sm">Demo</a>
                                     <a href="https://github.com/wagnercsfilho/instapack" target="_blank" class="btn btn-warning btn-sm">Code</a>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
