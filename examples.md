@@ -38,9 +38,9 @@ permalink: /examples/
                         <div class="post">
                             <div class="post-img-content">
                                 <a href="http://www.phonepack.org/examples/instapack/" target="_blank">
-                                    <img src="/img/examples/instapack-phonepack.jpg" class="img-responsive" />
+                                    <img src="{{ site.baseurl }}/img/examples/instapack-phonepack.jpg" class="img-responsive" />
                                 </a>
-                                <span class="post-title"><b>Instapack</b></span>
+                                <span class="post-title"><b>InstaPack</b></span>
                             </div>
                             <div class="content">
                                 <div>
