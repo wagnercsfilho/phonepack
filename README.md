@@ -14,11 +14,10 @@ Three quick start options are available:
 [Click here](http://phonepack.org/) to see Phonepack in action!
 
 
-### Running documentation locally
+### Running locally
 
 1. Run `npm install`.
-2. Run `npm server`.
-3. Visit http://localhost:3000 in your browser.
+2. Run `gulp`.
 
 
 ## Copyright and license
