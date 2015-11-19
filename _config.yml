@@ -6,12 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: PhonePack
+title: PhonePack - Create Javascript apps for HTML5 and Cordova
 email: phonepack@hotmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Free and open source Javascript, HTML and CSS library for create Web and Mobile apps.
 baseurl: "/phonepack" # the subpath of your site, e.g. /blog
 url: "http://wagnercsfilho.github.io" # the base hostname & protocol for your site
 twitter_username: phonepackjs
