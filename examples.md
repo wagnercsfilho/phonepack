@@ -44,7 +44,7 @@ permalink: /examples/
                             </div>
                             <div class="content">
                                 <div>
-                                    Client Instagram app for view photos, people and places nearby you. Created with AngularJs and PhonePack.
+                                    Client app Instagram for photos, people and places near you. Created with AngularJs and PhonePack.
                                 </div>
                                 <div class="actions">
                                     <a href="http://www.phonepack.org/examples/instapack/" target="_blank" class="btn btn-primary btn-sm">Demo</a>
