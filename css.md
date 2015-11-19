@@ -23,7 +23,6 @@ permalink: /css/
 		
 		<div class="col-md-2 hidden-xs hidden-sm">
 <div class="side-bar" id="sideBar">
-
 	<a href="{{ "/getting-started" | prepend: site.baseurl }}"><h4>GETTING STARTED</h4></a>
 	<h4 class="active">CSS</h4>
 	<ul class="nav nav-list">
