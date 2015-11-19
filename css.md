@@ -17,7 +17,6 @@ permalink: /css/
       </div>
     </div>
 </div>
-
 <div class="container docs">
 	<div class="row">
 		<div class="col-md-2 hidden-xs hidden-sm">
