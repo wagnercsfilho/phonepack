@@ -4,7 +4,7 @@ title: PhonePack - Examples Apps
 permalink: /examples/
 ---
 
-<div class="feat">
+<div class="feat"> 
 
     {% include header.html %}
 
