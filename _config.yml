@@ -10,7 +10,7 @@ title: PhonePack - Create Javascript apps for HTML5 and Cordova
 email: phonepack@hotmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Free and open source Javascript, HTML and CSS library for create Web and Mobile apps.
-baseurl: "/phonepack" # the subpath of your site, e.g. /blog
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "http://wagnercsfilho.github.io" # the base hostname & protocol for your site
 twitter_username: phonepackjs
 github_username:  wagnercsfilho 
