@@ -14,7 +14,9 @@
     transition: transform 0.2s ease-in-out;
   }
   &.content--padding {
-    margin: 16px;
+    margin-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   &.has-header {
     padding-top: 56px;

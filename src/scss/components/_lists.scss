@@ -12,14 +12,27 @@
     position: relative;
     align-items: center;
     
-    &.list__item--separator .list__content:after {
+    &.list__item--separator:after,
+    &.list__item--separator-pushed:after,
+    &.list__item--separator-pushed-left:after,
+    &.list__item--separator-pushed-right:after{
       content: '';
       position: absolute;
       right: 0;
-      bottom: -20px;
+      bottom: 0px;
       left: 0;
       height: 1px;
       background-color: rgba(0, 0, 0, 0.12);
+    }
+    &.list__item--separator-pushed:after {
+      left: 72px;
+      right: 56px;
+    }
+    &.list__item--separator-pushed-left:after {
+      left: 72px;
+    }
+    &.list__item--separator-pushed-right:after {
+      right: 56px;
     }
     
     .list__primary {

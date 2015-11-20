@@ -25,7 +25,7 @@ var Buttons = (function () {
     function addRippleEffect(e, target) {
 
         var rect = target.getBoundingClientRect();
-        var ripple = target.querySelector('.ripple-animation');
+        var ripple = target.querySelector('.ripple-animation:first-child');
 
         if (!ripple) {
             ripple = document.createElement('span');
