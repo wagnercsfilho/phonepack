@@ -6551,7 +6551,9 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .content.content--padding {
-  margin: 16px;
+  margin-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .content.has-header {
@@ -7131,14 +7133,30 @@ input[type="checkbox"], input[type="radio"] {
           align-items: center;
 }
 
-.list .list__item.list__item--separator .list__content:after {
+.list .list__item.list__item--separator:after,
+.list .list__item.list__item--separator-pushed:after,
+.list .list__item.list__item--separator-pushed-left:after,
+.list .list__item.list__item--separator-pushed-right:after {
   content: '';
   position: absolute;
   right: 0;
-  bottom: -20px;
+  bottom: 0px;
   left: 0;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.12);
+}
+
+.list .list__item.list__item--separator-pushed:after {
+  left: 72px;
+  right: 56px;
+}
+
+.list .list__item.list__item--separator-pushed-left:after {
+  left: 72px;
+}
+
+.list .list__item.list__item--separator-pushed-right:after {
+  right: 56px;
 }
 
 .list .list__item .list__primary {
