@@ -67,6 +67,7 @@ permalink: /css/
 				<li><a href="#lists-caption" rel="{{ site.baseurl }}/demos/lists/caption">Caption</a></li>
 				<li><a href="#lists-icon" rel="{{ site.baseurl }}/demos/lists/icon">Icon</a></li>
 				<li><a href="#lists-image" rel="{{ site.baseurl }}/demos/lists/image">Image</a></li>
+				<li><a href="#lists-ripple" rel="{{ site.baseurl }}/demos/lists/ripple">Ripple Effect</a></li>
 			</ul>
 		</li>
 		<li>
@@ -445,7 +446,7 @@ permalink: /css/
 <pre><code class="language-markup">
 &lt;ul class=&quot;list&quot;&gt;
  &lt;li class=&quot;list__subheader&quot;&gt;Contacts&lt;/li&gt;
- &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+ &lt;li class=&quot;list__item list__item--separator-pushed&quot;&gt; 
      &lt;div class=&quot;list__primary&quot;&gt;
         &lt;img src=&quot;http://lorempixel.com/60/60/people/1&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
      &lt;/div&gt;
@@ -454,7 +455,7 @@ permalink: /css/
         &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
      &lt;/div&gt;
  &lt;/li&gt;
- &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+ &lt;li class=&quot;list__item list__item--separator-pushed&quot;&gt; 
      &lt;div class=&quot;list__primary&quot;&gt;
         &lt;img src=&quot;http://lorempixel.com/60/60/people/2&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
      &lt;/div&gt;
@@ -463,7 +464,7 @@ permalink: /css/
         &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
      &lt;/div&gt;
  &lt;/li&gt;
- &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+ &lt;li class=&quot;list__item list__item--separator-pushed&quot;&gt; 
      &lt;div class=&quot;list__primary&quot;&gt;
         &lt;img src=&quot;http://lorempixel.com/60/60/people/3&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
      &lt;/div&gt;
@@ -475,7 +476,7 @@ permalink: /css/
  
  &lt;li class=&quot;list__separator&quot;&gt;&lt;/li&gt;
  &lt;li class=&quot;list__subheader&quot;&gt;Favorites&lt;/li&gt;
- &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+ &lt;li class=&quot;list__item list__item--separator-pushed&quot;&gt; 
      &lt;div class=&quot;list__primary&quot;&gt;
         &lt;img src=&quot;http://lorempixel.com/60/60/people/5&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
      &lt;/div&gt;
@@ -484,7 +485,7 @@ permalink: /css/
         &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
      &lt;/div&gt;
  &lt;/li&gt;
- &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+ &lt;li class=&quot;list__item list__item--separator-pushed&quot;&gt; 
      &lt;div class=&quot;list__primary&quot;&gt;
         &lt;img src=&quot;http://lorempixel.com/60/60/people/6&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
      &lt;/div&gt;
@@ -493,7 +494,7 @@ permalink: /css/
         &lt;i class=&quot;icon mdi mdi-phone text-grey&quot;&gt;&lt;/i&gt;
      &lt;/div&gt;
  &lt;/li&gt;
- &lt;li class=&quot;list__item list__item--separator&quot;&gt; 
+ &lt;li class=&quot;list__item list__item--separator-pushed&quot;&gt; 
      &lt;div class=&quot;list__primary&quot;&gt;
         &lt;img src=&quot;http://lorempixel.com/60/60/people/4&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
      &lt;/div&gt;
@@ -503,6 +504,20 @@ permalink: /css/
      &lt;/div&gt;
  &lt;/li&gt;
  
+ &lt;ul&gt;
+</code></pre>
+</section>
+
+<section id="lists-ripple">			
+<h3>Lists Ripple Effect</h3>
+<pre><code class="language-markup">
+&lt;ul class=&quot;list&quot;&gt;
+ &lt;li class=&quot;list__item list__item--separator-pushed ripple&quot;&gt; 
+     &lt;div class=&quot;list__primary&quot;&gt;
+        &lt;img src=&quot;http://lorempixel.com/60/60/people/1&quot; width=&quot;40&quot; height=&quot;40&quot; class=&quot;img-circle&quot;&gt;
+     &lt;/div&gt;
+     &lt;div class=&quot;list__content&quot;&gt; Fred &lt;/div&gt;
+ &lt;/li&gt;
  &lt;ul&gt;
 </code></pre>
 </section>
@@ -526,7 +541,7 @@ permalink: /css/
 <pre><code class="language-markup">
 &lt;div class="list card"&gt;
  &lt;div class="list__item card__image"&gt;
-  &lt;img src="http://www.getmdl.io/assets/demos/welcome_card.jpg" class="card__image--pic"&gt;
+  &lt;img src="http://lorempixel.com/640/480/abstract/" class="card__image--pic"&gt;
   &lt;h2 class="card__image--title"&gt;Welcome&lt;/h2&gt;
   &lt;div class="card__image--menu"&gt;
     &lt;button class="button button--icon button--ripple"&gt;

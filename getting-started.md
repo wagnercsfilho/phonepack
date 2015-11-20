@@ -83,7 +83,7 @@ permalink: /getting-started/
   
     &lt;section class="content has-header"&gt;
       &lt;ul class="list"&gt;
-          &lt;li class="list__item list__item--separator"&gt;
+          &lt;li class="list__item"&gt;
             &lt;div class="list__content"&gt;
               List item 01
               &lt;div class="list__caption"&gt;

@@ -11,7 +11,7 @@ permalink: /demos/lists/image/
 <section class="content has-header">
         <ul class="list">
            <li class="list__subheader">Contacts</li>
-           <li class="list__item list__item--separator"> 
+           <li class="list__item list__item--separator-pushed"> 
 	        	<div class="list__primary">
 	        		<img src="http://lorempixel.com/60/60/people/1" width="40" height="40" class="img-circle">
 	        	</div>
@@ -20,7 +20,7 @@ permalink: /demos/lists/image/
 	          		<i class="icon mdi mdi-phone text-grey"></i>
 	         	</div>
 	        </li>
-	        <li class="list__item list__item--separator"> 
+	        <li class="list__item list__item--separator-pushed"> 
 	        	<div class="list__primary">
 	        		<img src="http://lorempixel.com/60/60/people/2" width="40" height="40" class="img-circle">
 	        	</div>
@@ -29,7 +29,7 @@ permalink: /demos/lists/image/
 	          		<i class="icon mdi mdi-phone text-grey"></i>
 	         	</div>
 	        </li>
-	        <li class="list__item list__item--separator"> 
+	        <li class="list__item list__item--separator-pushed"> 
 	        	<div class="list__primary">
 	        		<img src="http://lorempixel.com/60/60/people/3" width="40" height="40" class="img-circle">
 	        	</div>
@@ -41,7 +41,7 @@ permalink: /demos/lists/image/
 	        
 	        <li class="list__separator"></li>
             <li class="list__subheader">Favorites</li>
-            <li class="list__item list__item--separator"> 
+            <li class="list__item list__item--separator-pushed"> 
 	        	<div class="list__primary">
 	        		<img src="http://lorempixel.com/60/60/people/5" width="40" height="40" class="img-circle">
 	        	</div>
@@ -50,7 +50,7 @@ permalink: /demos/lists/image/
 	          		<i class="icon mdi mdi-phone text-grey"></i>
 	         	</div>
 	        </li>
-	        <li class="list__item list__item--separator"> 
+	        <li class="list__item list__item--separator-pushed"> 
 	        	<div class="list__primary">
 	        		<img src="http://lorempixel.com/60/60/people/6" width="40" height="40" class="img-circle">
 	        	</div>
@@ -59,7 +59,7 @@ permalink: /demos/lists/image/
 	          		<i class="icon mdi mdi-phone text-grey"></i>
 	         	</div>
 	        </li>
-	        <li class="list__item list__item--separator"> 
+	        <li class="list__item list__item--separator-pushed"> 
 	        	<div class="list__primary">
 	        		<img src="http://lorempixel.com/60/60/people/4" width="40" height="40" class="img-circle">
 	        	</div>
@@ -69,6 +69,6 @@ permalink: /demos/lists/image/
 	         	</div>
 	        </li>
             
-        <ul>
+        </ul>
 </section> 
   
