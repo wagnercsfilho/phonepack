@@ -87,12 +87,12 @@ h4 {
 	background-color: transparent;
 	margin-bottom: 0;
 	border-bottom: 0;
-	min-height: 60px;
+	min-height: 95px;
 	border-radius: 0;
 }
 
 .navbar-nav>li>a {
-	line-height: 30px;
+	line-height: 55px;
 	color: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -139,7 +139,7 @@ h4 {
 	margin-bottom: 0px;
 	margin-top: 0px;
 	width: 100%;
-	background: url(../img/slide/background.png) no-repeat;
+	background: url(../img/background.png) no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
 	background-color: #2196F3;
