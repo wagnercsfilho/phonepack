@@ -98,6 +98,9 @@ permalink: /css/
 			<a href="#select" rel="{{ site.baseurl }}/demos/select/index">Select</a>
 		</li>
 		<li>
+			<a href="#range" rel="{{ site.baseurl }}/demos/range/index">Range Slider</a>
+		</li>
+		<li>
 			<a href="#tabs" rel="{{ site.baseurl }}/demos/tabs/index">Tabs</a>
 			<ul class="nav">
 				<li><a href="#tabs-icons" rel="{{ site.baseurl }}/demos/tabs/icons">Icons</a></li>
@@ -152,13 +155,13 @@ permalink: /css/
 <pre><code class="language-markup">
 &lt;header class="header header--shadow bg-lime text-black"&gt;
   	&lt;div class="header__buttons"&gt;
-		&lt;button class="button button--m button--icon button--ripple text-white"&gt;
+		&lt;button class="button button--icon button--ripple text-white"&gt;
 			&lt;i class="icon material-icons">menu&lt;/i&gt;
 		&lt;/button&gt;
 	&lt;/div&gt;
     &lt;div class="header__title">Header Buttons&lt;/div&gt;
     &lt;div class="header__buttons"&gt;
-		&lt;a class="button button--m button--icon button--ripple"&gt;
+		&lt;a class="button button--icon button--ripple"&gt;
 			&lt;i class="material-icons">search&lt;/i&gt;
 		&lt;/a&gt;
 	&lt;/div&gt;
@@ -225,7 +228,7 @@ permalink: /css/
 <h3>Footer Buttons</h3>
 <pre><code class="language-markup">&lt;footer class="footer bg-yellow text-black"&gt;
 &lt;div class="footer__buttons"&gt;
-    &lt;button class="button button--m button--icon button--ripple text-black"&gt;
+    &lt;button class="button button--icon button--ripple text-black"&gt;
 	    &lt;i class="icon material-icons">menu&lt;/i&gt;
     &lt;/button&gt;
 &lt;/div&gt;
@@ -244,6 +247,14 @@ permalink: /css/
 &lt;button class="button button--raised bg-green text-white"&gt;Button&lt;/button&gt;</code></pre>
 </section>
 
+<section id="buttons-size">
+<h3>Different Sizes</h3>
+<pre><code class="language-markup">
+&lt;button class="button button--small button--raised bg-blue text-white"&gt;Button&lt;/button&gt;
+&lt;button class="button button--raised bg-red text-white"&gt;Button&lt;/button&gt;
+&lt;button class="button button--large button--raised bg-green text-white"&gt;Button&lt;/button&gt;</code></pre>
+</section>
+
 <section id="buttons-colors">
 <h3>Colors Button</h3>
 <pre><code class="language-markup">
@@ -251,7 +262,6 @@ permalink: /css/
 &lt;button class="button button--raised bg-red text-white"&gt;Button&lt;/button&gt;
 &lt;button class="button button--raised bg-green text-white"&gt;Button&lt;/button&gt;</code></pre>
 </section>
-
 
 <section id="buttons-raised">
 <h3>Raised Buttons</h3>
@@ -263,7 +273,7 @@ permalink: /css/
 
 
 <section id="buttons-block">
-<h3>Block Buttons</h3>
+<h3>Full Width Block Buttons</h3>
 <pre><code class="language-markup">
 &lt;button class="button button--raised button--block bg-blue text-white"&gt;Button&lt;/button&gt;
 &lt;button class="button button--raised button--block bg-red text-white"&gt;Button&lt;/button&gt;
@@ -720,6 +730,14 @@ permalink: /css/
   	&lt;option&gt;&lt;/option&gt;
   &lt;/select&gt;
   &lt;div class="select__border"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="range">
+<h3>Range Slider</h3>
+<pre><code class="language-markup">
+&lt;div class="range"&gt;
+  &lt;input type="range"&gt;&lt;/label&gt;
 &lt;/div&gt;</code></pre>
 </section>
 

@@ -176,7 +176,7 @@ notification.error('Error message');</code></pre>
     
     <pre><code class="language-markup">
 &lt;!-- Entry point in views that will be inserted in the DOM  --&gt;
-&lt;div id="navigation" class="navigation"&gt&lt;/div&gt;
+&lt;div id="navigation" class="navigation"&gt;&lt;/div&gt;
     
 &lt;!-- All application pages should be between a DIV tag with class " .pages "  --&gt;
 &lt;div class="pages"&gt;&lt;/div&gt;
