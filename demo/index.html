@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <!-- Sets initial viewport load and disables zooming  -->
@@ -8,6 +9,14 @@
 
     <!-- PhonePack CSS  -->
     <link rel="stylesheet" type="text/css" href="../dist/css/phonepack.css">
+    <style type="text/css">
+        .Demo {
+            width: 100%;
+            padding: 10px;
+            background: rgba(147, 128, 108, .1);
+            border-radius: 3px;
+        }
+    </style>
 
     <!-- PhonePack JavaScript  -->
     <script src="../dist/js/phonepack.js" type="text/javascript" charset="utf-8"></script>
@@ -19,23 +28,162 @@
         <div class="header__title">PhonePack</div>
     </header>
 
-    <section class="content has-header">
-        <ul class="list">
-            <li class="list__item ripple list__item--separator-pushed-left">
-                <div class="list__primary">
-                    <img src="http://lorempixel.com/60/60/people/1" width="40" height="40" class="img-circle">
-                </div>
-                <div class="list__content">
-                    list__item
-                    <div class="list__caption">list__caption</div>
-                </div>
-                <div class="list__secondary">
-                    <button class="button button--icon ripple">
-                        <i class="icon mdi mdi-phone text-grey"></i>
-                    </button>
-	         	</div>
-            </li>
-        </ul>
+    <section class="content content--padding has-header">
+        <h4>Basic</h4>
+        <p>The grid cells naturally space themselves equally and expand to fit the entire row. </p>
+        <div class="row">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <br>
+        <h4>Cell Gutters</h4>
+        <div class="row row--gutters">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <div class="row row--gutters">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <div class="row row--gutters">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <h4>Custom Size</h4>
+        <div class="row row--gutters">
+            <div class="cell cell--2">
+                <div class="Demo">.cell--2</div>
+            </div>
+            <div class="cell cell--2">
+                <div class="Demo">.cell--2</div>
+            </div>
+            <div class="cell cell--8">
+                <div class="Demo">.cell--8</div>
+            </div>
+        </div>
+        <div class="row row--gutters">
+            <div class="cell cell--6">
+                <div class="Demo">.cell--6</div>
+            </div>
+            <div class="cell cell--6">
+                <div class="Demo">.cell--6</div>
+            </div>
+        </div>
+        <div class="row row--gutters">
+            <div class="cell cell--2">
+                <div class="Demo">.cell--2</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Auto Size</div>
+            </div>
+        </div>
+        <h4>Flexible Cells</h4>
+        <div class="row row--gutters row--flex-cells">
+            <div class="cell">
+                <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis..</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu. Maecenas sagittis ante ut turpis varius interdum. Quisque tellus
+                    ipsum, eleifend non ipsum id, suscipit ultricies neque.</div>
+            </div>
+        </div>
+        <h4>Responsive</h4>
+        <div class="row row--gutters row--full row--responsive">
+            <div class="cell">
+                <div class="Demo">Cell Responsive</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Cell Responsive</div>
+            </div>
+        </div>
+        <h4>Alignment Features</h4>
+        <p>Align Top</p>
+        <div class="row row--gutters row--top">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu.</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <h4>Align Bottom</h4>
+        <div class="row row--gutters row--bottom">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu.</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
+        <h4>Align Center</h4>
+        <div class="row row--gutters row--center">
+            <div class="cell">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu.</div>
+            </div>
+        </div>
+        <h4>Alignment cells</h4>
+        <div class="row row--gutters">
+            <div class="cell cell--top">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell">
+                <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+            <div class="cell cell--center">
+                <div class="Demo">.cell</div>
+            </div>
+            <div class="cell cell--bottom">
+                <div class="Demo">.cell</div>
+            </div>
+        </div>
     </section>
 
 </body>
