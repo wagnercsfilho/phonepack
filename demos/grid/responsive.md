@@ -1,20 +1,20 @@
 ---
 layout: examples
 title: PhonePack
-permalink: /demos/grid/index/
+permalink: /demos/grid/responsive/
 ---
 
 <header class="header header--shadow">
-      <div class="header__title">Basic Grid</div>
+      <div class="header__title">Responsive Cells</div>
 </header>
     
 <section class="content has-header">
-        <div class="row">
+<div class="row row--gutters row--full row--responsive">
             <div class="cell">
-                <div class="Demo">.cell</div>
+                <div class="Demo">Cell Responsive</div>
             </div>
             <div class="cell">
-                <div class="Demo">.cell</div>
+                <div class="Demo">Cell Responsive</div>
             </div>
         </div>
 </section>

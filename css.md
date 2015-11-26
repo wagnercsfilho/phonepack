@@ -107,7 +107,17 @@ permalink: /css/
 				<li><a href="#tabs-bottom" rel="{{ site.baseurl }}/demos/tabs/bottom">Bottom</a></li>
 			</ul>
 		</li>
-		<li><a href="#grid" rel="{{ site.baseurl }}/demos/grid/index">Grid</a></li>
+		<li>
+		    <a href="#grid" rel="{{ site.baseurl }}/demos/grid/index">Grid</a>
+		    <ul class="nav">
+				<li><a href="#grid-padding" rel="{{ site.baseurl }}/demos/grid/padding">Cell Padding</a></li>
+				<li><a href="#grid-flex-cell" rel="{{ site.baseurl }}/demos/grid/flex-cell">Flexible Cells</a></li>
+				<li><a href="#grid-custom-size" rel="{{ site.baseurl }}/demos/grid/custom-size">Custom Size</a></li>
+				<li><a href="#grid-responsive" rel="{{ site.baseurl }}/demos/grid/responsive">Responsive Cells</a></li>
+				<li><a href="#grid-alignment" rel="{{ site.baseurl }}/demos/grid/alignment">Alignment</a></li>
+				<li><a href="#grid-alignment-cell" rel="{{ site.baseurl }}/demos/grid/alignment-cell">Alignment Cells</a></li>
+			</ul>
+		</li>
 		<li><a href="#colors" rel="{{ site.baseurl }}/demos/colors/index">Colors</a></li>
 		<li>
 			<a href="#icons" rel="{{ site.baseurl }}/demos/icons/index">Icons</a>
@@ -797,13 +807,128 @@ permalink: /css/
 
 <section id="grid">
 <h3>Grid</h3>
+<p>The grid cells naturally space themselves equally and expand to fit the entire row. </p>
 <pre><code class="language-markup">
-&lt;div class="select"&gt;
-  &lt;label class="select__label"&gt;&lt;/label&gt;
-  &lt;select class="select__input"&gt;
-  	&lt;option&gt;&lt;/option&gt;
-  &lt;/select&gt;
-  &lt;div class="select__border"&gt;&lt;/div&gt;
+&lt;div class="row"&gt;
+            &lt;div class="cell"&gt;
+                &lt;div class="Demo"&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="cell"&gt;
+                &lt;div class="Demo"&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="grid-padding">
+<h3>Cell Padding</h3>
+<pre><code class="language-markup">
+&lt;div class="row row--gutters"&gt;
+            &lt;div class="cell"&gt;
+                &lt;div class="Demo"&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="cell"&gt;
+                &lt;div class="Demo"&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="grid-flex-cell">
+<h3>Flexible Cells</h3>
+<pre><code class="language-markup">
+&lt;div class=&quot;row row--gutters row--flex-cells&quot;&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis..&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu. Maecenas sagittis ante ut turpis varius interdum. Quisque tellus
+                    ipsum, eleifend non ipsum id, suscipit ultricies neque.&lt;/div&gt;
+            &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="grid-custom-size">
+<h3>Custom Size</h3>
+<pre><code class="language-markup">
+&lt;div class="row row--gutters"&gt;
+            &lt;div class="cell cell--2"&gt;
+                &lt;div class="Demo"&gt;.cell--2&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="cell cell--2"&gt;
+                &lt;div class="Demo"&gt;.cell--2&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="cell cell--8"&gt;
+                &lt;div class="Demo"&gt;.cell--8&lt;/div&gt;
+            &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="grid-responsive">
+<h3>Responsive Cells</h3>
+<pre><code class="language-markup">
+&lt;div class="row row--gutters row--full row--responsive"&gt;
+            &lt;div class="cell"&gt;
+                &lt;div class="Demo"&gt;Cell Responsive&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="cell"&gt;
+                &lt;div class="Demo"&gt;Cell Responsive&lt;/div&gt;
+            &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="grid-alignment">
+<h3>Alignment</h3>
+<pre><code class="language-markup">
+&lt;p&gt;Align Top&lt;/p&gt;
+        &lt;div class=&quot;row row--gutters row--top&quot;&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu.&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;h4&gt;Align Bottom&lt;/h4&gt;
+        &lt;div class=&quot;row row--gutters row--bottom&quot;&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu.&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;h4&gt;Align Center&lt;/h4&gt;
+        &lt;div class=&quot;row row--gutters row--center&quot;&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis. Praesent consequat lectus purus, ut scelerisque velit condimentum eu.&lt;/div&gt;
+            &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section id="grid-alignment-cell">
+<h3>Alignment Cells</h3>
+<pre><code class="language-markup">
+&lt;div class=&quot;row row--gutters&quot;&gt;
+            &lt;div class=&quot;cell cell--top&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell cell--center&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;cell cell--bottom&quot;&gt;
+                &lt;div class=&quot;Demo&quot;&gt;.cell&lt;/div&gt;
+            &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 </section>
 
@@ -995,6 +1120,7 @@ Simple icons</h4>
 		        var sideMenu = $('#sideBar').offset().top;
 		        var iFrameDevice = $('#iFrameDevice');
 		        var currentElement = null;
+		        iFrameDevice.attr('src', $('#sideBar>ul>li a').first().attr('rel'));
 		        
 		        $(window).on('hashchange', function(e) {
 		        	e.preventDefault();

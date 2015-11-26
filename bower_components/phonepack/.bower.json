@@ -1,6 +1,6 @@
 {
   "name": "phonepack",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "homepage": "https://github.com/wagnercsfilho/phonepack",
   "authors": [
     "wagnercsfilho <wagnercsfilho@hotmail.com>"
@@ -40,11 +40,11 @@
     "server.js",
     "phonepack.zip"
   ],
-  "_release": "0.1.7",
+  "_release": "0.1.8",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.7",
-    "commit": "a57ee616ba90199262bd1888ef0f8a9ee06a1186"
+    "tag": "v0.1.8",
+    "commit": "e7a74eeead256710b3f0dcc228489ba3eb3fa78f"
   },
   "_source": "git://github.com/wagnercsfilho/phonepack.git",
   "_target": "~0.1.4",

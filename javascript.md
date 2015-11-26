@@ -10,6 +10,7 @@ permalink: /javascript/
 		        var sideMenu = $('#sideBar').offset().top;
 		        var iFrameDevice = $('#iFrameDevice');
 		        var currentElement = null;
+		        iFrameDevice.attr('src', $('#sideBar>ul>li a').first().attr('rel'));
 		        
 		        $(window).on('hashchange', function(e) {
 		        	e.preventDefault();
