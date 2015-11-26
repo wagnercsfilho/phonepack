@@ -230,7 +230,11 @@ h4 {
 
 .feature-box {
 	margin-top: 15px;
+	margin-bottom: 40px;
 	text-align: center;
+	background-image: url('../img/slide-bg.png');
+    background-position: center bottom;
+    background-repeat: no-repeat;
 }
 
 .feature-box img {
@@ -244,7 +248,7 @@ h4 {
 
 .cnt-title {
 	text-align: center;
-	margin-bottom: 70px;
+	margin-bottom: 30px;
 }
 
 .cnt-title span {
