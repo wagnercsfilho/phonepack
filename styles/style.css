@@ -92,7 +92,7 @@ h4 {
 }
 
 .navbar-nav>li>a {
-	line-height: 55px;
+	line-height: 35px;
 	color: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -106,7 +106,7 @@ h4 {
 }
 
 .navbar-brand {
-	height: 90px;
+	height: 70px;
 	color: rgba(255, 255, 255, 1) !important;
 	font-weight: bold;
 	font-size: 22px;
