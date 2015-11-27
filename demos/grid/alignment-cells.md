@@ -8,7 +8,7 @@ permalink: /demos/grid/alignment-cell/
       <div class="header__title">Alignment Cells</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
 <div class="row row--gutters">
             <div class="cell cell--top">
                 <div class="Demo">.cell</div>

@@ -8,7 +8,7 @@ permalink: /demos/grid/alignment/
       <div class="header__title">Alignment</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
 <h4>Align Top</h4>
         <div class="row row--gutters row--top">
             <div class="cell">

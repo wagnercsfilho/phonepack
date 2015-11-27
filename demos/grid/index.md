@@ -8,7 +8,7 @@ permalink: /demos/grid/index/
       <div class="header__title">Basic Grid</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
         <div class="row">
             <div class="cell">
                 <div class="Demo">.cell</div>

@@ -8,7 +8,7 @@ permalink: /demos/grid/flex-cell/
       <div class="header__title">Flexible Cells</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
 <div class="row row--gutters row--flex-cells">
             <div class="cell">
                 <div class="Demo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mollis velit non gravida venenatis..</div>

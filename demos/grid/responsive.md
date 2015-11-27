@@ -8,7 +8,7 @@ permalink: /demos/grid/responsive/
       <div class="header__title">Responsive Cells</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
 <div class="row row--gutters row--full row--responsive">
             <div class="cell">
                 <div class="Demo">Cell Responsive</div>

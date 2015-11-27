@@ -8,7 +8,7 @@ permalink: /demos/grid/padding/
       <div class="header__title">Cell Padding</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
 <div class="row row--gutters">
             <div class="cell">
                 <div class="Demo">.cell</div>

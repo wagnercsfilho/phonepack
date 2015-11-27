@@ -8,7 +8,7 @@ permalink: /demos/grid/custom-size/
       <div class="header__title">Custom Size</div>
 </header>
     
-<section class="content has-header">
+<section class="content content--padding has-header">
 <div class="row row--gutters">
             <div class="cell cell--4">
                 <div class="Demo">.cell--4</div>
