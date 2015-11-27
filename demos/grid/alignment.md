@@ -1,7 +1,7 @@
 ---
 layout: examples
 title: PhonePack
-permalink: /demos/grid/index/
+permalink: /demos/grid/alignment/
 ---
 
 <header class="header header--shadow">
@@ -9,7 +9,7 @@ permalink: /demos/grid/index/
 </header>
     
 <section class="content has-header">
-<p>Align Top</p>
+<h4>Align Top</h4>
         <div class="row row--gutters row--top">
             <div class="cell">
                 <div class="Demo">.cell</div>

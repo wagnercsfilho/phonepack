@@ -850,11 +850,8 @@ permalink: /css/
 <h3>Custom Size</h3>
 <pre><code class="language-markup">
 &lt;div class="row row--gutters"&gt;
-            &lt;div class="cell cell--2"&gt;
-                &lt;div class="Demo"&gt;.cell--2&lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div class="cell cell--2"&gt;
-                &lt;div class="Demo"&gt;.cell--2&lt;/div&gt;
+            &lt;div class="cell cell--4"&gt;
+                &lt;div class="Demo"&gt;.cell--4&lt;/div&gt;
             &lt;/div&gt;
             &lt;div class="cell cell--8"&gt;
                 &lt;div class="Demo"&gt;.cell--8&lt;/div&gt;

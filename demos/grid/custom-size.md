@@ -10,11 +10,8 @@ permalink: /demos/grid/custom-size/
     
 <section class="content has-header">
 <div class="row row--gutters">
-            <div class="cell cell--2">
-                <div class="Demo">.cell--2</div>
-            </div>
-            <div class="cell cell--2">
-                <div class="Demo">.cell--2</div>
+            <div class="cell cell--4">
+                <div class="Demo">.cell--4</div>
             </div>
             <div class="cell cell--8">
                 <div class="Demo">.cell--8</div>
@@ -29,8 +26,8 @@ permalink: /demos/grid/custom-size/
             </div>
         </div>
         <div class="row row--gutters">
-            <div class="cell cell--2">
-                <div class="Demo">.cell--2</div>
+            <div class="cell cell--5">
+                <div class="Demo">.cell--5</div>
             </div>
             <div class="cell">
                 <div class="Demo">Auto Size</div>
