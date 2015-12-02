@@ -141,7 +141,7 @@ permalink: /css/
 <pre><code class="language-markup">
 &lt;header class="header"&gt;
  &lt;div class="header__title"&gt;Header&lt;/div&gt;
-&lt;header&gt;</code>
+&lt;/header&gt;</code>
 </pre>
 </section>
 
@@ -150,14 +150,14 @@ permalink: /css/
     <pre><code class="language-markup">
 &lt;header class="header header--shadow bg-white"&gt;
     &lt;div class="title"&gt;Header with Shadow&lt;/div&gt;
-&lt;header&gt;</code></pre>
+&lt;/header&gt;</code></pre>
 </section>
 
 <section id="header-colors">
 <h3>Header Custom Colors</h3>
 <pre><code class="language-markup">&lt;header class="header header--shadow bg-blue text-white"&gt;
  &lt;div class="header__title"&gt;Header Colors&lt;/div&gt;
-&lt;header&gt;</code></pre>
+&lt;/header&gt;</code></pre>
 </section>
 
 <section id="header-buttons">
@@ -175,7 +175,7 @@ permalink: /css/
 			&lt;i class="material-icons">search&lt;/i&gt;
 		&lt;/a&gt;
 	&lt;/div&gt;
-&lt;header&gt;</code>
+&lt;/header&gt;</code>
 </pre>
 </section>
 
@@ -187,7 +187,7 @@ permalink: /css/
     Header
     &lt;div class="header__caption"&gt;header caption&lt;/div&gt;
  &lt;/div&gt;
-&lt;header&gt;</code>
+&lt;/header&gt;</code>
 </pre>
 </section>
 
@@ -300,9 +300,9 @@ permalink: /css/
 <section id="buttons-icon">
 <h3>Icon Buttons</h3>
 <pre><code class="language-markup">
-&lt;button class="button button--icon bg-blue text-white"&gt;Button&lt;/button&gt;
-&lt;button class="button button--icon bg-red text-white"&gt;Button&lt;/button&gt;
-&lt;button class="button button--icon bg-green text-white"&gt;Button&lt;/button&gt;</code></pre>
+&lt;button class="button button--icon bg-blue text-white"&gt; &lt;i class="icon mdi mdi-pencil"&gt;&lt;/i&gt; &lt;/button&gt;
+&lt;button class="button button--icon bg-red text-white"&gt; &lt;i class="icon mdi mdi-pencil"&gt;&lt;/i&gt; &lt;/button&gt;
+&lt;button class="button button--icon bg-green text-white"&gt; &lt;i class="icon mdi mdi-pencil"&gt;&lt;/i&gt; &lt;/button&gt;</code></pre>
 </section>
 
 <section id="buttons-fab">
@@ -1125,7 +1125,11 @@ Simple icons</h4>
 			    });
 
 		        $(window).scroll(function(){
-		                if( $(window).scrollTop() > sideMenu ) {
+		            viewDocs();        
+		        });
+		        
+		        function viewDocs(){
+		            if( $(window).scrollTop() > sideMenu ) {
 		                        $('#sideBar').css({position: 'fixed', top: '0px', bottom: '0',  overflow: 'auto'});
 		                        $('#device').css({position: 'fixed', top: '0px', bottom: '0', height: 'auto'});
 		                } else {
@@ -1167,7 +1171,8 @@ Simple icons</h4>
 				                 
         					 }
 		                });
-		                
-		        });
+		        }
+		        
+		        viewDocs();
 		});
     </script>

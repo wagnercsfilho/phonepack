@@ -18,7 +18,11 @@ permalink: /javascript/
 			    });
 
 		        $(window).scroll(function(){
-		                if( $(window).scrollTop() > sideMenu ) {
+					viewDocs();		                
+		        });
+		        
+		        function viewDocs(){
+		        	if( $(window).scrollTop() > sideMenu ) {
 		                        $('#sideBar').css({position: 'fixed', top: '0px', bottom: '0',  overflow: 'auto'});
 		                        $('#device').css({position: 'fixed', top: '0px', bottom: '0', height: 'auto'});
 		                } else {
@@ -59,8 +63,9 @@ permalink: /javascript/
 				                 
         					 }
 		                });
-		                
-		        });
+		        }
+		        
+		        viewDocs();
 		});
     </script>
 
