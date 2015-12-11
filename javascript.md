@@ -178,8 +178,7 @@ notification.error('Error message');</code></pre>
 
 <section id="navigation">
     <h3>Navigation</h3>
-    <h4>Navigation SPA pages</h4>
-    
+
     <pre><code class="language-markup">
 &lt;!-- Entry point in views that will be inserted in the DOM  --&gt;
 &lt;div id="navigation" class="navigation"&gt;&lt;/div&gt;
@@ -196,7 +195,7 @@ var options = {
 };        
 
 // Instance a new page class
-var navigation = new phonepack.Navigation(document.getElementById('pages'), options);
+var navigation = new phonepack.Navigation(document.querySelector('.navigation'), options);
 
 // Push a new page into the DOM
 navigation.pushPage('example-page.html', { paramObj: { foo: 'bar } }, doSomething);
@@ -274,7 +273,11 @@ document.querySelector('#open').addEventListener('click', function() {
 <section id="pull-to-refresh">
     <h3>Pull to refresh (only mobile)</h3>
     <pre><code class="language-javascript">
-var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), function(){
+	var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), 
+	{ 
+		type: 'snake'
+	},
+	function(){
     setTimeout(function(){
         pullToRefresh.hide();
     }, 5000);

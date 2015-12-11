@@ -223,7 +223,7 @@ permalink: /css/
 <section id="footer">
 <h3>Footer</h3>
 <pre><code class="language-markup">&lt;footer class="footer"&gt;
- &lt;div class="title"&gt;Footer&lt;/div&gt;
+ &lt;div class="footer__title"&gt;Footer&lt;/div&gt;
 &lt;footer&gt;</code></pre>
 </section>
 
@@ -239,10 +239,10 @@ permalink: /css/
 <pre><code class="language-markup">&lt;footer class="footer bg-yellow text-black"&gt;
 &lt;div class="footer__buttons"&gt;
     &lt;button class="button button--icon button--ripple text-black"&gt;
-	    &lt;i class="icon material-icons">menu&lt;/i&gt;
+	    &lt;i class="icon mdi mdi-pencil">&lt;/i&gt;
     &lt;/button&gt;
 &lt;/div&gt;
- &lt;div class="title"&gt;Buttons&lt;/div&gt;
+ &lt;div class="footer__title"&gt;Buttons&lt;/div&gt;
 &lt;footer&gt;</code></pre>
 </section>
 
@@ -316,13 +316,15 @@ permalink: /css/
 <section id="buttons-floating">
 <h3>Floating Buttons</h3>
 <pre><code class="language-markup">
-&lt;button class="button button--raised button--floating bg-blue text-white"&gt;Button&lt;/button&gt;</code></pre>
+&lt;button class="button bg-blue text-white button--fab button--fab-floating"&gt;
+    &lt;i class="icon mdi mdi-pencil"&gt;&lt;/i&gt;
+&lt;/button&gt;</code></pre>
 </section>
 
 <section id="buttons-ripple">
 <h3>Ripple Effect</h3>
 <pre><code class="language-markup">
-&lt;button class="button button--raised button--ripple bg-blue text-white"&gt;Button&lt;/button&gt;</code></pre>
+&lt;button class="button button--raised ripple bg-blue text-white"&gt;Button&lt;/button&gt;</code></pre>
 </section>
 <!-- /BUTTONS --> 
 
@@ -616,15 +618,15 @@ permalink: /css/
 <section id="cards-background-image">      
 <h3>Background Image</h3>
 <pre><code class="language-markup">
-&lt;div class="card" style="background: url('http://lorempixel.com/640/480/people/')"&gt;
+&lt;div class="list card card--background-image" style="background: url('http://lorempixel.com/640/480/people/')"&gt;
  &lt;div class="list__item card__title"&gt;
     &lt;h2 class="card__title--text"&gt;Welcome&lt;/h2&gt;
  &lt;/div&gt;
- &lt;div class="card__text"&gt;
+ &lt;div class="list__item card__text"&gt;
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   Mauris sagittis pellentesque lacus eleifend lacinia...
  &lt;/div&gt;
- &lt;div class="card__actions"&gt;
+ &lt;div class="list__item card__actions"&gt;
   &lt;button class="button button--flat button--ripple color-blue"&gt;GET STARTED&lt;/button&gt;
  &lt;/div&gt;
 &lt;/div&gt;
