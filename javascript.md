@@ -273,16 +273,16 @@ document.querySelector('#open').addEventListener('click', function() {
 <section id="pull-to-refresh">
     <h3>Pull to refresh (only mobile)</h3>
     <pre><code class="language-javascript">
-	var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), 
+var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), 
 	{ 
 		type: 'snake'
 	},
 	function(){
     setTimeout(function(){
         pullToRefresh.hide();
-    }, 5000);
+    }, 5000); 
 });
-</code>
+</code> 
 </pre>
 </section>
 
