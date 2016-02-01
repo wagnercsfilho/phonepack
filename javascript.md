@@ -195,23 +195,28 @@ var options = {
 };        
 
 // Instance a new page class
-var navigation = new phonepack.Navigation(document.querySelector('.navigation'), options);
+var navigation = new phonepack.Navigation(document.querySelector('.navigation'), options, doSomething);
 
 // Push a new page into the DOM
 navigation.pushPage('example-page.html', { paramObj: { foo: 'bar } }, doSomething);
 
+// Pass the element parameters
+var element = document.createElement('div');
+navigation.pushPage(element, { paramObj: { foo: 'bar } }, doSomething);
+
 // Replace a new page in DOM
 navigation.changePage('example-page.html', doSomething);
 
-function doSomething(){
+function doSomething(element){
     // Callback
+    // element is the html element
 }
 
 // Close the current page pushed in the DOM
 navigation.closeCurrentPage();
 
 //Get page params
-var naviParams = navigation.getParams();
+var naviParams = navigation.params;
 console.log(naviParams.paramObj);
 
 /*
@@ -248,12 +253,24 @@ navigation.on('afterPush', function(template){
     <h3>Side Menu</h3>
     <pre><code class="language-javascript">
 // Get menu element instance
-sideMenu = new phonepack.sideMenu(document.getElementById('side-menu'));
+sideMenu = new phonepack.SideMenu(document.getElementById('side-menu'));
 
 // show/hide menu
 sideMenu.toggle();
 </code>
 </pre>
+<h4>SideMenu HTML</h4>
+<pre><code class="language-markup">
+&lt;div class=&quot;side-menu&quot; id=&quot;side-menu&quot;&gt;
+        &lt;header class=&quot;header&quot;&gt;
+            &lt;div class=&quot;header__title&quot;&gt;Title&lt;/div&gt;
+        &lt;/header&gt;
+        &lt;ul class=&quot;list&quot;&gt;
+            &lt;li class=&quot;list__item&quot;&gt; Item 01 &lt;/li&gt;
+            &lt;li class=&quot;list__item&quot;&gt; Item 02 &lt;/li&gt;
+        &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
 </section>
 
 <!-- DROPDOWN MENU -->
@@ -266,6 +283,30 @@ document.querySelector('#open').addEventListener('click', function() {
 });
 </code>
 </pre>
+<h4>Html</h4>
+    <pre><code class="language-markup">
+    	&lt;div class=&quot;content&quot; id="content"&gt;&lt;/div&gt;
+    	&lt;button class=&quot;button button--icon button--ripple&quot; id=&quot;open&quot;&gt;
+                    &lt;i class=&quot;icon mdi mdi-dots-vertical&quot;>&lt;/i&gt;
+         &lt;/button&gt;
+    	&lt;div class="dropdown-menu" id="dropMenu"&gt;
+                    &lt;ul>
+                        &lt;li class="dropdown-item" id="moveToTrash"&gt;
+                            &lt;div class="item-primary">
+                                &lt;i class="icon mdi mdi-dots-vertical"&gt;&lt;/i&gt;
+                            &lt;/div>
+                            &lt;div class="item-content"&gt;Move to trash&lt;/div&gt;
+                        &lt;/li>
+                        &lt;li class="dropdown-divider"&gt;&lt;/li&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;div class="item-primary"&gt;
+                                &lt;i class="icon mdi mdi-dots-vertical"&gt;&lt;/i&gt;
+                            &lt;/div&gt;
+                            &lt;div class="item-content"&gt;Undo&lt;/div&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+        &lt;/div&gt;
+    </code></pre>
 </section>
 
 <!-- PULL TO REFRESH -->
@@ -273,7 +314,7 @@ document.querySelector('#open').addEventListener('click', function() {
 <section id="pull-to-refresh">
     <h3>Pull to refresh (only mobile)</h3>
     <pre><code class="language-javascript">
-var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content'), 
+var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('#content'), 
 	{ 
 		type: 'snake'
 	},
@@ -284,6 +325,10 @@ var pullToRefresh = new phonepack.PullToRefresh(document.querySelector('.content
 });
 </code> 
 </pre>
+<h4>Html</h4>
+    <pre><code class="language-markup">
+    	&lt;div class=&quot;content&quot; id="content"&gt;&lt;/div&gt;
+    </code></pre>
 </section>
 
 <!-- TabBar -->

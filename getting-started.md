@@ -43,7 +43,6 @@ permalink: /getting-started/
         <h2 class="subtitle">Don’t use bower?</h2>
         <p>PhonePack is available via download</p>
         <a class="btn btn-large btn-primary" href="https://github.com/wagnercsfilho/phonepack/archive/master.zip">Download Phonepack</a>
-        <span>Currently v0.0.1 BETA</span>
       </div>
     </div>
     <div class="row row-content">

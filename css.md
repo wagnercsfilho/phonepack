@@ -224,14 +224,14 @@ permalink: /css/
 <h3>Footer</h3>
 <pre><code class="language-markup">&lt;footer class="footer"&gt;
  &lt;div class="footer__title"&gt;Footer&lt;/div&gt;
-&lt;footer&gt;</code></pre>
+&lt;/footer&gt;</code></pre>
 </section>
 
 <section id="footer-colors">
 <h3>Footer Colors</h3>
 <pre><code class="language-markup">&lt;footer class="footer bg-yellow text-black"&gt;
  &lt;div class="footer__title"&gt;Footer Colors&lt;/div&gt;
-&lt;footer&gt;</code></pre>
+&lt;/footer&gt;</code></pre>
 </section>
 
 <section id="footer-buttons">
@@ -243,7 +243,7 @@ permalink: /css/
     &lt;/button&gt;
 &lt;/div&gt;
  &lt;div class="footer__title"&gt;Buttons&lt;/div&gt;
-&lt;footer&gt;</code></pre>
+&lt;/footer&gt;</code></pre>
 </section>
 
 <!-- /FOOTER --> 
