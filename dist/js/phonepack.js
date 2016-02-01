@@ -286,6 +286,7 @@ var InfiniteScroll = (function () {
         var _options = {
             distance: 0
         };
+        var lastScrollTop;
 
         self.options = _utilsUtils2['default'].extend({}, _options, options);
         self.isShown = false;
@@ -297,11 +298,17 @@ var InfiniteScroll = (function () {
 
         element.addEventListener('scroll', function (e) {
 
-            if (element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance && !self.isShown) {
-                self.loadEl.classList.add('is-shown');
-                self.isShown = true;
-                callback();
+            var st = element.scrollTop;
+            if (st > lastScrollTop) {
+                if (element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance && !self.isShown) {
+                    self.loadEl.classList.add('is-shown');
+                    self.isShown = true;
+                    callback();
+                }
             }
+            lastScrollTop = st;
+
+            console.log(self.isShown);
         }, false);
     }
 
@@ -466,60 +473,71 @@ var eventEmitter = {
 	'beforePush': null,
 	'afterPush': null,
 	'beforeChange': null,
-	'afterChange': null
+	'afterChange': null,
+	'onClose': null
 };
 
 function _changePage(template, callback) {
-	var self = this;
-	self.element.appendChild(template);
+	var that = this;
+	that.element.appendChild(template);
 	setTimeout(function () {
-		self.prevPage = self.currentPage;
-		self.currentPage.remove();
-		self.currentPage = template;
+		if (that.currentPage) {
+			that.prevPage = that.currentPage;
+			that.currentPage.remove();
+		}
+		that.currentPage = template;
 
 		if (eventEmitter.afterChange) eventEmitter.afterChange(template);
 
 		if (callback) callback();
-	}, 50);
+	}, 40);
 }
 
 function _pushPage(template, callback) {
-	var self = this;
+	var that = this;
 
-	self.element.appendChild(template);
+	that.element.appendChild(template);
 	setTimeout(function () {
-		template.classList.add('pages--slide-up-show');
-		self.prevPage = self.currentPage;
-		self.currentPage = template;
+		template.classList.add(that.animation + '-show');
+		that.prevPage = that.currentPage;
+		that.currentPage = template;
 
 		if (eventEmitter.afterPush) eventEmitter.afterPush(template);
 
 		if (callback) callback();
-	}, 50);
+	}, 40);
 }
 
 var Navigation = (function () {
-	function Navigation(element, options) {
+	function Navigation(element, options, cb) {
 		_classCallCheck(this, Navigation);
 
-		var self = this;
-		self.element = element;
-		self.currentPage = null;
-		self.prevPage = null;
-		self._params = null;
+		var that = this;
+		that.config = {};
+		that.element = element;
+		that.currentPage = null;
+		that.prevPage = null;
+		that._params = null;
 
 		var _options = {
-			page: null
+			page: null,
+			config: null
 		};
 
-		self.options = _utilsUtils2['default'].extend({}, _options, options);
+		that.options = _utilsUtils2['default'].extend({}, _options, options);
 
-		if (self.options.page) {
-			self.pushPage(self.options.page);
+		if (that.options.config) {
+			for (var c in that.options.config) {
+				that.config[c] = that.options.config[c];
+			}
+		}
+
+		if (that.options.otherwise) {
+			that.change(that.options.otherwise, {});
 		}
 
 		document.addEventListener('backbutton', function (e) {
-			self.closeCurrentPage();
+			that.closeCurrentPage();
 		}, false);
 	}
 
@@ -531,90 +549,142 @@ var Navigation = (function () {
 	}, {
 		key: 'changePage',
 		value: function changePage(page, params, callback) {
-			var self = this;
-			self.params = params;
-			var request = new XMLHttpRequest();
-			request.onreadystatechange = function () {
-				if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
-					(function () {
+			var that = this;
+			that.params = params;
+
+			if (typeof page == 'string') {
+				var request = new XMLHttpRequest();
+				request.onreadystatechange = function () {
+					if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 
 						var temp = document.createElement("div");
 						temp.innerHTML = request.responseText;
 
 						var template = temp.querySelector('.pages');
-						if (eventEmitter.beforeChange) {
-							eventEmitter.beforeChange(template, function () {
-								_changePage.call(self, template, function () {
-									if (callback) callback(template);
-								});
-							});
-						} else {
-							_changePage.call(self, template, function () {
-								if (callback) callback(template);
-							});
-						}
-					})();
+						render(template);
+					}
+				};
+				request.open('GET', page, true);
+				request.send();
+			} else {
+				render(page);
+			}
+
+			function render(template) {
+				if (eventEmitter.beforeChange) {
+					eventEmitter.beforeChange(template, function () {
+						_changePage.call(that, template, function () {
+							if (callback) callback(template);
+						});
+					});
+				} else {
+					_changePage.call(that, template, function () {
+						if (callback) callback(template);
+					});
 				}
-			};
-			request.open('GET', page, true);
-			request.send();
+			}
 		}
 	}, {
 		key: 'pushPage',
-		value: function pushPage(page, params, callback) {
-			var self = this;
-			self.params = params;
-			var request = new XMLHttpRequest();
+		value: function pushPage(page, params, callback, animation) {
+			var that = this;
+			that.params = params;
+			that.animation = 'pages--normal';
 
-			request.onreadystatechange = function () {
-				if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
-					(function () {
+			if (animation) {
+				that.animation = animation;
+			}
 
+			if (typeof page == 'string') {
+				var request = new XMLHttpRequest();
+				request.onreadystatechange = function () {
+					if (request.readyState === 4 && (request.status === 200 || request.status === 0)) {
 						var temp = document.createElement("div");
 						temp.innerHTML = request.responseText;
-
 						var template = temp.querySelector('.pages');
-						template.classList.add('pages--slide-up');
-						if (eventEmitter.beforePush) {
-							eventEmitter.beforePush(template, function () {
-								_pushPage.call(self, template, function () {
-									if (callback) callback(template);
-								});
-							});
-						} else {
-							_pushPage.call(self, template, function () {
-								if (callback) callback(template);
-							});
-						}
-					})();
-				}
-			};
+						render(template);
+					}
+				};
 
-			request.open('GET', page, true);
-			request.send();
+				request.open('GET', page, true);
+				request.send();
+			} else {
+				render(page);
+			}
+
+			function render(template) {
+
+				template.classList.add(that.animation);
+
+				if (eventEmitter.beforePush) {
+					eventEmitter.beforePush(template, function () {
+						_pushPage.call(that, template, function () {
+							if (callback) callback(template);
+						});
+					});
+				} else {
+					_pushPage.call(that, template, function () {
+						if (callback) callback(template);
+					});
+				}
+			}
 		}
 	}, {
 		key: 'closeCurrentPage',
 		value: function closeCurrentPage() {
-			var self = this;
+			var that = this;
 
 			var removeDomPage = function removeDomPage() {
-				self.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
-				self.currentPage.removeEventListener('transitionend', removeDomPage);
+				that.currentPage.removeEventListener('webkitTransitionEnd', removeDomPage);
+				that.currentPage.removeEventListener('transitionend', removeDomPage);
 
-				if (self.currentPage) {
-					self.currentPage.remove();
+				if (that.currentPage) {
+					that.currentPage.remove();
+
+					if (eventEmitter.onClose) {
+						eventEmitter.onClose();
+					}
 				}
 
-				self.currentPage = self.prevPage;
+				that.currentPage = that.prevPage;
 			};
 
-			if (self.prevPage) {
-				self.currentPage.classList.remove('pages--slide-up-show');
-				self.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
-				self.currentPage.addEventListener('transitionend', removeDomPage);
+			if (that.prevPage) {
+				that.currentPage.classList.remove(that.animation + '-show');
+				if (that.animation == 'pages--normal') {
+					removeDomPage();
+				} else {
+					that.currentPage.addEventListener('webkitTransitionEnd', removeDomPage);
+					that.currentPage.addEventListener('transitionend', removeDomPage);
+				}
 			} else {
 				return;
+			}
+		}
+	}, {
+		key: 'insert',
+		value: function insert(name, params, animation) {
+			if (this.config[name]) {
+				if (this.config[name].component) {
+					this.config[name].component(params, (function (element) {
+						this.pushPage(element, params, null, animation);
+					}).bind(this));
+				} else {
+					this.pushPage(this.config[name].template, params, this.config[name].controller, animation);
+				}
+			}
+		}
+	}, {
+		key: 'change',
+		value: function change(name, params, animation) {
+			if (this.config[name]) {
+				if (this.config[name].component) {
+					this.config[name].component(params, (function (element) {
+						this.changePage(element, params, null, animation);
+					}).bind(this));
+				} else {
+					this.changePage(this.config[name].template, params, this.config[name].controller, animation);
+				}
 			}
 		}
 	}, {

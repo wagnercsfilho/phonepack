@@ -13,19 +13,24 @@
   position: absolute;
   z-index: 99;
   background-color: #ffffff;
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  
   &.pages--slide-up {
     opacity: 0;
+    transition: transform 0.1s linear, opacity 0.1s linear;
     transform: translateY(10%);
   }
   &.pages--slide-up-show {
     opacity: 1;
     transform: translateY(0);
   }
-  &.pages--hidden {
+  
+  &.pages--normal {
+    transition: all 0s linear;
     visibility: hidden;
   }
-  &.pages--visibility {
+  &.pages--normal-show {
     visibility: visible;
   }
+  
+  
 }

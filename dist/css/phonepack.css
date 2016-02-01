@@ -6366,6 +6366,10 @@ input[type="checkbox"], input[type="radio"] {
   list-style: none;
   margin: 0;
   padding: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
 }
 
 .row--gutters {
@@ -6590,6 +6594,7 @@ input[type="checkbox"], input[type="radio"] {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  line-height: 56px;
 }
 
 .header .header__title .header__caption {
@@ -7222,18 +7227,10 @@ input[type="checkbox"], input[type="radio"] {
 
 .tab-hide {
   visibility: hidden;
-  opacity: 0;
 }
 
 .tab-show {
   visibility: visibility;
-  opacity: 1 !important;
-}
-
-.content--tab {
-  opacity: 0;
-  -webkit-transition: opacity 0.2s;
-          transition: opacity 0.2s;
 }
 
 .list {
@@ -7300,12 +7297,7 @@ input[type="checkbox"], input[type="radio"] {
   width: 56px;
 }
 
-.list .list__item .list__primary.list__primary-icon {
-  width: 40px;
-}
-
-.list .list__item .list__primary img,
-.list .list__item .list__primary i {
+.list .list__item .list__primary img {
   width: 40px;
 }
 
@@ -7471,6 +7463,8 @@ html input[disabled] {
 .button .icon {
   font-size: 26px;
   margin: 0 auto;
+  line-height: 36px;
+  display: block;
 }
 
 .button--small {
@@ -7681,8 +7675,9 @@ html input[disabled] {
   background-color: #FFFFFF;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   opacity: 0;
-  -webkit-transition: opacity 0.3s ease;
-          transition: opacity 0.3s ease;
+  visibility: hidden;
+  -webkit-transition: all 0.1s ease;
+          transition: all 0.1s ease;
   padding: 8px 0;
   border-radius: 2px;
   text-align: left;
@@ -7690,6 +7685,7 @@ html input[disabled] {
 
 .dropdown-menu.dropdown-menu--is-shown {
   opacity: 1;
+  visibility: visible;
 }
 
 .dropdown-menu ul {
@@ -8154,12 +8150,12 @@ html input[disabled] {
   position: absolute;
   z-index: 99;
   background-color: #ffffff;
-  -webkit-transition: -webkit-transform 0.2s ease-out, opacity 0.2s ease-out;
-          transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 
 .pages.pages--slide-up {
   opacity: 0;
+  -webkit-transition: -webkit-transform 0.1s linear, opacity 0.1s linear;
+          transition: transform 0.1s linear, opacity 0.1s linear;
   -webkit-transform: translateY(10%);
       -ms-transform: translateY(10%);
           transform: translateY(10%);
@@ -8172,11 +8168,13 @@ html input[disabled] {
           transform: translateY(0);
 }
 
-.pages.pages--hidden {
+.pages.pages--normal {
+  -webkit-transition: all 0s linear;
+          transition: all 0s linear;
   visibility: hidden;
 }
 
-.pages.pages--visibility {
+.pages.pages--normal-show {
   visibility: visible;
 }
 

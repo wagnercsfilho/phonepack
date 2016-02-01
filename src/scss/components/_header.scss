@@ -26,6 +26,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    line-height: $height;
 
     .header__caption{
       display: block;

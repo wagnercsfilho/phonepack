@@ -7,6 +7,7 @@ class InfiniteScroll {
         var _options = {
             distance: 0
         };
+        var lastScrollTop;
 
         self.options = _.extend({}, _options, options);
         self.isShown = false;
@@ -18,11 +19,17 @@ class InfiniteScroll {
 
         element.addEventListener('scroll', function(e) {
 
-            if ((element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance) && (!self.isShown)) {
-                self.loadEl.classList.add('is-shown');
-                self.isShown = true; 
-                callback();
+            var st = element.scrollTop;
+            if (st > lastScrollTop) {
+                if ((element.scrollTop + element.offsetHeight >= element.scrollHeight - self.options.distance) && (!self.isShown)) {
+                    self.loadEl.classList.add('is-shown');
+                    self.isShown = true;
+                    callback();
+                }
             }
+            lastScrollTop = st;
+            
+            console.log(self.isShown)
 
         }, false);
     }
