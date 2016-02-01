@@ -191,7 +191,7 @@ notification.error('Error message');</code></pre>
 
 // Sets the homepage that will be loaded into the DOM.
 var options = {
-    page: 'startPage.html'
+    otherwise: 'startPage.html'
 };        
 
 // Instance a new page class
