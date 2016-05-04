@@ -1,14 +1,13 @@
 import utils from '../utils/utils';
 
 var listenCLoseSlideMenu = function(element) {
-	var self = this;
-	element.addEventListener('click', function() {
-		self.toggle();
-	});
+	var that = this;
+	element.addEventListener('click', that.toggle.bind(that));
 };
 
 var removeListenCLoseSlideMenu = function(element) {
-	element.removeEventListener("click");
+	var that = this;
+	element.removeEventListener("click", that.toggle.bind(that));
 };
 
 var createOverlayElement = function() {
@@ -35,7 +34,7 @@ function setTransform(element, value) {
 class SideMenu {
 
 	constructor(element, options) {
-		var self = this,
+		var that = this,
 			startX,
 			startTouchPosition,
 			distX,
@@ -49,23 +48,23 @@ class SideMenu {
 				swipe: false // true or false
 			};
 
-		self.element = element;
-		self.options = utils.extend({}, _options, options);
-		self.overlayEl = null;
-		self.page = document.querySelector('.navigation');
+		that.element = element;
+		that.options = utils.extend({}, _options, options);
+		that.overlayEl = null;
+		that.page = document.querySelector('.navigation');
 
 		transitionDuration = '0.2s';
 		startTouchPosition = 30;
 		isMoved = false;
 
-		if (self.options.swipe) {
+		if (that.options.swipe) {
 			document.addEventListener('touchstart', function(e) {
 				touchobj = e.changedTouches[0];
 				startX = touchobj.pageX;
-				if (startX <= startTouchPosition && !self.element.classList.contains('side-menu--visible') && self.options.overlay) {
-					clientWidth = self.element.clientWidth;
-					self.overlayEl = createOverlayElement.call(self);
-					listenCLoseSlideMenu.call(self, self.overlayEl);
+				if (startX <= startTouchPosition && !that.element.classList.contains('side-menu--visible') && that.options.overlay) {
+					clientWidth = that.element.clientWidth;
+					that.overlayEl = createOverlayElement.call(that);
+					listenCLoseSlideMenu.call(that, that.overlayEl);
 				}
 
 			}, false);
@@ -76,27 +75,27 @@ class SideMenu {
 				isMoved = true;
 
 				if (startX <= startTouchPosition) {
-					self.element.style.webkitTransitionDuration = '0s';
-					self.element.style.transitionDuration = '0s';
+					that.element.style.webkitTransitionDuration = '0s';
+					that.element.style.transitionDuration = '0s';
 					if (distX >= clientWidth) {
 						return;
 					}
 					else {
-						if (self.options.overlay) self.overlayEl.style.opacity = (distX * 0.002).toFixed(1);
-						setTransform(self.element, 'translateX(' + distX + 'px)');
-						if (self.options.type === 'elastic') {
-							setTransform(self.page, 'translateX(' + distX + 'px)');
+						if (that.options.overlay) that.overlayEl.style.opacity = (distX * 0.002).toFixed(1);
+						setTransform(that.element, 'translateX(' + distX + 'px)');
+						if (that.options.type === 'elastic') {
+							setTransform(that.page, 'translateX(' + distX + 'px)');
 						}
 					}
 				}
-				else if (self.element.classList.contains('side-menu--visible') && distX <= 0) {
-					self.element.style.webkitTransitionDuration = '0s';
-					self.element.style.transitionDuration = '0s';
-					setTransform(self.element, 'translateX(' + (clientWidth + distX) + 'px)');
-					if (self.options.overlay) self.overlayEl.style.opacity = (((clientWidth + distX) * 0.002).toFixed(1));
+				else if (that.element.classList.contains('side-menu--visible') && distX <= 0) {
+					that.element.style.webkitTransitionDuration = '0s';
+					that.element.style.transitionDuration = '0s';
+					setTransform(that.element, 'translateX(' + (clientWidth + distX) + 'px)');
+					if (that.options.overlay) that.overlayEl.style.opacity = (((clientWidth + distX) * 0.002).toFixed(1));
 
-					if (self.options.type === 'elastic') {
-						setTransform(self.page, 'translateX(' + (clientWidth + distX) + 'px)');
+					if (that.options.type === 'elastic') {
+						setTransform(that.page, 'translateX(' + (clientWidth + distX) + 'px)');
 					}
 				}
 
@@ -105,52 +104,52 @@ class SideMenu {
 			document.addEventListener('touchend', function(e) {
 				if (isMoved) {
 					if (startX <= startTouchPosition) {
-						self.element.style.webkitTransitionDuration = transitionDuration;
-						self.element.style.transitionDuration = transitionDuration;
+						that.element.style.webkitTransitionDuration = transitionDuration;
+						that.element.style.transitionDuration = transitionDuration;
 						if (distX > 100) {
-							self.overlayEl.removeAttribute('style');
-							self.element.removeAttribute('style');
-							self.element.classList.add('side-menu--visible');
-							if (self.options.type === 'elastic') {
-								self.page.classList.add('side-menu--elastic');
+							that.overlayEl.removeAttribute('style');
+							that.element.removeAttribute('style');
+							that.element.classList.add('side-menu--visible');
+							if (that.options.type === 'elastic') {
+								that.page.classList.add('side-menu--elastic');
 							}
 						}
 						else {
-							self.overlayEl.remove();
-							self.overlayEl = null;
-							setTransform(self.element, 'translateX(0)');
-							if (self.options.type === 'elastic') {
-								setTransform(self.page, 'translateX(0)');
+							that.overlayEl.remove();
+							that.overlayEl = null;
+							setTransform(that.element, 'translateX(0)');
+							if (that.options.type === 'elastic') {
+								setTransform(that.page, 'translateX(0)');
 							}
 						}
-						if (self.options.type === 'elastic') {
-							self.element.removeAttribute('style');
-							self.page.removeAttribute('style');
+						if (that.options.type === 'elastic') {
+							that.element.removeAttribute('style');
+							that.page.removeAttribute('style');
 						}
 					}
-					else if (self.element.classList.contains('side-menu--visible')) {
-						self.element.style.webkitTransitionDuration = transitionDuration;
-						self.element.style.transitionDuration = transitionDuration;
+					else if (that.element.classList.contains('side-menu--visible')) {
+						that.element.style.webkitTransitionDuration = transitionDuration;
+						that.element.style.transitionDuration = transitionDuration;
 						if (distX < -100) {
-							if (self.options.overlay) {
-								self.overlayEl.remove();
-								self.overlayEl = null;
+							if (that.options.overlay) {
+								that.overlayEl.remove();
+								that.overlayEl = null;
 							}
-							self.element.removeAttribute('style');
-							self.element.classList.remove('side-menu--visible');
+							that.element.removeAttribute('style');
+							that.element.classList.remove('side-menu--visible');
 
-							if (self.options.type === 'elastic') {
-								self.page.removeAttribute('style');
-								self.page.classList.remove('side-menu--elastic');
+							if (that.options.type === 'elastic') {
+								that.page.removeAttribute('style');
+								that.page.classList.remove('side-menu--elastic');
 							}
 						}
 						else {
-							self.element.removeAttribute('style');
-							self.element.classList.add('side-menu--visible');
+							that.element.removeAttribute('style');
+							that.element.classList.add('side-menu--visible');
 
-							if (self.options.type === 'elastic') {
-								self.page.removeAttribute('style');
-								self.page.classList.add('side-menu--elastic');
+							if (that.options.type === 'elastic') {
+								that.page.removeAttribute('style');
+								that.page.classList.add('side-menu--elastic');
 							}
 						}
 

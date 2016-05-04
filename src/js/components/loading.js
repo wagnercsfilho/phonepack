@@ -3,7 +3,7 @@ import utils from '../utils/utils';
 class Loading {
 
 	constructor(params) {
-		var self = this;
+		var that = this;
 
 		var options = {
 			title: null,
@@ -13,11 +13,11 @@ class Loading {
 
 		this.options = utils.extend({}, options, params);
 
-		self.overlay = document.createElement("div");
-		self.overlay.className = 'loading-filter';
+		that.overlay = document.createElement("div");
+		that.overlay.className = 'loading-filter';
 
-		self.dialog = document.createElement("div");
-		self.dialog.className = 'loading';
+		that.dialog = document.createElement("div");
+		that.dialog.className = 'loading';
 
 		var main = document.createElement("div");
 		main.className = 'loading__main';
@@ -32,76 +32,76 @@ class Loading {
 			spinner.innerHTML = sp;
 			main.appendChild(spinner);
 
-			if (!self.options.title) {
+			if (!that.options.title) {
 				spinner.style.padding = 0;
 			}
 
 		}
 
-		if (self.options.title) {
+		if (that.options.title) {
 			var title = document.createElement("div");
 			title.className = 'loading__title';
-			title.innerHTML = self.options.title;
+			title.innerHTML = that.options.title;
 			main.appendChild(title);
 		}
 
-		self.dialog.appendChild(main);
+		that.dialog.appendChild(main);
 
-		document.body.appendChild(self.overlay);
-		document.body.appendChild(self.dialog);
+		document.body.appendChild(that.overlay);
+		document.body.appendChild(that.dialog);
 
-		return self;
+		return that;
 	}
 
 	show(confirmCallback, cancelCallback) {
-		var self = this;
+		var that = this;
 
 		setTimeout(function() { 
-			if (self.options.overlay) {
-				self.overlay.classList.add('loading-filter--is-shown');
+			if (that.options.overlay) {
+				that.overlay.classList.add('loading-filter--is-shown');
 			} else {
-				self.dialog.classList.add('loading--no-box-shadow');
+				that.dialog.classList.add('loading--no-box-shadow');
 			}
-			self.dialog.classList.add('loading--is-shown');
+			that.dialog.classList.add('loading--is-shown');
 		}, 0);
 
-		return self;
+		return that;
 
 	}
 
 	hide() {
-		var self = this;
+		var that = this;
 
-		self.overlay.addEventListener('webkitTransitionEnd', function() {
-			self.overlay.remove();
+		that.overlay.addEventListener('webkitTransitionEnd', function() {
+			that.overlay.remove();
 		});
 
-		self.overlay.addEventListener('transitionend', function() {
-			self.overlay.remove();
+		that.overlay.addEventListener('transitionend', function() {
+			that.overlay.remove();
 		});
 
-		self.dialog.addEventListener('webkitTransitionEnd', function() {
-			self.dialog.remove();
+		that.dialog.addEventListener('webkitTransitionEnd', function() {
+			that.dialog.remove();
 		});
 
-		self.dialog.addEventListener('transitionend', function() {
-			self.dialog.remove();
+		that.dialog.addEventListener('transitionend', function() {
+			that.dialog.remove();
 		});
 
 		setTimeout(function() {
 
-			if (self.options.overlay) {
-				self.overlay.classList.remove('loading-filter--is-shown');
+			if (that.options.overlay) {
+				that.overlay.classList.remove('loading-filter--is-shown');
 			}
 			else {
-				self.overlay.remove();
+				that.overlay.remove();
 			}
 
-			self.dialog.classList.remove('loading--is-shown');
+			that.dialog.classList.remove('loading--is-shown');
 
 		}, 0);
 
-		return self;
+		return that;
 	}
 
 }

@@ -24,6 +24,16 @@
     transform: translateY(0);
   }
   
+  &.pages--slide-left {
+    opacity: 0;
+    transition: transform 0.1s linear, opacity 0.1s linear;
+    transform: translateX(10%);
+  }
+  &.pages--slide-left-show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
   &.pages--normal {
     transition: all 0s linear;
     visibility: hidden;

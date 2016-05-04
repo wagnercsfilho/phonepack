@@ -29,8 +29,6 @@ class InfiniteScroll {
             }
             lastScrollTop = st;
             
-            console.log(self.isShown)
-
         }, false);
     }
 

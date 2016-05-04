@@ -46,22 +46,22 @@ class Navigation {
 
 	constructor(element, options, cb) {
 		var that = this;
-		that.config = {};
+		that.pages = {};
 		that.element = element;
 		that.currentPage = null;
 		that.prevPage = null;
 		that._params = null;
 
 		var _options = {
-			page: null,
-			config: null
+			otherwise: null,
+			pages: null
 		};
 
 		that.options = utils.extend({}, _options, options);
 
-		if (that.options.config) {
-			for (var c in that.options.config) {
-				that.config[c] = that.options.config[c];
+		if (that.options.pages) {
+			for (var c in that.options.pages) {
+				that.pages[c] = that.options.pages[c];
 			}
 		}
 
@@ -77,7 +77,6 @@ class Navigation {
 
 	get params() {
 		let params = this._params;
-		this._params = null;
 		return params;
 	}
 
@@ -89,7 +88,7 @@ class Navigation {
 		eventEmitter[event] = fn;
 	}
 
-	changePage(page, params, callback) {
+	changePage(page, params, callback, animation) {
 		var that = this;
 		that.params = params;
 
@@ -117,13 +116,13 @@ class Navigation {
 			if (eventEmitter.beforeChange) {
 				eventEmitter.beforeChange(template, function() {
 					changePage.call(that, template, function() {
-						if (callback) callback(template);
+						if (callback) callback.call(template);
 					});
 				});
 			}
 			else {
 				changePage.call(that, template, function() {
-					if (callback) callback(template);
+					if (callback) callback.call(template);
 				});
 			}
 		}
@@ -163,13 +162,13 @@ class Navigation {
 			if (eventEmitter.beforePush) {
 				eventEmitter.beforePush(template, function() {
 					pushPage.call(that, template, function() {
-						if (callback) callback(template);
+						if (callback) callback.call(template);
 					});
 				});
 			}
 			else {
 				pushPage.call(that, template, function() {
-					if (callback) callback(template);
+					if (callback) callback.call(template);
 				});
 			}
 		}
@@ -211,29 +210,29 @@ class Navigation {
 	}
 
 	insert(name, params, animation) {
-		if (this.config[name]) {
-			if (this.config[name].component) {
-				this.config[name].component(params, function(element) {
+		if (this.pages[name]) {
+			if (this.pages[name].component) {
+				this.pages[name].component(params, function(element) {
 					this.pushPage(element, params, null, animation);
 
 				}.bind(this));
 			}
 			else {
-				this.pushPage(this.config[name].template, params, this.config[name].controller, animation);
+				this.pushPage(this.pages[name].template, params, this.pages[name].controller, animation);
 			}
 		}
 	}
 
 	change(name, params, animation) {
-		if (this.config[name]) {
-			if (this.config[name].component) {
-				this.config[name].component(params, function(element) {
+		if (this.pages[name]) {
+			if (this.pages[name].component) {
+				this.pages[name].component(params, function(element) {
 					this.changePage(element, params, null, animation);
 
 				}.bind(this));
 			}
 			else {
-				this.changePage(this.config[name].template, params, this.config[name].controller, animation);
+				this.changePage(this.pages[name].template, params, this.pages[name].controller, animation);
 			}
 		}
 	}

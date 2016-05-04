@@ -20,30 +20,30 @@ function setAnimation(element, value) {
 }
 
 function createLoading() {
-	var self = this;
-	self.loading = document.createElement('div');
-	self.loading.style.position = 'absolute';
-	self.loading.style.top = (parseInt(self.top.replace('px', '')) + 5) + 'px';
-	self.loading.zIndex = -1;
+	var that = this;
+	that.loading = document.createElement('div');
+	that.loading.style.position = 'absolute';
+	that.loading.style.top = (parseInt(that.top.replace('px', '')) + 5) + 'px';
+	that.loading.zIndex = -1;
 
-	if (self.options.type === 'snake') {
-		self.loading.style.left = '47%';
-		self.loading.className = 'snake--pull-to-refresh';
+	if (that.options.type === 'snake') {
+		that.loading.style.left = '47%';
+		that.loading.className = 'snake--pull-to-refresh';
 	}
-	else if (self.options.type === 'material') {
-		self.loading.className = 'material--pull-to-refresh';
+	else if (that.options.type === 'material') {
+		that.loading.className = 'material--pull-to-refresh';
 		var child = document.createElement('div');
 		child.className = 'bar';
-		self.loading.appendChild(child);
+		that.loading.appendChild(child);
 	}
 
-	self.element.parentNode.insertBefore(self.loading, self.element);
+	that.element.parentNode.insertBefore(that.loading, that.element);
 }
 
 class pullToRefresh {
 
 	constructor(element, options, callback) {
-		var self = this,
+		var that = this,
 			moveDistance = 0,
 			scale = 0,
 			distY,
@@ -53,66 +53,66 @@ class pullToRefresh {
 				type: 'snake'
 			};
 
-		self.loading = null;
-		self.element = element;
-		self.element.classList.add('pull-to-refresh');
-		self.top = $(element).style('padding-top');
-		self.options = _.extend({}, _options, options);
-		createLoading.call(self, self.type);
+		that.loading = null;
+		that.element = element;
+		that.element.classList.add('pull-to-refresh');
+		that.top = $(element).style('padding-top');
+		that.options = _.extend({}, _options, options);
+		createLoading.call(that, that.type);
 
-		self.element.addEventListener('touchstart', function(e) {
+		that.element.addEventListener('touchstart', function(e) {
 			touchobj = e.changedTouches[0];
 			startY = touchobj.pageY;
 		}, false);
-		self.element.addEventListener('touchmove', function(e) {
+		that.element.addEventListener('touchmove', function(e) {
 			touchobj = e.changedTouches[0];
 			distY = touchobj.pageY - startY;
 
-			if (distY > 0 && self.element.scrollTop === 0) {
+			if (distY > 0 && that.element.scrollTop === 0) {
 				if (!moveDistance) moveDistance = distY;
 
-				if (self.options.type === 'snake') {
-					setTransform(self.element, 'translateY(' + (distY - moveDistance) + 'px)');
-					self.loading.classList.add('is-shown');
-					setTransform(self.loading, 'rotate(' + distY * 2 + 'deg)');
+				if (that.options.type === 'snake') {
+					setTransform(that.element, 'translateY(' + (distY - moveDistance) + 'px)');
+					that.loading.classList.add('is-shown');
+					setTransform(that.loading, 'rotate(' + distY * 2 + 'deg)');
 				}
-				else if (self.options.type === 'material') {
-					self.loading.classList.remove('not-loading');
-					self.loading.classList.remove('is-loading');
+				else if (that.options.type === 'material') {
+					that.loading.classList.remove('not-loading');
+					that.loading.classList.remove('is-loading');
 
 					scale = ((distY / 200).toFixed(1));
 					if (scale >= 1) scale = 1;
-					setTransform(self.loading.firstChild, 'scale(' + (scale) + ')');
+					setTransform(that.loading.firstChild, 'scale(' + (scale) + ')');
 				}
 
 				e.preventDefault();
 			}
 		});
-		self.element.addEventListener('touchend', function(e) {
-			if (distY > 0 && self.element.scrollTop === 0) {
-				if (self.options.type === 'snake') {
+		that.element.addEventListener('touchend', function(e) {
+			if (distY > 0 && that.element.scrollTop === 0) {
+				if (that.options.type === 'snake') {
 					if (distY >= 50) {
-						setTransform(self.element, 'translateY(50px)');
-						setAnimation(self.loading, 'rotate 0.8s infinite linear');
+						setTransform(that.element, 'translateY(50px)');
+						setAnimation(that.loading, 'rotate 0.8s infinite linear');
 						callback();
 					}
 					else {
-						setTransform(self.element, 'translateY(0)');
-						setAnimation(self.loading, null);
-						self.loading.classList.remove('is-shown');
+						setTransform(that.element, 'translateY(0)');
+						setAnimation(that.loading, null);
+						that.loading.classList.remove('is-shown');
 					}
 
 					moveDistance = null;
 				}
-				else if (self.options.type === 'material') {
+				else if (that.options.type === 'material') {
 					if (scale >= 1) {
-						self.loading.classList.remove('not-loading');
-						self.loading.classList.add('is-loading');
+						that.loading.classList.remove('not-loading');
+						that.loading.classList.add('is-loading');
 						callback();
 					}
 					else {
-						self.loading.classList.remove('is-loading');
-						self.loading.classList.add('not-loading');
+						that.loading.classList.remove('is-loading');
+						that.loading.classList.add('not-loading');
 					}
 
 					scale = 0;
@@ -126,27 +126,27 @@ class pullToRefresh {
 	}
 
 	hide() {
-		var self = this;
+		var that = this;
 
 		function handlerEndTranition() {
-			self.element.style.webkitTransitionDuration = '0s';
-			self.element.style.transitionDuration = '0s';
+			that.element.style.webkitTransitionDuration = '0s';
+			that.element.style.transitionDuration = '0s';
 		}
 
-		self.element.addEventListener('webkitTransitionEnd', handlerEndTranition);
-		self.element.addEventListener('transitionend', handlerEndTranition);
+		that.element.addEventListener('webkitTransitionEnd', handlerEndTranition);
+		that.element.addEventListener('transitionend', handlerEndTranition);
 
-		if (self.options.type === 'snake') {
-			self.element.style.webkitTransitionDuration = '0.4s';
-			self.element.style.transitionDuration = '0.4s';
-			setTransform(self.element, 'translateY(0)');
+		if (that.options.type === 'snake') {
+			that.element.style.webkitTransitionDuration = '0.4s';
+			that.element.style.transitionDuration = '0.4s';
+			setTransform(that.element, 'translateY(0)');
 
-			self.loading.classList.remove('is-shown');
-			setAnimation(self.loading, null);
+			that.loading.classList.remove('is-shown');
+			setAnimation(that.loading, null);
 		}
-		else if (self.options.type === 'material') {
-			self.loading.classList.remove('is-loading');
-			self.loading.classList.add('not-loading');
+		else if (that.options.type === 'material') {
+			that.loading.classList.remove('is-loading');
+			that.loading.classList.add('not-loading');
 		}
 	}
 }

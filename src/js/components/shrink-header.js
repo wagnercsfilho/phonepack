@@ -1,7 +1,8 @@
 import $ from '../utils/dom';
 
 export default function shrinkHeader(element) {
-    let _content = document.querySelectorAll('.content');
+    let pages = element.parentElement;
+    let _content = pages.querySelectorAll('.content');
     let _lastScrollTop = 0;
 
     element.classList.add('header--shrink');
