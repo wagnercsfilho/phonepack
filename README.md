@@ -11,7 +11,7 @@ Three quick start options are available:
 
 ## Demo
 
-[Click here](http://phonepack.org/) to see Phonepack in action!
+[Click here](https://wagnercsfilho.github.io/phonepack) to see Phonepack in action!
 
 
 ### Running locally
